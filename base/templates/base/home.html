@@ -1,52 +1,23 @@
 {% extends 'base/index.html' %}
 {% load static %}
 {% block content %}
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card card-body" id="profile-wrapper">
-                <img id="profile-pic" src="{% static 'images/me.jpg' %}">
-                <br>
-                <h4>Gage Rowden</h4>
-                <p>Molecular biologist and software developer</p>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="card card-body">
-                <h4>
-                    Data scientist and R&D specialist with a strong foundation in molecular biology and software development. Experienced in building automated data pipelines, custom R packages, and laboratory systems to streamline diagnostics and research.
-                </h4>
-            </div>
-        </div>
+    <div class="input-line">
+        <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$ welcome</span>
     </div>
-    <br>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card card-body">
-                <img src="{% static 'images/anal.jpg' %}">
-                <br>
-                <h4>Publications</h4>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card card-body">
-                <h4>Projects</h4>
-            </div>
-        </div>
+    <h1>     
+________  ________  ________  _______           ________  ________  ___       __   ________  _______   ________
+|\   ____\|\   __  \|\   ____\|\  ___ \         |\   __  \|\   __  \|\  \     |\  \|\   ___ \|\  ___ \ |\   ___  \   
+\ \  \___|\ \  \|\  \ \  \___|\ \   __/|        \ \  \|\  \ \  \|\  \ \  \    \ \  \ \  \_|\ \ \   __/|\ \  \\ \  \
+ \ \  \  __\ \   __  \ \  \  __\ \  \_|/__       \ \   _  _\ \  \\\  \ \  \  __\ \  \ \  \ \\ \ \  \_|/_\ \  \\ \  \
+  \ \  \|\  \ \  \ \  \ \  \|\  \ \  \_|\ \       \ \  \\  \\ \  \\\  \ \  \|\__\_\  \ \  \_\\ \ \  \_|\ \ \  \\ \  \
+   \ \_______\ \__\ \__\ \_______\ \_______\       \ \__\\ _\\ \_______\ \____________\ \_______\ \_______\ \__\\ \__\
+    \|_______|\|__|\|__|\|_______|\|_______|        \|__|\|__|\|_______|\|____________|\|_______|\|_______|\|__| \|__|
+    </h1>
+    <p>Welcome to my website.</p>
+    <p>For a list of available commands, type `help`.</p>
+    <div class="input-line">
+        <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$</span>
+        <input type="text" autofocus="autofocus">
     </div>
-    <br>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card card-body">
-                <h4>Skills</h4>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card card-body">
-                <h4>Work Experience</h4>
-            </div>
-        </div>
-    </div>
-</div>
+
 {% endblock content %}

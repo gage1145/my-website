@@ -1,19 +1,39 @@
-body{
-   background-color: #1f1f1f!important; 
+body {
+    background-color: #1f1f1f!important;
+    font-family: "Lucida Console", Monaco, monospace;
+    color: rgb(170, 254, 219);
+    text-shadow: 0 0 1px #FFF, 0 0 5px rgb(170, 254, 219);
+    margin-left: 20px;
+    font-size: 16px;
 }
 
-#profile-wrapper{
-    text-align: center;
+.input-line {
+    display: inline;
+    background-color: #1f1f1f;
 }
 
-#profile-pic{
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-left: auto;
-    margin-right: auto;
+input {
+    background-color: transparent;
+    color: rgb(170, 254, 219);
+    border-style:hidden;
+    outline: none;
+    caret-color: rgb(170, 254, 219);
+    text-shadow: 0 0 1px #FFF, 0 0 5px rgb(170, 254, 219);
+    font-size: inherit;
 }
 
-#navbar{
-    background-color: #3f1367
+h1 {
+    background-color: #1f1f1f;
+    font-size: inherit;
+    white-space: pre;
+}
+
+#user {
+    color: rgb(255, 242, 93);
+    text-shadow: 0 0 1px #FFF, 0 0 5px rgb(255, 242, 93);
+}
+
+#host {
+    color: rgb(255, 119, 41);
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);, 0 0 5px rgb(255, 119, 41);
 }
