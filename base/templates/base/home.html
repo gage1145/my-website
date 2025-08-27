@@ -1,23 +1,31 @@
 {% extends 'base/index.html' %}
 {% load static %}
-{% block content %}
-    <div class="input-line">
-        <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$ welcome</span>
-    </div>
-    <h1>     
-________  ________  ________  _______           ________  ________  ___       __   ________  _______   ________
+{% block content %}    
+    <div id="terminal">
+        <div class="input-line">
+            <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$ welcome</span>
+        </div>
+        <pre class="output">
+ ________  ________  ________  _______           ________  ________  ___       __   ________  _______   ________
 |\   ____\|\   __  \|\   ____\|\  ___ \         |\   __  \|\   __  \|\  \     |\  \|\   ___ \|\  ___ \ |\   ___  \   
 \ \  \___|\ \  \|\  \ \  \___|\ \   __/|        \ \  \|\  \ \  \|\  \ \  \    \ \  \ \  \_|\ \ \   __/|\ \  \\ \  \
  \ \  \  __\ \   __  \ \  \  __\ \  \_|/__       \ \   _  _\ \  \\\  \ \  \  __\ \  \ \  \ \\ \ \  \_|/_\ \  \\ \  \
   \ \  \|\  \ \  \ \  \ \  \|\  \ \  \_|\ \       \ \  \\  \\ \  \\\  \ \  \|\__\_\  \ \  \_\\ \ \  \_|\ \ \  \\ \  \
    \ \_______\ \__\ \__\ \_______\ \_______\       \ \__\\ _\\ \_______\ \____________\ \_______\ \_______\ \__\\ \__\
     \|_______|\|__|\|__|\|_______|\|_______|        \|__|\|__|\|_______|\|____________|\|_______|\|_______|\|__| \|__|
-    </h1>
-    <p>Welcome to my website.</p>
-    <p>For a list of available commands, type `help`.</p>
-    <div class="input-line">
-        <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$</span>
-        <input type="text" autofocus="autofocus">
-    </div>
+        </pre>
+        <p>Welcome to my website.</p>
+        <p>---</p>
+        <p>For a list of available commands, type <code>help</code>.</p>
+        <p>---</p>
 
+        <!-- History will be appended here -->
+        <div id="history"></div>
+
+        <!-- Input line -->
+        <div class="input-line">
+            <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$</span>
+            <input id="command-input" type="text" autofocus>
+        </div>
+    </div>
 {% endblock content %}

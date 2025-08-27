@@ -2,23 +2,24 @@ body {
     background-color: #1f1f1f!important;
     font-family: "Lucida Console", Monaco, monospace;
     color: rgb(170, 254, 219);
-    text-shadow: 0 0 1px #FFF, 0 0 5px rgb(170, 254, 219);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 5px rgb(170, 254, 219);
     margin-left: 20px;
     font-size: 16px;
 }
 
 .input-line {
-    display: inline;
+    /* display: inline; */
     background-color: #1f1f1f;
 }
 
-input {
+#command-input {
     background-color: transparent;
     color: rgb(170, 254, 219);
     border-style:hidden;
     outline: none;
     caret-color: rgb(170, 254, 219);
-    text-shadow: 0 0 1px #FFF, 0 0 5px rgb(170, 254, 219);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 5px rgb(170, 254, 219);
+    font-family: inherit;
     font-size: inherit;
 }
 
@@ -30,10 +31,10 @@ h1 {
 
 #user {
     color: rgb(255, 242, 93);
-    text-shadow: 0 0 1px #FFF, 0 0 5px rgb(255, 242, 93);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 5px rgb(255, 242, 93);
 }
 
 #host {
     color: rgb(255, 119, 41);
-    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);, 0 0 5px rgb(255, 119, 41);
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 5px rgb(255, 119, 41);
 }
