@@ -43,7 +43,7 @@ h1 {
 }
 
 .output {
-    white-space: pre-wrap; /* preserve line breaks */
+    white-space: pre-wrap;
     margin-left: 2em;
     margin-top: 1em;
     margin-bottom: 1em;
@@ -51,10 +51,14 @@ h1 {
 
 .project-output {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    width: 75%;
     flex-shrink: 0;
+}
+
+.project-text-container {
+    width: 1000px;
+    min-width: 500px;
 }
 
 .project-text-container h2{
@@ -76,10 +80,15 @@ h1 {
 .logo-container {
     display:flex;
     justify-content: center;
-    width: 600px;
+    min-width: 575;
+    width: 650px;
     flex-shrink: 0;
 }
 
 .ascii-logo {
     color: rgb(198, 124, 174)
+}
+
+#terminal {
+    margin-bottom: 200px;
 }
