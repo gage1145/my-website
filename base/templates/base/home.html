@@ -1,31 +1,154 @@
-{% extends 'base/index.html' %}
 {% load static %}
-{% block content %}    
-    <div id="terminal">
-        <div class="input-line">
-            <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$ welcome</span>
-        </div>
-        <pre class="output">
- ________  ________  ________  _______           ________  ________  ___       __   ________  _______   ________
-|\   ____\|\   __  \|\   ____\|\  ___ \         |\   __  \|\   __  \|\  \     |\  \|\   ___ \|\  ___ \ |\   ___  \   
-\ \  \___|\ \  \|\  \ \  \___|\ \   __/|        \ \  \|\  \ \  \|\  \ \  \    \ \  \ \  \_|\ \ \   __/|\ \  \\ \  \
- \ \  \  __\ \   __  \ \  \  __\ \  \_|/__       \ \   _  _\ \  \\\  \ \  \  __\ \  \ \  \ \\ \ \  \_|/_\ \  \\ \  \
-  \ \  \|\  \ \  \ \  \ \  \|\  \ \  \_|\ \       \ \  \\  \\ \  \\\  \ \  \|\__\_\  \ \  \_\\ \ \  \_|\ \ \  \\ \  \
-   \ \_______\ \__\ \__\ \_______\ \_______\       \ \__\\ _\\ \_______\ \____________\ \_______\ \_______\ \__\\ \__\
-    \|_______|\|__|\|__|\|_______|\|_______|        \|__|\|__|\|_______|\|____________|\|_______|\|_______|\|__| \|__|
-        </pre>
-        <p>Welcome to my website.</p>
-        <p>---</p>
-        <p>For a list of available commands, type <code>help</code>.</p>
-        <p>---</p>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Gage Rowden</title>
+        <link href="{% static '/css/main.css' %}" rel="stylesheet" type="text/css"> 
+    </head>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const input = document.getElementById("command-input");
+            const history = document.getElementById("history");
 
-        <!-- History will be appended here -->
-        <div id="history"></div>
+            input.addEventListener("keydown", async function(event) {
+                if (event.key === "Enter") {
+                    const command = input.value.trim();
+                    if (command) {
+                        // Show the entered command in history
+                        const commandLine = document.createElement("div");
+                        commandLine.className = "input-line";
+                        commandLine.innerHTML = `<span class="user">visitor</span><span class="host">@gagerowden.com</span><span>:~$ ${command}</span>`;
+                        history.appendChild(commandLine);
 
-        <!-- Input line -->
-        <div class="input-line">
-            <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$</span>
-            <input id="command-input" type="text" autofocus>
+                        // Handle command
+                        await handleCommand(command);
+
+                        input.value = "";
+                        window.scrollTo(0, document.body.scrollHeight);
+                    }
+                }
+            });
+
+            async function handleCommand(cmd) {
+                switch(cmd) {
+                    case "help":
+                        printOutput("Available commands:\n - help\n - about\n - projects\n - clear");
+                        break;
+
+                    case "about":
+                        printOutput("Hi, I'm Gage Rowden. This is my portfolio site.");
+                        break;
+
+                    case "projects":
+                        try {
+                            const response = await fetch("/api/projects/");
+                            const projects = await response.json();
+
+                            if (projects.length === 0) {
+                                printOutput("No projects available.");
+                            } else {
+                                projects.forEach(p => {
+                                    const container = document.createElement("div");
+                                    container.className = "project-output mb-4";
+
+                                    // Project Logo
+                                    if (p.ascii_image) {
+                                        const logo = document.createElement("pre");
+                                        logo.textContent = p.ascii_image;
+                                        logo.className = "ascii-logo";
+                                        container.appendChild(logo);
+                                    }
+
+                                    // Title
+                                    const title = document.createElement("h2");
+                                    title.textContent = p.title;
+                                    container.appendChild(title);
+
+                                    // Description
+                                    const desc = document.createElement("p");
+                                    desc.textContent = p.description;
+                                    container.appendChild(desc);
+
+                                    // Link
+                                    if (p.link) {
+                                        const link = document.createElement("a");
+                                        link.href = p.link;
+                                        link.target = "_blank";
+                                        link.textContent = "View Project";
+                                        link.className = "project-link";
+                                        container.appendChild(link);
+                                    }
+
+                                    history.appendChild(container);
+                                });
+                            }
+                        } catch (error) {
+                            printOutput("Error fetching projects.");
+                        }
+                        break;
+
+                    case "clear":
+                        history.innerHTML = "";
+                        break;
+
+                    default:
+                        printOutput(`Command not found: ${cmd}`);
+                }
+            }
+
+            function printOutput(text) {
+                const outputLine = document.createElement("pre");
+                outputLine.className = "output";
+                outputLine.textContent = text;
+                history.appendChild(outputLine);
+            }
+        });
+    </script>
+
+    <body>
+        <div id="terminal">
+            <div class="input-line">
+                <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$ welcome</span>
+            </div>
+            <pre class="output">
+   /|       |\
+`__\\       //__'   
+   ||      ||       
+ \__`\     |'__/ ________  ________  ________  _______      
+   `_\\   //_'  |\   ____\|\   __  \|\   ____\|\  ___ \     
+   _.,:---;,._  \ \  \___|\ \  \|\  \ \  \___|\ \   __/|    
+   \_:     :_/   \ \  \  __\ \   __  \ \  \  __\ \  \_|/__  
+     |*. .*|      \ \  \|\  \ \  \ \  \ \  \|\  \ \  \_|\ \ 
+     |     |       \ \_______\ \__\ \__\ \_______\ \_______\
+     ,\.-./ \       \|_______|\|__|\|__|\|_______|\|_______|
+     ;;`-'   `---__________-----.-.   ________  ________  ___       __   ________  _______   ________
+     ;;;                         \_\ |\   __  \|\   __  \|\  \     |\  \|\   ___ \|\  ___ \ |\   ___  \   
+     ';;;                         |  \ \  \|\  \ \  \|\  \ \  \    \ \  \ \  \_|\ \ \   __/|\ \  \\ \  \
+      ;    |                      ;   \ \   _  _\ \  \\\  \ \  \  __\ \  \ \  \ \\ \ \  \_|/_\ \  \\ \  \
+       \   \     \        |      /     \ \  \\  \\ \  \\\  \ \  \|\__\_\  \ \  \_\\ \ \  \_|\ \ \  \\ \  \
+        \_, \    /        \     |\      \ \__\\ _\\ \_______\ \____________\ \_______\ \_______\ \__\\ \__\
+          |';|  |,,,,,,,,/ \    \ \_     \|__|\|__|\|_______|\|____________|\|_______|\|_______|\|__| \|__|
+          |  |  |           \   /   |
+          \  \  |           |  / \  |
+           | || |           | |   | |
+           | || |           | |   | |
+           | || |           | |   | |
+          /_//_/           /_/   /_/
+            </pre>
+            <p>Welcome to my website.</p>
+            <p>---</p>
+            <p>For a list of available commands, type <code>help</code>.</p>
+            <p>---</p>
+
+            <!-- History will be appended here -->
+            <div id="history"></div>
+
+            <!-- Input line -->
+            <div class="input-line">
+                <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$</span>
+                <input id="command-input" type="text" autofocus>
+            </div>
         </div>
-    </div>
-{% endblock content %}
+    </body>
+</html>
