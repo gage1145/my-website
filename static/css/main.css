@@ -1,10 +1,10 @@
 body {
     background-color: #1f1f1f!important;
     font-family: "Lucida Console", Monaco, monospace;
-    color: rgb(170, 254, 219);
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 5px rgb(170, 254, 219);
+    color: rgb(149, 255, 175);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
     margin-left: 20px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .input-line {
@@ -18,7 +18,7 @@ body {
     border-style:hidden;
     outline: none;
     caret-color: rgb(170, 254, 219);
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 5px rgb(170, 254, 219);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(170, 254, 219);
     font-family: inherit;
     font-size: inherit;
 }
@@ -30,12 +30,12 @@ h1 {
 
 #user {
     color: rgb(255, 242, 93);
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 5px rgb(255, 242, 93);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 242, 93);
 }
 
 #host {
     color: rgb(255, 119, 41);
-    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 5px rgb(255, 119, 41);
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 119, 41);
 }
 
 #history{
@@ -58,13 +58,14 @@ h1 {
 }
 
 .project-text-container h2{
-    color: #ff0000;
-    text-shadow: 0 0 1px #FFF, 0 0 5px #ff0000;
-    font-size: 24px;
+    color: #f6995a;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px #f6995a;
+    font-size: 30px;
 }
 
 .project-link {
     color: rgb(149, 133, 255);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 133, 255);
     text-decoration: none;
 }
 
