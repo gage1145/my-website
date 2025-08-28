@@ -56,10 +56,13 @@
 
                                     // Project Logo
                                     if (p.ascii_image) {
+                                        logoContainer = document.createElement("div");
+                                        logoContainer.className = "logo-container";
                                         const logo = document.createElement("pre");
                                         logo.textContent = p.ascii_image;
                                         logo.className = "ascii-logo";
-                                        container.appendChild(logo);
+                                        logoContainer.appendChild(logo)
+                                        container.appendChild(logoContainer);
                                     }
 
                                     // Title
