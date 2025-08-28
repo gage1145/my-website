@@ -33,7 +33,7 @@
             async function handleCommand(cmd) {
                 switch(cmd) {
                     case "help":
-                        printOutput("Available commands:\n - help\n - about\n - projects\n - clear");
+                        printOutput("Available commands:\n - help\n - about\n - projects\n - publications\n - clear");
                         break;
 
                     case "about":
@@ -86,6 +86,10 @@
                         } catch (error) {
                             printOutput("Error fetching projects.");
                         }
+                        break;
+
+                    case "publications":
+                        printOutput("TODO");
                         break;
 
                     case "clear":
