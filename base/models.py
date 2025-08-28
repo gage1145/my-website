@@ -3,9 +3,10 @@ from django.db import models
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
+    ascii_image = models.TextField(max_length=1000, null=True)
     # image = models.ImageField(upload_to="project_images/", blank=True, null=True)
     link = models.URLField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
@@ -18,13 +19,13 @@ class Affiliation(models.Model):
     country = models.CharField()
     zip_code = models.CharField(max_length=10)
 
-class Authors(models.Model):
+class Author(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
 
 class Publication(models.Model):
     title = models.CharField(max_length=100)
-    authors = models.ForeignKey(Authors, on_delete=models.CASCADE)
+    authors = models.ForeignKey(Author, on_delete=models.CASCADE)
     journal = models.CharField()
     date = models.DateField()
     doi = models.CharField()
