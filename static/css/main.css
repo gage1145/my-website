@@ -38,3 +38,35 @@ h1 {
     color: rgb(255, 119, 41);
     text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 5px rgb(255, 119, 41);
 }
+
+.output {
+    white-space: pre-wrap; /* preserve line breaks */
+    margin-left: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.project-output h2 {
+    color: #33aaff;
+    font-size: 16px;
+    margin: 0 0 0.25em 0;
+}
+
+.project-output p {
+    margin: 0 50% 0.5em 0;
+    /* color: #33ff33; */
+}
+
+.project-link {
+    color: #FFF;
+    text-decoration: none;
+    margin-bottom: 2em;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+.ascii-logo {
+    /* color:rgb(255, 41, 234) */
+}
