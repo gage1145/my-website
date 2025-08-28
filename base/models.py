@@ -28,7 +28,7 @@ class Publication(models.Model):
     authors = models.ForeignKey(Author, on_delete=models.CASCADE)
     journal = models.CharField()
     date = models.DateField()
-    doi = models.CharField()
+    doi = models.URLField()
 
 class Skill(models.Model):
     skill = models.CharField()
