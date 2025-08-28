@@ -51,6 +51,8 @@
                                 projects.forEach(p => {
                                     const container = document.createElement("div");
                                     container.className = "project-output mb-4";
+                                    const textContainer = document.createElement("div");
+                                    textContainer.className = "project-text-container";
 
                                     // Project Logo
                                     if (p.ascii_image) {
@@ -63,12 +65,12 @@
                                     // Title
                                     const title = document.createElement("h2");
                                     title.textContent = p.title;
-                                    container.appendChild(title);
+                                    textContainer.appendChild(title);
 
                                     // Description
                                     const desc = document.createElement("p");
                                     desc.textContent = p.description;
-                                    container.appendChild(desc);
+                                    textContainer.appendChild(desc);
 
                                     // Link
                                     if (p.link) {
@@ -77,9 +79,10 @@
                                         link.target = "_blank";
                                         link.textContent = "View Project";
                                         link.className = "project-link";
-                                        container.appendChild(link);
+                                        textContainer.appendChild(link);
                                     }
 
+                                    container.appendChild(textContainer)
                                     history.appendChild(container);
                                 });
                             }
