@@ -13,9 +13,11 @@ body {
 }
 
 #command-input {
-    background-color: transparent;
+    border: none;
+    background: transparent;
+    padding-left: 4px;
+    width: 80%;    
     color: rgb(170, 254, 219);
-    border-style:hidden;
     outline: none;
     caret-color: rgb(170, 254, 219);
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(170, 254, 219);
@@ -80,8 +82,9 @@ body {
 }
 
 .project-text-container {
-    width: 1000px;
-    min-width: 500px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 1000px;
 }
 
 .project-text-container h2{
