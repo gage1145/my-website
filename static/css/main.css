@@ -4,7 +4,7 @@ body {
     color: rgb(149, 255, 175);
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
     margin-left: 20px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .input-line {
@@ -23,11 +23,6 @@ body {
     font-size: inherit;
 }
 
-h1 {
-    font-size: 30px;
-    white-space: pre;
-}
-
 #user {
     color: rgb(255, 242, 93);
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 242, 93);
@@ -40,6 +35,34 @@ h1 {
 
 #history{
     margin-right: auto;
+}
+
+.header {
+    display: flex;
+    align-items: end;  
+    justify-content: left;
+    gap: 20px;
+}
+
+#headline {
+    margin: 0;
+    white-space: pre;
+    font-family: monospace;
+    font-size: 16px;
+    line-height: 1.1;
+    width: 500;
+}
+
+#headline pre {
+    margin: 0;
+}
+
+.ascii-deer-gif {
+    margin-bottom: 40px;
+    max-width: 400px;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: screen;
 }
 
 .output {
