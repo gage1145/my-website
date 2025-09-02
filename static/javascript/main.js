@@ -24,11 +24,17 @@ document.addEventListener("DOMContentLoaded", () => {
     async function handleCommand(cmd) {
         switch(cmd) {
             case "help":
-                printOutput("Available commands:\n - help\n - about\n - projects\n - publications\n - weather\n - clear");
+                printOutput("Available commands:\n - help\n - about\n - projects\n - publications\n - resume\n - weather\n - clear");
                 break;
 
             case "about":
-                printOutput("Hi, I'm Gage Rowden. Welcome to my portfolio site. I am a Data scientist and R&D specialist with a strong foundation in molecular biology and software development. I am experienced in building automated data pipelines, custom R packages, and laboratory systems to streamline diagnostics and research.");
+                const container = document.createElement("div");
+                container.className = "about-output";
+                const textContainer = document.createElement("p");
+                aboutText = "Hi, I'm Gage Rowden. Welcome to my portfolio site. I am a Data scientist and R&D specialist with a strong foundation in molecular biology and software development. I am experienced in building automated data pipelines, custom R packages, and laboratory systems to streamline diagnostics and research.";
+                textContainer.textContent = aboutText;
+                container.appendChild(textContainer);
+                history.appendChild(container)
                 break;
 
             case "projects":
@@ -86,6 +92,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
 
             case "publications":
+                printOutput("TODO");
+                break;
+
+            case "resume":
                 printOutput("TODO");
                 break;
 
