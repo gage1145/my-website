@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             case "projects":
                 try {
-                    const response = await fetch("../json/projects.json");
+                    const response = await fetch("/my-website/static/json/projects.json");
                     const projects = await response.json();
 
                     if (projects.length === 0) {
