@@ -112,12 +112,14 @@ body {
     display:flex;
     justify-content: center;
     min-width: 575;
-    width: 650px;
+    width: 750px;
     flex-shrink: 0;
+    padding: 20px;
 }
 
 .ascii-logo {
-    color: rgb(198, 124, 174)
+    /* color: rgb(198, 124, 174); */
+    font-size: inherit;
 }
 
 #terminal {
