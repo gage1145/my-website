@@ -1,15 +1,28 @@
 body {
-    background-color: #1f1f1f!important;
+    background-color: #0f0f0f!important;
     font-family: "Lucida Console", Monaco, monospace;
     color: rgb(149, 255, 175);
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
     margin-left: 20px;
     font-size: 16px;
+    width: clamp(500, 100%, 1500);
+}
+
+a {
+    color: rgb(255, 103, 103);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 103, 103);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(255, 154, 154);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 154, 154);
+    text-decoration: none;
 }
 
 .input-line {
     margin-top: 20px;
-    background-color: #1f1f1f;
+    background-color: inherit;
 }
 
 #command-input {
@@ -51,7 +64,7 @@ body {
     margin: 0;
     white-space: pre;
     font-family: monospace;
-    font-size: clamp(10px, 1vw, 16px);
+    font-size: clamp(12px, 1.5vw, 16px);
     line-height: 1.1;
     max-width: 100%;
     min-width: 500px;
@@ -100,19 +113,9 @@ body {
     font-size: 30px;
 }
 
-.project-link {
-    color: rgb(149, 133, 255);
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 133, 255);
-    text-decoration: none;
-}
-
-.project-link:hover {
-    text-decoration: underline;
-}
-
 .logo-container {
     display:flex;
-    justify-content: right;
+    justify-content: center;
     min-width: 575;
     width: 750px;
     flex-shrink: 0;
@@ -126,4 +129,37 @@ body {
 
 #terminal {
     margin-bottom: 200px;
+}
+
+.resume-container {
+    padding: 0px;
+    width: clamp(400px, 95%, 1200px);
+    /* max-width: 1500px; */
+    border: 1px solid rgb(149, 255, 175);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 20px;
+}
+
+.resume-container h3 {
+    font-size: 20px;
+    color: rgb(119, 223, 255);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(119, 223, 255);
+}
+
+.resume-container > div {
+    margin: 0px;
+    padding: 10px;
+    border: inherit;
+    box-shadow: inherit;
+    background-color: inherit;
+}
+
+.resume-contact p {
+    font-size: 20px;
+    text-align: center;
+}
+
+.resume-skills-container ul {
+    column-count: 3;
 }
