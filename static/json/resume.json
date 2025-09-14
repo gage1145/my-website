@@ -1,0 +1,71 @@
+[
+    {
+        "contact": {
+            "phone": "+1-806-577-8008",
+            "email": "gage.rowden1145@gmail.com",
+            "github": "https://github.com/gage1145",
+            "orcid": "https://orcid.org/0000-0002-7517-0480",
+            "linkedin": "https://www.linkedin.com/in/gagerowden/"
+        },
+        "summary": "Data scientist with a strong background in statistical analysis, bioinformatics, and data visualization. Experienced in automating workflows, developing R packages, and working with large-scale experimental datasets. Passionate about leveraging data-driven insights to solve complex problems in biotechnology and research.",
+        "experience": [
+            {
+                "title": "Lead Technical R&D Scientist",
+                "organization": "Priogen Corp.",
+                "date": "Jan 2024 -- present",
+                "highlights": [
+                    "Designed and optimized data analysis workflows to efficiently process high-throughput datasets.",
+                    "Built a Django-based LIMS that streamlined client data handling and automated result reporting.",
+                    "Established standard operating procedures to enhance lab consistency and quality.",
+                    "Integrated version control across all projects, ensuring reproducibility and streamlined collaboration"
+                ]
+            },
+            {
+                "title": "Researcher IV",
+                "organization": "University of Minnesota, Center for Prion Research and Outreach",
+                "date": "Aug 2019 -- present",
+                "highlights": [
+                    "Co-authored 17 manuscripts, including two first-author publications.",
+                    "Developed a custom R package and automation scripts to optimize data analysis and processing.",
+                    "Led the expansion of laboratory space, improving research capacity and workflow efficiency.",
+                    "Provided expert consultation on RT-QuIC and related diagnostic tests for research collaborators"
+                ]
+            }
+        ],
+        "skills": [
+            "Amazon Web Services",
+            "R & Tidyverse",
+            "R package development",
+            "Quarto",
+            "Python",
+            "Django",
+            "SQL",
+            "Bash",
+            "Data visualization",
+            "Git & GitHub",
+            "GitHub Actions",
+            "Data wrangling",
+            "Statistical analysis",
+            "Recombinant DNA technology",
+            "DNA cloning",
+            "DNA sequencing",
+            "PCR techniques",
+            "Protein expression/purification",
+            "Protein characterization",
+            "Western blotting",
+            "RT-QuIC"
+        ],
+        "education": [
+            {
+                "degree": "M.S. in Biotechnology",
+                "university": "Texas Tech University",
+                "year": "2018"
+            },
+            {
+                "degree": "B.S. in Biology",
+                "university": "Texas Tech University",
+                "year": "2016"
+            }
+        ]
+    }
+]
