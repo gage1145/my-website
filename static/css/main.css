@@ -22,7 +22,7 @@ a:hover {
 
 .input-line {
     margin-top: 20px;
-    background-color: #1f1f1f;
+    background-color: inherit;
 }
 
 #command-input {
@@ -64,7 +64,7 @@ a:hover {
     margin: 0;
     white-space: pre;
     font-family: monospace;
-    font-size: clamp(10px, 1vw, 16px);
+    font-size: clamp(12px, 1.5vw, 16px);
     line-height: 1.1;
     max-width: 100%;
     min-width: 500px;
