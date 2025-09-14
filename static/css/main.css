@@ -115,7 +115,7 @@ a:hover {
 
 .logo-container {
     display:flex;
-    justify-content: right;
+    justify-content: center;
     min-width: 575;
     width: 750px;
     flex-shrink: 0;
@@ -129,4 +129,37 @@ a:hover {
 
 #terminal {
     margin-bottom: 200px;
+}
+
+.resume-container {
+    padding: 0px;
+    width: clamp(400px, 95%, 1200px);
+    /* max-width: 1500px; */
+    border: 1px solid rgb(149, 255, 175);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 20px;
+}
+
+.resume-container h3 {
+    font-size: 20px;
+    color: rgb(119, 223, 255);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(119, 223, 255);
+}
+
+.resume-container > div {
+    margin: 0px;
+    padding: 10px;
+    border: inherit;
+    box-shadow: inherit;
+    background-color: inherit;
+}
+
+.resume-contact p {
+    font-size: 20px;
+    text-align: center;
+}
+
+.resume-skills-container ul {
+    column-count: 3;
 }
