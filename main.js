@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     input.addEventListener("keydown", async function(event) {
         if (event.key === "Enter") {
-            const command = input.value.trim();
+            const command = input.value.trim().toLowerCase();
             if (command) {
                 // Show the entered command in history
                 const commandLine = document.createElement("div");
