@@ -5,13 +5,12 @@
         <title>Gage Rowden</title>
         <link href="static/css/main.css" rel="stylesheet" type="text/css">
         <link href="static/images/favicon.ico" rel="icon" type="image/x-icon" >
-        <script src="main.js" defer></script>
+        <script type="module" src="main.js" defer></script>
     </head>
     <body>
-        <div id="terminal">
-            <div class="input-line">
-                <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$ welcome</span>
-            </div>
+        <div class="overlay"></div>
+        <div class="terminal">
+            <span>visitor@gagerowden.com:~$ welcome</span>
             <div class="header">
                 <div id="headline">
                     <pre> 
@@ -38,13 +37,10 @@
 ~  ~  ~   ~| || |  ~ ~      | |   | |    ~ ~   ~       ~ ~      ~      ~       ~~ ~~~~~~  ~      ~~  ~           
   ~~  ~  ~ | || |     ~  ~  | |   | |             ~             ~        ~      ~      ~~   ~       ~     ~      
 ///\\,//,,//_//_/ ///,,\\,\\/_/\,\/_/,\,\///\/\\,///\\,,//\\\\/,\/,/\/\,/\/,\\/\\/\,\/\//,\/\,/\/\/\/,\/\\\\/,,\/,
-</pre>
+                    </pre>
                 </div>
-                <!-- <div class="ascii-deer-gif">
-                    <img src="static/images/ascii_deer.gif" alt="ASCII animation">
-                </div> -->
             </div>
-            <p>Welcome Gage Rowden's website.</p>
+            <p>Welcome to Gage Rowden's website.</p>
             <p>---</p>
             <p>For a list of available commands, type <code>help</code>.</p>
             <p>---</p>
