@@ -1,7 +1,7 @@
 body {
     margin-bottom: 20px;
     background-color: #0f0f0f!important;
-    font-family: "Lucida Console", Monaco, monospace;
+    font-family: "Courier New", Courier, monospace;
     color: rgb(149, 255, 175);
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
     font-size: 16px;
@@ -15,7 +15,7 @@ ul {
 
 /* Navbar Elements */
 nav {
-    position: fixed;
+    /* position: fixed; */
     font-size: 12pt;
     width: 90vw;
     font-size: clamp(24, 1.5vw, 30px);
@@ -41,22 +41,30 @@ nav li {
     margin-right: 5%;
 }
 
-nav a {
-    height: 100%;
-    padding: 0 30px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    color: white;
-}
-
-nav a:hover {
-    background-color: rgba(0,0,0,0);
-    color: black;
-}
 
 /* End of Navbar */
 
+.welcome-line {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    padding: 5px;
+    min-width: 550px;
+    max-width: 1000px;
+}
+
+.welcome-line span {
+    flex: 1;
+}
+
+#interactive-button {
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid rgb(255, 103, 103);    
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px;
+}
 
 
 a {
@@ -67,8 +75,9 @@ a {
 
 a:hover {
     color: rgb(255, 154, 154);
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 154, 154);
-    text-decoration: none;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 5px rgb(255, 154, 154);
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 /* Overlay Effect */
@@ -161,31 +170,20 @@ a:hover {
 
 .header {
     display: flex;
+    max-width: 100%;
     align-items: end;  
     justify-content: left;
 }
 
 #headline {
     display: flex;
-    margin: 0;
-    white-space: pre;
     font-family: monospace;
-    font-size: clamp(10px, 1.5vw, 16px);
     line-height: 1.1;
-    max-width: 100%;
-    min-width: 500px;
 }
 
 #headline pre {
+    font-size: clamp(1ch, 1.5vw, 2.5ch);
     margin: 0;
-}
-
-.ascii-deer-gif {
-    margin-bottom: 40px;
-    max-width: 400px;
-    height: auto;
-    object-fit: contain;
-    mix-blend-mode: screen;
 }
 
 .output {
@@ -272,4 +270,21 @@ a:hover {
 }
 
 
+/* Audio Player */
+#audio-player {
+  width: 30vw; /* Make it responsive */
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid rgb(149, 255, 175);;
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+  margin: 20px;
+}
+
+#oscilloscope {
+    display: block;
+    width: 800px;
+    height: 800px;
+    background: black;
+    border-top: 1px solid #0f0;
+}
 

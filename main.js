@@ -1,6 +1,7 @@
 import { cmdAbout } from "./static/javascript/about.js";
 import { cmdProjects } from "./static/javascript/projects.js";
 import { cmdResume } from "./static/javascript/resume.js";
+import { initOscilloscope } from "./static/javascript/oscilloscope.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("command-input");
@@ -80,4 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
         outputLine.textContent = text;
         history.appendChild(outputLine);
     }
+});
+
+// Oscilloscope
+
+document.addEventListener("DOMContentLoaded", () => {
+    initOscilloscope();
 });

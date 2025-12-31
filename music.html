@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Gage Rowden</title>
+        <link href="static/css/main.css" rel="stylesheet" type="text/css">
+        <link href="static/images/favicon.ico" rel="icon" type="image/x-icon" >
+        <script type="module" src="main.js" defer></script>
+        <script>
+            function includeHTML() {
+                var z, i, elmnt, file, xhttp;
+                /* Loop through a collection of all HTML elements: */
+                z = document.getElementsByTagName("*");
+                for (i = 0; i < z.length; i++) {
+                    elmnt = z[i];
+                    /*search for elements with a certain atrribute:*/
+                    file = elmnt.getAttribute("w3-include-html");
+                    if (file) {
+                    /* Make an HTTP request using the attribute value as the file name: */
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4) {
+                        if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                        if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                        /* Remove the attribute, and call this function once more: */
+                        elmnt.removeAttribute("w3-include-html");
+                        includeHTML();
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /* Exit the function: */
+                    return;
+                    }
+                }
+            }
+        </script>    
+    </head>
+    <body>
+        <div class="overlay"></div>
+        <div class="terminal">
+            <div w3-include-html="deer_header.html"></div>
+            <nav>
+                <ul>
+                    <li><a href="interactive.html">HOME</a></li>
+                    <li>CLI MODE</li>
+                    <li>PROJECTS</li>
+                    <li>RESUME</li>
+                    <li>PUBLICATIONS</li>
+                    <li><a href="music.html">MUSIC</a></li>
+                    <li>UTILITIES</li>
+                    <li>ABOUT </li>
+                </ul>
+            </nav>
+        </div>
+        <canvas id="oscilloscope"></canvas>
+        <audio id="audio-player" controls loop>
+            <source src="music/oscilloscope.wav" type="audio/wav">
+        </audio>
+    </body>
+    <script>includeHTML();</script>
+</html>
