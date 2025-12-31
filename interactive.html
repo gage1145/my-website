@@ -5,7 +5,7 @@
         <title>Gage Rowden</title>
         <link href="static/css/main.css" rel="stylesheet" type="text/css">
         <link href="static/images/favicon.ico" rel="icon" type="image/x-icon" >
-        <script type="module" src="main.js" defer></script>       
+        <script type="module" src="main.js" defer></script>
         <script>
             function includeHTML() {
                 var z, i, elmnt, file, xhttp;
@@ -39,21 +39,19 @@
     <body>
         <div class="overlay"></div>
         <div class="terminal">
-            <span>visitor@gagerowden.com:~$ welcome</span>
             <div w3-include-html="deer_header.html"></div>
-            <p>Welcome to Gage Rowden's website.</p>
-            <p>---</p>
-            <p>For a list of available commands, type <code>help</code>.</p>
-            <p>---</p>
-
-            <!-- History will be appended here -->
-            <div id="history"></div>
-
-            <!-- Input line -->
-            <div class="input-line">
-                <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$</span>
-                <input id="command-input" type="text" autofocus>
-            </div>
+            <nav>
+                <ul>
+                    <li>HOME</li>
+                    <li>CLI MODE</li>
+                    <li>PROJECTS</li>
+                    <li>RESUME</li>
+                    <li>PUBLICATIONS</li>
+                    <li>MUSIC</li>
+                    <li>UTILITIES</li>
+                    <li>ABOUT </li>
+                </ul>
+            </nav>
         </div>
     </body>
     <script>includeHTML();</script>
