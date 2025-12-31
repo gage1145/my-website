@@ -17,7 +17,7 @@ ul {
 nav {
     /* position: fixed; */
     font-size: 12pt;
-    width: 90vw;
+    width: clamp(250px, 80vw, 90vw);
     font-size: clamp(24, 1.5vw, 30px);
     border: 1px solid rgb(149, 255, 175);
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
@@ -271,20 +271,28 @@ a:hover {
 
 
 /* Audio Player */
-#audio-player {
+.music-container {
+    display: flex;
+    margin: 50px 0px;
+}
+
+.audio-player {
   width: 30vw; /* Make it responsive */
   padding: 10px;
   background-color: transparent;
+  opacity: 0.8;
   border: 1px solid rgb(149, 255, 175);;
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
   margin: 20px;
 }
 
 #oscilloscope {
-    display: block;
-    width: 800px;
-    height: 800px;
-    background: black;
+    /* display: block; */
+    width: clamp(500px, 20vw, 2000px);
+    aspect-ratio: 1;
     border-top: 1px solid #0f0;
+    background: black;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
 }
-

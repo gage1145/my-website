@@ -43,7 +43,6 @@
             <nav>
                 <ul>
                     <li><a href="interactive.html">HOME</a></li>
-                    <li>CLI MODE</li>
                     <li>PROJECTS</li>
                     <li>RESUME</li>
                     <li>PUBLICATIONS</li>
@@ -53,10 +52,26 @@
                 </ul>
             </nav>
         </div>
-        <canvas id="oscilloscope"></canvas>
-        <audio id="audio-player" controls loop>
-            <source src="music/oscilloscope.wav" type="audio/wav">
-        </audio>
+        <div class="music-container">
+            <ul>
+                <li>Niche - 80bpm</li>
+                <audio class="audio-player" controls loop>
+                    <source src="music/Niche_master_80bpm.wav" type="audio/wav">
+                </audio>
+                <li>Oscilloscope Demo</li>
+                <audio class="audio-player" controls loop>
+                    <source src="music/oscilloscope.wav" type="audio/wav">
+                </audio>
+                
+            </ul>
+            <div>
+                <canvas id="oscilloscope"></canvas>
+                <ul>
+                    <li><button id="toggle-scope">MODE</button></li>
+                    <li><input type="range" id="stretch-slider" min="1" max="20" step="0.01" value="1"></li>
+                </ul>
+            </div>
+        </div>
     </body>
     <script>includeHTML();</script>
 </html>
