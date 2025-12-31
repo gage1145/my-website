@@ -28,7 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
     async function handleCommand(cmd) {
         switch(cmd) {
             case "help":
-                printOutput("Available commands:\n - help\n - about\n - projects\n - publications\n - resume\n - weather\n - clear");
+                printOutput(
+"Available commands:\n\
+- im: Enter interactive mode\n\
+- help: list available commands\n\
+- about: a summary of my professional career\n\
+- projects: list projects\n\
+- publications: list publications\n\
+- cv: print resume\n\
+- weather: TODO\n\
+- clear"
+                );
                 break;
 
             case "about":
@@ -43,11 +53,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 printOutput("TODO");
                 break;
 
-            case "resume":
+            case "cv":
                 await cmdResume(history, printOutput);
                 break;
 
             case "weather":
+                printOutput("TODO");
+                break;
+
+            case "im":
                 printOutput("TODO");
                 break;
 
