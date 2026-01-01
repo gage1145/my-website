@@ -47,6 +47,35 @@ export function initOscilloscope() {
         width_scalar = parseFloat(stretchSlider.value);
     });
 
+    // Persistence
+    let persistence = 0.15;
+    const persistenceSlider = document.getElementById("persistence-slider");
+    persistenceSlider.addEventListener("input", () => {
+        persistence = 0.2 * (1 - parseFloat(persistenceSlider.value));
+    });
+
+    // Glow
+    let glow = 1;
+    const glowSlider = document.getElementById("glow-slider");
+    glowSlider.addEventListener("input", () => {
+        glow = parseFloat(glowSlider.value);
+    });
+
+    // Max Draw Distance
+    const hypotenuse = Math.sqrt(canvas.clientHeight ** 2 + canvas.clientWidth ** 2);
+    let maxDistance = hypotenuse
+    const distanceSlider = document.getElementById("distance-slider");
+    distanceSlider.addEventListener("input", () => {
+        maxDistance = hypotenuse * parseFloat(distanceSlider.value);
+    });
+
+    // Scale
+    const scaleSlider = document.getElementById("scale-slider");
+    let canvasScale = 0.6
+    scaleSlider.addEventListener("input", () => {
+        canvasScale = parseFloat(scaleSlider.value);
+    });
+
     // --- Scope mode ---
     let scopeMode = "xy"; // "xy" or "time"
     // let scopeMode = "time"; // "time" or "xy"
@@ -55,6 +84,7 @@ export function initOscilloscope() {
     toggleBtn.addEventListener("click", () => {
         scopeMode = scopeMode === "xy" ? "time" : "xy";
     });
+    
 
     // Zero Crossing
     function findZeroCrossing(data) {
@@ -67,9 +97,7 @@ export function initOscilloscope() {
     }
 
     function drawXY() {
-        const scale = Math.min(canvas.clientWidth, canvas.clientHeight) * 0.6;
-        const maxDistance = canvas.clientWidth / 7; // maximum allowed distance between consecutive points
-
+        const scale = Math.min(canvas.clientWidth, canvas.clientHeight) * canvasScale;
         const startIdx = findZeroCrossing(dataL); // use left channel as reference
 
         let lastX = null;
@@ -102,18 +130,15 @@ export function initOscilloscope() {
         }
     }
 
-
-
     function drawTime() {
         const width = canvas.clientWidth;
         const height = canvas.clientHeight;
-        const scaleY = height * 0.6;
+        const scaleY = height * canvasScale;
         
         ctx.translate(-width / 2, 0); // move origin to left edge
 
         for (let i = 0; i < bufferLength; i++) {
             const x = (i / bufferLength) * width * width_scalar;
-            // const x = i * (canvas.clientWidth / bufferLength) * width_scalar - canvas.clientWidth/2;
             const y = -((dataL[i] - 128) / 128) * scaleY;
 
             if (i === 0) {
@@ -132,17 +157,17 @@ export function initOscilloscope() {
         analyserR.getByteTimeDomainData(dataR);
 
         // Phosphor persistence fade
-        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillStyle = `rgba(0, 0, 0, ${persistence})`;
         ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
         ctx.save();
         ctx.translate(canvas.clientWidth / 2, canvas.clientHeight / 2);
 
         ctx.beginPath();
-        ctx.strokeStyle = "#00ff66";
+        ctx.strokeStyle = "#95ffaf";
         ctx.lineWidth = 1.0;
-        ctx.shadowBlur = 1.0;
-        ctx.shadowColor = "#00ff66";
+        ctx.shadowBlur = glow;
+        ctx.shadowColor = "#95ffaf";
 
         if (scopeMode === "xy") {
             drawXY();

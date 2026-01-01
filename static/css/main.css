@@ -270,14 +270,22 @@ a:hover {
 }
 
 
-/* Audio Player */
+/* Music Page Styling --------------------------------- */
+
 .music-container {
+    position: relative;
+    width: 100vw;
     display: flex;
     margin: 50px 0px;
 }
 
+#playlist {
+    position: inherit;
+    width: 25%;
+}
+
 .audio-player {
-  width: 30vw; /* Make it responsive */
+  width: 100%;
   padding: 10px;
   background-color: transparent;
   opacity: 0.8;
@@ -286,13 +294,93 @@ a:hover {
   margin: 20px;
 }
 
+#visualizer {
+    width: 75%;
+}
+
+#visualizer ul {
+    width: inherit;
+}
+
+#visualizer li {
+    display: flex;
+    text-decoration: none;
+}
+
+#visualizer span {
+    position: inherit;
+    width: 25%;
+    font-size: 2ch;
+}
+
+#visualizer input {
+    position: inherit;
+    -webkit-appearance: none;
+    margin: 8px 0px;
+    width: 75%;
+    height: 10px;
+    background: inherit;
+    outline: none;
+    border: 1px solid rgb(149, 255, 175);;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+}
+
+/* for chrome/safari */
+#visualizer input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 60px;
+    background: transparent;
+    cursor: pointer;
+    border: 1px solid rgb(149, 255, 175);;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+}
+
+/* for firefox */
+#visualizer input::-moz-range-thumb {
+    width: 10px;
+    height: 20px;
+    background: #0f0f0f;
+    cursor: pointer;
+    border: 1px solid rgb(149, 255, 175);;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+    border-radius: 2px;
+}
+
 #oscilloscope {
-    /* display: block; */
-    width: clamp(500px, 20vw, 2000px);
+    width: 75%;
     aspect-ratio: 1;
-    border-top: 1px solid #0f0;
+    max-height: 90vh;
     background: black;
+    border: 1px solid #95ffaf;;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
     inset: 0;
     z-index: 0;
     pointer-events: none;
+}
+
+#toggle-scope {
+    background-color: transparent;
+    color: inherit;
+    text-shadow: inherit;
+    font-family: inherit;
+    font-size: 3ch;
+    width: 75%;
+    padding: 10px;
+    margin: 10px 0px;
+    border: 1px solid #95ffaf;;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+
+    &:hover {
+        scale: 1.01;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 8px rgb(149, 255, 175);
+    };
+
+    &:active {
+        scale: 0.95;
+        font-weight: normal;
+    };
 }
