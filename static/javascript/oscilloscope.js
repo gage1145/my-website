@@ -61,19 +61,19 @@ export function initOscilloscope() {
         glow = parseFloat(glowSlider.value);
     });
 
-    // Max Draw Distance
-    const hypotenuse = Math.sqrt(canvas.clientHeight ** 2 + canvas.clientWidth ** 2);
-    let maxDistance = hypotenuse
-    const distanceSlider = document.getElementById("distance-slider");
-    distanceSlider.addEventListener("input", () => {
-        maxDistance = hypotenuse * parseFloat(distanceSlider.value);
-    });
-
     // Scale
     const scaleSlider = document.getElementById("scale-slider");
     let canvasScale = 0.6
     scaleSlider.addEventListener("input", () => {
         canvasScale = parseFloat(scaleSlider.value);
+    });
+
+    // Max Draw Distance
+    const distanceSlider = document.getElementById("distance-slider");
+    const hypotenuse = Math.sqrt(canvas.clientHeight ** 2 + canvas.clientWidth ** 2);
+    let maxDistance = hypotenuse * parseFloat(distanceSlider.value)
+    distanceSlider.addEventListener("input", () => {
+        maxDistance = hypotenuse * parseFloat(distanceSlider.value) * canvasScale;
     });
 
     // --- Scope mode ---
