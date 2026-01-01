@@ -12,6 +12,22 @@ ul {
     padding: 0;
 }
 
+a {
+    color: rgb(255, 103, 103);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 103, 103);
+    text-decoration: none;
+    
+    &:hover {
+        font-weight: bold;
+        color: rgb(255, 154, 154);
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 5px rgb(255, 154, 154);
+    }
+
+    &:active {
+        font-size: 1.5ch;
+    }
+}
+
 /* Header Elements */
 
 .header {
@@ -30,7 +46,7 @@ ul {
 }
 
 #deer-header {
-    font-size: clamp(0.5ch, 1.5vw, 2.5ch);
+    font-size: clamp(0.5ch, 1.5vw, 2ch);
     margin: 0;
 }
 
@@ -87,20 +103,17 @@ nav li {
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
     background-color: rgba(0, 0, 0, 0);
     padding: 10px;
-}
 
+    &:hover {
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 8px rgb(149, 255, 175);
+    };
 
-a {
-    color: rgb(255, 103, 103);
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 103, 103);
-    text-decoration: none;
-}
-
-a:hover {
-    color: rgb(255, 154, 154);
-    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 5px rgb(255, 154, 154);
-    text-decoration: underline;
-    font-weight: bold;
+    &:active {
+        scale: 0.95;
+        font-weight: normal;
+    };
 }
 
 /* Overlay Effect */
@@ -128,22 +141,22 @@ a:hover {
   animation: flicker 100ms infinite;
   pointer-events: none;
   opacity: 75%;
-}
-
-.overlay:after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(255, 255, 255);
-    background: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 0) 70%,
-        rgba(0, 0, 0, 0.4) 100%
-    );
-    z-index: 2;
+  
+    &:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgb(255, 255, 255);
+        background: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0) 70%,
+            rgba(0, 0, 0, 0.4) 100%
+        );
+        z-index: 2;
+    }
 }
 
 @keyframes flicker {
@@ -279,42 +292,54 @@ a:hover {
 
 .music-container {
     position: relative;
-    width: 100vw;
+    width: 100%;
     display: flex;
+    justify-content: center;
     margin: 50px 0px;
 }
 
 #playlist {
+    display: flexbox;
+    flex-direction: column;
     position: inherit;
-    width: 25%;
+    width: 22%;
+    justify-content: center;
+    align-items:flex-start;
+    list-style: none;
+    margin: 0px 10px;
+}
+
+#visualizer {
+    width: clamp(300px, 75%, 800px);
+    position: relative;
+    justify-content: center;
+    margin: 0px 10px;
 }
 
 .audio-player {
   width: 100%;
-  padding: 10px;
+  /* padding: 10px; */
   background-color: transparent;
-  opacity: 0.8;
   border: 1px solid rgb(149, 255, 175);;
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
-  margin: 20px;
+  margin: 5px 0px 15px 0px;
 }
 
-#visualizer {
-    width: 75%;
-}
 
-#visualizer ul {
-    width: inherit;
+
+#visual-toggles {
+    width: 100%;
 }
 
 #visualizer li {
     display: flex;
+    flex-wrap: wrap;
     text-decoration: none;
 }
 
 #visualizer span {
     position: inherit;
-    width: 25%;
+    width: clamp(150px, 34%, 1000px);
     font-size: 2ch;
 }
 
@@ -322,7 +347,9 @@ a:hover {
     position: inherit;
     -webkit-appearance: none;
     margin: 8px 0px;
-    width: 75%;
+    width: clamp(300px, 65%, 100%);
+    max-width: 100%;
+    /* width: 65%; */
     height: 10px;
     background: inherit;
     outline: none;
@@ -337,7 +364,7 @@ a:hover {
     width: 20px;
     height: 60px;
     background: transparent;
-    cursor: pointer;
+    cursor: -webkit-grab;
     border: 1px solid rgb(149, 255, 175);;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
 }
@@ -347,14 +374,14 @@ a:hover {
     width: 10px;
     height: 20px;
     background: #0f0f0f;
-    cursor: pointer;
+    cursor: -moz-grab;
     border: 1px solid rgb(149, 255, 175);;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
     border-radius: 2px;
 }
 
 #oscilloscope {
-    width: 75%;
+    width: 100%;
     aspect-ratio: 1;
     max-height: 90vh;
     background: black;
@@ -371,7 +398,7 @@ a:hover {
     text-shadow: inherit;
     font-family: inherit;
     font-size: 3ch;
-    width: 75%;
+    width: 100%;
     padding: 10px;
     margin: 10px 0px;
     border: 1px solid #95ffaf;;
