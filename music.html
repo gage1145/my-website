@@ -51,25 +51,40 @@
         <div class="music-container">
             
             <ul id="playlist">
-                <li>Niche - 80bpm</li>
-                <audio class="audio-player" controls loop>
-                    <source src="music/Niche_master_80bpm.wav" type="audio/wav">
-                </audio>
                 <li>Oscilloscope Demo</li>
-                <audio class="audio-player" controls loop>
+                <audio class="audio-player" controls>
                     <source src="music/oscilloscope.wav" type="audio/wav">
                 </audio>
-                
+                <li>Niche</li>
+                <audio class="audio-player" controls>
+                    <source src="music/Niche_master.wav" type="audio/wav">
+                </audio>
+                <li>Niche - 80bpm</li>
+                <audio class="audio-player" controls>
+                    <source src="music/Niche_master_80bpm.wav" type="audio/wav">
+                </audio>
+                <li>channel_2</li>
+                <audio class="audio-player" controls>
+                    <source src="music/channel_2_master.wav" type="audio/wav">
+                </audio>
+                <li>10 Speeds and a Unique Mixing Action</li>
+                <audio class="audio-player" controls>
+                    <source src="music/10_Speeds_master.wav" type="audio/wav">
+                </audio>
+                <li>Generation Loss</li>
+                <audio class="audio-player" controls>
+                    <source src="music/Generation Loss_master.wav" type="audio/wav">
+                </audio>
             </ul>
             <div id="visualizer">
                 <div>
                     <button id="toggle-scope">Mode</button>
                     <canvas id="oscilloscope"></canvas>
                 </div>
-                <ul>
+                <ul id="visual-toggles">
                     <li><span>Stretch</span><input type="range" id="stretch-slider" min="1" max="50" step="0.01" value="1"></li>
                     <li><span>Persistence</span><input type="range" id="persistence-slider" min="0" max="1" step="0.001" value="1"></li>
-                    <li><span>Draw Distance</span><input type="range" id="distance-slider" min="0" max="1" step="0.001" value="1"></li>
+                    <li><span>Draw Distance</span><input type="range" id="distance-slider" min="0" max="0.1" step="0.001" value="1"></li>
                     <li><span>Scale</span><input type="range" id="scale-slider" min="0" max="0.6" step="0.01" value="0.6"></li>
                     <li><span>Glow</span><input type="range" id="glow-slider" min="0" max="10" step="0.01" value="0"></li>
                 </ul>
