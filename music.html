@@ -38,22 +38,27 @@
     </head>
     <body>
         <div class="overlay"></div>
-        <div class="terminal">
+            <div class="welcome-line">
+                <span>visitor@gagerowden.com:~$ welcome</span>
+                <div id="interactive-button"><a href="index.html">CLI MODE</a></div>
+            </div>
             <div w3-include-html="deer_header.html"></div>
             <nav>
-                <ul>
-                    <li><a href="interactive.html">HOME</a></li>
-                    <li>PROJECTS</li>
-                    <li>RESUME</li>
-                    <li>PUBLICATIONS</li>
-                    <li><a href="music.html">MUSIC</a></li>
-                    <li>UTILITIES</li>
-                    <li>ABOUT </li>
-                </ul>
+                <div>
+                    <ul>
+                        <li><a href="interactive.html">HOME</a></li>
+                        <li>PROJECTS</li>
+                        <li>RESUME</li>
+                        <li>PUBLICATIONS</li>
+                        <li><a href="music.html">MUSIC</a></li>
+                        <li>UTILITIES</li>
+                        <li>ABOUT </li>
+                    </ul>
+                </div>
             </nav>
-        </div>
         <div class="music-container">
-            <ul>
+            
+            <ul id="playlist">
                 <li>Niche - 80bpm</li>
                 <audio class="audio-player" controls loop>
                     <source src="music/Niche_master_80bpm.wav" type="audio/wav">

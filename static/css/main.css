@@ -1,61 +1,84 @@
 body {
-    margin-bottom: 20px;
     background-color: #0f0f0f!important;
     font-family: "Courier New", Courier, monospace;
     color: rgb(149, 255, 175);
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
     font-size: 16px;
-    margin-bottom: 200px;
     height: 100%;
+    margin: 0px;
 }
 
 ul {
     padding: 0;
 }
 
+/* Header Elements */
+
+.header {
+    width: 90vw;
+    margin: 10px;
+    display:flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: left;
+}
+
+#headline {
+    display: flex;
+    font-family: monospace;
+    line-height: 1.1;
+}
+
+#deer-header {
+    font-size: clamp(0.5ch, 1.5vw, 2.5ch);
+    margin: 0;
+}
+
+.welcome-line {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: clamp(200px, 100%, 1200px);
+    flex-wrap: wrap;
+}
+
+.welcome-line span {
+    flex: 1;
+}
+
 /* Navbar Elements */
 nav {
-    /* position: fixed; */
-    font-size: 12pt;
-    width: clamp(250px, 80vw, 90vw);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font-size: 18pt;
+    width: 100%;
     font-size: clamp(24, 1.5vw, 30px);
-    border: 1px solid rgb(149, 255, 175);
-    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
-    background-color: rgba(0, 0, 0, 0);
     z-index: 998;
 }
 
+nav div {
+    display: inherit;
+    width: 90%;
+    border: 1px solid rgb(149, 255, 175);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+    background-color: rgba(0, 0, 0, 0);
+}
+
 nav ul {
+    width: 100%;
     list-style: none;
-    display:flex;
+    display: inherit;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
 nav li {
-    display: flex;
-    align-items: center;
-    height: 50px;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin: 1% 5%
 }
-
 
 /* End of Navbar */
-
-.welcome-line {
-    display: flex;
-    align-items: center;
-    margin-right: 50px;
-    padding: 5px;
-    min-width: 550px;
-    max-width: 1000px;
-}
-
-.welcome-line span {
-    flex: 1;
-}
 
 #interactive-button {
     font-size: 20px;
@@ -166,24 +189,6 @@ a:hover {
 
 #history{
     margin-right: auto;
-}
-
-.header {
-    display: flex;
-    max-width: 100%;
-    align-items: end;  
-    justify-content: left;
-}
-
-#headline {
-    display: flex;
-    font-family: monospace;
-    line-height: 1.1;
-}
-
-#headline pre {
-    font-size: clamp(1ch, 1.5vw, 2.5ch);
-    margin: 0;
 }
 
 .output {
