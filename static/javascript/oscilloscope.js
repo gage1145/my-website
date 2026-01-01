@@ -41,22 +41,22 @@ export function initOscilloscope() {
     // Adjustable Settings ---------------------
 
     // Stretch time mode 
-    let width_scalar = 1;
     const stretchSlider = document.getElementById("stretch-slider");
+    let width_scalar = parseFloat(stretchSlider.value);
     stretchSlider.addEventListener("input", () => {
         width_scalar = parseFloat(stretchSlider.value);
     });
 
     // Persistence
-    let persistence = 0.15;
     const persistenceSlider = document.getElementById("persistence-slider");
+    let persistence = 0.2 * (1 - parseFloat(persistenceSlider.value));
     persistenceSlider.addEventListener("input", () => {
         persistence = 0.2 * (1 - parseFloat(persistenceSlider.value));
     });
 
     // Glow
-    let glow = 1;
     const glowSlider = document.getElementById("glow-slider");
+    let glow = parseFloat(glowSlider.value);
     glowSlider.addEventListener("input", () => {
         glow = parseFloat(glowSlider.value);
     });
