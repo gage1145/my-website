@@ -2,6 +2,7 @@ import { cmdAbout } from "./static/javascript/about.js";
 import { cmdProjects } from "./static/javascript/projects.js";
 import { cmdResume } from "./static/javascript/resume.js";
 import { initOscilloscope } from "./static/javascript/oscilloscope.js";
+import AudioPlayer from "./static/javascript/audio_player.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("command-input");
@@ -83,8 +84,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Oscilloscope
+// Audio Player
+const audioPlayer = new AudioPlayer('.audio-player', [
+    { url: 'music/10_Speeds_master.wav', name: '10 Speeds and a Unique Mixing Action' },
+    { url: 'music/channel_2_master.wav', name: 'channel_2' },
+    { url: 'music/oscilloscope.wav', name: 'Oscilloscope Demo' },
+    { url: 'music/Niche_master_80bpm.wav', name: 'Niche - 80bpm' },
+]);
 
+// Oscilloscope
 document.addEventListener("DOMContentLoaded", () => {
     initOscilloscope();
 });
