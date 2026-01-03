@@ -22,14 +22,6 @@ a {
         color: rgb(255, 154, 154);
         text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 5px rgb(255, 154, 154);
     }
-
-    &:active {
-        font-size: 1.5ch;
-    }
-}
-
-.terminal {
-    margin-left: 20px;
 }
 
 /* Header Elements */
@@ -74,6 +66,7 @@ nav {
     font-size: 18pt;
     width: 100vw;
     font-size: clamp(24, 1.5vw, 30px);
+    margin-bottom: 20px;
 }
 
 nav div {
@@ -148,13 +141,19 @@ nav li {
   }
 }
 
-/* End Overlay Effect */
+/* Homepage Styling */
+#homepage-container {
+    display: flex;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+}
 
-
-.about-output {
-    margin: 10px;
-    max-width: 1000px;
-    min-width: 250px;
+.homepage-summary {
+    box-sizing: border-box;
+    width: 90%;
+    justify-content: center;
 }
 
 /* Project Styling */
@@ -163,12 +162,12 @@ nav li {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    margin-top: 50px;
     justify-content: center;
     align-items: center;
 }
 
 .project-output {
+    box-sizing: border-box;
     display: inherit;
     width: 90%;
     border: 1px solid rgb(149, 255, 175);
@@ -201,27 +200,41 @@ nav li {
 }
 
 /* Resume Styling */
+.resume {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
 .resume-container {
-    padding: 0px;
-    width: clamp(400px, 95%, 1200px);
+    box-sizing: border-box;
+    width: clamp(250px, 90%, 1000px);
+    margin: auto;
     border: 1px solid rgb(149, 255, 175);
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
     background-color: rgba(0, 0, 0, 0);
-    margin-top: 20px;
+    padding: 30px;
+}
+
+.job-title {
+    font-size: 18px;
+    color: rgb(255, 119, 119);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 119, 119);
+}
+
+.resume-experience li {
+    padding-left: 30px;
+    list-style: none;
+    margin-bottom: 10px;
 }
 
 .resume-container h3 {
     font-size: 20px;
     color: rgb(119, 223, 255);
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(119, 223, 255);
-}
-
-.resume-container > div {
-    margin: 0px;
-    padding: 10px;
-    border: inherit;
-    box-shadow: inherit;
-    background-color: inherit;
 }
 
 .resume-contact p {
@@ -233,11 +246,41 @@ nav li {
     column-count: 3;
 }
 
+/* Publication Styling */
+#publications {
+    position: relative;
+    width: 100vw;
+    place-items: center;
+}
+
+.publication {
+    box-sizing: border-box;
+    width: clamp(500px, 90%, 1000px);
+    margin: 0px auto 10px auto;
+    padding: 10px 30px;
+    border: 1px solid rgb(149, 255, 175);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+}
 
 /* Music Page Styling --------------------------------- */
 
+#ganymede {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font-size: clamp(0.1ch, 1vw, 10ch);
+    margin: 0;
+    line-height: 1.1;
+
+    pre {
+        margin: 0;
+        padding: 0;
+    }
+}
+
 .music-container {
     position: relative;
+    box-sizing: border-box;
     width: 100%;
     display: flex;
     justify-content: center;
