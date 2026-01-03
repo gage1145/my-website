@@ -7,47 +7,14 @@
         <link href="static/images/favicon.ico" rel="icon" type="image/x-icon" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" >
         <script type="module" src="main.js" defer></script>
-        <script>
-            function includeHTML() {
-                var z, i, elmnt, file, xhttp;
-                /* Loop through a collection of all HTML elements: */
-                z = document.getElementsByTagName("*");
-                for (i = 0; i < z.length; i++) {
-                    elmnt = z[i];
-                    /*search for elements with a certain atrribute:*/
-                    file = elmnt.getAttribute("w3-include-html");
-                    if (file) {
-                    /* Make an HTTP request using the attribute value as the file name: */
-                    xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function() {
-                        if (this.readyState == 4) {
-                        if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-                        if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-                        /* Remove the attribute, and call this function once more: */
-                        elmnt.removeAttribute("w3-include-html");
-                        includeHTML();
-                        }
-                    }
-                    xhttp.open("GET", file, true);
-                    xhttp.send();
-                    /* Exit the function: */
-                    return;
-                    }
-                }
-            }
-        </script>    
     </head>
     <body>
-        <div class="overlay"></div>
-            <div class="terminal">
-                <div class="header">
-                    <div class="welcome-line">
-                        <span>visitor@gagerowden.com:~$ welcome</span>
-                        <div id="interactive-button"><a href="index.html">CLI MODE</a></div>
-                    </div>
-                    <div id="deer-header" w3-include-html="./templates/deer_header.html"></div>
-                </div>
+            <div class="overlay"></div>
+        <div class="header">
+            <div class="welcome-line">
+                <span>visitor@ganymede.com:~$ welcome</span>
             </div>
+        <div w3-include-html="./templates/ganymede.html"></div>
         <div w3-include-html="./templates/navbar.html"></div>
         <div class="music-container">
             <div class="audio-player"></div>
@@ -56,14 +23,13 @@
                     <button id="toggle-scope">Mode</button>
                     <canvas id="oscilloscope"></canvas>
                 <ul id="visual-toggles">
-                    <li><span>Stretch</span><input type="range" id="stretch-slider" class="visual-slider" min="1" max="50" step="0.01" value="1"></li>
-                    <li><span>Persistence</span><input type="range" id="persistence-slider" class="visual-slider" min="0" max="1" step="0.001" value="0.5"></li>
-                    <li><span>Draw Distance</span><input type="range" id="distance-slider" class="visual-slider" min="0" max="0.1" step="0.001" value="0.7"></li>
-                    <li><span>Scale</span><input type="range" id="scale-slider" class="visual-slider" min="0" max="0.6" step="0.01" value="0.6"></li>
-                    <li><span>Glow</span><input type="range" id="glow-slider" class="visual-slider" min="0" max="10" step="0.01" value="0.6"></li>
+                    <li><span>Stretch</span><input type="range" id="stretch-slider" class="visual-slider" min="1" max="50" step="0.01" value="2"></li>
+                    <li><span>Persistence</span><input type="range" id="persistence-slider" class="visual-slider" min="0" max="1" step="0.001" value="0.4"></li>
+                    <li><span>Draw Distance</span><input type="range" id="distance-slider" class="visual-slider" min="0" max="0.1" step="0.001" value="0.09"></li>
+                    <li><span>Scale</span><input type="range" id="scale-slider" class="visual-slider" min="0" max="0.6" step="0.01" value="0.55"></li>
+                    <li><span>Glow</span><input type="range" id="glow-slider" class="visual-slider" min="0" max="10" step="0.01" value="6"></li>
                 </ul>
             </div>
         </div>
     </body>
-    <script>includeHTML();</script>
 </html>

@@ -1,65 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset = "UTF-8">
-        <title>Gage Rowden</title>
-        <link href="static/css/main.css" rel="stylesheet" type="text/css">
-        <link href="static/images/favicon.ico" rel="icon" type="image/x-icon" >
-        <script type="module" src="main.js" defer></script>       
-        <script>
-            function includeHTML() {
-                var z, i, elmnt, file, xhttp;
-                /* Loop through a collection of all HTML elements: */
-                z = document.getElementsByTagName("*");
-                for (i = 0; i < z.length; i++) {
-                    elmnt = z[i];
-                    /*search for elements with a certain atrribute:*/
-                    file = elmnt.getAttribute("w3-include-html");
-                    if (file) {
-                    /* Make an HTTP request using the attribute value as the file name: */
-                    xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function() {
-                        if (this.readyState == 4) {
-                        if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-                        if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-                        /* Remove the attribute, and call this function once more: */
-                        elmnt.removeAttribute("w3-include-html");
-                        includeHTML();
-                        }
-                    }
-                    xhttp.open("GET", file, true);
-                    xhttp.send();
-                    /* Exit the function: */
-                    return;
-                    }
-                }
-            }
-        </script>    
-    </head>
-    <body>
-        <div class="overlay"></div>
-        <div class="terminal">
-            <div class="header">
-                <div class="welcome-line">
-                    <span>visitor@gagerowden.com:~$ welcome</span>
-                    <div id="interactive-button"><a href="interactive.html">INTERACTIVE MODE</a></div>
-                </div>
-                <div id="deer-header" w3-include-html="templates/deer_header.html"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>Gage Rowden</title>
+    <link href="static/css/main.css" rel="stylesheet">
+    <link href="static/images/favicon.ico" rel="icon">
+    <script type="module" src="main.js" defer></script>
+</head>
+
+<body>
+    <div class="overlay"></div>
+        <div class="header">
+            <div class="welcome-line">
+                <span>visitor@gagerowden.com:~$ welcome</span>
             </div>
-            <p>Welcome to Gage Rowden's website.</p>
-            <p>---</p>
-            <p>For a list of available commands, type <code>help</code>.</p>
-            <p>---</p>
 
-            <!-- History will be appended here -->
-            <div id="history"></div>
-
-            <!-- Input line -->
-            <div class="input-line">
-                <span id="user">visitor</span><span id="host">@gagerowden.com</span><span>:~$</span>
-                <input id="command-input" type="text" autofocus>
+            <div id="deer-header"
+                 w3-include-html="./templates/deer_header.html">
             </div>
         </div>
-    </body>
-    <script>includeHTML();</script>
+    <div w3-include-html="./templates/navbar.html"></div>
+    <div id="homepage-container">
+        <div class="homepage-summary">
+            <p> Welcome to my website! I am a data scientist and research engineer working at the intersection of biology, software, and automation. I design analytical pipelines, build reproducible tools, and turn noisy experimental data into decisions people can trust.</p>
+
+            <p>My work spans R package development, statistical modeling, laboratory automation, and full-stack systems like LIMS platforms. I care deeply about clarity, reproducibility, and building things that actually get used — whether that’s software, protocols, or music.</p>
+
+            <p>Additionally, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects on the Music page.</p>
+
+            <p>This site is a collection of projects, publications, and experiments I’ve built along the way.</p>
+        </div>
+    </div>
+</body>
 </html>
