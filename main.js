@@ -2,6 +2,8 @@ import { initOscilloscope } from "./static/javascript/oscilloscope.js";
 import AudioPlayer from "./static/javascript/audio_player.js";
 import { includeHTML } from "./static/javascript/includeHTML.js";
 import { loadProjects } from "./static/javascript/projects.js";
+import { loadResume } from "./static/javascript/resume.js";
+import { loadPublications } from "./static/javascript/publications.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     includeHTML();
@@ -37,5 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectContainer = document.getElementById("projects");
     if (projectContainer) {
         loadProjects();
+    }
+
+    const resumeContainer = document.getElementById("resume");
+    if (resumeContainer) {
+        loadResume();
+    }
+
+    const publicationContainer = document.getElementById("publications");
+    if (publicationContainer) {
+        loadPublications();
     }
 });
