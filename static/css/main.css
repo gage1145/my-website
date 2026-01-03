@@ -27,31 +27,26 @@ a {
 /* Header Elements */
 
 .header {
-    width: 90vw;
-    margin: 10px;
+    width: 100vw;
+    position: relative;
     display:flex;
     position: relative;
     flex-direction: column;
-    justify-content: left;
 }
 
-#headline {
+#deer-header {
     display: flex;
+    padding: 0 20px 0 20px;
+    justify-content: center;
+    font-size: clamp(0.5ch, 1.5vw, 2ch);
     font-family: monospace;
     line-height: 1.1;
 }
 
-#deer-header {
-    font-size: clamp(0.5ch, 1.5vw, 2ch);
-    margin: 0;
-}
-
 .welcome-line {
-    display: flex;
-    align-items: center;
+    padding-left: 20px;
+    margin-top: 10px;
     justify-content: left;
-    width: clamp(200px, 100%, 1200px);
-    flex-wrap: wrap;
 }
 
 .welcome-line span {
@@ -66,7 +61,7 @@ nav {
     font-size: 18pt;
     width: 100vw;
     font-size: clamp(24, 1.5vw, 30px);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 nav div {
