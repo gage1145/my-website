@@ -294,6 +294,8 @@ nav li {
         background-color: rgb(149, 255, 175);
         color: #0f0f0f;
     }
+    font-size: 3ch;
+    padding-bottom: 10px;
 }
 
 .playlist a {
@@ -331,7 +333,7 @@ nav li {
 #visualizer span {
     position: inherit;
     width: clamp(150px, 34%, 1000px);
-    font-size: 2ch;
+    font-size: 3ch;
 }
 
 .visual-slider {
@@ -341,7 +343,7 @@ nav li {
     margin: 8px 0px;
     width: clamp(300px, 65%, 100%);
     max-width: 100%;
-    height: 10px;
+    height: 30px;
     background: none;
     outline: none;
     border: 1px solid rgb(149, 255, 175);;
@@ -352,8 +354,8 @@ nav li {
 .visual-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 10px;
-    height: 20px;
+    width: 20px;
+    height: 40px;
     background: #0f0f0f;
     cursor: -webkit-grab;
     border: 1px solid rgb(149, 255, 175);;
@@ -362,8 +364,8 @@ nav li {
 
 /* for firefox */
 .visual-slider::-moz-range-thumb {
-    width: 10px;
-    height: 20px;
+    width: 20px;
+    height: 40px;
     background: #0f0f0f;
     cursor: -moz-grab;
     border: 1px solid rgb(149, 255, 175);;
