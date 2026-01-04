@@ -6,6 +6,7 @@
     <link href="static/css/main.css" rel="stylesheet">
     <link href="static/images/favicon.ico" rel="icon">
     <script type="module" src="main.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" >
 </head>
 
 <body>
@@ -20,15 +21,84 @@
             </div>
         </div>
     <div w3-include-html="./templates/navbar.html"></div>
-    <div id="homepage-container">
-        <div class="homepage-summary">
-            <p> Welcome to my website! I am a data scientist and research engineer working at the intersection of biology, software, and automation. I design analytical pipelines, build reproducible tools, and turn noisy experimental data into decisions people can trust.</p>
-
-            <p>My work spans R package development, statistical modeling, laboratory automation, and full-stack systems like LIMS platforms. I care deeply about clarity, reproducibility, and building things that actually get used — whether that’s software, protocols, or music.</p>
-
-            <p>Additionally, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects on the Music page.</p>
-
-            <p>This site is a collection of projects, publications, and experiments I’ve built along the way.</p>
+    <div id="homepage">
+        <div id="homepage-container">
+            <div id="profile">
+                <img class="profile-pic" src="static/images/profile_pic.jpg" alt="">
+                <h2>Contact</h2>
+                <ul id="contact">
+                    <li>Phone: <a href="callto: +1-806-577-8008">+1-806-577-8008</a></li>
+                    <Li>UMN: <a href="mailto: rowde002@umn.edu">rowde002@umn.edu</a></Li>
+                    <Li>Priogen: <a href="mailto: gager@priogen.bio">gager@priogen.bio</a></Li>
+                    <Li>Ganymede: <a href="mailto: ganymede.artist@gmail.com">ganymede.artist@gmail.com</a></Li>
+                    <li>Personal: <a href="mailto: gage.rowden1145@gmail.com">gage.rowden1145@gmail.com</a></li> 
+                </ul>
+                <h2>Links</h2> 
+                <ul id="links">
+                    <li>
+                        <a href="https://github.com/gage1145">
+                            <i class="fa-brands fa-github fa-xl"></i> gage1145
+                        </a>
+                    </li>
+                    <li>
+                    <a href="https://www.linkedin.com/in/gagerowden">
+                        <i class="fa-brands fa-linkedin-in fa-xl"></i> gagerowden 
+                    </a>
+                    </li>
+                    <li>
+                        <a href="https://orcid.org/0000-0002-7517-0480">
+                            <i class="fa-brands fa-orcid fa-xl"></i> 0000-0002-7517-0480
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/gage1145">
+                            <i class="fa-brands fa-facebook-f fa-xl"></i> gage1145
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">
+                            <i class="fa-brands fa-spotify fa-xl"></i> Spotify
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCF0pawTW2NZotzNuxwNBzXw">
+                            <i class="fa-brands fa-youtube fa-xl"></i> ganymedeartist8852
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+            <div class="homepage-right">
+                <h2>Professional Summary</h2>
+                <div class="homepage-summary">
+                    <p> Welcome to my website! I am a researcher and data scientist working at in the fields of prion biology, software, and automation. With over a decade of experience in biochemistry and molecular biology, I have developed skills around designing analytical pipelines, building reproducible tools, and turning experimental data into publishable results.</p>
+                    <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that’s science, software, or products.</p>
+                    <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects on the Music page.</p>
+                    <p>This site is a collection of projects, publications, and experiences I’ve developed along the way. Thanks for visiting!</p>
+                </div>
+                <h2>Featured Projects</h2>
+                <div class="features">
+                    <div>
+                        <h3>This Website</h3>
+                        <a href="https://github.com/gage1145/my-website">github.com/gage1145/my-website</a>
+                    </div>
+                    <div>
+                        <h3>quicR</h3>
+                        <a href="https://github.com/gage1145/quicR">github.com/gage1145/quicR</a>
+                    </div>
+                    <div> 
+                        <h3>PriLIMS</h3><a href="https://priogen.xyz">priogen.xyz</a>
+                    </div>
+                </div>
+                <h2>Featured Publications</h2>
+                <div class="features">
+                    <h3>
+                        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5188757"">quicR: An R Library for Streamlined Data Handling of Real-Time Quaking Induced Conversion Assays</a>
+                    </h3>
+                    <h3>
+                        <a href="https://www.mdpi.com/2076-0817/12/2/309">Standardization of data analysis for RT-QuIC-based detection of chronic wasting disease</a>
+                    </h3>
+                </div>
+            </div>
         </div>
     </div>
 </body>
