@@ -1,0 +1,33 @@
+<!-- <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
+<script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script> -->
+
+<h2>ASCII Image Converter</h2>
+
+<label>
+    Select a file
+<input type="file" id="upload" accept="image/*">
+</label>
+
+<div>
+  <label>
+    Width
+    <input type="range" id="width" min="40" max="200" value="100">
+  </label>
+
+  <label>
+    Contrast
+    <input type="range" id="contrast" min="0" max="200" value="100">
+  </label>
+
+  <label>
+    Simple
+    <input type="checkbox" id="simple" checked>
+  </label>
+</div>
+
+<button py-click="run">Convert</button>
+
+<pre id="output"></pre>
+
+<py-loading>Initializing Python environment…</py-loading>
+<py-script src="./static/python/image_to_ascii.py"></py-script>

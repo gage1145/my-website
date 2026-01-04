@@ -504,3 +504,53 @@ nav li {
         font-weight: normal;
     };
 }
+
+/* Utilities Styling */
+
+.utilities-content {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50vh;
+}
+
+.utilities-layout {
+    position: relative;
+    box-sizing: border-box;
+    width: 90%;
+    padding: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 4fr;
+    justify-content: center;
+    border: 1px solid #95ffaf;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+}
+
+.utilities-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #95ffaf;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+}
+
+.utilities-sidebar ul {
+    list-style: none;
+    margin: 0;
+}
+
+.utilities-content button {
+    background: none;
+    width: 100%;
+    color: inherit;
+    text-shadow: inherit;
+    border: 1px solid #95ffaf;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+    cursor: pointer;
+    font-size: 3ch;
+    font-family: inherit;
+    &:hover {
+        font-weight: bold;
+    };
+}
