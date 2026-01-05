@@ -6,12 +6,14 @@
     <input type="range" id="width" class="slider" min="40" max="200" value="100">
     <span>Contrast</span>
     <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
-    <span>
-        Simple
+    <span style="display:flex; gap:50px; margin-bottom: 20px;">
+        Simple Characters: 
         <input type="checkbox" id="simple" checked>
     </span>
-    <!-- <span>Rotate</span> -->
-    <!-- <input type="range" id="rotate"> -->
+    <span style="display:flex; gap:50px; margin-bottom: 20px;">
+        Rotate (0-360): 
+        <input type="number" id="rotate" min=0 max=360 value=0>
+    </span>
     <button py-click="run">Convert</button>
     <pre id="output" style="font-size: clamp(0.7rem, 0.7cqi, 2.5rem)"></pre>
     <py-script src="./static/python/image_to_ascii.py"></py-script>

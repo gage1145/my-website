@@ -8,8 +8,7 @@ def resize_image(image, new_width=100, rotate=0):
     width, height = image.size
     ratio = height / (2.8 * width)
     new_height = int(new_width * ratio)
-    image.rotate(rotate, expand=True)
-    return image.resize((new_width, new_height))
+    return image.rotate(rotate, expand=True).resize((new_width, new_height))
 
 def change_contrast(img, level=100):
     factor = (259 * (level + 255)) / (255 * (259 - level))
@@ -32,17 +31,10 @@ def pixels_to_ascii(image, simple=True):
 
 def convert_image_from_bytes(image_bytes, new_width=100, contrast=100, simple=True, rotate=0):
     image = Image.open(BytesIO(image_bytes))
-
-    ascii_data = pixels_to_ascii(
-        grayify(
-            change_contrast(
-                resize_image(image, new_width=new_width, rotate=rotate),
-                contrast
-            )
-        ),
-        simple=simple
-    )
-
+    image = resize_image(image, new_width=new_width, rotate=rotate)
+    image = change_contrast(image, contrast)
+    image = grayify(image)
+    ascii_data = pixels_to_ascii(image, simple=simple)
     pixel_count = len(ascii_data)
     ascii_image = "\n".join(
         ascii_data[i:i + new_width]
@@ -64,7 +56,7 @@ async def run(event=None):
     width = int(document.getElementById("width").value)
     contrast = int(document.getElementById("contrast").value)
     simple = document.getElementById("simple").checked
-    rotate = document.getElementById("rotate").value
+    rotate = float(document.getElementById("rotate").value)
 
     buffer = await file.arrayBuffer()
     image_bytes = bytes(buffer.to_py())
