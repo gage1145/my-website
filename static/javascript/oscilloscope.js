@@ -42,38 +42,53 @@ export function initOscilloscope() {
 
     // Stretch time mode 
     const stretchSlider = document.getElementById("stretch-slider");
+    let stretchValue = document.getElementById("stretch-value");
     let width_scalar = parseFloat(stretchSlider.value);
+    stretchValue.innerHTML = width_scalar;
     stretchSlider.addEventListener("input", () => {
         width_scalar = parseFloat(stretchSlider.value);
+        stretchValue.innerHTML = width_scalar;
     });
 
     // Persistence
     const persistenceSlider = document.getElementById("persistence-slider");
+    let persistenceValue = document.getElementById("persistence-value");
     let persistence = 0.2 * (1 - parseFloat(persistenceSlider.value));
+    persistenceValue.innerHTML = persistence.toFixed(2);
     persistenceSlider.addEventListener("input", () => {
         persistence = 0.2 * (1 - parseFloat(persistenceSlider.value));
+        persistenceValue.innerHTML = persistence.toFixed(2);
     });
 
     // Glow
     const glowSlider = document.getElementById("glow-slider");
+    let glowValue = document.getElementById("glow-value");
     let glow = parseFloat(glowSlider.value);
+    glowValue.innerHTML = glow.toFixed(2);
     glowSlider.addEventListener("input", () => {
         glow = parseFloat(glowSlider.value);
+        glowValue.innerHTML = glow.toFixed(2);
     });
 
     // Scale
     const scaleSlider = document.getElementById("scale-slider");
+    let scaleValue = document.getElementById("scale-value");
     let canvasScale = 0.6
+    scaleValue.innerHTML = canvasScale.toFixed(2);
     scaleSlider.addEventListener("input", () => {
         canvasScale = parseFloat(scaleSlider.value);
+        scaleValue.innerHTML = canvasScale.toFixed(2);
     });
 
     // Max Draw Distance
     const distanceSlider = document.getElementById("distance-slider");
+    let distanceValue = document.getElementById("distance-value");
     const hypotenuse = Math.sqrt(canvas.clientHeight ** 2 + canvas.clientWidth ** 2);
     let maxDistance = hypotenuse * parseFloat(distanceSlider.value)
+    distanceValue.innerHTML = maxDistance.toFixed(2);
     distanceSlider.addEventListener("input", () => {
         maxDistance = hypotenuse * parseFloat(distanceSlider.value) * canvasScale;
+        distanceValue.innerHTML = maxDistance.toFixed(2);
     });
 
     // --- Scope mode ---
