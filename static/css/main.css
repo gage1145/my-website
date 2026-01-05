@@ -431,7 +431,7 @@ nav li {
     font-size: 3ch;
 }
 
-.visual-slider {
+.slider {
     position: inherit;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -446,7 +446,7 @@ nav li {
 }
 
 /* for chrome/safari */
-.visual-slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 20px;
@@ -458,7 +458,7 @@ nav li {
 }
 
 /* for firefox */
-.visual-slider::-moz-range-thumb {
+.slider::-moz-range-thumb {
     width: 20px;
     height: 40px;
     background: #0f0f0f;
@@ -511,6 +511,7 @@ nav li {
     display: flex;
     justify-content: center;
     margin-bottom: 50vh;
+    overflow: hidden;
 }
 
 .utilities-layout {
@@ -531,6 +532,7 @@ nav li {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    font-size: 3ch;
     border: 1px solid #95ffaf;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
 }
@@ -543,6 +545,7 @@ nav li {
 .utilities-content button {
     background: none;
     width: 100%;
+    padding: 10px;
     color: inherit;
     text-shadow: inherit;
     border: 1px solid #95ffaf;
@@ -553,4 +556,47 @@ nav li {
     &:hover {
         font-weight: bold;
     };
+}
+
+#file-input {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-label {
+    padding: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 3ch;
+    font-family: inherit;
+    text-align: center;    
+    border: 1px solid #95ffaf;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+
+    &:hover {
+        font-weight: bold;
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 8px rgb(149, 255, 175);
+    }
+}
+
+.tool {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 3ch;
+}
+
+input[type=checkbox] {
+    -ms-transform: scale(3); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(3);
+    padding: 10px;
+    accent-color: #95ffaf;
+    background-color: transparent;
 }

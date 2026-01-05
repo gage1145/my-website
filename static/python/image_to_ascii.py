@@ -4,10 +4,11 @@ from js import document
 
 
 
-def resize_image(image, new_width=100):
+def resize_image(image, new_width=100, rotate=0):
     width, height = image.size
     ratio = height / (2.8 * width)
     new_height = int(new_width * ratio)
+    image.rotate(rotate, expand=True)
     return image.resize((new_width, new_height))
 
 def change_contrast(img, level=100):
@@ -29,13 +30,13 @@ def pixels_to_ascii(image, simple=True):
         characters = "".join(ASCII_CHARS[p // 5] for p in pixels)
     return characters
 
-def convert_image_from_bytes(image_bytes, new_width=100, contrast=100, simple=True):
+def convert_image_from_bytes(image_bytes, new_width=100, contrast=100, simple=True, rotate=0):
     image = Image.open(BytesIO(image_bytes))
 
     ascii_data = pixels_to_ascii(
         grayify(
             change_contrast(
-                resize_image(image, new_width=new_width),
+                resize_image(image, new_width=new_width, rotate=rotate),
                 contrast
             )
         ),
@@ -53,7 +54,7 @@ def convert_image_from_bytes(image_bytes, new_width=100, contrast=100, simple=Tr
 async def run(event=None):
     document.getElementById("output").textContent = "Processing…"
 
-    file_input = document.getElementById("upload")
+    file_input = document.getElementById("file-input")
     file = file_input.files.item(0)
 
     if not file:
@@ -63,6 +64,7 @@ async def run(event=None):
     width = int(document.getElementById("width").value)
     contrast = int(document.getElementById("contrast").value)
     simple = document.getElementById("simple").checked
+    rotate = document.getElementById("rotate").value
 
     buffer = await file.arrayBuffer()
     image_bytes = bytes(buffer.to_py())
@@ -71,7 +73,8 @@ async def run(event=None):
         image_bytes,
         new_width=width,
         contrast=contrast,
-        simple=simple
+        simple=simple,
+        rotate=rotate
     )
 
     document.getElementById("output").textContent = ascii_img
