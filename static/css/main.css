@@ -172,61 +172,57 @@ nav li {
     } 
 }
 
-@media (min-width: 800px) {
-    #homepage-container {
-        box-sizing: border-box;
-        display: flex;
-        /* grid-template-columns: 0.5fr 1.5fr; */
-        gap: 20px;
-        width: 90%;
-        margin-bottom: 100px;
-        padding: 20px;
-        height: auto;
-        border: var(--border);
-        box-shadow: var(--box-shadow);
-    }
+#homepage-container {
+    box-sizing: border-box;
+    width: 90%;
 }
 
 #profile {
     display: flex;
+    flex-direction: column;
     text-align: center;
-    min-width: 410px;
-    max-width: 600px;
     gap: 20px;
-    height: fit-content;
+    height: auto;
     margin-right: 0px;
     padding: 20px;
     display: flex;
-    flex-direction: column;
     border: var(--border);
     box-shadow: var(--box-shadow);
+    min-width: 400px;
 }
 
 .profile-pic {
-    width: 100%;  
-    margin-bottom: 20px;  
-    aspect-ratio: 1;   
-    border-radius: 50%; 
+    width: 100%;
+    aspect-ratio: 1;
     object-fit: cover; 
     border: var(--border);
     box-shadow: var(--box-shadow);
 }
 
+#personal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 #contact {
     text-align: left; 
-    justify-content: left;
-    align-items: center;
-    line-height: 50px;
+    line-height: 3ch; 
     padding: 10px;
     margin: 0px;
     border: var(--border);
     box-shadow: var(--box-shadow);
-    font-size: clamp(12px, 3rem, 20px);
 
     img {
         fill: var(--green);
-        width: 23px;
+        width: 2ch;
         filter: drop-shadow(0 0 3px rgb(149, 255, 175));
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 1ch
     }
 }
 
@@ -243,10 +239,6 @@ nav li {
     font-size: var(--large-text);
 }
 
-#links li {
-    list-style: none;
-}
-
 .homepage-right {
     display: flex;
     flex-direction: column;
@@ -259,6 +251,7 @@ nav li {
     border: var(--border);
     box-shadow: var(--box-shadow);
     height: fit-content;
+    min-width: 400px;
 }
 
 .homepage-summary {
@@ -283,6 +276,50 @@ nav li {
     font-size: var(--normal-text);
     border: var(--border);
     box-shadow: var(--box-shadow);
+}
+
+@media (min-width: 1100px) {
+    #homepage-container {
+        display: grid;
+        grid-template-columns: 4fr 5fr;
+        gap: 20px;
+        width: 90%;
+        margin-bottom: 100px;
+        padding: 20px;
+        height: auto;
+        border: var(--border);
+        box-shadow: var(--box-shadow);
+    }
+}
+
+@media (max-width: 1100px) {
+    #profile {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+@media (max-width: 790px) {
+    #profile {
+        flex-direction: column;
+    }
+    
+    #contact {
+        font-size: var(--medium-text);
+    }
+}
+
+@media (max-width: 680px) {
+    #homepage-container {
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+        justify-content: left;
+    }
+
+    #contact {
+        font-size: var(--normal-text);
+    }
 }
 
 /* Project Styling */
