@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Utilities</title>
+    <link href="static/css/main.css" rel="stylesheet">
+    <link href="static/images/favicon.ico" rel="icon">
+    <script type="module" src="main.js" defer></script>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
+    <script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script>
+    <py-config>packages = ['pillow']</py-config>
+</head>
+
+<body>
+    <div class="overlay"></div>
+        <div class="header">
+            <div class="welcome-line">
+                <span>visitor@gagerowden.com:~$ welcome</span>
+            </div>
+
+            <div id="deer-header"
+                 w3-include-html="./templates/deer_header.html">
+            </div>
+        </div>
+    <div w3-include-html="./templates/navbar.html"></div>
+
+    <div class="utilities-content">
+        <div class="utilities-layout">
+            <div class="utilities-sidebar">
+                <h1>Tools</h1>
+                <ul>
+                    <li><button data-tool="image_to_ascii">ASCII Image</button></li>
+                    <li><button data-tool="spectrogram">Spectrogram</button></li>
+                </ul>
+            </div>
+            <div id="tool-container">
+                <p>Select a tool from the sidebar.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+[
+    {
+        "title": "This Website",
+        "description": "Visit the repository where this website is hosted.",
+        "link": "https://github.com/gage1145/my-website",
+        "ascii_image":"  _/          _/            _/                  _/    _/               \n _/          _/    _/_/    _/_/_/      _/_/_/      _/_/_/_/    _/_/    \n_/    _/    _/  _/_/_/_/  _/    _/  _/_/      _/    _/      _/_/_/_/   \n _/  _/  _/    _/        _/    _/      _/_/  _/    _/      _/          \n  _/  _/        _/_/_/  _/_/_/    _/_/_/    _/      _/_/    _/_/_/     "
+    },
+
+    {
+        "title": "quicR",
+        "description": "An R package for RT-QuIC analysis.",
+        "link": "https://github.com/gage1145/quicR",
+        "ascii_image":"                       _/            _/_/_/ \n    _/_/_/  _/    _/        _/_/_/  _/    _/\n _/    _/  _/    _/  _/  _/        _/_/_/   \n_/    _/  _/    _/  _/  _/        _/    _/  \n _/_/_/    _/_/_/  _/    _/_/_/  _/    _/   \n    _/                                      \n   _/                                       \n"
+    },
+
+    {
+        "title": "PriLIMS",
+        "description": "A laboratory information management system developed for Priogen Corp. Utilizes a Django framework and is hosted on AWS.",
+        "link": "https://priogen.xyz/",
+        "ascii_image":"    _/_/_/              _/  _/        _/_/_/  _/      _/    _/_/_/\n   _/    _/  _/  _/_/      _/          _/    _/_/  _/_/  _/       \n  _/_/_/    _/_/      _/  _/          _/    _/  _/  _/    _/_/    \n _/        _/        _/  _/          _/    _/      _/        _/   \n_/        _/        _/  _/_/_/_/  _/_/_/  _/      _/  _/_/_/      \n"
+    },
+
+    {
+        "title": "PrionBot",
+        "description": "A Discord bot that retrieves prion-related articles from NCBI and posts them to a Discord server.",
+        "link": "https://github.com/gage1145/prion_bot",
+        "ascii_image":"    _/_/_/              _/                      _/_/_/                _/      \n   _/    _/  _/  _/_/        _/_/    _/_/_/    _/    _/    _/_/    _/_/_/_/   \n  _/_/_/    _/_/      _/  _/    _/  _/    _/  _/_/_/    _/    _/    _/        \n _/        _/        _/  _/    _/  _/    _/  _/    _/  _/    _/    _/         \n_/        _/        _/    _/_/    _/    _/  _/_/_/      _/_/        _/_/      \n"
+    },
+
+    {
+        "title": "Cookbook",
+        "description": "My family's multigenerational recipes.",
+        "link": "https://github.com/gage1145/cook_book",
+        "ascii_image": "     _/_/_/                      _/        _/_/_/                        _/   \n  _/          _/_/      _/_/    _/  _/    _/    _/    _/_/      _/_/    _/  _/\n _/        _/    _/  _/    _/  _/_/      _/_/_/    _/    _/  _/    _/  _/_/   \n_/        _/    _/  _/    _/  _/  _/    _/    _/  _/    _/  _/    _/  _/  _/  \n _/_/_/    _/_/      _/_/    _/    _/  _/_/_/      _/_/      _/_/    _/    _/ \n"
+    }
+]

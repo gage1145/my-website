@@ -1,0 +1,20 @@
+<div class="tool">
+    <h2>ASCII Image Converter</h2>
+    <input type="file" id="file-input" accept="image/*">
+    <label for="file-input" class="file-label">Select a file</label>
+    <span>Width</span>
+    <input type="range" id="width" class="slider" min="40" max="200" value="100">
+    <span>Contrast</span>
+    <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
+    <span style="display:flex; gap:50px; margin-bottom: 20px;">
+        Character Depth: 
+        <input type="number" id="depth" min=1 max=6 value=1>
+    </span>
+    <span style="display:flex; gap:50px; margin-bottom: 20px;">
+        Rotate (0-360): 
+        <input type="number" id="rotate" min=0 max=360 value=0>
+    </span>
+    <button py-click="run">Convert</button>
+    <pre id="output" style="font-size: clamp(0.7rem, 0.7cqi, 2.5rem)"></pre>
+    <py-script src="./static/python/image_to_ascii.py"></py-script>
+</div>
