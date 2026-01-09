@@ -2,7 +2,7 @@ import pandas as pd
 from js import document, Blob, URL
 from io import StringIO
 
-def BMG_format_from_text(csv_text):
+def BMG_format(csv_text):
     df = pd.read_csv(StringIO(csv_text))
     colnames = df.columns[1:]
 
@@ -51,7 +51,7 @@ async def run_bmg(event=None):
         return
 
     text = await file.text()
-    formatted = BMG_format_from_text(text)
+    formatted = BMG_format(text)
 
     # Show preview
     document.getElementById("bmg-preview").textContent = formatted
