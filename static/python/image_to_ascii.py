@@ -53,13 +53,13 @@ def convert_image_from_bytes(image_bytes, depth, new_width, contrast, rotate):
     return ascii_image
 
 async def run(event=None):
-    document.getElementById("output").textContent = "Processing…"
+    document.getElementById("ascii-output").textContent = "Processing…"
 
     file_input = document.getElementById("file-input")
     file = file_input.files.item(0)
 
     if not file:
-        document.getElementById("output").textContent = "No file selected."
+        document.getElementById("ascii-output").textContent = "No file selected."
         return
 
     width = int(document.getElementById("width").value)
@@ -78,4 +78,4 @@ async def run(event=None):
         rotate=rotate
     )
 
-    document.getElementById("output").textContent = ascii_img
+    document.getElementById("ascii-output").textContent = ascii_img
