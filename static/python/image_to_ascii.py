@@ -4,7 +4,8 @@ from js import document
 
 
 
-def resize_image(image, new_width, rotate):
+def resize_image(image, new_width):
+    image = ImageOps.exif_transpose(image)
     width, height = image.size
     ratio = height / (2.2 * width)
     new_height = int(new_width * ratio)
