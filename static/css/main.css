@@ -7,6 +7,10 @@
                   inset 0 0 4px rgb(149, 255, 175),
                   0 0 1px rgba(255, 255, 255, 0.5),
                   0 0 4px rgb(149, 255, 175);
+    --hover-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5),
+                        inset 0 0 6px rgb(149, 255, 175),
+                        0 0 2px rgba(255, 255, 255, 0.5),
+                        0 0 6px rgb(149, 255, 175);
     --link-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 103, 103);
     --green-text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
     --huge-text: 4rem;
@@ -106,6 +110,10 @@ nav li {
     border: var(--border);
     box-shadow: var(--box-shadow);
     padding: 5px 15px;
+    &:hover{
+        box-shadow: var(--hover-box-shadow);
+        border-radius: 5%;
+    }
 }
 
 /* Overlay Effect */
@@ -660,11 +668,25 @@ nav li {
     font-size: var(--medium-text);
     border: 1px solid #95ffaf;
     box-shadow: var(--box-shadow);
+    padding: 20px;
+
+    li {
+        border: 1px solid var(--green);
+        box-shadow: var(--box-shadow);
+
+        &:hover {
+            box-shadow: var(--hover-box-shadow);
+            border-radius: 5%;
+        }
+    }
 }
 
 .utilities-sidebar ul {
+    display: flex;
+    flex-direction: column;
     list-style: none;
     margin: 0;
+    gap: 20px;
 }
 
 .utilities-content button {
@@ -729,7 +751,7 @@ nav li {
 
 input[type=radio] {
     transform: scale(1);
-    accent-color: var(--green);
+    accent-color: var(--red);
     background-color: transparent;
     fill: none;
     cursor: pointer
