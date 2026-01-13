@@ -51,30 +51,3 @@ document.addEventListener("DOMContentLoaded", () => {
         loadPublications();
     }
 });
-
-// Utilities
-
-
-const container = document.getElementById("tool-container");
-
-async function loadTool(name) {
-  // Clear previous tool
-  container.innerHTML = "<p>Loading tool…</p>";
-
-  const response = await fetch(`static/utils/${name}.html`);
-  const html = await response.text();
-
-  container.innerHTML = html;
-
-  // IMPORTANT: Tell PyScript to re-scan the DOM
-  if (window.pyscript) {
-    pyscript.runtime.reload();
-  }
-}
-
-document.querySelectorAll("[data-tool]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    loadTool(btn.dataset.tool);
-  });
-
-});

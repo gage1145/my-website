@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Utilities</title>
+    <base href="/">
+    <link href="static/css/main.css" rel="stylesheet">
+    <link href="static/images/favicon.ico" rel="icon">
+    <script type="module" src="main.js" defer></script>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
+    <script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script>
+    <py-config>packages = ['pillow']</py-config>
+</head>
+
+<body>
+    <div w3-include-html="/templates/header.html"></div>
+    <div class="utilities-content">
+        <div class="utilities-layout">
+            <div class="utilities-sidebar" w3-include-html="/templates/utilities_sidebar.html"></div>
+            <div class="tool">
+                <div class="pyscript-loading"></div>
+                <h2>ASCII Image Converter</h2>
+                <input type="file" id="file-input" accept="image/*">
+                <label for="file-input" class="file-label">Select a file</label>
+                <span>Width</span>
+                <input type="range" id="width" class="slider" min="40" max="200" value="200">
+                <span>Contrast</span>
+                <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
+
+                <div style="display:flex; flex-wrap: wrap; gap:40px; margin: 20px 0;">
+                    <div class="tool-parameter">
+                        <label for="depth">Character Depth</label>
+                        <input type="number" id="depth" min=1 max=6 value=4>
+                    </div>
+                    <strong>Edge Behavior</strong>
+                    <div class="tool-parameter">
+                        <label for="detect-edges">None</label>
+                        <input type="radio" id="edge-none" name="edge-choice" checked>
+                    </div>
+                    <div class="tool-parameter">
+                        <label for="edge-detect">Detect</label>
+                        <input type="radio" id="edge-detect" name="edge-choice">
+                    </div>
+                    <div class="tool-parameter">
+                        <label for="edge-width">Enhance</label>
+                        <input type="radio" id="edge-enhance" name="edge-choice">
+                    </div>
+                </div>
+                <button py-click="run">Convert</button>
+                <py-script src="static/python/image_to_ascii.py"></py-script>
+            </div>
+        </div>
+        <pre id="ascii-output">No image to show.</pre>
+    </div>
+</body>
+</html>
+
+
+
+
+
