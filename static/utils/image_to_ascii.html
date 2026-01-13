@@ -7,18 +7,23 @@
     <span>Contrast</span>
     <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
 
-    <div style="display:flex; flex-wrap: wrap; gap:40px; margin-bottom: 20px;">
+    <div style="display:flex; flex-wrap: wrap; gap:40px; margin: 20px 0;">
         <div class="tool-parameter">
             <label for="depth">Character Depth</label>
             <input type="number" id="depth" min=1 max=6 value=4>
         </div>
+        <strong>Edge Behavior</strong>
         <div class="tool-parameter">
-            <label for="rotate">Rotate (0-360)</label>
-            <input type="number" id="rotate" min=0 max=360 value=0>
+            <label for="detect-edges">None</label>
+            <input type="radio" id="edge-none" name="edge-choice" checked>
         </div>
         <div class="tool-parameter">
-            <label for="detect-edges">Edge Detection</label>
-            <input type="checkbox" id="detect-edges">
+            <label for="edge-detect">Detect</label>
+            <input type="radio" id="edge-detect" name="edge-choice">
+        </div>
+        <div class="tool-parameter">
+            <label for="edge-width">Enhance</label>
+            <input type="radio" id="edge-enhance" name="edge-choice">
         </div>
     </div>
     <button py-click="run">Convert</button>

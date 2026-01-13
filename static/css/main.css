@@ -641,7 +641,7 @@ nav li {
 .utilities-layout {
     position: relative;
     box-sizing: border-box;
-    width: 90%;
+    width: clamp(250px, 90%, 1500px);
     padding: 20px;
     display: grid;
     gap: 20px;
@@ -657,7 +657,7 @@ nav li {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    font-size: 3ch;
+    font-size: var(--medium-text);
     border: 1px solid #95ffaf;
     box-shadow: var(--box-shadow);
 }
@@ -676,7 +676,7 @@ nav li {
     border: 1px solid #95ffaf;
     box-shadow: var(--box-shadow);
     cursor: pointer;
-    font-size: 3ch;
+    font-size: inherit;
     font-family: inherit;
     &:hover {
         font-weight: bold;
@@ -695,7 +695,7 @@ nav li {
     padding: 10px;
     cursor: pointer;
     background-color: transparent;
-    font-size: 3ch;
+    font-size: inherit;
     font-family: inherit;
     text-align: center;    
     border: 1px solid #95ffaf;
@@ -712,27 +712,27 @@ nav li {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    font-size: 3ch;
+    font-size: var(--medium-text);
 }
 
 .tool-parameter {
     display: grid;
     width: 100%;
     grid-template-columns: 2fr 1fr;
-    /* justify-content: left; */
+    justify-content: left;
     text-align: left;
-    place-items: center;
 }
 
 /* .tool input {
     margin: 0 100px;
 } */
 
-input[type=checkbox] {
-    transform: scale(3);
-    accent-color: #95ffaf;
+input[type=radio] {
+    transform: scale(1);
+    accent-color: var(--green);
     background-color: transparent;
     fill: none;
+    cursor: pointer
 }
 
 input[type=number] {
@@ -744,4 +744,5 @@ input[type=number] {
     height: 20px;
     border: 1px solid #95ffaf;
     box-shadow: var(--box-shadow);
+    font-size: var(--normal-text);
 }

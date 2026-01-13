@@ -1,4 +1,4 @@
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageOps
 from io import BytesIO
 from js import document
 
@@ -9,7 +9,7 @@ def resize_image(image, new_width):
     width, height = image.size
     ratio = height / (2.2 * width)
     new_height = int(new_width * ratio)
-    return image.rotate(rotate, expand=True).resize((new_width, new_height))
+    return image.resize((new_width, new_height))
 
 def change_contrast(img, level=100):
     factor = (259 * (level + 255)) / (255 * (259 - level))
@@ -17,10 +17,14 @@ def change_contrast(img, level=100):
         return 128 + factor * (c - 128)
     return img.point(contrast)
 
-def grayify(image, detect_edges: bool):
-    if detect_edges:
+def grayify(image, edge_behavior: str):
+    print("Edge Behavior = ", edge_behavior)
+    if edge_behavior == "edge-none":
+        return image.convert("L")
+    if edge_behavior == "edge-detect":
         return image.convert("L").filter(ImageFilter.FIND_EDGES)
-    return image.convert("L")
+    if edge_behavior == "edge-enhance":
+        return image.convert("L").filter(ImageFilter.EDGE_ENHANCE)
 
 def pixels_to_ascii(image, depth):
     pixels = image.getdata()
@@ -41,11 +45,11 @@ def pixels_to_ascii(image, depth):
     characters = "".join(ASCII_CHARS[p // (256 // len(ASCII_CHARS))] for p in pixels)
     return characters
 
-def convert_image_from_bytes(image_bytes, depth, new_width, contrast, rotate, detect_edges):
+def convert_image_from_bytes(image_bytes, depth, new_width, contrast, edge_behavior):
     image = Image.open(BytesIO(image_bytes))
-    image = resize_image(image, new_width, rotate)
+    image = resize_image(image, new_width)
     image = change_contrast(image, contrast)
-    image = grayify(image, detect_edges=detect_edges)
+    image = grayify(image, edge_behavior=edge_behavior)
     ascii_data = pixels_to_ascii(image, depth)
     pixel_count = len(ascii_data)
     ascii_image = "\n".join(
@@ -68,8 +72,7 @@ async def run(event=None):
     width = int(document.getElementById("width").value)
     contrast = int(document.getElementById("contrast").value)
     depth = int(document.getElementById("depth").value)
-    rotate = float(document.getElementById("rotate").value)
-    detect_edges = bool(document.getElementById("detect-edges").checked)
+    edge_behavior = document.querySelector('input[name="edge-choice"]:checked').id
 
     buffer = await file.arrayBuffer()
     image_bytes = bytes(buffer.to_py())
@@ -79,8 +82,7 @@ async def run(event=None):
         depth,
         new_width=width,
         contrast=contrast,
-        rotate=rotate,
-        detect_edges=detect_edges
+        edge_behavior=edge_behavior
     )
 
     document.getElementById("ascii-output").textContent = ascii_img
