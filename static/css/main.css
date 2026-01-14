@@ -1,3 +1,4 @@
+/* Global Variables */
 :root {
     --background-color: #0f0f0f;
     --green: rgb(149, 255, 175);
@@ -21,6 +22,7 @@
     --micro-text: 0.5rem;
 }
 
+/* Global Styling */
 body {
     background-color: var(--background-color)!important;
     font-family: "Courier New", Courier, monospace!important;
@@ -49,7 +51,6 @@ a {
 }
 
 /* Header Elements */
-
 .header {
     width: 100vw;
     position: relative;
@@ -70,10 +71,10 @@ a {
     padding-left: 20px;
     margin-top: 10px;
     justify-content: left;
-}
 
-.welcome-line span {
-    flex: 1;
+    span {
+        flex: 1;
+    }
 }
 
 /* Navbar Elements */
@@ -85,34 +86,33 @@ nav {
     width: 100vw;
     font-size: var(--large-text);
     margin-bottom: 50px;
-}
 
-nav div {
-    display: inherit;
-    width: 90%;
-    border: var(--border);
-    box-shadow: var(--box-shadow);
-    padding: 20px 10px;
-}
+    div {
+        display: inherit;
+        width: 90%;
+        border: var(--border);
+        box-shadow: var(--box-shadow);
+        padding: 20px 10px;
+    }
 
-nav ul {
-    width: 100%;
-    list-style: none;
-    display: inherit;
-    justify-content: center;
-    /* align-items: center; */
-    flex-wrap: wrap;
-    margin: 0;
-}
+    ul {
+        width: 100%;
+        list-style: none;
+        display: inherit;
+        justify-content: center;
+        /* align-items: center; */
+        flex-wrap: wrap;
+        margin: 0;
+    }
 
-nav li {
-    margin: 10px;
-    border: var(--border);
-    box-shadow: var(--box-shadow);
-    padding: 5px 15px;
-    &:hover{
-        box-shadow: var(--hover-box-shadow);
-        border-radius: 5%;
+    li {
+        margin: 10px;
+        border: var(--border);
+        box-shadow: var(--box-shadow);
+        padding: 5px 15px;
+        &:hover{
+            box-shadow: var(--hover-box-shadow);
+        }
     }
 }
 
@@ -394,8 +394,6 @@ nav li {
     justify-content: center;
     align-items: center;
     font-size: var(--normal-text);
-
-
 }
 
 .resume-container {
@@ -426,16 +424,20 @@ nav li {
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(119, 255, 226);
 }
 
-.resume-experience li {
-    font-size: var(--normal-text);
-    padding-left: 30px;
-    list-style: none;
-    margin-bottom: 10px;
+.resume-experience {
+    li {
+        font-size: var(--normal-text);
+        padding-left: 30px;
+        list-style: none;
+        margin-bottom: 10px;
+    }
 }
 
-.resume-skills-container ul {
-    font-size: var(--normal-text);
-    column-count: 3;
+.resume-skills-container {
+    ul {
+        font-size: var(--normal-text);
+        column-count: 3;
+    }
 }
 
 /* Publication Styling */
@@ -493,21 +495,21 @@ nav li {
     padding: 0;
     margin: 0;
     list-style-type: none;
-}
 
-.playlist li {
-    padding: 5px;
-    &:hover {
-        background-color: rgb(149, 255, 175);
-        color: #0f0f0f;
+    li {
+        padding: 5px;
+        &:hover {
+            background-color: rgb(149, 255, 175);
+            color: #0f0f0f;
+        }
+        font-size: 3ch;
+        padding-bottom: 10px;
     }
-    font-size: 3ch;
-    padding-bottom: 10px;
-}
 
-.playlist a {
-    color: inherit;
-    text-decoration: none;
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 }
 
 #visualizer {
@@ -515,6 +517,18 @@ nav li {
     position: relative;
     justify-content: center;
     margin: 0px 10px;
+
+    li {
+        display: flex;
+        flex-wrap: wrap;
+        text-decoration: none;
+    }
+
+    span {
+        position: inherit;
+        width: clamp(150px, 34%, 1000px);
+        font-size: 3ch;
+    }
 }
 
 .audio-player {
@@ -529,18 +543,6 @@ nav li {
 
 #visual-toggles {
     width: 100%;
-}
-
-#visualizer li {
-    display: flex;
-    flex-wrap: wrap;
-    text-decoration: none;
-}
-
-#visualizer span {
-    position: inherit;
-    width: clamp(150px, 34%, 1000px);
-    font-size: 3ch;
 }
 
 .slider {
@@ -643,7 +645,25 @@ nav li {
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* overflow: hidden; */
+
+    button {
+        background: none;
+        /* width: 100%; */
+        margin: 10px;
+        padding: 10px;
+        color: inherit;
+        text-shadow: inherit;
+        border: 1px solid #95ffaf;
+        box-shadow: var(--box-shadow);
+        cursor: pointer;
+        font-size: inherit;
+        font-family: inherit;
+
+        &:hover {
+            font-weight: bold;
+            box-shadow: var(--hover-box-shadow);
+        }
+    }
 }
 
 .utilities-layout {
@@ -670,39 +690,22 @@ nav li {
     box-shadow: var(--box-shadow);
     padding: 20px;
 
+    ul {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 0;
+        gap: 20px;
+    }
+
     li {
         border: 1px solid var(--green);
         box-shadow: var(--box-shadow);
 
         &:hover {
             box-shadow: var(--hover-box-shadow);
-            border-radius: 5%;
         }
     }
-}
-
-.utilities-sidebar ul {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    margin: 0;
-    gap: 20px;
-}
-
-.utilities-content button {
-    background: none;
-    width: 100%;
-    padding: 10px;
-    color: inherit;
-    text-shadow: inherit;
-    border: 1px solid #95ffaf;
-    box-shadow: var(--box-shadow);
-    cursor: pointer;
-    font-size: inherit;
-    font-family: inherit;
-    &:hover {
-        font-weight: bold;
-    };
 }
 
 #file-input {
@@ -744,10 +747,6 @@ nav li {
     justify-content: left;
     text-align: left;
 }
-
-/* .tool input {
-    margin: 0 100px;
-} */
 
 input[type=radio] {
     transform: scale(1);
