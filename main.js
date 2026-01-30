@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const audioPlayerContainer = document.querySelector(".audio-player");
     if (audioPlayerContainer) {
         new AudioPlayer(".audio-player", [
+            { url: "music/melt.mp3", name: "melt.mp3" },
             { url: "music/10_Speeds_master.mp3", name: "10 Speeds and a Unique Mixing Action" },
             { url: "music/Acceptance.mp3", name: "Acceptance" },
             { url: "music/channel_2_master.mp3", name: "channel_2" },
