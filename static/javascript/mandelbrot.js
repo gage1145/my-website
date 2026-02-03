@@ -1,5 +1,5 @@
 const zoomSlider = document.getElementById("zoom");
-const iterations = document.getElementById("iterations");
+const maxIterationsInput = document.getElementById("iterations");
 const startColorSlider = document.getElementById("start-color");
 const endColorSlider = document.getElementById("end-color");
 const saveButton = document.getElementById("save");
@@ -12,7 +12,9 @@ let isDragging = false;
 
 let redrawTimeout;
 
-[zoomSlider, iterations, startColorSlider, endColorSlider]
+let colorLUT = [];
+
+[zoomSlider, maxIterationsInput, startColorSlider, endColorSlider]
     .forEach(el => {
         el.addEventListener("input", () => redraw());
     });
@@ -40,13 +42,15 @@ function draw() {
 }
 
 function renderMandelbrot() {
-    let zoom = parseFloat(document.getElementById("zoom").value);
-    let startColor = parseFloat(document.getElementById("start-color").value);
-    let endColor = parseFloat(document.getElementById("end-color").value);
+    let zoom = parseFloat(zoomSlider.value);
+    let startColor = parseFloat(startColorSlider.value);
+    let endColor = parseFloat(endColorSlider.value);
 
     background(0, 0, 6);
 
-    let maxIterations = document.getElementById("iterations").value;
+    let maxIterations = maxIterationsInput.value;  
+    buildColorLUT(maxIterations, startColor, endColor);
+
 
     let w = 1 / pow(zoom, 2);
     let h = (w * height) / width;
@@ -62,8 +66,9 @@ function renderMandelbrot() {
     let dx = (xMax - xMin) / width;
     let dy = (yMax - yMin) / height;
 
-    let y = yMin;
+    // let y = yMin;
     for (let j = 0; j < height; j++) {
+        let y = yMin + j * dy;
         let x = xMin;
         for (let i = 0; i < width; i++) {
             let a = x;
@@ -78,31 +83,24 @@ function renderMandelbrot() {
                 a = a2 - b2 + x;
                 b = twoAB + y;
 
-                if (a2 + b2 > 10) break;
+                if (a2 + b2 > 4) break;
                 iterations++;
             }
 
             let idx = (i + j * width) * 4;
-            let normalized = map(iterations, 0, maxIterations, 0, 1);
-            let lerpAmount = sqrt(normalized);
-
-            let pixelColor = color(0, 0, 6);
             if (iterations < maxIterations) {
-                pixelColor = lerpColor(
-                    color(startColor, 255, 0),
-                    color(endColor, 255, 79.2),
-                    lerpAmount
-                );
+                let [h, s, l] = colorLUT[iterations];
+                pixels[idx]     = h;
+                pixels[idx + 1] = s;
+                pixels[idx + 2] = l;
+            } else {
+                pixels[idx]     = 0;
+                pixels[idx + 1] = 0;
+                pixels[idx + 2] = 6;
             }
-
-            pixels[idx + 0] = pixelColor.levels[0];
-            pixels[idx + 1] = pixelColor.levels[1];
-            pixels[idx + 2] = pixelColor.levels[2];
             pixels[idx + 3] = 255;
-
             x += dx;
         }
-        y += dy;
     }
     updatePixels();
 }
@@ -134,9 +132,15 @@ function recenterOnClick(px, py) {
     yOffset = cy;
 }
 
-function requestRedraw() {
-    clearTimeout(redrawTimeout);
-    redrawTimeout = setTimeout(() => redraw(), 30);
+function buildColorLUT(maxIterations, startHue, endHue) {
+    colorLUT.length = maxIterations + 1;
+
+    for (let i = 0; i <= maxIterations; i++) {
+        let t = i / maxIterations;
+        let hue = lerp(startHue, endHue, sqrt(t));
+        let lightness = lerp(0, 100, sqrt(t));
+        colorLUT[i] = [hue, 255, lightness];
+    }
 }
 
 saveButton.addEventListener("click", () => save("mandelbrot.png"));
