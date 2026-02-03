@@ -107,41 +107,31 @@ function renderMandelbrot() {
     updatePixels();
 }
 
-function mousePressed() {
+function mouseClicked() {
+    // Only respond if click is inside the canvas
     if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) return;
 
-    cursor("grabbing");
-    isDragging = true;
-    lastMouseX = mouseX;
-    lastMouseY = mouseY;
+    recenterOnClick(mouseX, mouseY);
+    redraw();
 }
 
-function mouseReleased() {
-    cursor("default");
-    isDragging = false;
-}
-
-function mouseDragged() {
-    if (!isDragging) return;
-
+function recenterOnClick(px, py) {
     let zoom = parseFloat(document.getElementById("zoom").value);
 
-    // Complex-plane width at current zoom
+    // Current view window
     let w = 1 / pow(zoom, 2);
     let h = (w * height) / width;
 
-    // Convert pixel movement → complex movement
-    let dx = (mouseX - lastMouseX) * (w / width);
-    let dy = (mouseY - lastMouseY) * (h / height);
+    let xMin = -w / 2 + xOffset;
+    let yMin = -h / 2 + yOffset;
 
-    // Invert x for intuitive dragging
-    xOffset -= dx;
-    yOffset -= dy;
+    // Map pixel → complex
+    let cx = xMin + (px / width) * w;
+    let cy = yMin + (py / height) * h;
 
-    lastMouseX = mouseX;
-    lastMouseY = mouseY;
-
-    redraw();
+    // Recenter
+    xOffset = cx;
+    yOffset = cy;
 }
 
 function requestRedraw() {
