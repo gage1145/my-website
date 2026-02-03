@@ -1,6 +1,7 @@
-const button = document.getElementById("render");
 const zoomSlider = document.getElementById("zoom");
-const iterationsSlider = document.getElementById("iterations");
+const iterations = document.getElementById("iterations");
+const startColorSlider = document.getElementById("start-color");
+const endColorSlider = document.getElementById("end-color");
 const saveButton = document.getElementById("save");
 
 let xOffset = 0;
@@ -11,7 +12,7 @@ let isDragging = false;
 
 let redrawTimeout;
 
-[zoomSlider, iterationsSlider]
+[zoomSlider, iterations, startColorSlider, endColorSlider]
     .forEach(el => {
         el.addEventListener("input", () => redraw());
     });
@@ -40,6 +41,8 @@ function draw() {
 
 function renderMandelbrot() {
     let zoom = parseFloat(document.getElementById("zoom").value);
+    let startColor = parseFloat(document.getElementById("start-color").value);
+    let endColor = parseFloat(document.getElementById("end-color").value);
 
     background(0, 0, 6);
 
@@ -63,7 +66,6 @@ function renderMandelbrot() {
     for (let j = 0; j < height; j++) {
         let x = xMin;
         for (let i = 0; i < width; i++) {
-
             let a = x;
             let b = y;
             let iterations = 0;
@@ -87,8 +89,8 @@ function renderMandelbrot() {
             let pixelColor = color(0, 0, 6);
             if (iterations < maxIterations) {
                 pixelColor = lerpColor(
-                    color(135, 255, 79.2),
-                    color(255, 255, 79.2),
+                    color(startColor, 255, 0),
+                    color(endColor, 255, 79.2),
                     lerpAmount
                 );
             }
