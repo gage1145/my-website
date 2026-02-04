@@ -30,10 +30,16 @@
                 </select>
                 <label for="zoom">Zoom</label>
                 <input type="range" name="zoom" id="zoom" class="slider" min=0.5 max=1000 step=0.0001 value=0.5>
-                <label for="start-color">Start Color</label>
-                <input type="range" name="start-color" id="start-color" class="slider" min=0 max=255 step=0.1 value=0>
-                <label for="end-color">End Color</label>
-                <input type="range" name="end-color" id="end-color" class="slider" min=0 max=255 step=0.1 value=255>
+                <label for="hue">Hue</label>
+                <input type="range" name="hue" id="hue" class="slider" min=0 max=360 step=0.1 value=0>
+                <label for="saturation">Saturation</label>
+                <input type="range" name="saturation" id="saturation" class="slider" min=0 max=100 step=0.1 value=50>
+                <label for="lightness">Lightness</label>
+                <input type="range" name="lightness" id="lightness" class="slider" min=0 max=100 step=0.1 value=50>
+                <label for="palette-cycles">Palette Cycles</label>
+                <input type="range" name="palette-cycles" id="palette-cycles" class="slider" min=1 max=100 step=1 value=6>
+                <label for="color-scale">Color Scale</label>
+                <input type="range" name="color-scale" id="color-scale" class="slider" min=0 max=1 step=0.001 value=0.1>
                 <button id="save">Save Image</button>
             </div>
         </div>
