@@ -1,22 +1,23 @@
-const zoomSlider = document.getElementById("zoom");
-const maxIterationsInput = document.getElementById("iterations");
-const hueSlider = document.getElementById("hue");
-const saturationSlider = document.getElementById("saturation");
-const lightnessSlider = document.getElementById("lightness");
-const paletteSlider = document.getElementById("palette-cycles");
-const colorScaleSlider = document.getElementById("color-scale");
-const saveButton = document.getElementById("save");
+const maxIterationsInput =  document.getElementById("iterations");
+const paletteSlider =       document.getElementById("palette-cycles");
+const colorScaleSlider =    document.getElementById("color-scale");
+const colorModeInput =      document.getElementById("color-mode");
+const colorParamSlider1 =   document.getElementById("color1");
+const colorParamSlider2 =   document.getElementById("color2");
+const colorParamSlider3 =   document.getElementById("color3");
+const zoomSlider =          document.getElementById("zoom");
+const saveButton =          document.getElementById("save");
 
 let maxIterations = maxIterationsInput.value;
-let hue = hueSlider.value;
-let saturation = saturationSlider.value;
-let lightness = lightnessSlider.value;
+let colorParam1 =   colorParamSlider1.value;
+let colorParam2 =   colorParamSlider2.value;
+let colorParam3 =   colorParamSlider3.value;
 let paletteCycles = paletteSlider.value;
-let colorScale = colorScaleSlider.value;
+let colorScale =    colorScaleSlider.value;
+let color_mode =    colorModeInput.value;
 
 let xOffset = 0;
 let yOffset = 0;
-
 
 let colorLUT = [];
 
@@ -29,8 +30,8 @@ function setup() {
     canvas.parent("sketch");
 
     pixelDensity(1);
-    colorMode(HSL, 360, 100, 100, 255);  
 
+    updateColorLabels();
     buildColorLUT();
 
     renderMandelbrot();
@@ -126,25 +127,43 @@ function buildColorLUT() {
     colorScale = map(colorScale, 0, 1, 0.001, 0.1);
     N = paletteCycles;
 
-    for (let i = 0; i <= maxIterations; i++) {
-        v = pow(pow(i / maxIterations, colorScale) * N, 1.5) % N;
-        h = v * hue % 360;
-        s = saturation % 100;
-        l = v * lightness % 100;
-        c = color(h, s, l);
+    if (color_mode === "HSL") {
+        colorMode(HSL, 360, 100, 100, 255);
+        colorParam1 = map(colorParam1, 0, 100, 0, 360);
+        for (let i = 0; i <= maxIterations; i++) {
+            v = pow(pow(i / maxIterations, colorScale) * N, 1.5) % N;
+            h = v * colorParam1 % 360;
+            s = colorParam2;
+            l = (i / maxIterations) * colorParam3;
+            c = color(h, s, l);
 
-        colorLUT[i] = [red(c), green(c), blue(c)];
+            colorLUT[i] = [red(c), green(c), blue(c)];
+        }
+    } else if (color_mode === "RGB") {
+        colorMode(RGB);
+        colorParam1 = map(colorParam1, 0, 100, 0, 255);
+        colorParam2 = map(colorParam2, 0, 100, 0, 255);
+        colorParam3 = map(colorParam3, 0, 100, 0, 255);
+        for (let i = 0; i <= maxIterations; i++) {
+            v = pow(pow(i / maxIterations, colorScale) * N, 1.5) % N;
+            r = v * colorParam1 % 255;
+            g = v * colorParam2 % 255;
+            b = v * colorParam3 % 255;
+
+            colorLUT[i] = [r, g, b];
+        }
     }
 }
 
 zoomSlider.addEventListener("input", () => redraw());
 
-[maxIterationsInput, hueSlider, saturationSlider, lightnessSlider, paletteSlider, colorScaleSlider]
+[maxIterationsInput, colorModeInput, colorParamSlider1, colorParamSlider2, colorParamSlider3, paletteSlider, colorScaleSlider]
     .forEach(el => {
         el.addEventListener("input", () => {
-            hue = hueSlider.value;
-            saturation = saturationSlider.value;
-            lightness = lightnessSlider.value;    
+            color_mode = colorModeInput.value;
+            colorParam1 = colorParamSlider1.value;
+            colorParam2 = colorParamSlider2.value;
+            colorParam3 = colorParamSlider3.value;    
             maxIterations = maxIterationsInput.value;
             paletteCycles = paletteSlider.value;
             colorScale = colorScaleSlider.value;
@@ -152,6 +171,25 @@ zoomSlider.addEventListener("input", () => redraw());
             redraw();
         })
     })
+
+
+function updateColorLabels() {
+    color_mode = colorModeInput.value;
+    let colorLabel1 = document.getElementById("color1-label");
+    let colorLabel2 = document.getElementById("color2-label");
+    let colorLabel3 = document.getElementById("color3-label");
+    if (color_mode === "RGB") {
+        colorLabel1.innerHTML = "Red";
+        colorLabel2.innerHTML = "Green";
+        colorLabel3.innerHTML = "Blue";
+    } else if (color_mode === "HSL") {
+        colorLabel1.innerHTML = "Hue";
+        colorLabel2.innerHTML = "Saturation";
+        colorLabel3.innerHTML = "Lightness";
+    }
+}
+
+colorModeInput.addEventListener("input", () => updateColorLabels());
 
 saveButton.addEventListener("click", () => save("mandelbrot.png"));
 
