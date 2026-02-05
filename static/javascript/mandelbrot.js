@@ -46,7 +46,7 @@ function draw() {
 function renderMandelbrot() {
     let zoom = parseFloat(zoomSlider.value);
 
-    background(0, 0, 6);
+    background(0, 0, 0);
 
     let w = 1 / pow(zoom, 2);
     let h = (w * height) / width;
@@ -70,6 +70,9 @@ function renderMandelbrot() {
             let b = y;
             let iterations = 0;
 
+            let xold = 0;
+            let yold = 0;
+            let period = 0;
             while (iterations < maxIterations) {
                 let a2 = a * a;
                 let b2 = b * b;
@@ -79,6 +82,19 @@ function renderMandelbrot() {
                 b = twoAB + y;
 
                 if (a2 + b2 > 4) break;
+                if (a == xold & b == yold) {
+                    iterations = maxIterations;
+                    break;
+                }
+                
+                period++;
+                
+                if (period > 20) {
+                    period = 0;
+                    xold = a;
+                    yold = b;
+                }
+
                 iterations++;
             }
 
