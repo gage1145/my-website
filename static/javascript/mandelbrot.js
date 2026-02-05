@@ -25,15 +25,11 @@ function setup() {
     parentElement = document.getElementById("sketch");
     parentWidth = parentElement.clientWidth;
     height = floor(parentWidth * 0.75);
-
     canvas = createCanvas(parentWidth, height);
     canvas.parent("sketch");
-
     pixelDensity(1);
-
     updateColorLabels();
     buildColorLUT();
-
     renderMandelbrot();
 }
 
@@ -88,7 +84,7 @@ function renderMandelbrot() {
                 }
                 
                 period++;
-                
+
                 if (period > 20) {
                     period = 0;
                     xold = a;

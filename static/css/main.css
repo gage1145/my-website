@@ -54,12 +54,26 @@ select {
     -webkit-appearance: none;
     appearance: none;
     padding: 10px;
+    margin: 20px;
     border: var(--border);
     box-shadow: var(--box-shadow);
     background-color: var(--background-color);
     color: var(--green);
     text-shadow: var(--green-text-shadow);
     font-family: 'Courier New', Courier, monospace;
+    font-size: var(--medium-text);
+}
+
+label {
+    font-size: var(--medium-text);
+}
+
+button {
+    font-size: var(--medium-text);
+
+    &:active {
+        scale: 0.95;
+    }
 }
 
 input[type=radio] {
@@ -695,7 +709,7 @@ nav {
         border: var(--border);
         box-shadow: var(--box-shadow);
         cursor: pointer;
-        font-size: inherit;
+        /* font-size: inherit; */
         font-family: inherit;
 
         &:hover {
@@ -716,7 +730,7 @@ nav {
     justify-content: center;
     border: var(--border);
     box-shadow: var(--box-shadow);
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .utilities-sidebar {
@@ -757,6 +771,7 @@ nav {
 
 .file-label {
     padding: 10px;
+    margin: 10px;
     cursor: pointer;
     background-color: transparent;
     font-size: inherit;
@@ -804,4 +819,12 @@ nav {
 #sketch {
     border: var(--border);
     box-shadow: var(--box-shadow);
+}
+
+#mandelbrot-param {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center; 
+    text-align: right;
+    gap: 20px;
 }
