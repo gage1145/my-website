@@ -722,7 +722,7 @@ nav {
 .utilities-layout {
     position: relative;
     box-sizing: border-box;
-    width: clamp(250px, 90%, 1500px);
+    width: clamp(250px, 90%, 1800px);
     padding: 20px;
     display: grid;
     gap: 20px;
@@ -752,7 +752,8 @@ nav {
     }
 
     li {
-        border: 1px solid var(--green);
+        padding: 10px;
+        border: var(--border);
         box-shadow: var(--box-shadow);
 
         &:hover {
@@ -808,8 +809,6 @@ nav {
 }
 
 #tool-container {
-    /* display: flex;
-    flex-direction: column; */
     /* overflow: hidden; */
     position: relative;
     width: 100%;
