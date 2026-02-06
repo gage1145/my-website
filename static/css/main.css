@@ -816,6 +816,7 @@ nav {
 }
 
 #sketch {
+    max-width: 900px;
     border: var(--border);
     box-shadow: var(--box-shadow);
 }

@@ -20,28 +20,60 @@ const d2Slider = document.getElementById("d2-slider");
 const d3Slider = document.getElementById("d3-slider");
 const d4Slider = document.getElementById("d4-slider");
 
-var f1
-var f2
-var f3
-var f4
-var a1
-var a2
-var a3
-var a4
-var p1
-var p2
-var p3
-var p4
-var d1
-var d2
-var d3
-var d4
+const weightSlider = document.getElementById("line-weight");
+const glowSlider = document.getElementById("glow");
 
-let iterations = 100000;
+const saveButton = document.getElementById("save");
 
-let dt = 0.001;
+var f1;
+var f2;
+var f3;
+var f4;
+
+var a1;
+var a2;
+var a3;
+var a4;
+
+var p1;
+var p2;
+var p3;
+var p4;
+
+var d1;
+var d2;
+var d3;
+var d4;
+
+var dt;
+var iterations;
+var weight;
+var glow;
+
 
 function setup() {
+    f1 = parseFloat(f1Slider.value);
+    f2 = parseFloat(f2Slider.value);
+    f3 = parseFloat(f3Slider.value);
+    f4 = parseFloat(f4Slider.value);
+    a1 = parseFloat(a1Slider.value);
+    a2 = parseFloat(a2Slider.value);
+    a3 = parseFloat(a3Slider.value);
+    a4 = parseFloat(a4Slider.value);
+    p1 = map(parseFloat(p1Slider.value), 0, 1, 0, TWO_PI);
+    p2 = map(parseFloat(p2Slider.value), 0, 1, 0, TWO_PI);
+    p3 = map(parseFloat(p3Slider.value), 0, 1, 0, TWO_PI);
+    p4 = map(parseFloat(p4Slider.value), 0, 1, 0, TWO_PI);
+    d1 = parseFloat(d1Slider.value);
+    d2 = parseFloat(d2Slider.value);
+    d3 = parseFloat(d3Slider.value);
+    d4 = parseFloat(d4Slider.value);
+    dt = 0.001;
+    
+    iterations = 100000;
+    weight = parseFloat(weightSlider.value);
+    glow = parseFloat(glowSlider.value);
+
     parentElement = document.getElementById("sketch");
     width = parentElement.clientWidth;
     height = width * 0.75;
@@ -59,28 +91,12 @@ function draw() {
 }
 
 function renderHarmonograph () {
-    f1 = random(0,parseFloat(f1Slider.value));
-    f2 = random(0,parseFloat(f2Slider.value));
-    f3 = random(0,parseFloat(f3Slider.value));
-    f4 = random(0,parseFloat(f4Slider.value));
-    a1 = random(0,parseFloat(a1Slider.value));
-    a2 = random(0,parseFloat(a2Slider.value));
-    a3 = random(0,parseFloat(a3Slider.value));
-    a4 = random(0,parseFloat(a4Slider.value));
-    p1 = random(0,parseFloat(p1Slider.value));
-    p2 = random(0,parseFloat(p2Slider.value));
-    p3 = random(0,parseFloat(p3Slider.value));
-    p4 = random(0,parseFloat(p4Slider.value));
-    d1 = random(0,parseFloat(d1Slider.value));
-    d2 = random(0,parseFloat(d2Slider.value));
-    d3 = random(0,parseFloat(d3Slider.value));
-    d4 = random(0,parseFloat(d4Slider.value));
     let t = 0;
     noFill();
     stroke(149, 255, 175);
-    drawingContext.shadowBlur = 10;
+    strokeWeight(weight);
+    drawingContext.shadowBlur = glow;
     drawingContext.shadowColor = color(149, 255, 175);
-    strokeWeight(3);
     beginShape();
     for (let i = 0; i < iterations; i++) {
         x = a1 * sin(t * f1 + p1) * exp(-d1 * t) + a2 * sin(t * f2 + p2) * exp(-d2 * t);
@@ -96,6 +112,7 @@ function renderHarmonograph () {
     a1Slider, a2Slider, a3Slider, a4Slider,
     p1Slider, p2Slider, p3Slider, p4Slider,
     d1Slider, d2Slider, d3Slider, d4Slider,
+    weightSlider, glowSlider,
 ].forEach(el => {
     el.addEventListener("input", () => {
         f1 = parseFloat(f1Slider.value);
@@ -114,10 +131,11 @@ function renderHarmonograph () {
         d2 = parseFloat(d2Slider.value);
         d3 = parseFloat(d3Slider.value);
         d4 = parseFloat(d4Slider.value);
+        weight = parseFloat(weightSlider.value);
+        glow = parseFloat(glowSlider.value);
         redraw();
     })
 
 })
 
-// saveButton.addEventListener("click", () => save("harmonograph.png"));
-
+saveButton.addEventListener("click", () => save("harmonograph.png"));
