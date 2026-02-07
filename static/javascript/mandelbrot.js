@@ -24,8 +24,8 @@ let colorLUT = [];
 function setup() {
     parentElement = document.getElementById("sketch");
     parentWidth = parentElement.clientWidth;
-    height = floor(parentWidth * 0.75);
-    canvas = createCanvas(parentWidth, height);
+    parentHeight = parentElement.clientHeight;
+    canvas = createCanvas(parentWidth, parentHeight);
     canvas.parent("sketch");
     pixelDensity(1);
     updateColorLabels();
