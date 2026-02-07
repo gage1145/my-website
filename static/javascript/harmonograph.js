@@ -75,9 +75,9 @@ function setup() {
     glow = parseFloat(glowSlider.value);
 
     parentElement = document.getElementById("sketch");
-    width = parentElement.clientWidth;
-    height = width * 0.75;
-    canvas = createCanvas(width, height);
+    parentWidth = parentElement.clientWidth;
+    parentHeight = parentElement.clientHeight;
+    canvas = createCanvas(parentWidth, parentHeight);
     canvas.parent("sketch");
     pixelDensity(1);
     background(0);

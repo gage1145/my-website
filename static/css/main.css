@@ -174,6 +174,50 @@ nav {
     }
 }
 
+sidenav {
+    position: absolute;
+    display: none;
+    right: 0px;
+    top: 0px;
+    width: 50vw;
+    background-color: var(--background-color);
+    z-index: 998;
+    font-size: var(--medium-text);
+    justify-content: center;
+    text-align: center;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+
+    li {
+        margin: 50px 0px;
+    }
+}
+
+#hamburger {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: var(--huge-text);
+    text-shadow: var(--green-text-shadow);
+    color: var(--green);
+    z-index: 999;
+
+    &:hover {
+        cursor: pointer;
+        scale: 1.1;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    nav, .header {
+        display: none;
+    }
+    #hamburger {
+        display: flex;
+    }
+}
+
 /* Overlay Effect */
 .overlay {
   position:fixed;
@@ -730,7 +774,14 @@ nav {
     justify-content: center;
     border: var(--border);
     box-shadow: var(--box-shadow);
-    overflow: scroll;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1000px){
+    .utilities-layout {
+        display: flex;
+        flex-direction: column-reverse;
+    }
 }
 
 .utilities-sidebar {
@@ -810,13 +861,26 @@ nav {
 
 #tool-container {
     /* overflow: hidden; */
+    justify-content: center;
+    align-items: center;
     position: relative;
     width: 100%;
     height: 100%;
 }
 
+@media screen and (min-width: 1200px) {
+    #tool-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 20px;
+    }
+}
+
 #sketch {
-    max-width: 900px;
+    overflow: hidden;
+    width: clamp(600px, 95%, 1000px);
+    aspect-ratio: 1;
     border: var(--border);
     box-shadow: var(--box-shadow);
 }
