@@ -201,6 +201,10 @@ function updateColorLabels() {
     }
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 colorModeInput.addEventListener("input", () => updateColorLabels());
 
 saveButton.addEventListener("click", () => save("mandelbrot.png"));

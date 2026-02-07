@@ -138,4 +138,10 @@ function renderHarmonograph () {
 
 })
 
+function windowResized() {
+    parentWidth = parentElement.clientWidth;
+    parentHeight = parentElement.clientHeight;
+  resizeCanvas(parentWidth, parentHeight);
+}
+
 saveButton.addEventListener("click", () => save("harmonograph.png"));

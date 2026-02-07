@@ -175,10 +175,10 @@ nav {
 }
 
 sidenav {
-    position: absolute;
+    position: fixed;
     display: none;
-    right: 0px;
-    top: 0px;
+    right: 5vw;
+    top: 0vh;
     width: 50vw;
     background-color: var(--background-color);
     z-index: 998;
@@ -194,10 +194,14 @@ sidenav {
 }
 
 #hamburger {
+    position: fixed;
     display: none;
-    position: absolute;
-    top: 20px;
-    right: 30px;
+    background-color: var(--background-color);
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 10px;
+    top: 0vh;
+    right: 5vw;
     font-size: var(--huge-text);
     text-shadow: var(--green-text-shadow);
     color: var(--green);
@@ -205,7 +209,7 @@ sidenav {
 
     &:hover {
         cursor: pointer;
-        scale: 1.1;
+        box-shadow: var(--hover-box-shadow);
     }
 }
 
@@ -884,8 +888,9 @@ sidenav {
 
 #sketch {
     overflow: hidden;
-    width: clamp(600px, 95%, 1000px);
+    width: clamp(400px, 100%, 1000px);
     aspect-ratio: 1;
+    max-height: 550px;
     border: var(--border);
     box-shadow: var(--box-shadow);
 }
