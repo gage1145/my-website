@@ -4,12 +4,17 @@
         <meta charset = "UTF-8">
         <title>Gage Rowden</title>
         <link href="static/css/main.css" rel="stylesheet" type="text/css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
         <link href="static/images/favicon.ico" rel="icon" type="image/x-icon" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" >
         <script type="module" src="main.js" defer></script>
     </head>
     <body>
         <div w3-include-html="/templates/ganymede.html"></div>
+        <a id="hamburger" onclick="toggleSidenav()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <div w3-include-html="/templates/sidenav.html"></div>
         <div class="music-container">
             <div class="audio-player"></div>
             <div id="visualizer">

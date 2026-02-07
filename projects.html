@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <title>Gage Rowden</title>
     <link href="static/css/main.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
     <link href="static/images/favicon.ico" rel="icon">
     <script type="module" src="main.js" defer></script>
 </head>
 
 <body>
     <div w3-include-html="/templates/header.html"></div>
+    <a id="hamburger" onclick="toggleSidenav()">
+        <i class="fa fa-bars"></i>
+    </a>
+    <div w3-include-html="/templates/sidenav.html"></div>
     <div id="projects"></div>
 </body>
 </html>

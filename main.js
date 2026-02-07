@@ -4,6 +4,7 @@ import { includeHTML } from "./static/javascript/includeHTML.js";
 import { loadProjects } from "./static/javascript/projects.js";
 import { loadResume } from "./static/javascript/resume.js";
 import { loadPublications } from "./static/javascript/publications.js";
+import { toggleSidenav } from "./static/javascript/toggle_sidenav.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     includeHTML();
@@ -51,4 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (publicationContainer) {
         loadPublications();
     }
+
+    const hamburgerMenu = document.getElementById("hamburger");
+    hamburgerMenu.addEventListener("click", () => {
+        toggleSidenav();
+    })
 });
