@@ -813,6 +813,11 @@ sidenav {
     }
 }
 
+#sidebar-link {
+    display: inline-block;
+    width: 100%;
+}
+
 #file-input {
     opacity: 0;
     width: 0.1px;

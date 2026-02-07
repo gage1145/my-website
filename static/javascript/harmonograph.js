@@ -52,10 +52,10 @@ var glow;
 
 
 function setup() {
-    f1 = parseFloat(f1Slider.value);
-    f2 = parseFloat(f2Slider.value);
-    f3 = parseFloat(f3Slider.value);
-    f4 = parseFloat(f4Slider.value);
+    f1 = pow(10, parseFloat(f1Slider.value));
+    f2 = pow(10, parseFloat(f2Slider.value));
+    f3 = pow(10, parseFloat(f3Slider.value));
+    f4 = pow(10, parseFloat(f4Slider.value));
     a1 = parseFloat(a1Slider.value);
     a2 = parseFloat(a2Slider.value);
     a3 = parseFloat(a3Slider.value);
@@ -115,10 +115,10 @@ function renderHarmonograph () {
     weightSlider, glowSlider,
 ].forEach(el => {
     el.addEventListener("input", () => {
-        f1 = parseFloat(f1Slider.value);
-        f2 = parseFloat(f2Slider.value);
-        f3 = parseFloat(f3Slider.value);
-        f4 = parseFloat(f4Slider.value);
+        f1 = pow(10, parseFloat(f1Slider.value));
+        f2 = pow(10, parseFloat(f2Slider.value));
+        f3 = pow(10, parseFloat(f3Slider.value));
+        f4 = pow(10, parseFloat(f4Slider.value));
         a1 = parseFloat(a1Slider.value);
         a2 = parseFloat(a2Slider.value);
         a3 = parseFloat(a3Slider.value);
