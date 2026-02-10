@@ -178,7 +178,7 @@ sidenav {
     position: fixed;
     display: none;
     right: 5vw;
-    top: 0vh;
+    top: 20px;
     width: 50vw;
     background-color: var(--background-color);
     z-index: 998;
@@ -593,8 +593,16 @@ sidenav {
 
 .music {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items:center;
+}
+
+#embed {
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    width: 90%;
+    height: 120px;
 }
 
 .music-container {
