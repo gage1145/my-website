@@ -14,6 +14,7 @@
                         0 0 6px rgb(149, 255, 175);
     --link-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 103, 103);
     --green-text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+    --dark-text-shadow: 0 0 1px black, 0 0 4px #0f0f0f;
     --huge-text: 4rem;
     --large-text: 3rem;
     --medium-text: 2rem;
@@ -141,13 +142,13 @@ nav {
     display: flex;
     justify-content: center;
     font-size: 18pt;
-    width: 100vw;
+    width: 100%;
     font-size: var(--large-text);
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 
     div {
         display: inherit;
-        width: 90%;
+        margin: 0 5%;
         border: var(--border);
         box-shadow: var(--box-shadow);
         padding: 20px 10px;
@@ -158,7 +159,6 @@ nav {
         list-style: none;
         display: inherit;
         justify-content: center;
-        /* align-items: center; */
         flex-wrap: wrap;
         margin: 0;
     }
@@ -200,7 +200,7 @@ sidenav {
     border: var(--border);
     box-shadow: var(--box-shadow);
     padding: 10px;
-    top: 0vh;
+    top: 20px;
     right: 5vw;
     font-size: var(--huge-text);
     text-shadow: var(--green-text-shadow);
@@ -224,28 +224,28 @@ sidenav {
 
 /* Overlay Effect */
 .overlay {
-  position:fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    linear-gradient(
-        rgba(18, 16, 16, 0) 50%, 
-        rgba(10, 50, 50, 0.25) 50%
-    ),
-    linear-gradient(
-        95deg,
-        rgba(255, 0, 0, 0.06),
-        rgba(0, 255, 0, 0.02),
-        rgba(0, 0, 255, 0.06)
-    );
-  background-size: 100% 4px, 30px 100%;
-  background-attachment: fixed;
-  z-index: 1;
-  animation: flicker 100ms infinite;
-  pointer-events: none;
-  opacity: 75%;
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(
+            rgba(18, 16, 16, 0) 50%, 
+            rgba(10, 50, 50, 0.25) 50%
+        ),
+        linear-gradient(
+            95deg,
+            rgba(255, 0, 0, 0.06),
+            rgba(0, 255, 0, 0.02),
+            rgba(0, 0, 255, 0.06)
+        );
+    background-size: 100% 4px, 30px 100%;
+    background-attachment: fixed;
+    z-index: 1;
+    animation: flicker 100ms infinite;
+    pointer-events: none;
+    opacity: 75%;
   
     &:after{
         content: "";
@@ -293,6 +293,7 @@ sidenav {
     flex-direction: column;
     gap: 20px;
     width: 90%;
+    margin-top: 20px;
     margin-bottom: 100px;
     padding: 20px;
     height: auto;
@@ -362,6 +363,11 @@ sidenav {
     border: var(--border);
     box-shadow: var(--box-shadow);
     font-size: var(--large-text);
+
+    a:hover {
+        text-shadow: 0 0 4px rgba(255, 255, 255, 0.5), 0 0 8px rgb(255, 103, 103);
+
+    }
 }
 
 .homepage-right {
@@ -492,20 +498,18 @@ sidenav {
 }
 
 /* Resume Styling */
-.resume {
-    position: relative;
+#resume {
     display: flex;
-    flex-direction: column;
+    margin: 20px 0px 100px 0px;
     width: 100vw;
     justify-content: center;
-    align-items: center;
+    align-items: top;
     font-size: var(--normal-text);
 }
 
 .resume-container {
     box-sizing: border-box;
-    width: clamp(250px, 90%, 900px);
-    margin: auto;
+    width: clamp(250px, 90%, 1200px);
     border: var(--border);
     box-shadow: var(--box-shadow);
     background-color: rgba(0, 0, 0, 0);
@@ -546,18 +550,17 @@ sidenav {
     }
 }
 
-/* Publication Styling */
+/* Publication Styling -------------------------------- */
+
 #publications {
     display: grid;
-    gap: 30px;
-    position: relative;
-    width: 100vw;
-    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    gap: 20px;
+    padding: 0 5vw;
 }
 
 .publication {
-    box-sizing: border-box;
-    width: clamp(250px, 90%, 1000px);
     padding: 10px 30px;
     border: var(--border);
     box-shadow: var(--box-shadow);
@@ -588,28 +591,48 @@ sidenav {
     }
 }
 
-.music-container {
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
+.music {
     display: flex;
     justify-content: center;
-    margin: 30px 10px;
+    align-items: start;
+}
+
+.music-container {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 20px 0;
+    gap: 20px;
 }
 
 .playlist {
-    padding: 0;
-    margin: 0;
+    display: grid;
+    gap: 10px;
     list-style-type: none;
+    padding: 0 10px;
+    margin: 10px 0;
 
     li {
-        padding: 5px;
+        border: var(--border);
+        box-shadow: var(--box-shadow);
+
         &:hover {
             background-color: rgb(149, 255, 175);
-            color: #0f0f0f;
+            box-shadow: var(--box-shadow);
+            color: var(--background-color);
+            text-shadow: var(--dark-text-shadow);
         }
-        font-size: 3ch;
-        padding-bottom: 10px;
+        font-size: clamp(0.5ch, 2.5vw, 3ch);
+
+        a {
+            display: grid;
+            grid-template-columns: auto auto;
+            align-items: center;
+            justify-content: start;
+            gap: 5px;
+            height: 100%;
+            margin: 0 5px;
+        }
     }
 
     a {
@@ -619,10 +642,9 @@ sidenav {
 }
 
 #visualizer {
-    width: clamp(300px, 75%, 800px);
     position: relative;
     justify-content: center;
-    margin: 0px 10px;
+    aspect-ratio: 1;
 
     li {
         display: flex;
@@ -638,14 +660,10 @@ sidenav {
 }
 
 .audio-player {
-    display: flex;
-    overflow: hidden;
+    display: grid;
     flex-direction: column;
-    width: 25%;
-    background-color: transparent;
     border: var(--border);
     box-shadow: var(--box-shadow);
-    margin: 0px 0px 15px 0px;
 }
 
 #visual-toggles {
@@ -721,7 +739,7 @@ sidenav {
     };
 
     &:active {
-        scale: 0.95;
+        scale: 0.99;
         font-weight: normal;
     };
 }
@@ -747,6 +765,7 @@ sidenav {
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin-top: 20px;
 
     button {
         background: none;
@@ -757,7 +776,6 @@ sidenav {
         border: var(--border);
         box-shadow: var(--box-shadow);
         cursor: pointer;
-        /* font-size: inherit; */
         font-family: inherit;
 
         &:hover {
@@ -869,7 +887,6 @@ sidenav {
 }
 
 #tool-container {
-    /* overflow: hidden; */
     justify-content: center;
     align-items: center;
     position: relative;
