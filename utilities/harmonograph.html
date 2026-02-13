@@ -22,46 +22,46 @@
             <div class="utilities-sidebar" w3-include-html="/templates/utilities_sidebar.html"></div>
             <div id="tool-container">
                 <div id="sketch"></div>
-                <div>
-                <h2 style="margin-bottom: 0;">Frequency</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <input type="range" name="f1" id="f1-slider" class="slider" min=0 max=3 step=0.0001 value=1>
-                    <input type="range" name="f2" id="f2-slider" class="slider" min=0 max=3 step=0.0001 value=0.3>
-                    <input type="range" name="f3" id="f3-slider" class="slider" min=0 max=3 step=0.0001 value=0.5>
-                    <input type="range" name="f4" id="f4-slider" class="slider" min=0 max=3 step=0.0001 value=0.25>
-                </div>
-                <h2 style="margin-bottom: 0;">Amplitude</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <input type="range" name="a1" id="a1-slider" class="slider" min=0 max=500 step=0.0001 value=50>
-                    <input type="range" name="a2" id="a2-slider" class="slider" min=0.5 max=500 step=0.0001 value=35>
-                    <input type="range" name="a3" id="a3-slider" class="slider" min=0.5 max=500 step=0.0001 value=429>
-                    <input type="range" name="a4" id="a4-slider" class="slider" min=0.5 max=500 step=0.0001 value=100>
-                </div>
-                <h2 style="margin-bottom: 0;">Phase</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <input type="range" name="p1" id="p1-slider" class="slider" min=0 max=1 step=0.0001 value=0.5>
-                    <input type="range" name="p2" id="p2-slider" class="slider" min=0 max=1 step=0.0001 value=1>
-                    <input type="range" name="p3" id="p3-slider" class="slider" min=0 max=1 step=0.0001 value=0.69>
-                    <input type="range" name="p4" id="p4-slider" class="slider" min=0 max=1 step=0.0001 value=0.2>
-                </div>
-                <h2 style="margin-bottom: 0;">Damping</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <input type="range" name="d1" id="d1-slider" class="slider" min=0 max=1 step=0.0001 value=0.001>
-                    <input type="range" name="d2" id="d2-slider" class="slider" min=0 max=1 step=0.0001 value=0.01>
-                    <input type="range" name="d3" id="d3-slider" class="slider" min=0 max=1 step=0.0001 value=0.2>
-                    <input type="range" name="d4" id="d4-slider" class="slider" min=0 max=1 step=0.0001 value=0.3>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;">
-                    <div>
-                        <h2 style="margin-bottom:0">Weight</h2>
-                        <input type="range" id="line-weight" class="slider" min=0 max=4 step =0.001 value="1.2">
+                <div id="harmonograph-parameters">
+                    <h2 style="margin-bottom: 0;">Frequency</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <input type="range" name="f1" id="f1-slider" class="slider" min=0 max=3 step=0.0001 value=1>
+                        <input type="range" name="f2" id="f2-slider" class="slider" min=0 max=3 step=0.0001 value=0.3>
+                        <input type="range" name="f3" id="f3-slider" class="slider" min=0 max=3 step=0.0001 value=0.5>
+                        <input type="range" name="f4" id="f4-slider" class="slider" min=0 max=3 step=0.0001 value=0.25>
                     </div>
-                    <div>
-                        <h2 style="margin-bottom:0">Glow</h2>
-                        <input type="range" id="glow" class="slider" min=0 max=20 step =0.001 value="10">
+                    <h2 style="margin-bottom: 0;">Amplitude</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <input type="range" name="a1" id="a1-slider" class="slider" min=0 max=500 step=0.0001 value=50>
+                        <input type="range" name="a2" id="a2-slider" class="slider" min=0.5 max=500 step=0.0001 value=35>
+                        <input type="range" name="a3" id="a3-slider" class="slider" min=0.5 max=500 step=0.0001 value=429>
+                        <input type="range" name="a4" id="a4-slider" class="slider" min=0.5 max=500 step=0.0001 value=100>
                     </div>
-                </div>
-                <button id="save">Save Image</button>
+                    <h2 style="margin-bottom: 0;">Phase</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <input type="range" name="p1" id="p1-slider" class="slider" min=0 max=1 step=0.0001 value=0.5>
+                        <input type="range" name="p2" id="p2-slider" class="slider" min=0 max=1 step=0.0001 value=1>
+                        <input type="range" name="p3" id="p3-slider" class="slider" min=0 max=1 step=0.0001 value=0.69>
+                        <input type="range" name="p4" id="p4-slider" class="slider" min=0 max=1 step=0.0001 value=0.2>
+                    </div>
+                    <h2 style="margin-bottom: 0;">Damping</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <input type="range" name="d1" id="d1-slider" class="slider" min=0 max=1 step=0.0001 value=0.001>
+                        <input type="range" name="d2" id="d2-slider" class="slider" min=0 max=1 step=0.0001 value=0.01>
+                        <input type="range" name="d3" id="d3-slider" class="slider" min=0 max=1 step=0.0001 value=0.2>
+                        <input type="range" name="d4" id="d4-slider" class="slider" min=0 max=1 step=0.0001 value=0.3>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;">
+                        <div>
+                            <h2 style="margin-bottom:0">Weight</h2>
+                            <input type="range" id="line-weight" class="slider" min=0 max=4 step =0.001 value="1.2">
+                        </div>
+                        <div>
+                            <h2 style="margin-bottom:0">Glow</h2>
+                            <input type="range" id="glow" class="slider" min=0 max=20 step =0.001 value="10">
+                        </div>
+                    </div>
+                    <button id="save">Save Image</button>
                 </div>
             </div>
         </div>
