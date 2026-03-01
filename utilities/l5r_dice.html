@@ -25,14 +25,18 @@
             <div class="tool">
                 <h2 style="margin:0">L5R Dice Roller</h2>
                 <span id="pyscript-loading">Loading...</span>
-                <span id="first-roll"></span>
-                <span id="first-keep"></span>
-                <span id="bonuses"></span>
-                <span id="total"></span>
-                <div id="fig"></div>
                 <div style="display:flex; gap: 30px; justify-content: space-around; text-align: center;">
                     <span id="empirical"></span>
                     <span id="calculated"></span>
+                </div>
+                <div id="fig"></div>
+                <div style="display:grid; gap: 30px; grid-template-columns: 1fr 1fr; text-align: left;">
+                    <span id="first-roll"></span>
+                    <span id="first-keep"></span>
+                <!-- </div>
+                <div style="display:grid; gap: 30px; grid-template-columns: 1fr 1fr; text-align: center;"> -->
+                    <span id="bonuses"></span>
+                    <span id="total" class="blinker" style="color:rgb(255, 103, 103)"></span>
                 </div>
                 <div id="roll-container" style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
                     <div style="display:flex; flex-direction: column; align-items: center;">
