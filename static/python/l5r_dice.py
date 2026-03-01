@@ -50,7 +50,7 @@ async def simulate_rolls():
         for k in range(1, r + 1):
             rolls = [roll_total(r, k) for _ in range(iterations)]
             df.update({f"R{r}K{k}": rolls, "roll_index": range(iterations)})
-            document.getElementById("pyscript-loading").textContent = f"Simulating R{r}K{k}..."
+            document.getElementById("pyscript-loading").textContent = f"Simulating R{r}K{k}"
             await asyncio.sleep(0)
     print(df)
     df = pd.DataFrame(df)
@@ -68,19 +68,24 @@ async def make_graph(event=None):
     keep = int(document.getElementById("dice-keep").value)
     target = int(document.getElementById("target").value)
     data = df.loc[(df.r.astype(int) == roll) & (df.k.astype(int) == keep), "value"]
-    fig, ax = plt.subplots(figsize=(16, 5))
+    fig, ax = plt.subplots(figsize=(8, 2))
     plt.rcParams['font.family'] = 'monospace'
     plt.tick_params(colors='#95ffaf')
-    ax.hist(data, bins=50, density=True, color='#95ffaf')
-    sns.kdeplot(data, fill=False, color='red')
+    plt.tight_layout()
+    ax.hist(data, bins=50, density=True, color='#95ffaf', histtype='step')
+    sns.kdeplot(data, fill=False, color='#ff6767')
     ax.patch.set_facecolor('none')
     fig.patch.set_facecolor('none')
+    ax.set_frame_on(False)
+    ax.set_ylabel("")
+    ax.set_xlabel("")
+    ax.set_yticks([])
 
     kde = ax.lines[0]
     xs, ys = kde.get_xdata(), kde.get_ydata()
 
     mask = xs >= target
-    ax.fill_between(xs[mask], ys[mask], alpha=0.5, color='red')
+    ax.fill_between(xs[mask], ys[mask], alpha=0.4, color='red')
 
     display(fig, target="fig")
 
@@ -99,6 +104,11 @@ await run_estimate()
 
 async def roller(event=None):
     document.getElementById("pyscript-loading").textContent = None
+
+    document.getElementById("first-roll").textContent = "Dice: "
+    document.getElementById("first-keep").textContent= "Keep: "
+    document.getElementById("bonuses").textContent = "Bonus: "
+    document.getElementById("total").textContent = None
 
     roll = int(document.getElementById("dice-roll").value)
     keep = int(document.getElementById("dice-keep").value)
