@@ -66,6 +66,25 @@ select {
     font-size: var(--medium-text);
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th, td {
+        text-align: center;
+        border: var(--border);
+        box-shadow: var(--box-shadow);
+        padding: 10px;
+        font-size: var(--large-text)
+    }
+
+    th {
+        background-color: rgb(149, 255, 175);
+        color: var(--background-color);
+        text-shadow: var(--dark-text-shadow);
+    }
+}
+
 label {
     font-size: var(--medium-text);
 }
