@@ -44,7 +44,7 @@ def estimate_probabilities(df, roll, keep, target):
 
 df = {}
 async def simulate_rolls():
-    iterations = 1000
+    iterations = 10000
     global df
     for r in range(1, 11):
         for k in range(1, r + 1):
