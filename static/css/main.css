@@ -85,8 +85,15 @@ input[type=radio] {
     cursor: pointer
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 input[type=number] {
-    transform: scale(2);
+    padding:5px;
+    margin: 20px;
     accent-color: #95ffaf;
     color: #95ffaf;
     background-color: transparent;
@@ -95,6 +102,9 @@ input[type=number] {
     border: var(--border);
     box-shadow: var(--box-shadow);
     font-size: var(--normal-text);
+    font-family: "Courier New", Courier, monospace!important;
+    text-shadow: var(--green-text-shadow);
+    -moz-appearance: textfield;
 }
 
 input[type=text] {
@@ -951,4 +961,14 @@ sidenav {
 
 #harmonograph-parameters {
     width: 100%;
+}
+
+#fig {
+    object-fit: contain;
+    width: 90%;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
 }

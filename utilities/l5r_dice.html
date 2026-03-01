@@ -9,7 +9,8 @@
     <script type="module" src="main.js" defer></script>
     <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
     <script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script>
-    <py-config>packages = ['pandas', 'numpy', 'scipy']</py-config>
+    <py-script src="static/python/l5r_dice.py"></py-script>
+    <py-config>packages = ['pandas', 'numpy', 'scipy', 'seaborn', 'matplotlib']</py-config>
 </head>
 
 <body>
@@ -22,22 +23,26 @@
         <div class="utilities-layout">
             <div class="utilities-sidebar" w3-include-html="/templates/utilities_sidebar.html"></div>
             <div class="tool">
-                <h2>L5R Dice Roller</h2>
+                <h2 style="margin:0">L5R Dice Roller</h2>
                 <span id="pyscript-loading">Loading...</span>
                 <span id="first-roll"></span>
                 <span id="first-keep"></span>
                 <span id="bonuses"></span>
-                <span id="all-dice"></span>
                 <span id="total"></span>
-                <div id="roll-container" style="display:grid; grid-template-columns: 1fr 1fr;">
+                <div id="fig"></div>
+                <div style="display:flex; gap: 30px; justify-content: space-around; text-align: center;">
+                    <span id="empirical"></span>
+                    <span id="calculated"></span>
+                </div>
+                <div id="roll-container" style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
                     <div style="display:flex; flex-direction: column; align-items: center;">
                         <label for="dice-roll">Roll</label>
-                        <select name="dice-roll" id="dice-roll">
+                        <select name="dice-roll" id="dice-roll" style="font-size:3ch">
                             <option value=1>R1</option>
                             <option value=2>R2</option>
                             <option value=3>R3</option>
                             <option value=4>R4</option>
-                            <option value=5>R5</option>
+                            <option value=5 selected>R5</option>
                             <option value=6>R6</option>
                             <option value=7>R7</option>
                             <option value=8>R8</option>
@@ -47,62 +52,26 @@
                     </div>
                     <div style="display:flex; flex-direction: column; align-items: center;">
                         <label for="dice-keep">Keep</label>
-                        <select name="dice-keep" id="dice-keep">
+                        <select name="dice-keep" id="dice-keep" style="font-size:3ch">
                             <option value=1>K1</option>
                             <option value=2>K2</option>
                             <option value=3>K3</option>
                             <option value=4>K4</option>
-                            <option value=5>K5</option>
+                            <option value=5 selected>K5</option>
                             <option value=6>K6</option>
                             <option value=7>K7</option>
                             <option value=8>K8</option>
                             <option value=9>K9</option>
                             <option value=10>K10</option>
                         </select>
+                    </div>
+                    <div style="display:flex; flex-direction: column; align-items: center;">
+                        <label for="target">Target</label>
+                        <input type="number" id="target" value=40 style="font-size: 3ch; width: 100px; height: 75px">
                     </div>
                 </div>
                 <button py-click="roller">Roll!</button>
-                <h2>Probability Estimator</h2>
-                <span id="empirical"></span>
-                <span id="calculated"></span>
-                <div id="roll-container" style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
-                    <div style="display:flex; flex-direction: column; align-items: center;">
-                        <label for="rolls">Roll</label>
-                        <select name="rolls" id="rolls">
-                            <option value=1>R1</option>
-                            <option value=2>R2</option>
-                            <option value=3>R3</option>
-                            <option value=4>R4</option>
-                            <option value=5>R5</option>
-                            <option value=6>R6</option>
-                            <option value=7>R7</option>
-                            <option value=8>R8</option>
-                            <option value=9>R9</option>
-                            <option value=10>R10</option>
-                        </select>
-                    </div>
-                    <div style="display:flex; flex-direction: column; align-items: center;">
-                        <label for="keeps">Keep</label>
-                        <select name="keeps" id="keeps">
-                            <option value=1>K1</option>
-                            <option value=2>K2</option>
-                            <option value=3>K3</option>
-                            <option value=4>K4</option>
-                            <option value=5>K5</option>
-                            <option value=6>K6</option>
-                            <option value=7>K7</option>
-                            <option value=8>K8</option>
-                            <option value=9>K9</option>
-                            <option value=10>K10</option>
-                        </select>
-                    </div>
-                    <div style="display:flex; flex-direction: column; align-items: center;">
-                        <label for="target" style="margin-bottom: 40px;">Target</label>
-                        <input type="number" id="target" value=5>
-                    </div>
-                </div>
                 <button py-click="run_estimate">Calculate!</button>
-                <py-script src="static/python/l5r_dice.py"></py-script>
             </div>
         </div>
     </div>
