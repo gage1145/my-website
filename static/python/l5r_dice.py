@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
-from pyscript import display
+from pyscript import display, when
 
 
 def roll_dice(roll):
@@ -72,21 +72,19 @@ async def make_table(event=None):
             std=("value", "std"),
             median=("value", "median"),
             var=("value", "var"),
-            min=("value", "min"),
-            max=("value", "max"),
-            kurtosis=("value", pd.Series.kurtosis),
+            kurt=("value", pd.Series.kurtosis),
             skew=("value", pd.Series.skew),
         )
         .reset_index()
     )
-    df_sum[["r", "k"]] = df_sum[["r", "k"]].astype(int)
+    df_sum[["r", "k", "median"]] = df_sum[["r", "k", "median"]].astype(int)
     df_sum = df_sum.sort_values(["r", "k"])
     df_sum = df_sum.round({
         "mean": 2,
         "median": 0,
         "std": 2,
         "var": 1,
-        "kurtosis": 2,
+        "kurt": 2,
         "skew": 2
     })
     df_sum = df_sum.drop(["r", "k"], axis=1)
@@ -176,3 +174,8 @@ async def roller(event=None):
 
     total = sum(all_dice)
     document.getElementById("total").textContent = f"Total: {total}"
+
+# Event listeners
+@when("change", "#dice-roll, #dice-keep, #target")
+async def on_input_change(event):
+    await run_estimate()

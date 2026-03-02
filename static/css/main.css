@@ -75,7 +75,7 @@ table {
         border: var(--border);
         box-shadow: var(--box-shadow);
         padding: 10px;
-        font-size: var(--large-text)
+        font-size: var(--normal-text)
     }
 
     th {
