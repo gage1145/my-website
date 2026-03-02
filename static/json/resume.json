@@ -7,17 +7,16 @@
             "orcid": "https://orcid.org/0000-0002-7517-0480",
             "linkedin": "https://www.linkedin.com/in/gagerowden/"
         },
-        "summary": "Data scientist with a strong background in statistical analysis, bioinformatics, and data visualization. Experienced in automating workflows, developing R packages, and working with large-scale experimental datasets. Passionate about leveraging data-driven insights to solve complex problems in biotechnology and research.",
+        "summary": "Applied Data Scientist specializing in high-throughput biological data and production analytics systems with extensive experience designing end-to-end data workflows, developing custom R packages, and building cloud-backed applications. Skilled in Python, SQL, AWS, and statistical modeling, with a strong foundation in experimental design and high-throughput data. Proven track record of optimizing data analysis pipelines, improving lab efficiency, and delivering actionable insights to drive research and operational success.",
         "experience": [
             {
-                "title": "Lead Technical R&D Scientist",
+                "title": "Lead Data Scientist",
                 "organization": "Priogen Corp.",
                 "date": "Jan 2024 -- present",
                 "highlights": [
-                    "Designed and optimized data analysis workflows to efficiently process high-throughput datasets.",
-                    "Built a Django-based LIMS that streamlined client data handling and automated result reporting.",
-                    "Established standard operating procedures to enhance lab consistency and quality.",
-                    "Integrated version control across all projects, ensuring reproducibility and streamlined collaboration"
+                    "Architected and deployed end-to-end data analysis pipelines to process high-throughput diagnostic datasets (up to 100 samples/week, ~240k rows of time-series data/project), reducing analysis time from ~4 hours to seconds.","Led full-stack development of a \textbf{Python}-based LIMS (PriLIMS) using \textbf{Django}, automating client data intake, tracking, and reporting, eliminating 10 hours/week of manual administrative work.",
+                    "Implemented cloud-based infrastructure on AWS to support scalable SQL storage and analysis, improving system reliability and enabling secure multi-user access.",
+                    "Introduced Git-based version control and CI workflows across projects, improving collaboration efficiency and significantly reducing deployment errors."
                 ]
             },
             {
@@ -25,37 +24,30 @@
                 "organization": "University of Minnesota, Center for Prion Research and Outreach",
                 "date": "Aug 2019 -- present",
                 "highlights": [
-                    "Co-authored 17 manuscripts, including two first-author publications.",
-                    "Developed a custom R package and automation scripts to optimize data analysis and processing.",
-                    "Led the expansion of laboratory space, improving research capacity and workflow efficiency.",
-                    "Provided expert consultation on RT-QuIC and related diagnostic tests for research collaborators"
+                    "Developed a custom R package and automation scripts to standardize RT-QuIC data analysis, reducing hours of analysis time to seconds and increasing reproducibility across collaborating labs.",
+                    "Streamlined data processing and reporting workflows using R and Python tools, reducing turnaround time for experimental results by 99%.",
+                    "Built and evaluated statistical models to classify diagnostic outcomes, improving disease detection confidence.",
+                    "Standardized cross-lab analytics and built reusable analytical frameworks adopted by multiple institutions.",
+                    "Led laboratory establishment, expansion, and workflow redesign, increasing research capacity."
                 ]
             }
         ],
         "skills": [
-            "Amazon Web Services",
-            "R & Tidyverse",
-            "R package development",
-            "Quarto",
             "Python",
-            "Django",
+            "Pandas & NumPy",
+            "scikit-learn",
+            "R Tidyverse",
             "SQL",
-            "HTML/CSS",
-            "Javascript",
-            "Bash",
-            "Data visualization",
-            "Git & GitHub",
-            "GitHub Actions",
-            "Data wrangling",
+            "ETL pipeline development",
+            "Time-series analysis",
             "Statistical analysis",
-            "Recombinant DNA technology",
-            "DNA cloning",
-            "DNA sequencing",
-            "PCR techniques",
-            "Protein expression/purification",
-            "Protein characterization",
-            "Western blotting",
-            "RT-QuIC"
+            "Experimental design",
+            "Data visualization",
+            "AWS (cloud infrastructure)",
+            "Django & REST API",
+            "Docker",
+            "Git & GitHub",
+            "GitHub Actions (CI/CD)"
         ],
         "education": [
             {

@@ -21,6 +21,7 @@
     --normal-text: 1.5rem;
     --small-text: 1rem;
     --micro-text: 0.5rem;
+    --central-width: clamp(300px, 90%, 1200px);
 }
 
 /* Global Styling */
@@ -151,19 +152,25 @@ input[type=text] {
 }
 
 /* Header Elements */
-.header {
+.header-container {
+    display: flex;
+    justify-content: center;
     width: 100vw;
-    position: relative;
-    display:flex;
-    position: relative;
+    margin-top: 20px;
+}
+
+.header {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: var(--central-width);
 }
 
 #deer-header {
     display: flex;
     padding: 0 20px;
     justify-content: center;
-    font-size: clamp(0.5rem, 1.5vw, 1.5rem);
+    font-size: clamp(0.5rem, 1.5vw, 1.2rem);
     line-height: 1.1;
 }
 
@@ -179,17 +186,15 @@ input[type=text] {
 
 /* Navbar Elements */
 nav {
-    position: relative;
     display: flex;
-    justify-content: center;
-    font-size: 18pt;
     width: 100%;
-    font-size: var(--large-text);
+    justify-content: center;
+    font-size: 1.8rem;
     margin-bottom: 30px;
 
     div {
+        width: 100%;
         display: inherit;
-        margin: 0 5%;
         border: var(--border);
         box-shadow: var(--box-shadow);
         padding: 20px 10px;
@@ -199,7 +204,7 @@ nav {
         width: 100%;
         list-style: none;
         display: inherit;
-        justify-content: center;
+        justify-content: space-evenly;
         flex-wrap: wrap;
         margin: 0;
     }
@@ -241,7 +246,7 @@ sidenav {
     border: var(--border);
     box-shadow: var(--box-shadow);
     padding: 10px;
-    top: 20px;
+    top: 40px;
     right: 5vw;
     font-size: var(--huge-text);
     text-shadow: var(--green-text-shadow);
@@ -317,7 +322,7 @@ sidenav {
 /* Homepage Styling */
 #homepage {
     width: 100vw;
-    position: relative;
+    /* position: relative; */
     display: flex;
     justify-content: center;
     height: auto;
@@ -329,11 +334,11 @@ sidenav {
 
 #homepage-container {
     box-sizing: border-box;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
+    width: var(--central-width);
+    /* display: flex;
+    flex-direction: column; */
     gap: 20px;
-    width: 90%;
+    /* width: 90%; */
     margin-top: 20px;
     margin-bottom: 100px;
     padding: 20px;
@@ -422,8 +427,7 @@ sidenav {
     flex-direction: column;
     border: var(--border);
     box-shadow: var(--box-shadow);
-    height: fit-content;
-    min-width: 400px;
+    height: auto;
 }
 
 .homepage-summary {
@@ -504,7 +508,7 @@ sidenav {
     display: flex;
     gap: 50px;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
     align-items: center;
 }
@@ -512,7 +516,7 @@ sidenav {
 .project-output {
     box-sizing: border-box;
     display: inherit;
-    width: 90%;
+    width: var(--central-width);
     border: var(--border);
     box-shadow: var(--box-shadow);
     padding: 20px;
@@ -593,12 +597,20 @@ sidenav {
 
 /* Publication Styling -------------------------------- */
 
+#publications-container {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    margin-bottom: 100px;
+}
+
 #publications {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 20px;
     gap: 20px;
     padding: 0 5vw;
+    width: var(--central-width);
 }
 
 .publication {
@@ -621,8 +633,9 @@ sidenav {
 #ganymede {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    font-size: clamp(0.1ch, 1vw, 10ch);
+    font-size: clamp(0.5rem, 1.5vw, 0.8rem);
     margin: 0;
     line-height: 1.1;
 
@@ -640,15 +653,23 @@ sidenav {
     margin-bottom: 40px;
 }
 
+#music-embeds {
+    display: flex; 
+    /* justify-content: space-around; */
+    width: var(--central-width); 
+    gap:20px; 
+}
+
 #embed {
     border: var(--border);
     box-shadow: var(--box-shadow);
-    width: 90%;
+    width: 100%;
+    /* width: var(--central-width); */
     height: 120px;
 }
 
 .music-container {
-    width: 90%;
+    width: var(--central-width);
     display: grid;
     grid-template-columns: 1fr 2fr;
     margin: 20px 0;
@@ -712,9 +733,9 @@ sidenav {
 }
 
 #visualizer {
-    position: relative;
-    justify-content: center;
-    aspect-ratio: 1;
+    canvas {
+        max-height: 700px;
+    }
 
     li {
         display: flex;
@@ -859,7 +880,7 @@ sidenav {
     margin-bottom: 50px;
     position: relative;
     box-sizing: border-box;
-    width: clamp(250px, 95%, 2000px);
+    width: var(--central-width);
     padding: 20px;
     display: grid;
     gap: 20px;

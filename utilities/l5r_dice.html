@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div w3-include-html="/templates/header.html"></div>
+    <div class="header-container" w3-include-html="/templates/header.html"></div>
     <a id="hamburger" onclick="toggleSidenav()">
         <i class="fa fa-bars"></i>
     </a>
@@ -75,7 +75,7 @@
                 <div style="display: flex; justify-content: center; width: 100%">
                     <div style="display: flex; gap: 50px; justify-content: left;">
                         <button py-click="roller" style="height: 100px">Roll!</button>
-                        <button py-click="make_table" style="height: 100px">Generate Summary Table</button>
+                        <button py-click="make_table" id="prob-table-button" style="height: 100px">Show Summary Table</button>
                     </div>
                 </div>
             </div>

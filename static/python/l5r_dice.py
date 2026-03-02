@@ -63,33 +63,42 @@ async def simulate_rolls():
     ).astype(int)
     document.getElementById("pyscript-loading").textContent = None
 
+show_table = True
 async def make_table(event=None):
-    df_sum = (
-        df
-        .groupby(["roll", "r", "k"])
-        .agg(
-            mean=("value", "mean"),
-            std=("value", "std"),
-            median=("value", "median"),
-            var=("value", "var"),
-            kurt=("value", pd.Series.kurtosis),
-            skew=("value", pd.Series.skew),
+    global show_table
+    if show_table:
+        df_sum = (
+            df
+            .groupby(["roll", "r", "k"])
+            .agg(
+                mean=("value", "mean"),
+                std=("value", "std"),
+                median=("value", "median"),
+                var=("value", "var"),
+                kurt=("value", pd.Series.kurtosis),
+                skew=("value", pd.Series.skew),
+            )
+            .reset_index()
         )
-        .reset_index()
-    )
-    df_sum[["r", "k", "median"]] = df_sum[["r", "k", "median"]].astype(int)
-    df_sum = df_sum.sort_values(["r", "k"])
-    df_sum = df_sum.round({
-        "mean": 2,
-        "median": 0,
-        "std": 2,
-        "var": 1,
-        "kurt": 2,
-        "skew": 2
-    })
-    df_sum = df_sum.drop(["r", "k"], axis=1)
-    table_html = df_sum.to_html(index=False)
-    document.getElementById("table-container").innerHTML = table_html
+        df_sum[["r", "k", "median"]] = df_sum[["r", "k", "median"]].astype(int)
+        df_sum = df_sum.sort_values(["r", "k"])
+        df_sum = df_sum.round({
+            "mean": 2,
+            "median": 0,
+            "std": 2,
+            "var": 1,
+            "kurt": 2,
+            "skew": 2
+        })
+        df_sum = df_sum.drop(["r", "k"], axis=1)
+        table_html = df_sum.to_html(index=False)
+        document.getElementById("table-container").innerHTML = table_html
+        document.getElementById("prob-table-button").textContent = "Hide Summary Table"
+        show_table = False
+    else:
+        document.getElementById("table-container").innerHTML = ""
+        document.getElementById("prob-table-button").textContent = "Show Summary Table"
+        show_table = True
 
 async def make_graph(event=None):
     roll = int(document.getElementById("dice-roll").value)
