@@ -28,8 +28,8 @@ function createResume(data) {
 
     wrapper.appendChild(createContact(data.contact));
     wrapper.appendChild(createSummary(data.summary));
-    wrapper.appendChild(createExperience(data.experience));
     wrapper.appendChild(createSkills(data.skills));
+    wrapper.appendChild(createExperience(data.experience));
     wrapper.appendChild(createEducation(data.education));
 
     resume.appendChild(wrapper);
