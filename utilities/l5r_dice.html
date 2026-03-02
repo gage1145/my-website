@@ -72,9 +72,12 @@
                         <input type="number" id="target" value=40 style="font-size: 3ch; width: 100px; height: 75px">
                     </div>
                 </div>
-                <button py-click="roller">Roll!</button>
-                <button py-click="run_estimate">Calculate!</button>
-                <button py-click="make_table">Generate Summary Table</button>
+                <div style="display: flex; justify-content: center; width: 100%">
+                    <div style="display: flex; gap: 50px; justify-content: left;">
+                        <button py-click="roller" style="height: 100px">Roll!</button>
+                        <button py-click="make_table" style="height: 100px">Generate Summary Table</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="table-container" style="display: flex;justify-content: center; width: 90%"></div>
