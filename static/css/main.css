@@ -1,8 +1,10 @@
 /* Global Variables */
 :root {
     --background-color: #0f0f0f;
+    --light-background-color: #151515;
     --green: rgb(149, 255, 175);
     --red: rgb(255, 103, 103);
+    --yellow: rgb(255, 252, 103);
     --border: 1px solid rgb(149, 255, 175);
     --box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.5),
                   inset 0 0 4px rgb(149, 255, 175),
@@ -14,6 +16,7 @@
                         0 0 6px rgb(149, 255, 175);
     --link-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 103, 103);
     --green-text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(149, 255, 175);
+    --yellow-text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 4px rgb(255, 252, 103);
     --dark-text-shadow: 0 0 1px black, 0 0 4px #0f0f0f;
     --huge-text: 4rem;
     --large-text: 3rem;
@@ -50,6 +53,15 @@ a {
     &:hover {
         font-weight: bold;
     }
+}
+
+code {
+    color: var(--yellow);
+    text-shadow: var(--yellow-text-shadow);
+    background-color: var(--light-background-color); 
+    width: 100%;
+    padding: 10px; 
+    overflow: scroll; 
 }
 
 select {
