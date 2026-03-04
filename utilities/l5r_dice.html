@@ -44,9 +44,9 @@
                             <option value=2>R2</option>
                             <option value=3>R3</option>
                             <option value=4>R4</option>
-                            <option value=5 selected>R5</option>
+                            <option value=5>R5</option>
                             <option value=6>R6</option>
-                            <option value=7>R7</option>
+                            <option value=7 selected>R7</option>
                             <option value=8>R8</option>
                             <option value=9>R9</option>
                             <option value=10>R10</option>
@@ -78,6 +78,28 @@
                         <button py-click="make_table" id="prob-table-button" style="height: 100px">Show Summary Table</button>
                     </div>
                 </div>
+                    <span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
+Gage Rowden 2026
+
+This tool simulates the rolling mechanics of the Legends of the 5 Rings role-playing game. 
+
+The user chooses a number of ten-sided dice to roll and a number less than or equal to that number of dice to keep. The tool calculates the probability of achieving a target number of successes, and visualizes the results.
+
+Upon loading, the page simulates 10,000 rolls for each possible roll/keep combination. The probability is shown as both a proportion of successes to losses (empirical) and as the area of the estimated density curve (calculated).
+
+The tool was written in Python, and the core logic of the roller is implemented in the following "roll_dice()" function, which uses a recursive approach to determine the final roll.
+
+<code>def roll_dice(roll, keep):
+    assert roll >= keep, "roll must be ≥ keep."
+    rolls = [random.randint(1, 10) for _ in range(roll)]
+    keeps = sorted(rolls)[::-1][:keep]
+    for i in keeps:
+        if i != 10: break
+        keeps += roll_dice(1, 1)
+    return keeps
+</code>
+The function first generates a list of length "roll" of random integers between 1 and 10. The rolls are sorted in descending order, and the first "keep" amount of numbers are chosen. If any "keeps" equal 10, the function is called again with roll=1 and keep=1. This goes on until no more 10's are rolled.
+</span>
             </div>
         </div>
         <div id="table-container" style="display: flex;justify-content: center; width: 90%"></div>

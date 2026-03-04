@@ -9,26 +9,81 @@ from scipy import stats
 from pyscript import display, when
 
 
-def roll_dice(roll):
-    return sorted([random.randint(1, 10) for _ in range(roll)])
+# Global variables
+roll = int(document.getElementById("dice-roll").value)
+keep = int(document.getElementById("dice-keep").value)
+target = int(document.getElementById("target").value)
 
-def keep_dice(rolls, keep):
-    return [rolls.pop(len(rolls) - 1) for _ in range(keep)]
+roll_elem = document.getElementById("first-roll")
+keep_elem = document.getElementById("first-keep")
+bonus_elem = document.getElementById("bonuses")
+total_elem = document.getElementById("total")
+load_elem = document.getElementById("pyscript-loading")
 
-def get_rolls(roll, keep):
-    if roll < keep:
-        raise ValueError("roll must be greater than keep.")
-        
-    rolls = sorted([random.randint(1, 10) for _ in range(roll)])
-    keeps = [rolls.pop(len(rolls) - 1) for _ in range(keep)]
+table_elem = document.getElementById("table-container")
+tbl_button_elem = document.getElementById("prob-table-button")
+
+empirical_elem = document.getElementById("empirical")
+calculated_elem = document.getElementById("calculated")
+fig_elem = document.getElementById("fig")
+
+df = {}
+
+# Dice rolling functions
+def get_rolls(roll):
+    return [random.randint(1, 10) for _ in range(roll)]
+
+def get_keeps(rolls, keep):
+    return sorted(rolls)[::-1][:keep]
+
+def get_bonuses(keeps):
+    bonuses = []
     for i in keeps:
-        if i != 10:
-            break
-        keeps += get_rolls(1, 1)
-    return keeps
+        if i != 10: break
+        bonuses += roll_dice(1, 1)
+    return bonuses
 
-def roll_total(roll, keep):
-    return sum(get_rolls(roll, keep))
+def roll_dice(roll, keep):
+    assert roll >= keep, "roll must be greater than or equal to keep."
+    rolls = get_rolls(roll)
+    keeps = get_keeps(rolls, keep)
+    bonuses = get_bonuses(keeps)
+    return keeps + bonuses
+
+async def roller(event=None):
+    global roll_elem
+    global keep_elem
+    global bonus_elem
+    global total_elem
+    global load_elem
+    global roll
+    global keep
+
+    roll_elem.textContent = "Dice: "
+    keep_elem.textContent= "Keep: "
+    bonus_elem.textContent = "Bonus: "
+    total_elem.textContent = None
+    load_elem.textContent = None
+
+    if roll < keep:
+        load_elem.textContent = "Roll must be greater than or equal to keep."
+        return
+        
+    rolls = get_rolls(roll)
+    keeps = get_keeps(rolls, keep)
+    bonuses = get_bonuses(keeps)
+    total = sum(keeps + bonuses)
+
+    async def show_results(iter, element):
+        for i in iter:
+            element.textContent += f"{i} "
+            await asyncio.sleep(0.3)
+    
+    await show_results(rolls, roll_elem)
+    await show_results(keeps, keep_elem)
+    await show_results(bonuses, bonus_elem)
+
+    total_elem.textContent = f"Total: {total}"
 
 def estimate_probabilities(df, roll, keep, target):
     ys = stats.gaussian_kde(
@@ -42,17 +97,18 @@ def estimate_probabilities(df, roll, keep, target):
     empirical = (data >= target).mean()
     return {"empirical": empirical, "calculated": calculated}
 
-df = {}
 async def simulate_rolls():
-    iterations = 10000
+    global load_elem 
     global df
+
+    iterations = 10000
     for r in range(1, 11):
         for k in range(1, r + 1):
-            rolls = [roll_total(r, k) for _ in range(iterations)]
+            rolls = [sum(roll_dice(r, k)) for _ in range(iterations)]
             df.update({f"R{r}K{k}": rolls, "roll_index": range(iterations)})
-            document.getElementById("pyscript-loading").textContent = f"Simulating R{r}K{k}"
+            load_elem.textContent = f"Simulating R{r}K{k}"
             await asyncio.sleep(0)
-    print(df)
+
     df = pd.DataFrame(df)
     df = df.melt(id_vars="roll_index", var_name="roll")
 
@@ -61,11 +117,14 @@ async def simulate_rolls():
         .str.removeprefix("R")
         .str.split("K", expand=True)
     ).astype(int)
-    document.getElementById("pyscript-loading").textContent = None
+    load_elem.textContent = None
 
 show_table = True
 async def make_table(event=None):
     global show_table
+    global table_elem
+    global tbl_button_elem
+
     if show_table:
         df_sum = (
             df
@@ -92,20 +151,22 @@ async def make_table(event=None):
         })
         df_sum = df_sum.drop(["r", "k"], axis=1)
         table_html = df_sum.to_html(index=False)
-        document.getElementById("table-container").innerHTML = table_html
-        document.getElementById("prob-table-button").textContent = "Hide Summary Table"
+        table_elem.innerHTML = table_html
+        tbl_button_elem.textContent = "Hide Summary Table"
         show_table = False
     else:
-        document.getElementById("table-container").innerHTML = ""
-        document.getElementById("prob-table-button").textContent = "Show Summary Table"
+        table_elem.innerHTML = ""
+        tbl_button_elem.textContent = "Show Summary Table"
         show_table = True
 
 async def make_graph(event=None):
-    roll = int(document.getElementById("dice-roll").value)
-    keep = int(document.getElementById("dice-keep").value)
-    target = int(document.getElementById("target").value)
+    global roll
+    global keep
+    global target
+    global df
+
     data = df.loc[(df.r.astype(int) == roll) & (df.k.astype(int) == keep), "value"]
-    fig, ax = plt.subplots(figsize=(8, 2))
+    fig, ax = plt.subplots(figsize=(6, 2))
     plt.rcParams['font.family'] = 'monospace'
     plt.tick_params(colors='#95ffaf')
     plt.tight_layout()
@@ -127,62 +188,22 @@ async def make_graph(event=None):
     display(fig, target="fig")
 
 async def run_estimate(event=None):
-    roll = int(document.getElementById("dice-roll").value)
-    keep = int(document.getElementById("dice-keep").value)
-    target = int(document.getElementById("target").value)
+    global roll
+    global keep
+    global target
+    global empirical_elem
+    global calculated_elem
+    global fig_elem
+    global df
+    
     probabilities = estimate_probabilities(df, roll, keep, target)
-    document.getElementById("empirical").textContent = f"P(Empirical): {probabilities['empirical']:.4f}"
-    document.getElementById("calculated").textContent = f"P(Calculated): {probabilities['calculated']:.4f}"
-    document.getElementById("fig").innerHTML = ""
+    empirical_elem.textContent = f"P(Empirical): {probabilities['empirical']:.4f}"
+    calculated_elem.textContent = f"P(Calculated): {probabilities['calculated']:.4f}"
+    fig_elem.innerHTML = ""
     await make_graph()
 
 await simulate_rolls()
 await run_estimate()
-
-async def roller(event=None):
-    document.getElementById("pyscript-loading").textContent = None
-
-    document.getElementById("first-roll").textContent = "Dice: "
-    document.getElementById("first-keep").textContent= "Keep: "
-    document.getElementById("bonuses").textContent = "Bonus: "
-    document.getElementById("total").textContent = None
-
-    roll = int(document.getElementById("dice-roll").value)
-    keep = int(document.getElementById("dice-keep").value)
-    
-    if roll < keep:
-        document.getElementById("pyscript-loading").textContent = "Roll must be greater than or equal to keep."
-        return
-        
-    rolls = [random.randint(1, 10) for _ in range(roll)]
-    document.getElementById("first-roll").textContent = "Dice: "
-    for roll in rolls:
-        document.getElementById("first-roll").textContent += f"{roll} "
-        await asyncio.sleep(0.3)
-    
-    rolls = sorted(rolls)
-
-    keeps = [rolls.pop(len(rolls) - 1) for _ in range(keep)]
-    document.getElementById("first-keep").textContent= "Keep: "
-    for k in keeps:
-        document.getElementById("first-keep").textContent += f"{k} "
-        await asyncio.sleep(0.3)
-
-    bonuses = []
-    for i in keeps:
-        if i != 10:
-            break
-        bonuses += get_rolls(1, 1)
-
-    document.getElementById("bonuses").textContent = "Bonus: "
-    for b in bonuses:
-        document.getElementById("bonuses").textContent += f"{b} "
-        await asyncio.sleep(0.3)
-
-    all_dice = keeps + bonuses
-
-    total = sum(all_dice)
-    document.getElementById("total").textContent = f"Total: {total}"
 
 # Event listeners
 @when("change", "#dice-roll, #dice-keep, #target")
