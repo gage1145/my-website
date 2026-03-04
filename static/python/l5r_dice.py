@@ -56,8 +56,8 @@ async def roller(event=None):
     global bonus_elem
     global total_elem
     global load_elem
-    global roll
-    global keep
+    roll = int(document.getElementById("dice-roll").value)
+    keep = int(document.getElementById("dice-keep").value)
 
     roll_elem.textContent = "Dice: "
     keep_elem.textContent= "Keep: "
@@ -85,7 +85,8 @@ async def roller(event=None):
 
     total_elem.textContent = f"Total: {total}"
 
-def estimate_probabilities(df, roll, keep, target):
+def estimate_probabilities(roll, keep, target):
+    global df
     ys = stats.gaussian_kde(
         df.loc[(df.r.astype(int) == roll) & (df.k.astype(int) == keep), "value"]
     )
@@ -119,6 +120,41 @@ async def simulate_rolls():
     ).astype(int)
     load_elem.textContent = None
 
+async def make_graph(roll, keep, target, event=None):
+    global df
+    data = df.loc[(df.r.astype(int) == roll) & (df.k.astype(int) == keep), "value"]
+    fig, ax = plt.subplots(figsize=(6, 2))
+    plt.rcParams['font.family'] = 'monospace'
+    plt.tick_params(colors='#95ffaf')
+    plt.tight_layout()
+    ax.hist(data, bins=50, density=True, color='#95ffaf', histtype='step')
+    sns.kdeplot(data, fill=False, color='#ff6767')
+    ax.patch.set_facecolor('none')
+    fig.patch.set_facecolor('none')
+    ax.set_frame_on(False)
+    ax.set_ylabel("")
+    ax.set_xlabel("")
+    ax.set_yticks([])
+
+    kde = ax.lines[0]
+    xs, ys = kde.get_xdata(), kde.get_ydata()
+
+    mask = xs >= target
+    ax.fill_between(xs[mask], ys[mask], alpha=0.4, color='#ff6767')
+
+    display(fig, target="fig")
+
+async def run_estimate(roll, keep, target, event=None):
+    empirical_elem = document.getElementById("empirical")
+    calculated_elem = document.getElementById("calculated")
+    fig_elem = document.getElementById("fig")
+    
+    probabilities = estimate_probabilities(roll, keep, target)
+    empirical_elem.textContent = f"P(Empirical): {probabilities['empirical']:.4f}"
+    calculated_elem.textContent = f"P(Calculated): {probabilities['calculated']:.4f}"
+    fig_elem.innerHTML = ""
+    await make_graph(roll, keep, target)
+
 show_table = True
 async def make_table(event=None):
     global show_table
@@ -142,12 +178,7 @@ async def make_table(event=None):
         df_sum[["r", "k", "median"]] = df_sum[["r", "k", "median"]].astype(int)
         df_sum = df_sum.sort_values(["r", "k"])
         df_sum = df_sum.round({
-            "mean": 2,
-            "median": 0,
-            "std": 2,
-            "var": 1,
-            "kurt": 2,
-            "skew": 2
+            "mean": 2, "median": 0, "std": 2, "var": 1, "kurt": 2, "skew": 2
         })
         df_sum = df_sum.drop(["r", "k"], axis=1)
         table_html = df_sum.to_html(index=False)
@@ -159,53 +190,14 @@ async def make_table(event=None):
         tbl_button_elem.textContent = "Show Summary Table"
         show_table = True
 
-async def make_graph(event=None):
-    global roll
-    global keep
-    global target
-    global df
-
-    data = df.loc[(df.r.astype(int) == roll) & (df.k.astype(int) == keep), "value"]
-    fig, ax = plt.subplots(figsize=(6, 2))
-    plt.rcParams['font.family'] = 'monospace'
-    plt.tick_params(colors='#95ffaf')
-    plt.tight_layout()
-    ax.hist(data, bins=50, density=True, color='#95ffaf', histtype='step')
-    sns.kdeplot(data, fill=False, color='#ff6767')
-    ax.patch.set_facecolor('none')
-    fig.patch.set_facecolor('none')
-    ax.set_frame_on(False)
-    ax.set_ylabel("")
-    ax.set_xlabel("")
-    ax.set_yticks([])
-
-    kde = ax.lines[0]
-    xs, ys = kde.get_xdata(), kde.get_ydata()
-
-    mask = xs >= target
-    ax.fill_between(xs[mask], ys[mask], alpha=0.4, color='red')
-
-    display(fig, target="fig")
-
-async def run_estimate(event=None):
-    global roll
-    global keep
-    global target
-    global empirical_elem
-    global calculated_elem
-    global fig_elem
-    global df
-    
-    probabilities = estimate_probabilities(df, roll, keep, target)
-    empirical_elem.textContent = f"P(Empirical): {probabilities['empirical']:.4f}"
-    calculated_elem.textContent = f"P(Calculated): {probabilities['calculated']:.4f}"
-    fig_elem.innerHTML = ""
-    await make_graph()
-
 await simulate_rolls()
-await run_estimate()
+await run_estimate(roll, keep, target)
 
 # Event listeners
 @when("change", "#dice-roll, #dice-keep, #target")
 async def on_input_change(event):
-    await run_estimate()
+    global df
+    roll = int(document.getElementById("dice-roll").value)
+    keep = int(document.getElementById("dice-keep").value)
+    target = int(document.getElementById("target").value)
+    await run_estimate(roll, keep, target)

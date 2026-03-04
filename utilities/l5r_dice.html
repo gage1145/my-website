@@ -24,7 +24,7 @@
             <div class="utilities-sidebar" w3-include-html="/templates/utilities_sidebar.html"></div>
             <div class="tool">
                 <h2 style="margin:0">L5R Dice Roller</h2>
-                <span id="pyscript-loading">Loading...</span>
+                <span id="pyscript-loading" class="blinker">Loading...</span>
                 <div style="display:flex; gap: 30px; justify-content: space-around; text-align: center;">
                     <span id="empirical"></span>
                     <span id="calculated"></span>
@@ -34,7 +34,7 @@
                     <span id="first-roll"></span>
                     <span id="first-keep"></span>
                     <span id="bonuses"></span>
-                    <span id="total" class="blinker" style="color:rgb(255, 103, 103)"></span>
+                    <span id="total" class="blinker" style="color:var(--red)"></span>
                 </div>
                 <div id="roll-container" style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
                     <div style="display:flex; flex-direction: column; align-items: center;">
@@ -96,8 +96,7 @@ The tool was written in Python, and the core logic of the roller is implemented 
     for i in keeps:
         if i != 10: break
         keeps += roll_dice(1, 1)
-    return keeps
-</code>
+    return keeps</code>
 The function first generates a list of length "roll" of random integers between 1 and 10. The rolls are sorted in descending order, and the first "keep" amount of numbers are chosen. If any "keeps" equal 10, the function is called again with roll=1 and keep=1. This goes on until no more 10's are rolled.
 </span>
             </div>
