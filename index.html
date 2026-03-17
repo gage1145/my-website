@@ -3,92 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <title>Gage Rowden</title>
-    <link href="static/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/98.css"
+    >
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
-    <link href="static/images/favicon.ico" rel="icon">
     <script type="module" src="main.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" >
 </head>
 
-<body>
-    <div class="header-container" w3-include-html="/templates/header.html"></div>
-    <a id="hamburger" onclick="toggleSidenav()">
-        <i class="fa fa-bars"></i>
-    </a>
-    <sidenav w3-include-html="/templates/sidenav.html" id="sidenav"></sidenav>
-    <div id="homepage">
-        <div id="homepage-container">
-            <div id="profile">
-                <img class="profile-pic" src="static/images/profile_pic.jpg" alt="">
-                <div id="personal-info">
-                    <ul id="contact">
-                        <li><i class="fa-solid fa-phone"></i> <a href="callto: +1-806-577-8008">+1-806-577-8008</a></li>
-                        <Li><img src="./static/images/UMN-logo.png" alt=""> <a href="mailto: rowde002@umn.edu">rowde002@umn.edu</a></Li>
-                        <Li><img src="./static/images/Priogen.png" alt=""> <a href="mailto: gager@priogen.bio">gager@priogen.bio</a></Li>
-                        <Li><img src="./static/images/ganymede_logo.png" alt=""> <a href="mailto: ganymede.artist@gmail.com">ganymede.artist@gmail.com</a></Li>
-                        <li><i class="fa-regular fa-envelope"></i> <a href="mailto: gage.rowden1145@gmail.com">gage.rowden1145@gmail.com</a></li> 
-                    </ul>
-                    <ul id="links">
-                        <li>
-                            <a href="https://github.com/gage1145">
-                                <i class="fa-brands fa-github fa-xl"></i>
-                            </a>
-                        </li>
-                        <li>
-                        <a href="https://www.linkedin.com/in/gagerowden">
-                            <i class="fa-brands fa-linkedin-in fa-xl"></i> 
+<body class="window">
+    <div class="title-bar">
+        <div class="title-bar-text">Welcome to GageRowden.com!</div>
+        <div class="title-bar-controls">
+            <button aria-label="Close"></button>
+        </div>
+    </div>
+    <menu role="tablist">
+        <li role="tab" aria-selected="true"><a href="./">HOME</a></li>
+        <li role="tab"><a href="projects.html">PROJECTS</a></li>
+        <li role="tab"><a href="resume.html">RESUME</a></li>
+        <li role="tab"><a href="publications.html">PUBS</a></li>
+        <li role="tab"><a href="music.html">MUSIC</a></li>
+        <li role="tab"><a href="utilities.html">UTILS</a></li>
+    </menu>
+    <div class="window" id="homepage-container">
+        <div id="profile">
+            <!-- <img class="profile-pic" src="static/images/profile_pic.jpg" alt="" style="width:300px;"> -->
+            <div id="personal-info">
+                <ul class="tree-view" id="contact">
+                    <li id="contact-item"><a href="callto: +1-806-577-8008">+1-806-577-8008</a></li>
+                    <Li id="contact-item"><a href="mailto: rowde002@umn.edu">rowde002@umn.edu</a></Li>
+                    <Li id="contact-item"><a href="mailto: gager@priogen.bio">gager@priogen.bio</a></Li>
+                    <Li id="contact-item"><a href="mailto: ganymede.artist@gmail.com">
+                        <img id="contact-icon" src="./static/images/cd_audio.png" alt="">
+                        ganymede.artist@gmail.com
+                    </a></Li>
+                    <li id="contact-item"><a href="mailto: gage.rowden1145@gmail.com">gage.rowden1145@gmail.com</a></li> 
+                </ul>
+                <ul id="links">
+                    <li>
+                        <a href="https://github.com/gage1145">
+                            <i class="fa-brands fa-github fa-xl"></i>
                         </a>
-                        </li>
-                        <li>
-                            <a href="https://orcid.org/0000-0002-7517-0480">
-                                <i class="fa-brands fa-orcid fa-xl"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.facebook.com/gage1145">
-                                <i class="fa-brands fa-facebook-f fa-xl"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">
-                                <i class="fa-brands fa-spotify fa-xl"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.youtube.com/channel/UCF0pawTW2NZotzNuxwNBzXw">
-                                <i class="fa-brands fa-youtube fa-xl"></i>
-                            </a>
-                        </li>
-                    </ul>
+                    </li>
+                    <li>
+                    <a href="https://www.linkedin.com/in/gagerowden">
+                        <i class="fa-brands fa-linkedin-in fa-xl"></i> 
+                    </a>
+                    </li>
+                    <li>
+                        <a href="https://orcid.org/0000-0002-7517-0480">
+                            <i class="fa-brands fa-orcid fa-xl"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/gage1145">
+                            <i class="fa-brands fa-facebook-f fa-xl"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">
+                            <i class="fa-brands fa-spotify fa-xl"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCF0pawTW2NZotzNuxwNBzXw">
+                            <i class="fa-brands fa-youtube fa-xl"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <h1>Featured Projects</h1>
+            <div class="features">
+                <div>
+                    <h3>This Website</h3>
+                    <a href="https://github.com/gage1145/my-website">github.com/gage1145/my-website</a>
                 </div>
-                <h1>Featured Projects</h1>
-                <div class="features">
-                    <div>
-                        <h3>This Website</h3>
-                        <a href="https://github.com/gage1145/my-website">github.com/gage1145/my-website</a>
-                    </div>
-                    <div>
-                        <h3>quicR</h3>
-                        <a href="https://github.com/gage1145/quicR">github.com/gage1145/quicR</a>
-                    </div>
-                    <div> 
-                        <h3>PriLIMS</h3><a href="https://priogen.xyz">priogen.xyz</a>
-                    </div>
+                <div>
+                    <h3>quicR</h3>
+                    <a href="https://github.com/gage1145/quicR">github.com/gage1145/quicR</a>
                 </div>
-            </div> 
-            <div class="homepage-right">
-                <h1>Professional Summary</h1>
-                <div class="homepage-summary">
-                    <p> Welcome to my website! I am a researcher and data scientist working in the fields of prion biology, software development, and laboratory automation. With over a decade of experience, I have developed skills around designing analytical pipelines, building reproducible tools, and turning experimental data into publishable results.</p>
-                    <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that’s science, software, or products.</p>
-                    <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7" style="font-weight:bold">GANYMEDE</a>. You can find a collection of curated songs and audio projects on the Music page.</p>
-                    <p>This site is a collection of projects, publications, and tools I’ve developed along the way. Visit the <a href="/utilities.html" style="font-weight: bold">UTILITIES PAGE</a> for a collection of creative coding projects!</p>
+                <div> 
+                    <h3>PriLIMS</h3><a href="https://priogen.xyz">priogen.xyz</a>
                 </div>
-                <h1>Featured Publications</h1>
-                <div class="features">
-                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5188757"">quicR: An R Library for Streamlined Data Handling of Real-Time Quaking Induced Conversion Assays</a>
-                    <a href="https://www.mdpi.com/2076-0817/12/2/309">Standardization of data analysis for RT-QuIC-based detection of chronic wasting disease</a>
-                </div>
+            </div>
+        </div> 
+        <div class="homepage-right">
+            <h1>Professional Summary</h1>
+            <div class="homepage-summary">
+                <p> Welcome to my website! I am a researcher and data scientist working in the fields of prion biology, software development, and laboratory automation. With over a decade of experience, I have developed skills around designing analytical pipelines, building reproducible tools, and turning experimental data into publishable results.</p>
+                <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that’s science, software, or products.</p>
+                <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7" style="font-weight:bold">GANYMEDE</a>. You can find a collection of curated songs and audio projects on the Music page.</p>
+                <p>This site is a collection of projects, publications, and tools I’ve developed along the way. Visit the <a href="/utilities.html" style="font-weight: bold">UTILITIES PAGE</a> for a collection of creative coding projects!</p>
+            </div>
+            <h1>Featured Publications</h1>
+            <div class="features">
+                <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5188757"">quicR: An R Library for Streamlined Data Handling of Real-Time Quaking Induced Conversion Assays</a>
+                <a href="https://www.mdpi.com/2076-0817/12/2/309">Standardization of data analysis for RT-QuIC-based detection of chronic wasting disease</a>
             </div>
         </div>
     </div>
