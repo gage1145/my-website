@@ -6,7 +6,7 @@ export function includeHTML() {
         const file = elmnt.getAttribute("w3-include-html");
 
         if (file) {
-            fetch(file)
+            return fetch(file)
                 .then(res => {
                     if (!res.ok) throw new Error("Not found");
                     return res.text();
@@ -14,13 +14,13 @@ export function includeHTML() {
                 .then(html => {
                     elmnt.innerHTML = html;
                     elmnt.removeAttribute("w3-include-html");
-                    includeHTML();
+                    return includeHTML();
                 })
                 .catch(err => {
                     console.error("Include failed:", file, err);
                 });
-
-            return;
         }
     }
+
+    return Promise.resolve();
 }
