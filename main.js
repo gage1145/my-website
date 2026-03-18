@@ -6,8 +6,21 @@ import { loadResume } from "./static/javascript/resume.js";
 import { loadPublications } from "./static/javascript/publications.js";
 import { toggleSidenav } from "./static/javascript/toggle_sidenav.js";
 
+function setActiveNavTab() {
+    const path = window.location.pathname;
+    const tabs = document.querySelectorAll('menu[role="tablist"] li[role="tab"]');
+    tabs.forEach(tab => {
+        const href = tab.querySelector("a")?.getAttribute("href");
+        const isHome = (href === "./" || href === "/") &&
+            (path === "/" || path === "" || path.endsWith("/index.html"));
+        const isUtilities = href === "utilities.html" && path.includes("utilities");
+        const isMatch = !isHome && !isUtilities && href && path.endsWith(href);
+        tab.setAttribute("aria-selected", (isHome || isUtilities || isMatch) ? "true" : "false");
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    includeHTML();
+    includeHTML().then(setActiveNavTab);
 
     const audioPlayerContainer = document.querySelector(".audio-player");
     if (audioPlayerContainer) {

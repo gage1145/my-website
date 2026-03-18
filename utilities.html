@@ -13,34 +13,21 @@
 </head>
 
 <body>
+    <div id="mommy-container">
     <div id="body-3-col">
     <div id="left-sidebar">
         <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
     </div>
     <div id="center-bar">
         <div class="window" style="max-width: 700px;">
-            <div class="title-bar">
-                <div class="title-bar-text">Welcome!</div>
-                <div class="title-bar-controls">
-                    <button aria-label="Minimize"></button>
-                    <button aria-label="Maximize"></button>
-                    <button aria-label="Close"></button>
-                </div>
-            </div>
+            <div w3-include-html="templates/title_bar.html"></div>
             <div class="window-body">
                 <div style="display: flex; gap: 10px;">
                     <h3>Tools</h3>
                     <img src="https://blob.gifcities.org/gifcities/6HFZPHIWUXOOIHHHPOH6LVQ2UR5TNSOR.gif" alt="" style="width: 100%; object-fit: contain;">
                 </div>
             </div>
-            <menu role="tablist">
-                <li role="tab"><a href="./">HOME</a></li>
-                <li role="tab"><a href="projects.html">PROJECTS</a></li>
-                <li role="tab"><a href="resume.html">RESUME</a></li>
-                <li role="tab"><a href="publications.html">PUBS</a></li>
-                <li role="tab"><a href="music.html">MUSIC</a></li>
-                <li role="tab" aria-selected="true"><a href="utilities.html">UTILS</a></li>
-            </menu>
+            <div w3-include-html="templates/navbar.html"></div>
             <div class="window">
                 <div class="window-body" style="display: grid; gap: 10px;">
                     <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -90,6 +77,8 @@
         <img src="https://blob.gifcities.org/gifcities/6DRVVONRIYEZIXD5F6GQL4S5MTG6DFWY.gif" alt="">
         <img src="https://blob.gifcities.org/gifcities/JCHFAUQC5KLUBIIUI7QR4AL4YIXQNDWL.gif" alt="">
     </div>
+    </div>
+    <div w3-include-html="templates/start_bar.html"></div>
     </div>
 </body>
 </html>
