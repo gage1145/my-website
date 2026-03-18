@@ -3,61 +3,62 @@
 <head>
     <title>Utilities</title>
     <base href="/">
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
     <link href="static/css/main.css" rel="stylesheet">
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/98.css"
-    >
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/images/favicon.ico" rel="icon">
     <script type="module" src="main.js" defer></script>
     <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
     <script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script>
     <py-config>packages = ['pandas']</py-config>
 </head>
-
 <body>
-    <div style="display: flex; flex-direction: column; justify-content: center; width: 100vw; align-items: center;">
+    <div id="mommy-container">
         <div id="body-3-col">
             <div id="left-sidebar">
                 <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
             </div>
-
             <div id="center-bar">
                 <div class="window" style="max-width: 700px;">
                     <div w3-include-html="templates/title_bar.html"></div>
+                    <div class="window-body">
+                        <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
+                            <h3>BMG CSV Formatter</h3>
+                            <div style="display:flex; justify-content: space-between; gap: 50px; align-items: bottom;">
+                                <img src="https://blob.gifcities.org/gifcities/526AP6Y3IX7IY3YMITVZ27KL3KXVCGB3.gif" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div w3-include-html="templates/navbar.html"></div>
+                    <div class="window">
                         <div class="window-body">
-                            <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
-                                <h3>BMG CSV Formatter</h3>
-                                <div style="display:flex; justify-content: space-between; gap: 50px; align-items: bottom;">
-                                    <img src="https://blob.gifcities.org/gifcities/526AP6Y3IX7IY3YMITVZ27KL3KXVCGB3.gif" alt="">
+                            <div w3-include-html="templates/utilities_navbar.html"></div>
+                            <div class="window">
+                                <div class="window-body">
+                                    <p style="text-align: left; margin: 0 0 10px 0;">Welcome to the BMG CSV Formatter. This tool is used for converting a CSV file into a TXT file format that can be imported into a BMG FluoStar OMEGA plate reader control program. CSV files should be formatted like a 96-well plate. The first column should have the letters A-H, and the top row should have the numbers 1-12. Be sure to input a value for each well you are using even if there are duplicate entries.</p>
+                                    <div style="display: grid; gap: 10px;">
+                                        <div class="field-row" style="justify-content: space-around;">
+                                            <div>
+                                                <input type="file" id="file-input" accept=".csv" style="display: none;">
+                                                <input type="text" id="file-name-display" readonly placeholder="No file selected">
+                                                <button onclick="document.getElementById('file-input').click()">Browse...</button>
+                                            </div>
+                                            <button py-click="run_bmg">Format</button>
+                                        </div>
+                                        <pre id="bmg-preview" style="max-height: 400px; overflow: scroll;"></pre>
+                                        <button id="download-btn" disabled>Download TXT File</button>
+                                    </div>
+                                    <py-script src="static/python/bmg_format.py"></py-script>
                                 </div>
                             </div>
                         </div>
-                        <div w3-include-html="templates/navbar.html"></div>
-                        <div class="window">
-                            <div class="window-body">
-                                <div w3-include-html="templates/utilities_navbar.html"></div>
-                                <div class="window">
-                                    <div class="window-body">
-                                        <p style="text-align: left; margin: 0 0 10px 0;">Welcome to the BMG CSV Formatter. This tool is used for converting a CSV file into a TXT file format that can be imported into a BMG FluoStar OMEGA plate reader control program. CSV files should be formatted like a 96-well plate. The first column should have the letters A-H, and the top row should have the numbers 1-12. Be sure to input a value for each well you are using even if there are duplicate entries.</p>
-                                        <div style="display: grid; gap: 10px;">
-                                            <div class="field-row" style="justify-content: space-around;">
-                                                <div>
-                                                    <input type="file" id="file-input" accept=".csv" style="display: none;">
-                                                    <input type="text" id="file-name-display" readonly placeholder="No file selected">
-                                                    <button onclick="document.getElementById('file-input').click()">Browse...</button>
-                                                </div>
-                                                <button py-click="run_bmg">Format</button>
-                                            </div>
-                                            <pre id="bmg-preview" style="max-height: 400px; overflow: scroll;"></pre>
-                                            <button id="download-btn" disabled>Download TXT File</button>
-                                        </div>
-                                        <py-script src="static/python/bmg_format.py"></py-script>
-                                    </div>
-                                </div>
-                        </div>
                     </div>
                 </div>
+            </div>
+            <div id="right-sidebar">
+                <img src="https://blob.gifcities.org/gifcities/7KJSGRPZC4ACA2GJ4GKS47K6FELZ6536.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/6DRVVONRIYEZIXD5F6GQL4S5MTG6DFWY.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/JCHFAUQC5KLUBIIUI7QR4AL4YIXQNDWL.gif" alt="">
             </div>
         </div>
     </div>
@@ -69,7 +70,3 @@
     });
 </script>
 </html>
-
-
-
-

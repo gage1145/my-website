@@ -3,72 +3,88 @@
 <head>
     <title>Utilities</title>
     <base href="/">
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
     <link href="static/css/main.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/images/favicon.ico" rel="icon">
     <script type="module" src="main.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js"></script>
     <script src="static/javascript/harmonograph.js" defer></script>
 </head>
-
 <body>
-    <div class="header-container" w3-include-html="/templates/header.html"></div>
-    <a id="hamburger" onclick="toggleSidenav()">
-        <i class="fa fa-bars"></i>
-    </a>
-    <sidenav w3-include-html="/templates/sidenav.html" id="sidenav"></sidenav>
-    <div class="utilities-content">
-        <div class="utilities-layout">
-            <div class="utilities-sidebar" w3-include-html="/templates/utilities_sidebar.html"></div>
-            <div id="tool-container">
-                <div id="sketch"></div>
-                <div id="harmonograph-parameters">
-                    <h2 style="margin-bottom: 0;">Frequency</h2>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <input type="range" name="f1" id="f1-slider" class="slider" min=0 max=3 step=0.0001 value=1>
-                        <input type="range" name="f2" id="f2-slider" class="slider" min=0 max=3 step=0.0001 value=0.3>
-                        <input type="range" name="f3" id="f3-slider" class="slider" min=0 max=3 step=0.0001 value=0.5>
-                        <input type="range" name="f4" id="f4-slider" class="slider" min=0 max=3 step=0.0001 value=0.25>
-                    </div>
-                    <h2 style="margin-bottom: 0;">Amplitude</h2>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <input type="range" name="a1" id="a1-slider" class="slider" min=0 max=500 step=0.0001 value=50>
-                        <input type="range" name="a2" id="a2-slider" class="slider" min=0.5 max=500 step=0.0001 value=35>
-                        <input type="range" name="a3" id="a3-slider" class="slider" min=0.5 max=500 step=0.0001 value=429>
-                        <input type="range" name="a4" id="a4-slider" class="slider" min=0.5 max=500 step=0.0001 value=100>
-                    </div>
-                    <h2 style="margin-bottom: 0;">Phase</h2>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <input type="range" name="p1" id="p1-slider" class="slider" min=0 max=1 step=0.0001 value=0.5>
-                        <input type="range" name="p2" id="p2-slider" class="slider" min=0 max=1 step=0.0001 value=1>
-                        <input type="range" name="p3" id="p3-slider" class="slider" min=0 max=1 step=0.0001 value=0.69>
-                        <input type="range" name="p4" id="p4-slider" class="slider" min=0 max=1 step=0.0001 value=0.2>
-                    </div>
-                    <h2 style="margin-bottom: 0;">Damping</h2>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <input type="range" name="d1" id="d1-slider" class="slider" min=0 max=1 step=0.0001 value=0.001>
-                        <input type="range" name="d2" id="d2-slider" class="slider" min=0 max=1 step=0.0001 value=0.01>
-                        <input type="range" name="d3" id="d3-slider" class="slider" min=0 max=1 step=0.0001 value=0.2>
-                        <input type="range" name="d4" id="d4-slider" class="slider" min=0 max=1 step=0.0001 value=0.3>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;">
-                        <div>
-                            <h2 style="margin-bottom:0">Weight</h2>
-                            <input type="range" id="line-weight" class="slider" min=0 max=4 step =0.001 value="1.2">
-                        </div>
-                        <div>
-                            <h2 style="margin-bottom:0">Glow</h2>
-                            <input type="range" id="glow" class="slider" min=0 max=20 step =0.001 value="10">
+    <div id="mommy-container">
+        <div id="body-3-col">
+            <div id="left-sidebar">
+                <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
+            </div>
+            <div id="center-bar">
+                <div class="window" style="max-width: 700px;">
+                    <div w3-include-html="templates/title_bar.html"></div>
+                    <div class="window-body">
+                        <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
+                            <h3>Harmonograph</h3>
                         </div>
                     </div>
-                    <button id="save">Save Image</button>
+                    <div w3-include-html="templates/navbar.html"></div>
+                    <div class="window">
+                        <div class="window-body">
+                            <div w3-include-html="templates/utilities_navbar.html"></div>
+                            <div class="window">
+                                <div class="window-body">
+                                    <div id="sketch" style="width: 100%; height: 500px;"></div>
+                                    <div id="harmonograph-parameters">
+                                        <h3 style="margin-bottom: 0;">Frequency</h3>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                            <input type="range" name="f1" id="f1-slider" class="slider" min=0 max=3 step=0.0001 value=1>
+                                            <input type="range" name="f2" id="f2-slider" class="slider" min=0 max=3 step=0.0001 value=0.3>
+                                            <input type="range" name="f3" id="f3-slider" class="slider" min=0 max=3 step=0.0001 value=0.5>
+                                            <input type="range" name="f4" id="f4-slider" class="slider" min=0 max=3 step=0.0001 value=0.25>
+                                        </div>
+                                        <h3 style="margin-bottom: 0;">Amplitude</h3>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                            <input type="range" name="a1" id="a1-slider" class="slider" min=0 max=500 step=0.0001 value=50>
+                                            <input type="range" name="a2" id="a2-slider" class="slider" min=0.5 max=500 step=0.0001 value=35>
+                                            <input type="range" name="a3" id="a3-slider" class="slider" min=0.5 max=500 step=0.0001 value=429>
+                                            <input type="range" name="a4" id="a4-slider" class="slider" min=0.5 max=500 step=0.0001 value=100>
+                                        </div>
+                                        <h3 style="margin-bottom: 0;">Phase</h3>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                            <input type="range" name="p1" id="p1-slider" class="slider" min=0 max=1 step=0.0001 value=0.5>
+                                            <input type="range" name="p2" id="p2-slider" class="slider" min=0 max=1 step=0.0001 value=1>
+                                            <input type="range" name="p3" id="p3-slider" class="slider" min=0 max=1 step=0.0001 value=0.69>
+                                            <input type="range" name="p4" id="p4-slider" class="slider" min=0 max=1 step=0.0001 value=0.2>
+                                        </div>
+                                        <h3 style="margin-bottom: 0;">Damping</h3>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                            <input type="range" name="d1" id="d1-slider" class="slider" min=0 max=1 step=0.0001 value=0.001>
+                                            <input type="range" name="d2" id="d2-slider" class="slider" min=0 max=1 step=0.0001 value=0.01>
+                                            <input type="range" name="d3" id="d3-slider" class="slider" min=0 max=1 step=0.0001 value=0.2>
+                                            <input type="range" name="d4" id="d4-slider" class="slider" min=0 max=1 step=0.0001 value=0.3>
+                                        </div>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;">
+                                            <div>
+                                                <h3 style="margin-bottom:0">Weight</h3>
+                                                <input type="range" id="line-weight" class="slider" min=0 max=4 step=0.001 value="1.2">
+                                            </div>
+                                            <div>
+                                                <h3 style="margin-bottom:0">Glow</h3>
+                                                <input type="range" id="glow" class="slider" min=0 max=20 step=0.001 value="10">
+                                            </div>
+                                        </div>
+                                        <button id="save">Save Image</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div id="right-sidebar">
+                <img src="https://blob.gifcities.org/gifcities/7KJSGRPZC4ACA2GJ4GKS47K6FELZ6536.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/6DRVVONRIYEZIXD5F6GQL4S5MTG6DFWY.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/JCHFAUQC5KLUBIIUI7QR4AL4YIXQNDWL.gif" alt="">
             </div>
         </div>
     </div>
 </body>
-
-
-
-
 </html>

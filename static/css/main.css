@@ -43,10 +43,10 @@ code {
 
 #body-3-col {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-columns: 1fr 4fr 1fr;
     gap: 10px;
     align-items: start;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0;
     padding: 0;
 }
@@ -58,7 +58,7 @@ code {
 #center-bar {
     display: flex;
     flex-direction: column;
-    /* width: clamp(100px, 100%, 600px); */
+    min-width: 575px;
 }
 
 #right-sidebar {
@@ -132,10 +132,30 @@ summary {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAG0lEQVQYV2M8cODAf3t7ewbG/////z948CADAFuqCj64BtLKAAAAAElFTkSuQmCC);
 }
 
+/* Utils */
 
 #tool-description {
     margin: 5px 0px;
 }
 
-/* Homepage styling */
+#sketch {
+    height: 500px;
+    width: 100%;
+}
 
+#mandelbrot-param {
+    label {
+        font-size: 20px;
+    }
+
+    select {
+        font-size: 20px;
+        width: 75px; 
+        height: 30px;
+        text-align: center;
+    }
+}
+
+#roll-table {
+    width: 100%;
+}

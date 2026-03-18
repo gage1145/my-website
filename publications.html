@@ -3,18 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Gage Rowden</title>
-    <link href="static/css/main.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
-    <link href="static/images/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
     <script type="module" src="main.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="static/images/favicon.ico" rel="icon">
 </head>
-
 <body>
-    <div class="header-container" w3-include-html="/templates/header.html"></div>
-    <a id="hamburger" onclick="toggleSidenav()">
-        <i class="fa fa-bars"></i>
-    </a>
-    <sidenav w3-include-html="/templates/sidenav.html" id="sidenav"></sidenav>
-    <div id="publications-container"><div id="publications"></div></div>
+    <div id="mommy-container">
+        <div id="body-3-col">
+            <div id="left-sidebar">
+                <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
+            </div>
+            <div class="window" id="center-bar">
+                <div w3-include-html="templates/title_bar.html"></div>
+                <div class="window-body">
+                    <h3>Publications</h3>
+                </div>
+                <div w3-include-html="templates/navbar.html"></div>
+                <div class="window">
+                    <div class="window-body">
+                        <div id="publications-container">
+                            <div id="publications"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="right-sidebar">
+                <img src="https://www.thestrokes.com/assets/img/window/screensaver/musiclargesidebanner.gif" alt="">
+            </div>
+            <div w3-include-html="templates/start_bar.html"></div>
+        </div>
+    </div>
 </body>
 </html>

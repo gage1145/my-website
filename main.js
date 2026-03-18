@@ -66,8 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
         loadPublications();
     }
 
-    const hamburgerMenu = document.getElementById("hamburger");
-    hamburgerMenu.addEventListener("click", () => {
-        toggleSidenav();
-    })
+    // const hamburgerMenu = document.getElementById("hamburger");
+    // hamburgerMenu.addEventListener("click", () => {
+    //     toggleSidenav();
+    // })
 });

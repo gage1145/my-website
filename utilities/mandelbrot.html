@@ -3,85 +3,99 @@
 <head>
     <title>Utilities</title>
     <base href="/">
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
     <link href="static/css/main.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/images/favicon.ico" rel="icon">
     <script type="module" src="main.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js"></script>
     <script src="static/javascript/mandelbrot.js" defer></script>
 </head>
-
 <body>
-    <div class="header-container" w3-include-html="/templates/header.html"></div>
-    <a id="hamburger" onclick="toggleSidenav()">
-        <i class="fa fa-bars"></i>
-    </a>
-    <sidenav w3-include-html="/templates/sidenav.html" id="sidenav"></sidenav>
-    <div class="utilities-content">
-        <div class="utilities-layout">
-            <div class="utilities-sidebar" w3-include-html="/templates/utilities_sidebar.html"></div>
-            <div id="tool-container">
-                <div id="sketch"></div>
-                <div>
-                    <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <div>
-                            <label for="iterations">Max Iterations</label>
-                            <select name="iterations" id="iterations">
-                                <option value="10">10</option>
-                                <option value="50">50</option>
-                                <option value="100" selected>100</option>
-                                <option value="250">250</option>
-                                <option value="500">500</option>
-                                <option value="750">750</option>
-                                <option value="1000">1,000</option>
-                                <option value="2500">2,500</option>
-                                <option value="5000">5,000</option>
-                                <option value="7500">7,500</option>
-                                <option value="10000">10,000</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="color-mode">Color Mode</label>
-                            <select name="color-mode" id="color-mode">
-                                <option value="HSL">HSL</option>
-                                <option value="RGB">RGB</option>
-                            </select>
-                        </div>
-                        <div style="display: flex; align-items: center;">
-                            <button id="save">Save Image</button>
+    <div id="mommy-container">
+        <div id="body-3-col">
+            <div id="left-sidebar">
+                <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
+            </div>
+            <div id="center-bar">
+                <div class="window" style="max-width: 700px;">
+                    <div w3-include-html="templates/title_bar.html"></div>
+                    <div class="window-body">
+                        <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
+                            <h3>Mandelbrot Explorer</h3>
                         </div>
                     </div>
-                    <div id="mandelbrot-param">
-                        <label for="zoom">Zoom</label>
-                        <input type="range" name="zoom" id="zoom" class="slider" min=0.5 max=1000 step=0.0001 value=0.5>
-                    </div>
-                    <div id="mandelbrot-param">
-                        <label for="color1" id="color1-label"></label>
-                        <input type="range" name="color1" id="color1" class="slider" min=0 max=100 step=0.1 value=80>
-                    </div>
-                    <div id="mandelbrot-param">
-                        <label for="color2" id="color2-label"></label>
-                        <input type="range" name="color2" id="color2" class="slider" min=0 max=100 step=0.1 value=20>
-                    </div>
-                    <div id="mandelbrot-param">
-                        <label for="color3" id="color3-label"></label>
-                        <input type="range" name="color3" id="color3" class="slider" min=0 max=100 step=0.1 value=100>
-                    </div>
-                    <div id="mandelbrot-param">
-                        <label for="palette-cycles">Color Cycles</label>
-                        <input type="range" name="palette-cycles" id="palette-cycles" class="slider" min=1 max=100 step=1 value=6>
-                    </div>
-                    <div id="mandelbrot-param">
-                        <label for="color-scale">Color Scale</label>
-                        <input type="range" name="color-scale" id="color-scale" class="slider" min=0 max=1 step=0.001 value=0.1>
+                    <div w3-include-html="templates/navbar.html"></div>
+                    <div class="window">
+                        <div class="window-body">
+                            <div w3-include-html="templates/utilities_navbar.html"></div>
+                            <div class="window">
+                                <div class="window-body">
+                                    <div id="sketch" style="width: 100%; height: 500px;"></div>
+                                    <div class="window-body" style="display: flex; align-items: center; justify-content: space-between;">
+                                        <div id="mandelbrot-param">
+                                            <label style="font-size: 20px;" for="iterations">Max Iterations</label>
+                                            <select name="iterations" id="iterations">
+                                                <option value="10">10</option>
+                                                <option value="50">50</option>
+                                                <option value="100" selected>100</option>
+                                                <option value="250">250</option>
+                                                <option value="500">500</option>
+                                                <option value="750">750</option>
+                                                <option value="1000">1,000</option>
+                                                <option value="2500">2,500</option>
+                                                <option value="5000">5,000</option>
+                                                <option value="7500">7,500</option>
+                                                <option value="10000">10,000</option>
+                                            </select>
+                                        </div>
+                                        <div id="mandelbrot-param">
+                                            <label for="color-mode">Color Mode</label>
+                                            <select name="color-mode" id="color-mode">
+                                                <option value="HSL">HSL</option>
+                                                <option value="RGB">RGB</option>
+                                            </select>
+                                        </div>
+                                        <div style="display: flex; align-items: center;">
+                                            <button id="save">Save Image</button>
+                                        </div>
+                                    </div>
+                                    <div id="mandelbrot-param">
+                                        <label for="zoom">Zoom</label>
+                                        <input type="range" name="zoom" id="zoom" class="slider" min=0.5 max=1000 step=0.0001 value=0.5>
+                                    </div>
+                                    <div id="mandelbrot-param">
+                                        <label for="color1" id="color1-label"></label>
+                                        <input type="range" name="color1" id="color1" class="slider" min=0 max=100 step=0.1 value=80>
+                                    </div>
+                                    <div id="mandelbrot-param">
+                                        <label for="color2" id="color2-label"></label>
+                                        <input type="range" name="color2" id="color2" class="slider" min=0 max=100 step=0.1 value=20>
+                                    </div>
+                                    <div id="mandelbrot-param">
+                                        <label for="color3" id="color3-label"></label>
+                                        <input type="range" name="color3" id="color3" class="slider" min=0 max=100 step=0.1 value=100>
+                                    </div>
+                                    <div id="mandelbrot-param">
+                                        <label for="palette-cycles">Color Cycles</label>
+                                        <input type="range" name="palette-cycles" id="palette-cycles" class="slider" min=1 max=100 step=1 value=6>
+                                    </div>
+                                    <div id="mandelbrot-param">
+                                        <label for="color-scale">Color Scale</label>
+                                        <input type="range" name="color-scale" id="color-scale" class="slider" min=0 max=1 step=0.001 value=0.1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div id="right-sidebar">
+                <img src="https://blob.gifcities.org/gifcities/7KJSGRPZC4ACA2GJ4GKS47K6FELZ6536.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/6DRVVONRIYEZIXD5F6GQL4S5MTG6DFWY.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/JCHFAUQC5KLUBIIUI7QR4AL4YIXQNDWL.gif" alt="">
             </div>
         </div>
     </div>
 </body>
-
-
-
-
 </html>
