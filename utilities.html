@@ -1,30 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Utilities</title>
-    <base href="./">
-    <link href="static/css/main.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
-    <link href="static/images/favicon.ico" rel="icon">
+    <meta charset="UTF-8">
+    <title>Gage Rowden</title>
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/98.css"
+    >
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
     <script type="module" src="main.js" defer></script>
-    <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
-    <script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" >
 </head>
 
 <body>
-    <div class="header-container" w3-include-html="/templates/header.html"></div>
-    <a id="hamburger" onclick="toggleSidenav()">
-        <i class="fa fa-bars"></i>
-    </a>
-    <sidenav w3-include-html="/templates/sidenav.html" id="sidenav"></sidenav>
-    <div class="utilities-content">
-        <div class="utilities-layout">
-            <div class="utilities-sidebar" w3-include-html="/templates/utilities_sidebar.html"></div>
-            <div id="tool-container">
-                <h1>Select a tool from the sidebar.</h1>
+    <div id="body-3-col">
+    <div id="left-sidebar">
+        <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
+    </div>
+    <div id="center-bar">
+        <div class="window" style="max-width: 700px;">
+            <div class="title-bar">
+                <div class="title-bar-text">Welcome!</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div style="display: flex; gap: 10px;">
+                    <h3>Tools</h3>
+                    <img src="https://blob.gifcities.org/gifcities/6HFZPHIWUXOOIHHHPOH6LVQ2UR5TNSOR.gif" alt="" style="width: 100%; object-fit: contain;">
+                </div>
+            </div>
+            <menu role="tablist">
+                <li role="tab"><a href="./">HOME</a></li>
+                <li role="tab"><a href="projects.html">PROJECTS</a></li>
+                <li role="tab"><a href="resume.html">RESUME</a></li>
+                <li role="tab"><a href="publications.html">PUBS</a></li>
+                <li role="tab"><a href="music.html">MUSIC</a></li>
+                <li role="tab" aria-selected="true"><a href="utilities.html">UTILS</a></li>
+            </menu>
+            <div class="window">
+                <div class="window-body" style="display: grid; gap: 10px;">
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div style="display: flex; gap: 10px">
+                            <button onclick="window.location.href='/utilities/image_to_ascii.html'" style="min-width: 150px">
+                                ASCII Image
+                            </button>
+                            <p id="tool-description">Generate images using ASCII characters.</p>
+                        </div>
+                        <div style="display: flex; gap: 10px">
+                            <button onclick="window.location.href='/utilities/mandelbrot.html'" style="min-width: 150px">
+                                Mandelbrot
+                            </button>
+                            <p id="tool-description">Explore the infinite possibilities of the Mandelbrot set.</p>
+                        </div>
+                        <div style="display: flex; gap: 10px">
+                            <button onclick="window.location.href='/utilities/harmonograph.html'"  style="min-width: 150px">
+                                Harmonograph
+                            </button>
+                            <p id="tool-description">A Lissajous tool. Play with the oscillators and see what you get!</p>
+                        </div>
+                        <div style="display: flex; gap: 10px">
+                            <button onclick="window.location.href='/utilities/l5r_dice.html'"  style="min-width: 150px">
+                                L5R Dice
+                            </button>
+                            <p id="tool-description">A dice roller and probability calculator for <a href="https://www.legendofthefiverings.com/">Legends of the Five Rings</a>.</p>
+                        </div>
+                        <div style="display: flex; gap: 10px">
+                            <button onclick="window.location.href='/utilities/bmg_format.html'"  style="min-width: 150px">
+                                BMG Format
+                            </button>
+                            <p id="tool-description">A boring file formatter for OMEGA Fluostar CSV input.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <pre id="ascii-output""></pre>
+        <div style="display: flex; justify-content: center;">
+            <img src="https://blob.gifcities.org/gifcities/IJI5FDKR72RUZAKGPVKFGEBWPHO6JZC3.gif" alt="">
+            <img src="https://blob.gifcities.org/gifcities/IJI5FDKR72RUZAKGPVKFGEBWPHO6JZC3.gif" alt="">
+            <img src="https://blob.gifcities.org/gifcities/IJI5FDKR72RUZAKGPVKFGEBWPHO6JZC3.gif" alt="">
+            <img src="https://blob.gifcities.org/gifcities/IJI5FDKR72RUZAKGPVKFGEBWPHO6JZC3.gif" alt="">
+        </div>
+    </div>
+    <div id="right-sidebar">
+        <img src="https://blob.gifcities.org/gifcities/7KJSGRPZC4ACA2GJ4GKS47K6FELZ6536.gif" alt="">
+        <img src="https://blob.gifcities.org/gifcities/6DRVVONRIYEZIXD5F6GQL4S5MTG6DFWY.gif" alt="">
+        <img src="https://blob.gifcities.org/gifcities/JCHFAUQC5KLUBIIUI7QR4AL4YIXQNDWL.gif" alt="">
+    </div>
     </div>
 </body>
 </html>
