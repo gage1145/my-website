@@ -3,6 +3,10 @@
 <head>
     <title>Utilities</title>
     <base href="/">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/98.css"
+    >
     <link href="static/css/main.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
     <link href="static/images/favicon.ico" rel="icon">
@@ -14,82 +18,109 @@
 </head>
 
 <body>
-    <div class="header-container" w3-include-html="/templates/header.html"></div>
-    <a id="hamburger" onclick="toggleSidenav()">
-        <i class="fa fa-bars"></i>
-    </a>
-    <sidenav w3-include-html="/templates/sidenav.html" id="sidenav"></sidenav>
-    <div class="utilities-content">
-        <div class="utilities-layout">
-            <div class="utilities-sidebar" w3-include-html="/templates/utilities_sidebar.html"></div>
-            <div class="tool">
-                <h2 style="margin:0">L5R Dice Roller</h2>
-                <span id="pyscript-loading" class="blinker">Loading...</span>
-                <div style="display:flex; gap: 30px; justify-content: space-around; text-align: center;">
-                    <span id="empirical"></span>
-                    <span id="calculated"></span>
+    <div style="display: flex; flex-direction: column; justify-content: center; width: 100vw; align-items: center;">
+    <div id="body-3-col">
+    <div id="left-sidebar">
+        <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
+    </div>
+
+    <div id="center-bar">
+    <div class="window" style="max-width: 700px;">
+        <div class="title-bar">
+            <div class="title-bar-text">Welcome!</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <!-- <div class="window"> -->
+            <div class="window-body">
+                <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
+                    <h3>L5R Dice Roller</h3>
+                    <div style="display:flex; justify-content: space-between; gap: 50px; align-items: bottom;">
+                        <img src="https://blob.gifcities.org/gifcities/EW454LBATWIVZPJCRS5XG3FF6YQBKB7T.gif" alt="">
+                        <img src="https://blob.gifcities.org/gifcities/2LO2AXWRABIUSHRWWSV3SDOBMVRGDIQA.gif" alt="">
+                    </div>
                 </div>
-                <div id="fig"></div>
+            </div>
+            <menu role="tablist">
+                <li role="tab"><a href="./">HOME</a></li>
+                <li role="tab"><a href="projects.html">PROJECTS</a></li>
+                <li role="tab"><a href="resume.html">RESUME</a></li>
+                <li role="tab"><a href="publications.html">PUBS</a></li>
+                <li role="tab"><a href="music.html">MUSIC</a></li>
+                <li role="tab" aria-selected="true"><a href="utilities.html">UTILS</a></li>
+            </menu>
+            <div class="window" style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                <div class="window-body">
+                <span id="pyscript-loading" style="font-size: 20px; color: darkred">Loading...</span>
+                <div style="display:flex; gap: 30px; justify-content: space-around; text-align: center;">
+                    <span id="empirical" style="font-size: 20px; font-weight: bold;"></span>
+                    <span id="calculated" style="font-size: 20px; font-weight: bold;"></span>
+                </div>
+                <div id="fig" style="width: 100%;"></div>
                 <div style="display:grid; gap: 30px; grid-template-columns: 1fr 1fr; text-align: left;">
                     <span id="first-roll"></span>
                     <span id="first-keep"></span>
                     <span id="bonuses"></span>
                     <span id="total" class="blinker" style="color:var(--red)"></span>
                 </div>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
                 <div id="roll-container" style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
                     <div style="display:flex; flex-direction: column; align-items: center;">
-                        <label for="dice-roll">Roll</label>
-                        <select name="dice-roll" id="dice-roll" style="font-size:3ch">
-                            <option value=1>R1</option>
-                            <option value=2>R2</option>
-                            <option value=3>R3</option>
-                            <option value=4>R4</option>
-                            <option value=5>R5</option>
-                            <option value=6>R6</option>
-                            <option value=7 selected>R7</option>
-                            <option value=8>R8</option>
-                            <option value=9>R9</option>
-                            <option value=10>R10</option>
+                        <label style="font-size: 20px;" for="dice-roll">Roll</label>
+                        <select name="dice-roll" id="dice-roll" style="font-size:20px">
+                            <option value=1>Roll 1</option>
+                            <option value=2>Roll 2</option>
+                            <option value=3>Roll 3</option>
+                            <option value=4>Roll 4</option>
+                            <option value=5>Roll 5</option>
+                            <option value=6>Roll 6</option>
+                            <option value=7 selected>Roll 7</option>
+                            <option value=8>Roll 8</option>
+                            <option value=9>Roll 9</option>
+                            <option value=10>Roll 10</option>
                         </select>
                     </div>
                     <div style="display:flex; flex-direction: column; align-items: center;">
-                        <label for="dice-keep">Keep</label>
-                        <select name="dice-keep" id="dice-keep" style="font-size:3ch">
-                            <option value=1>K1</option>
-                            <option value=2>K2</option>
-                            <option value=3>K3</option>
-                            <option value=4>K4</option>
-                            <option value=5 selected>K5</option>
-                            <option value=6>K6</option>
-                            <option value=7>K7</option>
-                            <option value=8>K8</option>
-                            <option value=9>K9</option>
-                            <option value=10>K10</option>
+                        <label style="font-size: 20px;" for="dice-keep">Keep</label>
+                        <select name="dice-keep" id="dice-keep" style="font-size:20px;">
+                            <option value=1>Keep 1</option>
+                            <option value=2>Keep 2</option>
+                            <option value=3>Keep 3</option>
+                            <option value=4>Keep 4</option>
+                            <option value=5 selected>Keep 5</option>
+                            <option value=6>Keep 6</option>
+                            <option value=7>Keep 7</option>
+                            <option value=8>Keep 8</option>
+                            <option value=9>Keep 9</option>
+                            <option value=10>Keep 10</option>
                         </select>
                     </div>
                     <div style="display:flex; flex-direction: column; align-items: center;">
-                        <label for="target">Target</label>
-                        <input type="number" id="target" value=40 style="font-size: 3ch; width: 100px; height: 75px">
+                        <label style="font-size: 20px;" for="target">Target</label>
+                        <input type="number" id="target" value=40 style="font-size: 20px; width: 100px;">
                     </div>
                 </div>
                 <div style="display: flex; justify-content: center; width: 100%">
                     <div style="display: flex; gap: 50px; justify-content: left;">
-                        <button py-click="roller" style="height: 100px">Roll!</button>
-                        <button py-click="make_table" id="prob-table-button" style="height: 100px">Show Summary Table</button>
+                        <button py-click="roller">Roll!</button>
+                        <button py-click="make_table" id="prob-table-button">Show Summary Table</button>
                     </div>
                 </div>
-                    <span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
-Gage Rowden 2026
+                <span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
+    Gage Rowden 2026
 
-This tool simulates the rolling mechanics of the Legends of the 5 Rings role-playing game. 
+    This tool simulates the rolling mechanics of the Legends of the 5 Rings role-playing game. 
 
-The user chooses a number of ten-sided dice to roll and a number less than or equal to that number of dice to keep. The tool calculates the probability of achieving a target number of successes, and visualizes the results.
+    The user chooses a number of ten-sided dice to roll and a number less than or equal to that number of dice to keep. The tool calculates the probability of achieving a target number of successes, and visualizes the results.
 
-Upon loading, the page simulates 10,000 rolls for each possible roll/keep combination. The probability is shown as both a proportion of successes to losses (empirical) and as the area of the estimated density curve (calculated).
+    Upon loading, the page simulates 10,000 rolls for each possible roll/keep combination. The probability is shown as both a proportion of successes to losses (empirical) and as the area of the estimated density curve (calculated).
 
-The tool was written in Python, and the core logic of the roller is implemented in the following "roll_dice()" function, which uses a recursive approach to determine the final roll.
+    The tool was written in Python, and the core logic of the roller is implemented in the following "roll_dice()" function, which uses a recursive approach to determine the final roll.
 
-<code>def roll_dice(roll, keep):
+    <code>def roll_dice(roll, keep):
     assert roll >= keep, "roll must be ≥ keep."
     rolls = [random.randint(1, 10) for _ in range(roll)]
     keeps = sorted(rolls)[::-1][:keep]
@@ -97,11 +128,21 @@ The tool was written in Python, and the core logic of the roller is implemented 
         if i != 10: break
         keeps += roll_dice(1, 1)
     return keeps</code>
-The function first generates a list of length "roll" of random integers between 1 and 10. The rolls are sorted in descending order, and the first "keep" amount of numbers are chosen. If any "keeps" equal 10, the function is called again with roll=1 and keep=1. This goes on until no more 10's are rolled.
-</span>
+    
+    The function first generates a list of length "roll" of random integers between 1 and 10. The rolls are sorted in descending order, and the first "keep" amount of numbers are chosen. If any "keeps" equal 10, the function is called again with roll=1 and keep=1. This goes on until no more 10's are rolled.
+    </span>
+    <div id="table-container" style="display: flex;justify-content: center; width: 90%"></div>
             </div>
         </div>
-        <div id="table-container" style="display: flex;justify-content: center; width: 90%"></div>
+    </div>
+    </div>
+    </div>
+    <div id="right-sidebar">
+        <img src="https://blob.gifcities.org/gifcities/7KJSGRPZC4ACA2GJ4GKS47K6FELZ6536.gif" alt="">
+        <img src="https://blob.gifcities.org/gifcities/6DRVVONRIYEZIXD5F6GQL4S5MTG6DFWY.gif" alt="">
+        <img src="https://blob.gifcities.org/gifcities/JCHFAUQC5KLUBIIUI7QR4AL4YIXQNDWL.gif" alt="">
+    </div>
+    </div>
     </div>
 </body>
 </html>

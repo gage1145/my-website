@@ -123,8 +123,8 @@ async def simulate_rolls():
 async def make_graph(roll, keep, target, event=None):
     global df
     data = df.loc[(df.r.astype(int) == roll) & (df.k.astype(int) == keep), "value"]
-    fig, ax = plt.subplots(figsize=(6, 2))
-    plt.rcParams['font.family'] = 'monospace'
+    fig, ax = plt.subplots(figsize=(5, 2))
+    plt.rcParams['font.family'] = 'MS Sans Serif'
     plt.tick_params(colors='#95ffaf')
     plt.tight_layout()
     ax.hist(data, bins=50, density=True, color='#95ffaf', histtype='step')
@@ -135,6 +135,7 @@ async def make_graph(roll, keep, target, event=None):
     ax.set_ylabel("")
     ax.set_xlabel("")
     ax.set_yticks([])
+    plt.style.use('dark_background')
 
     kde = ax.lines[0]
     xs, ys = kde.get_xdata(), kde.get_ydata()
