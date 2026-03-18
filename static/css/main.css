@@ -1,14 +1,8 @@
 body {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    align-items: flex-start;
     min-height: 100vh;
     padding: 16px 16px 40px;
     box-sizing: border-box;
     background-color: #008080;
-    font-family: 'MS Sans Serif', Tahoma, sans-serif;
     color: #000;
 }
 
@@ -20,6 +14,7 @@ body {
 
 button {
     font-size: 20px;
+    padding: 10px;
 }
 
 p {
@@ -36,15 +31,22 @@ h1, h2, h3, h4 {
 
 code {
     background-color: #dfdfdf;
+    color:#520404;
+    font-family: monospace;
+}
+
+#mommy-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 #body-3-col {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     gap: 10px;
-    justify-content: center;
-    align-items: flex-start;
-    width: clamp(500px, 100vw, 900px);
+    align-items: start;
+    max-width: 800px;
     margin: 0;
     padding: 0;
 }
@@ -56,14 +58,11 @@ code {
 #center-bar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    max-width: 600px;
+    /* width: clamp(100px, 100%, 600px); */
 }
 
 #right-sidebar {
-    display: grid;
-    justify-content: left;
+    justify-self: start;
 }
 
 summary {
