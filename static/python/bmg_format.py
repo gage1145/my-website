@@ -73,5 +73,3 @@ async def run_bmg(event=None):
         URL.revokeObjectURL(url)
 
     download_btn.onclick = trigger_download
-
-

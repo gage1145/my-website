@@ -191,8 +191,10 @@ async def make_table(event=None):
         tbl_button_elem.textContent = "Show Summary Table"
         show_table = True
 
-await simulate_rolls()
-await run_estimate(roll, keep, target)
+if True: # Make False for development
+    await simulate_rolls()
+    await run_estimate(roll, keep, target)
+
 
 # Event listeners
 @when("change", "#dice-roll, #dice-keep, #target")
