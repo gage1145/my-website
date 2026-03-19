@@ -1,6 +1,7 @@
 from PIL import Image, ImageFilter, ImageOps
 from io import BytesIO
 from js import document
+from pyscript import when
 
 
 
@@ -86,3 +87,13 @@ async def run(event=None):
     )
 
     document.getElementById("ascii-output").textContent = ascii_img
+
+
+async def _run_if_file(event=None):
+    if document.getElementById("file-input").files.item(0):
+        await run()
+
+when("input", "#width")(_run_if_file)
+when("input", "#contrast")(_run_if_file)
+when("change", "#depth")(_run_if_file)
+when("change", "input[name='edge-choice']")(_run_if_file)
