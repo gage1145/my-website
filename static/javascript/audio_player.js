@@ -1,68 +1,40 @@
 export default class AudioPlayer {
-    constructor(selector = '.audio-player', audio = []) {
-        this.playerElem = document.querySelector(selector);
-        this.audio = audio;
-        this.currentAudio = null;
-        this.createPlayerElements();
-    }
-
-    createPlayerElements() {
+    constructor(containerSelector) {
+        this.container = document.querySelector(containerSelector);
         this.audioElem = document.createElement('audio');
         this.audioElem.classList.add('audio-player');
-        const playListElem = document.createElement('ul');
-        playListElem.classList.add('playlist');
-
-        this.playerElem.appendChild(this.audioElem);
-        this.playerElem.appendChild(playListElem);
-
-        this.createPlaylistElements(playListElem);
+        this.container.appendChild(this.audioElem);
+        this.currentTab = null;
+        this.attachListeners();
     }
 
-    createPlaylistElements(playListElem) {
-        this.audio.forEach(audio => {
-            const audioItem = document.createElement('li');
-            const audioItemLink = document.createElement('a');
-            audioItemLink.href = audio.url;
-            audioItemLink.innerHTML = `<i class="fa fa-play"></i>${audio.name}`;
-            this.setupEventListener(audioItemLink);
-            audioItem.appendChild(audioItemLink);
-            playListElem.appendChild(audioItem);
-        });
-    }
+    attachListeners() {
+        this.container.querySelectorAll('li[role="tab"] a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tab = link.closest('li');
 
-    setupEventListener(audioItem) {
-        audioItem.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            const isCurrentAudio = audioItem.getAttribute('href') === (this.currentAudio && this.currentAudio.getAttribute('href'));
-
-            if (isCurrentAudio && !this.audioElem.paused) {
-                this.setPlayIcon(this.currentAudio);
-                this.audioElem.pause();
-            } else if (isCurrentAudio && this.audioElem.paused) {
-                this.setPauseIcon(this.currentAudio);
-                this.audioElem.play();
-            } else {
-                if (this.currentAudio) {
-                    this.setPlayIcon(this.currentAudio)
+                if (this.currentTab === tab && !this.audioElem.paused) {
+                    this.audioElem.pause();
+                    tab.removeAttribute('aria-selected');
+                    this.currentTab = null;
+                } else {
+                    if (this.currentTab) {
+                        this.currentTab.removeAttribute('aria-selected');
+                    }
+                    this.audioElem.src = link.getAttribute('href');
+                    this.audioElem.play();
+                    tab.setAttribute('aria-selected', 'true');
+                    this.currentTab = tab;
                 }
-                this.currentAudio = audioItem;
-                this.setPauseIcon(this.currentAudio);
-                this.audioElem.src = this.currentAudio.getAttribute('href');
-                this.audioElem.play();
+            });
+        });
+
+        this.audioElem.addEventListener('ended', () => {
+            if (this.currentTab) {
+                this.currentTab.removeAttribute('aria-selected');
+                this.currentTab = null;
             }
         });
-    }
-
-    setPlayIcon(elem) {
-        const icon = elem.querySelector('i');
-        icon.classList.remove('fa-pause');
-        icon.classList.add('fa-play');
-    }
-
-    setPauseIcon(elem) {
-        const icon = elem.querySelector('i');
-        icon.classList.remove('fa-play');
-        icon.classList.add('fa-pause');
     }
 }
