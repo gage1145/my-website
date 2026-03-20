@@ -216,6 +216,17 @@ summary {
 
 /* Utils */
 
+#tool-container {
+    display: grid;
+    gap: 10px;
+}
+
+#tool-link {
+    display: grid;
+    grid-template-columns: 2fr 4.5fr;
+    gap: 15px; 
+}
+
 #tool-description {
     margin: 5px 0px;
 }
