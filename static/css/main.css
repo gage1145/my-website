@@ -23,7 +23,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="text"] {
     font-size: 20px;
-    height: 30px;
+    height: calc(1.5em);
 }
 
 input[type="number"] {
@@ -43,6 +43,7 @@ button {
     display: flex;
     font-size: 20px;
     padding: 10px;
+    cursor: pointer;
     /* height: 30px; */
     align-items: center;
 }
@@ -57,6 +58,38 @@ span {
 
 h1, h2, h3, h4 {
     margin: 15px 0px;
+}
+
+/* Mobile Styling */
+@media only screen and (max-width: 767px) {
+
+    body {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    #body-3-col * {
+        font-size: 1.1em;
+    }
+    
+
+    #body-3-col {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+
+        #left-sidebar, #right-sidebar {
+            display: none;
+        }
+
+        #center-bar {
+            position: absolute;
+            left: 2.5vw;
+            top: 2.5vw;
+            width: 95vw; 
+        }
+    }
+    
 }
 
 code {
@@ -76,6 +109,7 @@ code {
     grid-template-columns: 1fr 4fr 1fr;
     gap: 10px;
     align-items: start;
+    justify-content: center;
     max-width: 1000px;
     margin: 0;
     padding: 0;
