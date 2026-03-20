@@ -38,7 +38,7 @@
                                     <p style="text-align: left; margin: 0 0 10px 0;">Welcome to the BMG CSV Formatter. This tool is used for converting a CSV file into a TXT file format that can be imported into a BMG FluoStar OMEGA plate reader control program. CSV files should be formatted like a 96-well plate. The first column should have the letters A-H, and the top row should have the numbers 1-12. Be sure to input a value for each well you are using even if there are duplicate entries.</p>
                                     <div style="display: grid; gap: 10px;">
                                         <div class="field-row" style="justify-content: space-around;">
-                                            <div>
+                                            <div style="display: flex; gap: 10px; align-items: center;">
                                                 <input type="file" id="file-input" accept=".csv" style="display: none;">
                                                 <input type="text" id="file-name-display" readonly placeholder="No file selected">
                                                 <button onclick="document.getElementById('file-input').click()">Browse...</button>
