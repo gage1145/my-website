@@ -23,7 +23,7 @@ function createResume(data) {
     const resume = document.createElement("div");
     resume.className = "resume";
 
-    const wrapper = document.createElement("div");
+    const wrapper = document.createElement("fieldset");
     wrapper.className = "resume-container";
 
     wrapper.appendChild(createContact(data.contact));
@@ -39,19 +39,30 @@ function createResume(data) {
 
 function createContact(contact) {
     const section = document.createElement("div");
-    section.className = "resume-contact";
+    section.id = "resume-contact";
 
-    const p = document.createElement("p");
+    let email = document.createElement("a");
+    email.mailto = contact.email;
+    email.innerHTML = contact.email;
 
-    p.innerHTML = `
-        ${contact.phone} · 
-        <a href="mailto:${contact.email}">${contact.email}</a> ·
-        <a href="${contact.github}" target="_blank">GitHub</a> ·
-        <a href="${contact.orcid}" target="_blank">ORCID</a> ·
-        <a href="${contact.linkedin}" target="_blank">LinkedIn</a>
-    `;
+    let github = document.createElement("a");
+    github.href = contact.github;
+    github.innerHTML = "Github";
 
-    section.appendChild(p);
+    let orcid = document.createElement("a");
+    orcid.href = contact.orcid;
+    orcid.innerHTML = "ORCID";
+
+    let linkedin = document.createElement("a");
+    linkedin.href = contact.linkedin;
+    linkedin.innerHTML = "LinkedIn";
+    
+    section.append(contact.phone);
+    section.appendChild(email);
+    section.appendChild(github);
+    section.appendChild(orcid);
+    section.appendChild(linkedin);
+
     return section;
 }
 
@@ -90,6 +101,7 @@ function createExperience(experience) {
         date.textContent = role.date;
 
         const ul = document.createElement("ul");
+        ul.id = "experience-list"
         role.highlights.forEach(item => {
             const li = document.createElement("li");
             li.textContent = item;
@@ -114,6 +126,7 @@ function createSkills(skills) {
     h3.textContent = "Skills";
 
     const ul = document.createElement("ul");
+    ul.id = "skills";
     skills.forEach(skill => {
         const li = document.createElement("li");
         li.textContent = skill;

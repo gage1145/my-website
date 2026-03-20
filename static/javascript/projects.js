@@ -22,38 +22,25 @@ export async function loadProjects() {
 
 function createProjectElement(project) {
     const wrapper = document.createElement("div");
-    wrapper.className = "project-output";
+    wrapper.id = "project-output";
 
-    // ASCII logo
-    const logoContainer = document.createElement("div");
-    logoContainer.className = "logo-container";
-
-    const pre = document.createElement("pre");
-    pre.className = "ascii-logo";
-    pre.textContent = project.ascii_image;
+    const textContainer = document.createElement("div");
+    textContainer.id = "project-text-container";
 
     const link = document.createElement("a");
     link.href = project.link;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.appendChild(pre);
 
-    logoContainer.appendChild(link);
-
-    // Text content
-    const textContainer = document.createElement("div");
-    textContainer.className = "project-text-container";
-
-    const title = document.createElement("h2");
+    const title = document.createElement("h3");
     title.textContent = project.title;
+
+    link.appendChild(title);
 
     const description = document.createElement("p");
     description.textContent = project.description;
 
-    textContainer.appendChild(title);
+    textContainer.appendChild(link);
     textContainer.appendChild(description);
 
-    wrapper.appendChild(logoContainer);
     wrapper.appendChild(textContainer);
 
     return wrapper;

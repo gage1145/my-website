@@ -32,23 +32,25 @@
                             <div w3-include-html="templates/utilities_navbar.html"></div>
                             <div class="window" role="tabpanel">
                                 <div class="window-body" style="display: grid; gap: 10px;">
-                                    <div style="display: flex; align-items: center; gap:10px;">
-                                        <input type="file" id="file-input" accept="image/" style="display: none;">
-                                        <input type="text" id="file-name-display" readonly placeholder="No file selected">
-                                        <button onclick="document.getElementById('file-input').click()">Browse...</button>
-                                    </div>
-                                    <div>
-                                        <span style="font-size:20px;">Width</span>
-                                        <input type="range" id="width" class="slider" min="40" max="200" value="200">
-                                    </div>
-                                    <div>
-                                        <span style="font-size:20px;">Contrast</span>
-                                        <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
-                                    </div>
-                                    <div style="display:grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 20px">
+                                    <fieldset>
+                                        <div style="display: flex; align-items: center; gap:10px;">
+                                            <input type="file" id="file-input" accept="image/" style="display: none;">
+                                            <input type="text" id="file-name-display" readonly placeholder="No file selected">
+                                            <button onclick="document.getElementById('file-input').click()">Browse...</button>
+                                        </div>
+                                        <div>
+                                            <span style="font-size:20px;">Width</span>
+                                            <input type="range" id="width" class="slider" min="40" max="200" value="200">
+                                        </div>
+                                        <div>
+                                            <span style="font-size:20px;">Contrast</span>
+                                            <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
+                                        </div>
+                                    </fieldset>
+                                    <fieldset style="display:grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 20px">
                                         <div style="display: grid; gap: 10px;" class="field-row">
                                             <label style="font-size:20px;" for="depth"><strong>Character Depth</strong></label>
-                                            <input style="width: fit-content" type="number" id="depth" min=1 max=6 value=4>
+                                            <input style="width: 90%" type="range" id="depth" min=1 max=6 value=4 step=1>
                                             <div style="display:flex; justify-content: left; gap: 20px;">
                                                 <button style="width:fit-content" py-click="run">Convert</button>
                                                 <button style="width:fit-content" onclick="navigator.clipboard.writeText(document.getElementById('ascii-output').textContent)">Copy</button>
@@ -67,7 +69,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </fieldset>
                                     <py-script src="static/python/image_to_ascii.py"></py-script>
                                     <div style="width: 100%; overflow: scroll; background-color: black;">
                                         <pre style="background-color: black; color: white" id="ascii-output">No image to show.</pre>

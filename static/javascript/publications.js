@@ -23,7 +23,7 @@ export async function loadPublications() {
 }
 
 function createPublication(pub) {
-    const wrapper = document.createElement("div");
+    const wrapper = document.createElement("fieldset");
     wrapper.className = "publication";
 
     const text = document.createElement("div");
@@ -32,7 +32,7 @@ function createPublication(pub) {
     const link = document.createElement("a");
     link.href = pub.Link
 
-    const title = document.createElement("h2");
+    const title = document.createElement("p");
     title.textContent = pub.Title;
 
     link.appendChild(title);

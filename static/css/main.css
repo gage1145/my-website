@@ -31,6 +31,10 @@ input[type="number"] {
     height: 30px;
 }
 
+select {
+    height: 30px;
+}
+
 label {
     font-size: 20px;
 }
@@ -78,7 +82,13 @@ code {
 }
 
 #left-sidebar {
+    display: inline-flex;
+    flex-direction: column;
     justify-self: end;
+
+    img {
+        max-width: 150px;
+    }
 }
 
 #center-bar {
@@ -88,7 +98,13 @@ code {
 }
 
 #right-sidebar {
+    display:inline-flex;
+    flex-direction: column;
     justify-self: start;
+
+    img {
+        max-width: 150px;
+    }
 }
 
 summary {
@@ -156,6 +172,46 @@ summary {
   border-left: 1px solid #000;
   box-shadow: inset 1px 1px grey;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAG0lEQVQYV2M8cODAf3t7ewbG/////z948CADAFuqCj64BtLKAAAAAElFTkSuQmCC);
+}
+
+/* Projects */
+
+#project-text-container {
+    p {
+        font-size: 20px;
+    }
+}
+
+/* Pubs */
+
+#resume-contact {
+    display: flex;
+
+    justify-content: space-evenly;
+}
+
+#publications {
+    display: grid;
+    gap: 10px;
+}
+
+/* Resume */
+
+#resume {
+    font-size: 14px;
+}
+
+#experience-list {
+    display: grid;
+    margin-top: 5px;
+    list-style: none;
+    gap: 10px;
+}
+
+#skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style: none
 }
 
 /* Utils */
