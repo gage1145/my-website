@@ -61,7 +61,7 @@ h1, h2, h3, h4 {
 }
 
 /* Mobile Styling */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
 
     body {
         padding: 0px;
@@ -72,11 +72,13 @@ h1, h2, h3, h4 {
         font-size: 1.1em;
     }
     
-
     #body-3-col {
-        display: grid;
-        grid-template-columns: 1fr;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
         justify-content: center;
+        align-items: center;
 
         #left-sidebar, #right-sidebar {
             display: none;
@@ -84,9 +86,10 @@ h1, h2, h3, h4 {
 
         #center-bar {
             position: absolute;
-            left: 2.5vw;
-            top: 2.5vw;
             width: 95vw; 
+            top: 2.5vw;
+            left: 2.5vw;
+            max-width: 100%;
         }
     }
     
@@ -110,7 +113,6 @@ code {
     gap: 10px;
     align-items: start;
     justify-content: center;
-    max-width: 1000px;
     margin: 0;
     padding: 0;
 }
@@ -128,7 +130,8 @@ code {
 #center-bar {
     display: flex;
     flex-direction: column;
-    min-width: 575px;
+    min-width: 600px;
+    max-width: 800px;
 }
 
 #right-sidebar {
