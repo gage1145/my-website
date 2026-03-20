@@ -4,7 +4,8 @@ import { includeHTML } from "./static/javascript/includeHTML.js";
 import { loadProjects } from "./static/javascript/projects.js";
 import { loadResume } from "./static/javascript/resume.js";
 import { loadPublications } from "./static/javascript/publications.js";
-import { toggleSidenav } from "./static/javascript/toggle_sidenav.js";
+import { initImageToAscii } from "./static/javascript/image_to_ascii.js";
+// import { toggleSidenav } from "./static/javascript/toggle_sidenav.js";
 
 function setActiveNavTab() {
     const path = window.location.pathname;
@@ -51,6 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const fileName = this.files[0] ? this.files[0].name : 'No file selected';
         document.getElementById('file-name-display').value = fileName;
     });
+
+    const imageToAscii = document.getElementById("image-to-ascii");
+    if (imageToAscii) {
+        initImageToAscii();
+    }
 
     // const hamburgerMenu = document.getElementById("hamburger");
     // hamburgerMenu.addEventListener("click", () => {

@@ -86,7 +86,10 @@ async def run(event=None):
         edge_behavior=edge_behavior
     )
 
-    document.getElementById("ascii-output").textContent = ascii_img
+    pre = document.getElementById("ascii-output")
+    pre.textContent = ascii_img
+    font_size = int(pre.parentElement.clientWidth / (0.62 * width))
+    pre.style.fontSize = f"{font_size}px"
 
 
 async def _run_if_file(event=None):

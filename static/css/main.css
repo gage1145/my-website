@@ -253,9 +253,17 @@ summary {
     width: 100%;
 }
 
+#ascii-char-params {
+    display:grid; 
+    grid-template-columns: 1fr 1fr; 
+    align-items: start; 
+    gap: 20px
+}
+
 #ascii-output {
-    font-family: monospace;
-    font-size: clamp(0.01rem, 1vw, 0.7rem)
+    font-family: "Courier New", Courier, monospace;
+    max-width: 100%;
+    max-height: 90vw;
 }
 
 /* Music Page */

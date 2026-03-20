@@ -31,7 +31,10 @@
                         <div class="window-body">
                             <div w3-include-html="templates/utilities_navbar.html"></div>
                             <div class="window" role="tabpanel">
-                                <div class="window-body" style="display: grid; gap: 10px;">
+                                <div id="image-to-ascii" class="window-body" style="display: grid; gap: 10px;">
+                                    <div style="width: 100%; overflow: hidden; background-color: black;">
+                                        <pre style="background-color: black; color: white" id="ascii-output">No image to show.</pre>
+                                    </div>
                                     <fieldset>
                                         <div style="display: flex; align-items: center; gap:10px;">
                                             <input type="file" id="file-input" accept="image/" style="display: none;">
@@ -39,17 +42,17 @@
                                             <button onclick="document.getElementById('file-input').click()">Browse...</button>
                                         </div>
                                         <div>
-                                            <span style="font-size:20px;">Width</span>
+                                            <span style="font-size:20px;"><val id="width-value"></val></span>
                                             <input type="range" id="width" class="slider" min="40" max="200" value="200">
                                         </div>
                                         <div>
-                                            <span style="font-size:20px;">Contrast</span>
+                                            <span style="font-size:20px;"><val id="contrast-value"></val></span>
                                             <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
                                         </div>
                                     </fieldset>
-                                    <fieldset style="display:grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 20px">
+                                    <fieldset id="ascii-char-params">
                                         <div style="display: grid; gap: 10px;" class="field-row">
-                                            <label style="font-size:20px;" for="depth"><strong>Character Depth</strong></label>
+                                            <label style="font-size:25px;" for="depth"><val id="depth-value"></val></label>
                                             <input style="width: 90%" type="range" id="depth" min=1 max=6 value=4 step=1>
                                             <div style="display:flex; justify-content: left; gap: 20px;">
                                                 <button style="width:fit-content" py-click="run">Convert</button>
@@ -57,23 +60,20 @@
                                             </div>
                                         </div>
                                         <div style="display: grid; gap: 20px;">
-                                            <strong style="font-size: 20px;">Edge Behavior</strong>
+                                            <span style="font-size: 25px;">Edge Behavior</span>
                                             <div style="display: grid; grid-template-columns: 2fr 1fr; gap:10px;">
                                                 <div style="display: grid; gap: 20px;" class="field-row">
                                                     <input type="radio" id="edge-none" name="edge-choice" checked>
-                                                    <label for="edge-none">None</label>
+                                                    <label style="font-size: 25px;" for="edge-none">None</label>
                                                     <input type="radio" id="edge-detect" name="edge-choice">
-                                                    <label for="edge-detect">Detect</label>
+                                                    <label style="font-size: 25px;" for="edge-detect">Detect</label>
                                                     <input type="radio" id="edge-enhance" name="edge-choice">
-                                                    <label for="edge-enhance">Enhance</label>
+                                                    <label style="font-size: 25px;" for="edge-enhance">Enhance</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </fieldset>
                                     <py-script src="static/python/image_to_ascii.py"></py-script>
-                                    <div style="width: 100%; overflow: scroll; background-color: black;">
-                                        <pre style="background-color: black; color: white" id="ascii-output">No image to show.</pre>
-                                    </div>
                                     <span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
 This tool is written in Python and uses several methods of image manipulation using the pillow library.
 
