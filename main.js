@@ -1,3 +1,4 @@
+import { give_head } from "./static/javascript/give_head.js";
 import { initOscilloscope } from "./static/javascript/oscilloscope.js";
 import AudioPlayer from "./static/javascript/audio_player.js";
 import { includeHTML } from "./static/javascript/includeHTML.js";
@@ -21,6 +22,10 @@ function setActiveNavTab() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    // Load Head Elements
+    give_head();
+    
     includeHTML().then(setActiveNavTab);
 
     const musicPlayer = document.getElementById("music-player");

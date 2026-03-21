@@ -29,6 +29,7 @@ function createProjectElement(project) {
 
     const link = document.createElement("a");
     link.href = project.link;
+    link.style = "display: inline-block; width: fit-content;";
 
     const title = document.createElement("h3");
     title.textContent = project.title;
@@ -37,6 +38,7 @@ function createProjectElement(project) {
 
     const description = document.createElement("p");
     description.textContent = project.description;
+    description.style = "margin-top: 0;"
 
     textContainer.appendChild(link);
     textContainer.appendChild(description);

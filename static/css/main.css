@@ -1,3 +1,7 @@
+* {
+    font-size: 16px;
+}
+
 body {
     min-height: 100vh;
     padding: 16px 16px 40px;
@@ -9,7 +13,7 @@ body {
 
 [role=tab] {
     a {
-        font-size: 16px;
+        font-size: 1.2rem;
     }
 }
 
@@ -48,57 +52,18 @@ button {
     align-items: center;
 }
 
-p {
-    font-size: 14px;
-}
-
-span {
-    font-size: 14px;
-}
-
 h1, h2, h3, h4 {
-    margin: 15px 0px;
-}
-
-/* Mobile Styling */
-@media (max-width: 900px) {
-
-    body {
-        padding: 0px;
-        margin: 0px;
-    }
-
-    #body-3-col * {
-        font-size: 1.1em;
-    }
-    
-    #body-3-col {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-
-        #left-sidebar, #right-sidebar {
-            display: none;
-        }
-
-        #center-bar {
-            position: absolute;
-            width: 95vw; 
-            top: 2.5vw;
-            left: 2.5vw;
-            max-width: 100%;
-        }
-    }
-    
+    margin: 10px 0px;
 }
 
 code {
     background-color: #dfdfdf;
     color:#520404;
     font-family: monospace;
+}
+
+.title-bar-text {
+    font-size: 12px;
 }
 
 #mommy-container {
@@ -108,6 +73,7 @@ code {
 }
 
 #body-3-col {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
     gap: 10px;
@@ -128,8 +94,10 @@ code {
 }
 
 #center-bar {
+    position: relative;
     display: flex;
     flex-direction: column;
+    gap: 10px;
     min-width: 600px;
     max-width: 800px;
 }
@@ -153,7 +121,6 @@ summary {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 14px;
 }
 
 .start-bar {
@@ -234,8 +201,8 @@ summary {
 
 /* Resume */
 
-#resume {
-    font-size: 14px;
+#resume-contact {
+    flex-wrap: wrap;
 }
 
 #experience-list {
@@ -294,13 +261,14 @@ summary {
     display:grid; 
     grid-template-columns: 1fr 1fr; 
     align-items: start; 
-    gap: 20px
+    gap: 20px;
 }
 
 #ascii-output {
     font-family: "Courier New", Courier, monospace;
     max-width: 100%;
     max-height: 90vw;
+    overflow: scroll;
 }
 
 /* Music Page */
@@ -334,4 +302,39 @@ summary {
         display: block;
         font-size: 20px;
     }
+}
+
+
+
+
+/* Mobile Styling */
+@media screen and (max-width: 768px) {
+
+    * {
+        font-size: 20px;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    
+    #body-3-col {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+
+        #left-sidebar, #right-sidebar {
+            display: none;
+        }
+
+    #center-bar {
+        width: 95%;
+        margin: 10px auto 0 auto;
+        min-width: 450;
+    }
+    
 }
