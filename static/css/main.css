@@ -308,7 +308,7 @@ summary {
 
 
 /* Mobile Styling */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
 
     * {
         font-size: 16px;
@@ -340,6 +340,14 @@ summary {
     }
 
     #nav-link {
-        font-size: 0.95rem;
+        font-size: clamp(0.5rem, calc(0.4rem + 2.4vw), 4rem);
+    }
+
+    #tool-link {
+        grid-template-columns: 3.5fr 4.5fr;
+    }
+
+    #utilities-navbar {
+        font-size: clamp(0.4rem, calc(0.4rem + 2.4vw), 4rem);
     }
 }
