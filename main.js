@@ -53,10 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
         loadPublications();
     }
 
-    document.getElementById('file-input').addEventListener('change', function() {
-        const fileName = this.files[0] ? this.files[0].name : 'No file selected';
-        document.getElementById('file-name-display').value = fileName;
-    });
+    const fileInput = document.getElementById('file-input')
+    if (fileInput) {
+        fileInput.addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'No file selected';
+            document.getElementById('file-name-display').value = fileName;
+        });
+    }
 
     const imageToAscii = document.getElementById("image-to-ascii");
     if (imageToAscii) {
