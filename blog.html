@@ -1,0 +1,41 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <link rel="stylesheet" href="static/css/main.css" type="text/css">
+    <script type="module" src="main.js" defer></script>
+</head>
+<body>
+    <div id="mommy-container">
+        <div id="body-3-col">
+            <div id="left-sidebar"></div>
+            <div class="window" id="center-bar">
+                <div w3-include-html="templates/title_bar.html"></div>
+                <div class="window-body">
+                    <h3>BLOG</h3>
+                </div>
+                <div w3-include-html="templates/navbar.html"></div>
+                <div class="window">
+                    <div class="window-body">
+                        {% for post in site.posts %}
+                        <div class="blog-post-entry">
+                            <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+                            <small>{{ post.date | date: "%B %-d, %Y" }}</small>
+                            {% if post.excerpt %}<p>{{ post.excerpt }}</p>{% endif %}
+                        </div>
+                        {% else %}
+                        <p>No posts yet.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div id="right-sidebar"></div>
+            <div w3-include-html="templates/start_bar.html"></div>
+        </div>
+    </div>
+</body>
+</html>

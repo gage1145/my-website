@@ -4,7 +4,8 @@
       "WebSearch",
       "WebFetch(domain:gifcities.org)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(git -C /c/Users/gage1/Documents/MyWebsite log --all --graph --oneline)"
     ]
   }
 }

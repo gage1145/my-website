@@ -307,6 +307,33 @@ summary {
 
 
 
+/* Blog */
+
+.blog-post-entry {
+    padding: 10px 0;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+.blog-post-entry:last-child {
+    border-bottom: none;
+}
+
+#post-body {
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin: 10px 0;
+    }
+
+    h2, h3, h4 {
+        margin: 16px 0 8px;
+    }
+
+    hr {
+        margin: 10px 0;
+    }
+}
+
 /* Mobile Styling */
 @media screen and (max-width: 768px) {
 

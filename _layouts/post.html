@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>{{ page.title }} - Gage Rowden</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <link rel="stylesheet" href="{{ "/static/css/main.css" | relative_url }}" type="text/css">
+</head>
+<body>
+    <div id="mommy-container">
+        <div id="body-3-col">
+            <div id="left-sidebar"></div>
+            <div class="window" id="center-bar">
+                {% include title_bar.html %}
+                <div class="window-body">
+                    <h3>BLOG</h3>
+                </div>
+                {% include navbar.html %}
+                <div class="window">
+                    <div class="window-body" id="post-body">
+                        <h2>{{ page.title }}</h2>
+                        <p><small>{{ page.date | date: "%B %-d, %Y" }}</small></p>
+                        <hr>
+                        {{ content }}
+                    </div>
+                </div>
+            </div>
+            <div id="right-sidebar"></div>
+            {% include start_bar.html %}
+        </div>
+    </div>
+</body>
+</html>
