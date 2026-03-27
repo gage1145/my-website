@@ -88,7 +88,7 @@ async def run(event=None):
 
     pre = document.getElementById("ascii-output")
     pre.textContent = ascii_img
-    font_size = int(pre.parentElement.clientWidth / (0.62 * width))
+    font_size = pre.parentElement.clientWidth // (0.62 * width)
     pre.style.fontSize = f"{font_size}px"
 
 
