@@ -202,7 +202,7 @@ function updateColorLabels() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(parentElement.clientWidth, parentElement.clientWidth);
 }
 
 colorModeInput.addEventListener("input", () => updateColorLabels());

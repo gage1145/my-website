@@ -246,8 +246,8 @@ summary {
 }
 
 #sketch {
-    height: 500px;
     width: 100%;
+    aspect-ratio: 1 / 1;
 }
 
 #mandelbrot-param {

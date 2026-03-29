@@ -13,93 +13,108 @@
     <div id="mommy-container">
         <div id="body-3-col">
             <div id="left-sidebar">
-                <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/6TGUQQTBCOTCMQRHQCMNH4AVSCAM5VRG.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/2MMEFBG4VMIPPEURNJY5HD4STSPT5TD5.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/7WIGENTRCFXSH5TO4DN25X5W5L6PV53T.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/D57NZ44VG7NXGEXDUGVSQ7C2PFE5JBQL.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/IIV2ZD6B2VLCVUZSJYHE3B5AYQLOIQNF.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/ZYNJVS4WTXV5Z5MRUZS7FM6ZUKZPO73L.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/A7DQSXD72PUZLU2HRXUHALF4SKU3AWJJ.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/WKP45BMBI3SVWLGZWS5EKEKLVPOD4RXO.gif" alt="">
             </div>
-            <div id="center-bar">
-                <div class="window">
-                    <div w3-include-html="templates/title_bar.html"></div>
-                    <div class="window-body">
-                        <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
-                            <h3>Mandelbrot Explorer</h3>
-                        </div>
-                    </div>
-                    <menu role="tablist" w3-include-html="templates/navbar.html"></menu>
+            <div style="display:flex; flex-direction: column; gap:10px;">
+                <div id="center-bar">
                     <div class="window">
+                        <div w3-include-html="templates/title_bar.html"></div>
                         <div class="window-body">
-                            <menu role="tablist" id="utilities-navbar" w3-include-html="templates/utilities_navbar.html"></menu>
-                            <div class="window">
-                                <div class="window-body">
-                                    <div id="sketch" style="width: 100%; height: 500px;"></div>
-                                    <div class="window-body" style="display: grid; gap: 20px;">
-                                        <fieldset style="display: flex; align-items: center; gap: 20px;">
-                                            <div id="mandelbrot-param">
-                                                <label style="font-size: 20px;" for="iterations">Max Iter</label>
-                                                <select name="iterations" id="iterations">
-                                                    <option value="10">10</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100" selected>100</option>
-                                                    <option value="250">250</option>
-                                                    <option value="500">500</option>
-                                                    <option value="750">750</option>
-                                                    <option value="1000">1,000</option>
-                                                    <option value="2500">2,500</option>
-                                                    <option value="5000">5,000</option>
-                                                    <option value="7500">7,500</option>
-                                                    <option value="10000">10,000</option>
-                                                </select>
-                                            </div>
-                                            <div id="mandelbrot-param">
-                                                <label for="color-mode">Color Mode</label>
-                                                <select name="color-mode" id="color-mode">
-                                                    <option value="HSL">HSL</option>
-                                                    <option value="RGB">RGB</option>
-                                                </select>
-                                            </div>
-                                                <button id="save">Save Image</button>
-                                        </fieldset>
-                                        <fieldset style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                            <div>
+                            <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
+                                <h3>Mandelbrot Explorer</h3>
+                            </div>
+                        </div>
+                        <menu role="tablist" w3-include-html="templates/navbar.html"></menu>
+                        <div class="window">
+                            <div class="window-body">
+                                <menu role="tablist" id="utilities-navbar" w3-include-html="templates/utilities_navbar.html"></menu>
+                                <div class="window">
+                                    <div class="window-body">
+                                        <div id="sketch"></div>
+                                        <div class="window-body" style="display: grid; gap: 20px;">
+                                            <fieldset style="display: flex; align-items: center; gap: 20px;">
                                                 <div id="mandelbrot-param">
-                                                    <label for="zoom">Zoom</label>
-                                                    <input type="range" name="zoom" id="zoom" class="slider" min=0.5 max=1000 step=0.0001 value=0.5>
+                                                    <label style="font-size: 20px;" for="iterations">Max Iter</label>
+                                                    <select name="iterations" id="iterations">
+                                                        <option value="10">10</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100" selected>100</option>
+                                                        <option value="250">250</option>
+                                                        <option value="500">500</option>
+                                                        <option value="750">750</option>
+                                                        <option value="1000">1,000</option>
+                                                        <option value="2500">2,500</option>
+                                                        <option value="5000">5,000</option>
+                                                        <option value="7500">7,500</option>
+                                                        <option value="10000">10,000</option>
+                                                    </select>
                                                 </div>
                                                 <div id="mandelbrot-param">
-                                                    <label for="palette-cycles">Color Cycles</label>
-                                                    <input type="range" name="palette-cycles" id="palette-cycles" class="slider" min=1 max=100 step=1 value=6>
+                                                    <label for="color-mode">Color Mode</label>
+                                                    <select name="color-mode" id="color-mode">
+                                                        <option value="HSL">HSL</option>
+                                                        <option value="RGB">RGB</option>
+                                                    </select>
                                                 </div>
-                                                <div id="mandelbrot-param">
-                                                    <label for="color-scale">Color Scale</label>
-                                                    <input type="range" name="color-scale" id="color-scale" class="slider" min=0 max=1 step=0.001 value=0.1>
+                                                    <button id="save">Save Image</button>
+                                            </fieldset>
+                                            <fieldset style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                                <div>
+                                                    <div id="mandelbrot-param">
+                                                        <label for="zoom">Zoom</label>
+                                                        <input type="range" name="zoom" id="zoom" class="slider" min=0.5 max=1000 step=0.0001 value=0.5>
+                                                    </div>
+                                                    <div id="mandelbrot-param">
+                                                        <label for="palette-cycles">Color Cycles</label>
+                                                        <input type="range" name="palette-cycles" id="palette-cycles" class="slider" min=1 max=100 step=1 value=6>
+                                                    </div>
+                                                    <div id="mandelbrot-param">
+                                                        <label for="color-scale">Color Scale</label>
+                                                        <input type="range" name="color-scale" id="color-scale" class="slider" min=0 max=1 step=0.001 value=0.1>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div>
-                                                <div id="mandelbrot-param">
-                                                    <label for="color1" id="color1-label"></label>
-                                                    <input type="range" name="color1" id="color1" class="slider" min=0 max=100 step=0.1 value=80>
+                                                <div>
+                                                    <div id="mandelbrot-param">
+                                                        <label for="color1" id="color1-label"></label>
+                                                        <input type="range" name="color1" id="color1" class="slider" min=0 max=100 step=0.1 value=80>
+                                                    </div>
+                                                    <div id="mandelbrot-param">
+                                                        <label for="color2" id="color2-label"></label>
+                                                        <input type="range" name="color2" id="color2" class="slider" min=0 max=100 step=0.1 value=20>
+                                                    </div>
+                                                    <div id="mandelbrot-param">
+                                                        <label for="color3" id="color3-label"></label>
+                                                        <input type="range" name="color3" id="color3" class="slider" min=0 max=100 step=0.1 value=100>
+                                                    </div>
                                                 </div>
-                                                <div id="mandelbrot-param">
-                                                    <label for="color2" id="color2-label"></label>
-                                                    <input type="range" name="color2" id="color2" class="slider" min=0 max=100 step=0.1 value=20>
-                                                </div>
-                                                <div id="mandelbrot-param">
-                                                    <label for="color3" id="color3-label"></label>
-                                                    <input type="range" name="color3" id="color3" class="slider" min=0 max=100 step=0.1 value=100>
-                                                </div>
-                                            </div>
-                                        </fieldset>
+                                            </fieldset>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <img src="https://blob.gifcities.org/gifcities/NTSEFXNNJ5TKJGALENGBFK2AO5HGJTBE.gif" alt="">
             </div>
             <div id="right-sidebar">
-                <img src="https://blob.gifcities.org/gifcities/7KJSGRPZC4ACA2GJ4GKS47K6FELZ6536.gif" alt="">
-                <img src="https://blob.gifcities.org/gifcities/6DRVVONRIYEZIXD5F6GQL4S5MTG6DFWY.gif" alt="">
-                <img src="https://blob.gifcities.org/gifcities/JCHFAUQC5KLUBIIUI7QR4AL4YIXQNDWL.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/SDVVJT2IQSFQ4BEZHNTWF5MIIF3RG4QK.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/V5OQEXICIQA5XRF5LKO4AWXJUMI6DK2M.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/3PLHCQZAUPN3DUWQ76DLRJEBCQJ4FW7H.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/OXZXP52ZSQ7PV3ZZ4JTRMWSTIIRPKJW3.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/2DJQNDN5DVHGIUZ5XDCJHEYOWXGTYCVD.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/FOSJJUBTHA5IAO6FG42DKLMXVDXWCUPP.gif" alt="">
+                <img src="https://blob.gifcities.org/gifcities/MDLFL6YYD7JGIG67TG4NA77S7H67MHQL.gif" alt="">
             </div>
         </div>
+        <div w3-include-html="templates/start_bar.html"></div>
     </div>
 </body>
 </html>
