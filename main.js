@@ -7,20 +7,8 @@ import { loadResume } from "./static/javascript/resume.js";
 import { loadPublications } from "./static/javascript/publications.js";
 import { initImageToAscii } from "./static/javascript/image_to_ascii.js";
 import { initStartMenu } from "./static/javascript/start_menu.js";
-// import { toggleSidenav } from "./static/javascript/toggle_sidenav.js";
+import { setActiveNavTab } from "./static/javascript/set_active_tab.js";
 
-function setActiveNavTab() {
-    const path = window.location.pathname;
-    const tabs = document.querySelectorAll('menu[role="tablist"] li[role="tab"]');
-    tabs.forEach(tab => {
-        const href = tab.querySelector("a")?.getAttribute("href");
-        const isHome = (href === "./" || href === "/") &&
-            (path === "/" || path === "" || path.endsWith("/index.html"));
-        const isUtilities = href === "utilities.html" && path.includes("utilities");
-        const isMatch = !isHome && !isUtilities && href && path.endsWith(href);
-        tab.setAttribute("aria-selected", (isHome || isUtilities || isMatch) ? "true" : "false");
-    });
-}
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -69,9 +57,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if (imageToAscii) {
         initImageToAscii();
     }
-
-    // const hamburgerMenu = document.getElementById("hamburger");
-    // hamburgerMenu.addEventListener("click", () => {
-    //     toggleSidenav();
-    // })
 });
