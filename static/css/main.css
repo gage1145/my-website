@@ -87,6 +87,7 @@ code {
     display: inline-flex;
     flex-direction: column;
     justify-self: end;
+    opacity: 0;
 
     img {
         max-width: 150px;
@@ -106,6 +107,7 @@ code {
     display:inline-flex;
     flex-direction: column;
     justify-self: start;
+    opacity: 0;
 
     img {
         max-width: 150px;

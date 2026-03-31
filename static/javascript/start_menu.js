@@ -44,8 +44,8 @@ function initWallpaper() {
     const patternGrid = document.getElementById('pattern-swatches');
 
     const saved = JSON.parse(localStorage.getItem('wallpaper') || 'null');
-    let selectedColor = saved?.color ?? '#008080';
-    let selectedPattern = saved?.pattern ?? null;
+    let selectedColor = saved?.color ?? COLORS[0].value;
+    let selectedPattern = saved?.pattern ?? PATTERNS[0].value;
 
     applyBackground(selectedColor, selectedPattern);
 
@@ -179,12 +179,40 @@ function initScreensaver() {
     resetTimer();
 }
 
+function initAds() {
+    const adsVisible = localStorage.getItem('ads-visible');
+    const adsIcon = document.createElement('img');
+    const adsBtn = document.getElementById('ads-btn');
+    const leftads = document.getElementById('left-sidebar');
+    const rightads = document.getElementById('right-sidebar');
+    adsIcon.src = 'https://win98icons.alexmeub.com/icons/png/overlay_share-2.png';
+
+    if (adsVisible === null) {
+        leftads.style.opacity = '1';
+        rightads.style.opacity = '1';
+        adsBtn.innerHTML = adsIcon.outerHTML + 'Hide Ads';
+    } else if (adsVisible === 'true') {
+        leftads.style.opacity = '1';
+        rightads.style.opacity = '1';
+        adsBtn.innerHTML = adsIcon.outerHTML + 'Hide Ads';
+    } else {
+        leftads.style.opacity = '0';
+        rightads.style.opacity = '0';
+        adsBtn.innerHTML = adsIcon.outerHTML + 'Show Ads';
+    }
+}
+
 function toggleAds() {
     const leftads = document.getElementById('left-sidebar');
     const rightads = document.getElementById('right-sidebar');
-    const hidden = leftads.style.display === 'none';
-    leftads.style.display = hidden ? '' : 'none';
-    rightads.style.display = hidden ? '' : 'none';
+    const hidden = leftads.style.opacity === '0';
+    const adsBtn = document.getElementById('ads-btn');
+    const adsIcon = document.createElement('img');
+    adsIcon.src = 'https://win98icons.alexmeub.com/icons/png/overlay_share-2.png';
+    adsBtn.innerHTML = adsIcon.outerHTML + (hidden ? 'Hide Ads' : 'Show Ads');
+    leftads.style.opacity = hidden ? '1' : '0';
+    rightads.style.opacity = hidden ? '1' : '0';
+    localStorage.setItem('ads-visible', hidden ? 'true' : 'false');
 }
 
 export function initStartMenu() {
@@ -246,4 +274,5 @@ export function initStartMenu() {
     initClock();
     initWallpaper();
     initScreensaver();
+    initAds();
 }
