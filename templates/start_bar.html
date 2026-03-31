@@ -1,5 +1,70 @@
 <div class="start-bar">
-    <button class="start-button">
+
+    <!-- Start Menu -->
+    <div id="start-menu" class="start-menu">
+        <div class="start-menu-sidebar">
+            <span class="start-menu-sidebar-text">Windows 98</span>
+        </div>
+        <div class="start-menu-items">
+            <a class="start-menu-item" href="/"><img src="https://win98icons.alexmeub.com/icons/png/computer-4.png" alt="">Home</a>
+            <a class="start-menu-item" href="/projects/"><img src="https://win98icons.alexmeub.com/icons/png/internet_options-0.png" alt="">Projects</a>
+            <a class="start-menu-item" href="/resume/"><img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">Resume</a>
+            <a class="start-menu-item" href="/publications/"><img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">Publications</a>
+            <a class="start-menu-item" href="/music/"><img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">Music</a>
+            <div class="start-menu-item has-submenu">
+                <img src="https://win98icons.alexmeub.com/icons/png/directory_admin_tools-4.png" alt="">Utilities
+                <div class="start-menu-submenu">
+                    <a class="start-menu-item" href="/utilities/mandelbrot/">Mandelbrot</a>
+                    <a class="start-menu-item" href="/utilities/harmonograph/">Harmonograph</a>
+                    <a class="start-menu-item" href="/utilities/image_to_ascii/">Image to ASCII</a>
+                    <a class="start-menu-item" href="/utilities/bmg_format/">BMG Format</a>
+                    <a class="start-menu-item" href="/utilities/l5r_dice/">L5R Dice</a>
+                </div>
+            </div>
+            <hr class="start-menu-separator">
+            <button class="start-menu-item" id="shutdown-btn">
+                <img src="https://win98icons.alexmeub.com/icons/png/standby_monitor_moon-4.png" alt="">Shut Down...
+            </button>
+        </div>
+    </div>
+
+    <!-- Shutdown Dialog -->
+    <div id="shutdown-overlay" class="shutdown-overlay">
+        <div class="window shutdown-dialog">
+            <div class="title-bar">
+                <div class="title-bar-text">Shut Down Windows</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Close" id="shutdown-close"></button>
+                </div>
+            </div>
+            <div class="window-body shutdown-body">
+                <p>What do you want the computer to do?</p>
+                <div class="field-row">
+                    <input type="radio" id="sd-shutdown" name="sd-choice" value="shutdown" checked>
+                    <label for="sd-shutdown">Shut down</label>
+                </div>
+                <div class="field-row">
+                    <input type="radio" id="sd-restart" name="sd-choice" value="restart">
+                    <label for="sd-restart">Restart the computer</label>
+                </div>
+                <div class="shutdown-buttons">
+                    <button id="shutdown-ok">OK</button>
+                    <button id="shutdown-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Safe to Turn Off Screen -->
+    <div id="safe-to-off">
+        <div>
+            <p>It is now safe to turn off<br>your computer.</p>
+            <p style="font-size:11px">(Click anywhere to continue)</p>
+        </div>
+    </div>
+
+    <!-- Start Button -->
+    <button class="start-button" id="start-button">
         <span class="win98-logo">
             <span class="win98-logo-pane red"></span>
             <span class="win98-logo-pane green"></span>
@@ -8,4 +73,5 @@
         </span>
         <strong>Start</strong>
     </button>
+
 </div>

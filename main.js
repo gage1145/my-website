@@ -6,6 +6,7 @@ import { loadProjects } from "./static/javascript/projects.js";
 import { loadResume } from "./static/javascript/resume.js";
 import { loadPublications } from "./static/javascript/publications.js";
 import { initImageToAscii } from "./static/javascript/image_to_ascii.js";
+import { initStartMenu } from "./static/javascript/start_menu.js";
 // import { toggleSidenav } from "./static/javascript/toggle_sidenav.js";
 
 function setActiveNavTab() {
@@ -26,7 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Load Head Elements
     give_head();
     
-    includeHTML().then(setActiveNavTab);
+    includeHTML().then(() => {
+        setActiveNavTab();
+        initStartMenu();
+    });
 
     const musicPlayer = document.getElementById("music-player");
     if (musicPlayer) {
