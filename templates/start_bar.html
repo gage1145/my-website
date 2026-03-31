@@ -21,6 +21,17 @@
                     <a class="start-menu-item" href="/utilities/l5r_dice/">L5R Dice</a>
                 </div>
             </div>
+            <div class="start-menu-item has-submenu">
+                <img src="https://win98icons.alexmeub.com/icons/png/paint_file-4.png" alt="">Settings
+                <div class="start-menu-submenu">
+                    <button class="start-menu-item" id="wallpaper-btn">
+                        <img src="https://win98icons.alexmeub.com/icons/png/display_properties-0.png" alt="">Change Wallpaper...
+                    </button>
+                    <button class="start-menu-item" id="ads-btn">
+                        <img src="https://win98icons.alexmeub.com/icons/png/overlay_share-2.png" alt="">Advertisements...
+                    </button>
+                </div>
+            </div>
             <hr class="start-menu-separator">
             <button class="start-menu-item" id="shutdown-btn">
                 <img src="https://win98icons.alexmeub.com/icons/png/standby_monitor_moon-4.png" alt="">Shut Down...
@@ -55,6 +66,43 @@
         </div>
     </div>
 
+    <!-- Wallpaper Dialog -->
+    <div id="wallpaper-overlay" class="wallpaper-overlay">
+        <div class="window wallpaper-dialog">
+            <div class="title-bar">
+                <div class="title-bar-text">Display Properties</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Close" id="wallpaper-close"></button>
+                </div>
+            </div>
+            <div class="window-body wallpaper-body">
+                <p><strong>Color:</strong></p>
+                <div id="color-swatches" class="swatch-grid"></div>
+                <p><strong>Pattern:</strong></p>
+                <div id="pattern-swatches" class="swatch-grid"></div>
+                <div class="shutdown-buttons">
+                    <button id="wallpaper-ok">OK</button>
+                    <button id="wallpaper-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ads Dialog -->
+    <div id="ads-overlay" class="ads-overlay">
+        <div class="window ads-dialog">
+            <div class="title-bar">
+                <div class="title-bar-text">Advertisements</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Close" id="ads-close"></button>
+                </div>
+            </div>
+            <div class="window-body ads-body">
+                <p>Advertisements</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Safe to Turn Off Screen -->
     <div id="safe-to-off">
         <div>
@@ -63,15 +111,18 @@
         </div>
     </div>
 
+    <!-- Screensaver -->
+    <div id="screensaver" class="screensaver">
+        <canvas id="screensaver-canvas"></canvas>
+    </div>
+
     <!-- Start Button -->
     <button class="start-button" id="start-button">
-        <span class="win98-logo">
-            <span class="win98-logo-pane red"></span>
-            <span class="win98-logo-pane green"></span>
-            <span class="win98-logo-pane blue"></span>
-            <span class="win98-logo-pane yellow"></span>
-        </span>
+        <img style="height:90%" src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="">
         <strong>Start</strong>
     </button>
+
+    <!-- Taskbar Clock -->
+    <div id="taskbar-clock" class="taskbar-clock"></div>
 
 </div>

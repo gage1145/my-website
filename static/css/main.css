@@ -242,11 +242,20 @@ summary {
     box-sizing: border-box;
 }
 
+button.start-menu-item {
+    box-shadow: none;
+}
+
 .start-menu-item:hover,
 .start-menu-item:focus {
     background: #000080;
     color: #fff;
     outline: none;
+}
+
+button.start-menu-item:hover,
+button.start-menu-item:focus {
+    box-shadow: none;
 }
 
 .start-menu-item i {
@@ -345,6 +354,118 @@ summary {
 
 #safe-to-off.visible {
     display: flex;
+}
+
+/* Taskbar Clock */
+
+.taskbar-clock {
+    margin-left: auto;
+    padding: 0 8px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    border: 1px solid;
+    border-color: #808080 #fff #fff #808080;
+    white-space: nowrap;
+}
+
+/* Wallpaper Dialog */
+
+.wallpaper-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 20000;
+    align-items: center;
+    justify-content: center;
+}
+
+.wallpaper-overlay.open {
+    display: flex;
+}
+
+.wallpaper-dialog {
+    width: 340px;
+}
+
+.wallpaper-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+}
+
+.swatch-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.swatch {
+    width: 32px;
+    height: 32px;
+    border: 2px solid;
+    border-color: #808080 #fff #fff #808080;
+    cursor: default;
+    box-sizing: border-box;
+}
+
+.swatch.selected {
+    border-color: #000 #000 #000 #000;
+    box-shadow: 0 0 0 1px #000;
+}
+
+.swatch:hover {
+    border-color: #000080 #fff #fff #000080;
+}
+
+/* Ads Dialog */
+
+.ads-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 20000;
+    align-items: center;
+    justify-content: center;
+}
+
+.ads-overlay.open {
+    display: flex;
+}
+
+.ads-dialog {
+    width: 300px;
+}
+
+.ads-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+}
+
+/* Screensaver */
+
+.screensaver {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 40000;
+    cursor: none;
+    background: #000;
+}
+
+.screensaver.active {
+    display: block;
+}
+
+#screensaver-canvas {
+    width: 100%;
+    height: 100%;
 }
 
 /* Homepage */
