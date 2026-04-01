@@ -3,6 +3,7 @@
 }
 
 body {
+    position: relative;
     min-height: 100vh;
     padding: 16px 16px 40px;
     box-sizing: border-box;
@@ -63,6 +64,26 @@ code {
     font-family: monospace;
 }
 
+#shortcuts {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1;
+}
+
+.shortcut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: #000;
+    cursor: default;
+}
+
 .title-bar-text {
     font-size: 12px;
 }
@@ -82,6 +103,7 @@ code {
     justify-content: center;
     margin: 0;
     padding: 0;
+    z-index: 100;
 }
 
 #left-sidebar {
@@ -102,6 +124,7 @@ code {
     gap: 10px;
     min-width: 600px;
     max-width: 800px;
+    opacity: 100%;
 }
 
 #right-sidebar {
@@ -589,6 +612,42 @@ button.start-menu-item:focus {
 
 
 
+
+/* Taskbar Window Buttons */
+#taskbar-windows {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+    overflow: hidden;
+    padding: 0 4px;
+}
+
+.taskbar-window-btn {
+    font-size: 1rem;
+    padding: 2px 8px;
+    height: 22px;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.taskbar-window-btn:not(.active) {
+    box-shadow: inset -1px -1px #fff, inset 1px 1px #848484;
+}
+
+/* Maximized Window State */
+.window-maximized {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 28px;
+    width: 100vw;
+    z-index: 5000;
+    overflow: auto;
+}
 
 /* Mobile Styling */
 @media only screen and (max-width: 600px) {

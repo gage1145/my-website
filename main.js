@@ -7,17 +7,19 @@ import { loadResume } from "./static/javascript/resume.js";
 import { loadPublications } from "./static/javascript/publications.js";
 import { initImageToAscii } from "./static/javascript/image_to_ascii.js";
 import { initStartMenu } from "./static/javascript/start_menu.js";
+import { initMinMax } from "./static/javascript/min_max.js";
 import { setActiveNavTab } from "./static/javascript/set_active_tab.js";
-
+import { doubleClickToOpen } from "./static/javascript/double_click.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-
     // Load Head Elements
     give_head();
     
     includeHTML().then(() => {
         setActiveNavTab();
         initStartMenu();
+        doubleClickToOpen();
+        initMinMax();
     });
 
     const musicPlayer = document.getElementById("music-player");
