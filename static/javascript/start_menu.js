@@ -223,6 +223,14 @@ export function initStartMenu() {
     const okBtn = document.getElementById('shutdown-ok');
     const cancelBtn = document.getElementById('shutdown-cancel');
     const closeBtn = document.getElementById('shutdown-close');
+    const menuItems = menu.querySelectorAll('.start-menu-item');
+
+     menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            localStorage.setItem('window-closed', 'false');
+        });
+    });
+
 
     startBtn.addEventListener('click', (e) => {
         e.stopPropagation();
