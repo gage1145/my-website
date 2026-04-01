@@ -79,10 +79,14 @@ code {
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    font-family: inherit;
     text-decoration: none;
-    color: #000;
+    color: #fff;
     cursor: default;
     padding: 5px;
+    width: 60px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .title-bar-text {

@@ -12,7 +12,7 @@ export function doubleClickToOpen() {
             e.preventDefault();
             e.stopPropagation();
             clearShortcutHighlights();
-            shortcut.style.backgroundColor = '#000080';
+            shortcut.style.backgroundColor = 'rgba(0, 0, 255, 0.15)';
             shortcut.style.color = '#fff';
         });
         shortcut.addEventListener('dblclick', (e) => {
