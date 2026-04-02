@@ -185,33 +185,39 @@ function initAds() {
     const adsBtn = document.getElementById('ads-btn');
     const leftads = document.getElementById('left-sidebar');
     const rightads = document.getElementById('right-sidebar');
+    const threeCol = document.getElementById('body-3-col');
     adsIcon.src = 'https://win98icons.alexmeub.com/icons/png/overlay_share-2.png';
 
     if (adsVisible === null) {
-        leftads.style.opacity = '1';
-        rightads.style.opacity = '1';
+        leftads.style.display = 'inline-flex';
+        rightads.style.display = 'inline-flex';
+        threeCol.style.gridTemplateColumns = '1fr 4fr 1fr';
         adsBtn.innerHTML = adsIcon.outerHTML + 'Hide Ads';
     } else if (adsVisible === 'true') {
-        leftads.style.opacity = '1';
-        rightads.style.opacity = '1';
+        leftads.style.display = 'inline-flex';
+        rightads.style.display = 'inline-flex';
+        threeCol.style.gridTemplateColumns = '1fr 4fr 1fr';
         adsBtn.innerHTML = adsIcon.outerHTML + 'Hide Ads';
     } else {
-        leftads.style.opacity = '0';
-        rightads.style.opacity = '0';
+        leftads.style.display = 'none';
+        rightads.style.display = 'none';
+        threeCol.style.gridTemplateColumns = '1fr';
         adsBtn.innerHTML = adsIcon.outerHTML + 'Show Ads';
     }
 }
 
 function toggleAds() {
+    const threeCol = document.getElementById('body-3-col');
     const leftads = document.getElementById('left-sidebar');
     const rightads = document.getElementById('right-sidebar');
-    const hidden = leftads.style.opacity === '0';
+    const hidden = leftads.style.display === 'none';
     const adsBtn = document.getElementById('ads-btn');
     const adsIcon = document.createElement('img');
     adsIcon.src = 'https://win98icons.alexmeub.com/icons/png/overlay_share-2.png';
     adsBtn.innerHTML = adsIcon.outerHTML + (hidden ? 'Hide Ads' : 'Show Ads');
-    leftads.style.opacity = hidden ? '1' : '0';
-    rightads.style.opacity = hidden ? '1' : '0';
+    leftads.style.display = hidden ? 'inline-flex' : 'none';
+    rightads.style.display = hidden ? 'inline-flex' : 'none';
+    threeCol.style.gridTemplateColumns = hidden ? '1fr 4fr 1fr' : '1fr';
     localStorage.setItem('ads-visible', hidden ? 'true' : 'false');
 }
 

@@ -17,6 +17,7 @@ export function doubleClickToOpen() {
         });
         shortcut.addEventListener('dblclick', (e) => {
             e.preventDefault();
+            localStorage.setItem('window-closed', 'false');
             window.location.href = shortcut.href;
         });
     });
