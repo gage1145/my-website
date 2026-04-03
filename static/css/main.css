@@ -144,20 +144,26 @@ code {
     }
 }
 
+#banner-image {
+    max-width: 600px;
+    max-height: 100px;
+    align-self: center;
+    margin-bottom: 10px;
+}
+
 #center-bar {
     position: relative;
     display: flex;
     flex-direction: column;
     /* gap: 10px; */
     width: 600px;
-    max-height: 80vh;
+    max-height: 90vh;
 }
 
 #center-bar-body {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    max-width: 800px;
     overflow: hidden;
 }
 
