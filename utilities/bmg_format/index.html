@@ -18,37 +18,35 @@
             <div id="left-sidebar">
                 <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
             </div>
-            <div id="center-bar">
-                <div class="window">
-                    <div w3-include-html="templates/title_bar.html"></div>
-                    <div class="window-body">
-                        <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
-                            <h3>BMG CSV Formatter</h3>
-                            <div style="display:flex; justify-content: space-between; gap: 50px; align-items: bottom;">
-                                <img src="https://blob.gifcities.org/gifcities/526AP6Y3IX7IY3YMITVZ27KL3KXVCGB3.gif" alt="">
-                            </div>
+            <div class="window" id="center-bar">
+                <div w3-include-html="templates/title_bar.html"></div>
+                <div class="window-body" id="center-bar-body">
+                    <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
+                        <h3>BMG CSV Formatter</h3>
+                        <div style="display:flex; justify-content: space-between; gap: 50px; align-items: bottom;">
+                            <img src="https://blob.gifcities.org/gifcities/526AP6Y3IX7IY3YMITVZ27KL3KXVCGB3.gif" alt="">
                         </div>
-                        <menu role="tablist" w3-include-html="templates/navbar.html"></menu>
-                        <div class="window" role="tabpanel">
-                            <div class="window-body">
-                                <menu role="tablist" id="utilities-navbar" w3-include-html="templates/utilities_navbar.html"></menu>
-                                <div class="window">
-                                    <div class="window-body">
-                                        <p style="text-align: left; margin: 0 0 10px 0;">Welcome to the BMG CSV Formatter. This tool is used for converting a CSV file into a TXT file format that can be imported into a BMG FluoStar OMEGA plate reader control program. CSV files should be formatted like a 96-well plate. The first column should have the letters A-H, and the top row should have the numbers 1-12. Be sure to input a value for each well you are using even if there are duplicate entries.</p>
-                                        <div style="display: grid; gap: 10px;">
-                                            <div class="field-row" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-                                                <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-                                                    <input type="file" id="file-input" accept=".csv" style="display: none;">
-                                                    <input type="text" id="file-name-display" readonly placeholder="No file selected" style="width:fit-content">
-                                                    <button onclick="document.getElementById('file-input').click()">Browse...</button>
-                                                    <button py-click="run_bmg">Format</button>
-                                                </div>
+                    </div>
+                    <menu role="tablist" w3-include-html="templates/navbar.html"></menu>
+                    <div class="window content-window" role="tabpanel">
+                        <div class="window-body" id="content-window-body">
+                            <menu role="tablist" id="utilities-navbar" w3-include-html="templates/utilities_navbar.html"></menu>
+                            <div class="window">
+                                <div class="window-body">
+                                    <p style="text-align: left; margin: 0 0 10px 0;">Welcome to the BMG CSV Formatter. This tool is used for converting a CSV file into a TXT file format that can be imported into a BMG FluoStar OMEGA plate reader control program. CSV files should be formatted like a 96-well plate. The first column should have the letters A-H, and the top row should have the numbers 1-12. Be sure to input a value for each well you are using even if there are duplicate entries.</p>
+                                    <div style="display: grid; gap: 10px;">
+                                        <div class="field-row" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+                                            <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                                                <input type="file" id="file-input" accept=".csv" style="display: none;">
+                                                <input type="text" id="file-name-display" readonly placeholder="No file selected" style="width:fit-content">
+                                                <button onclick="document.getElementById('file-input').click()">Browse...</button>
+                                                <button py-click="run_bmg">Format</button>
                                             </div>
-                                            <pre id="bmg-preview" style="max-height: 400px; overflow: scroll;"></pre>
-                                            <button id="download-btn" disabled>Download TXT File</button>
                                         </div>
-                                        <py-script src="static/python/bmg_format.py"></py-script>
+                                        <pre id="bmg-preview" style="max-height: 400px; overflow: scroll;"></pre>
+                                        <button id="download-btn" disabled>Download TXT File</button>
                                     </div>
+                                    <py-script src="static/python/bmg_format.py"></py-script>
                                 </div>
                             </div>
                         </div>

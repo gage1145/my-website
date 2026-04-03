@@ -19,81 +19,80 @@
             <div id="left-sidebar">
                 <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
             </div>
-            <div style="position:relative;" id="center-bar">
-                <div class="window">
-                    <div w3-include-html="templates/title_bar.html"></div>
-                    <img style="position:absolute; right: 130px; top: 13px;" src="https://blob.gifcities.org/gifcities/EW454LBATWIVZPJCRS5XG3FF6YQBKB7T.gif" alt="">
-                    <img style="position:absolute; right: 0px;   top: 27px;" src="https://blob.gifcities.org/gifcities/2LO2AXWRABIUSHRWWSV3SDOBMVRGDIQA.gif" alt="">
-                    <div class="window-body">
-                        <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
-                            <h3>L5R Dice Roller</h3>
-                            <div style="display:flex; justify-content: space-between; gap: 50px; align-items: bottom;">
-                            </div>
+            <div class="window" id="center-bar">
+                <div w3-include-html="templates/title_bar.html"></div>
+                <img style="position:absolute; right: 130px; top: 13px;" src="https://blob.gifcities.org/gifcities/EW454LBATWIVZPJCRS5XG3FF6YQBKB7T.gif" alt="">
+                <img style="position:absolute; right: 0px;   top: 27px;" src="https://blob.gifcities.org/gifcities/2LO2AXWRABIUSHRWWSV3SDOBMVRGDIQA.gif" alt="">
+                <div class="window-body" id="center-bar-body">
+                    <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
+                        <h3>L5R Dice Roller</h3>
+                        <div style="display:flex; justify-content: space-between; gap: 50px; align-items: bottom;">
                         </div>
                     </div>
-                    <menu role="tablist" w3-include-html="templates/navbar.html"></menu>
-                    <div class="window">
-                        <div class="window-body">
-                            <menu role="tablist" id="utilities-navbar" w3-include-html="templates/utilities_navbar.html"></menu>
-                            <div class="window" style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
-                                <div class="window-body">
-                                    <span id="pyscript-loading" style="font-size: 20px; color: darkred">Loading...</span>
-                                    <div style="display:flex; gap: 30px; justify-content: space-around; text-align: center;">
-                                        <span id="empirical" style="font-size: 20px; font-weight: bold;"></span>
-                                        <span id="calculated" style="font-size: 20px; font-weight: bold;"></span>
-                                    </div>
-                                    <div class="status-field-border" id="fig" style="font-size: 20px; color: darkred; overflow: scroll;">Generating figure...</div>
-                                    <div style="display:grid; gap: 30px; grid-template-columns: 1fr 1fr; text-align: left;">
-                                        <span style="font-size: 30px;" id="first-roll"></span>
-                                        <span style="font-size: 30px;" id="first-keep"></span>
-                                        <span style="font-size: 30px;" id="bonuses"></span>
-                                        <span style="font-size: 30px;" id="total" style="color: red"></span>
-                                    </div>
-                                    <div style="display: flex; flex-direction: column; gap: 20px;">
-                                        <div id="roll-container" style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
-                                            <div style="display:flex; flex-direction: column; align-items: center;">
-                                                <label style="font-size: 20px;" for="dice-roll">Roll</label>
-                                                <select name="dice-roll" id="dice-roll" style="font-size:20px">
-                                                    <option value=1>Roll 1</option>
-                                                    <option value=2>Roll 2</option>
-                                                    <option value=3>Roll 3</option>
-                                                    <option value=4>Roll 4</option>
-                                                    <option value=5>Roll 5</option>
-                                                    <option value=6>Roll 6</option>
-                                                    <option value=7 selected>Roll 7</option>
-                                                    <option value=8>Roll 8</option>
-                                                    <option value=9>Roll 9</option>
-                                                    <option value=10>Roll 10</option>
-                                                </select>
-                                            </div>
-                                            <div style="display:flex; flex-direction: column; align-items: center;">
-                                                <label style="font-size: 20px;" for="dice-keep">Keep</label>
-                                                <select name="dice-keep" id="dice-keep" style="font-size:20px;">
-                                                    <option value=1>Keep 1</option>
-                                                    <option value=2>Keep 2</option>
-                                                    <option value=3>Keep 3</option>
-                                                    <option value=4>Keep 4</option>
-                                                    <option value=5 selected>Keep 5</option>
-                                                    <option value=6>Keep 6</option>
-                                                    <option value=7>Keep 7</option>
-                                                    <option value=8>Keep 8</option>
-                                                    <option value=9>Keep 9</option>
-                                                    <option value=10>Keep 10</option>
-                                                </select>
-                                            </div>
-                                            <div style="display:flex; flex-direction: column; align-items: center;">
-                                                <label style="font-size: 20px;" for="target">Target</label>
-                                                <input type="number" id="target" value=40 style="font-size: 20px; width: 100px;">
-                                            </div>
+                </div>
+                <menu role="tablist" w3-include-html="templates/navbar.html"></menu>
+                    <div class="window content-window" role="tabpanel">
+                    <div class="window-body" id="content-window-body">
+                        <menu role="tablist" id="utilities-navbar" w3-include-html="templates/utilities_navbar.html"></menu>
+                        <div class="window" style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                            <div class="window-body">
+                                <span id="pyscript-loading" style="font-size: 20px; color: darkred">Loading...</span>
+                                <div style="display:flex; gap: 30px; justify-content: space-around; text-align: center;">
+                                    <span id="empirical" style="font-size: 20px; font-weight: bold;"></span>
+                                    <span id="calculated" style="font-size: 20px; font-weight: bold;"></span>
+                                </div>
+                                <div class="status-field-border" id="fig" style="font-size: 20px; color: darkred; overflow: scroll;">Generating figure...</div>
+                                <div style="display:grid; gap: 30px; grid-template-columns: 1fr 1fr; text-align: left;">
+                                    <span style="font-size: 30px;" id="first-roll"></span>
+                                    <span style="font-size: 30px;" id="first-keep"></span>
+                                    <span style="font-size: 30px;" id="bonuses"></span>
+                                    <span style="font-size: 30px;" id="total" style="color: red"></span>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 20px;">
+                                    <div id="roll-container" style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
+                                        <div style="display:flex; flex-direction: column; align-items: center;">
+                                            <label style="font-size: 20px;" for="dice-roll">Roll</label>
+                                            <select name="dice-roll" id="dice-roll" style="font-size:20px">
+                                                <option value=1>Roll 1</option>
+                                                <option value=2>Roll 2</option>
+                                                <option value=3>Roll 3</option>
+                                                <option value=4>Roll 4</option>
+                                                <option value=5>Roll 5</option>
+                                                <option value=6>Roll 6</option>
+                                                <option value=7 selected>Roll 7</option>
+                                                <option value=8>Roll 8</option>
+                                                <option value=9>Roll 9</option>
+                                                <option value=10>Roll 10</option>
+                                            </select>
                                         </div>
-                                        <div style="position: relative; display: flex; justify-content: center; width: 100%">
-                                            <div style="display: flex; gap: 50px; justify-content: left;">
-                                                <button py-click="roller">Roll!</button>
-                                                <button py-click="make_table" id="prob-table-button">Show Summary Table</button>
-                                            </div>
+                                        <div style="display:flex; flex-direction: column; align-items: center;">
+                                            <label style="font-size: 20px;" for="dice-keep">Keep</label>
+                                            <select name="dice-keep" id="dice-keep" style="font-size:20px;">
+                                                <option value=1>Keep 1</option>
+                                                <option value=2>Keep 2</option>
+                                                <option value=3>Keep 3</option>
+                                                <option value=4>Keep 4</option>
+                                                <option value=5 selected>Keep 5</option>
+                                                <option value=6>Keep 6</option>
+                                                <option value=7>Keep 7</option>
+                                                <option value=8>Keep 8</option>
+                                                <option value=9>Keep 9</option>
+                                                <option value=10>Keep 10</option>
+                                            </select>
                                         </div>
-                                        <div id="table-container" class="sunken-panel" style="display: flex;justify-content: center; width: 100%"></div>
-                                        <span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
+                                        <div style="display:flex; flex-direction: column; align-items: center;">
+                                            <label style="font-size: 20px;" for="target">Target</label>
+                                            <input type="number" id="target" value=40 style="font-size: 20px; width: 100px;">
+                                        </div>
+                                    </div>
+                                    <div style="position: relative; display: flex; justify-content: center; width: 100%">
+                                        <div style="display: flex; gap: 50px; justify-content: left;">
+                                            <button py-click="roller">Roll!</button>
+                                            <button py-click="make_table" id="prob-table-button">Show Summary Table</button>
+                                        </div>
+                                    </div>
+                                    <div id="table-container" class="sunken-panel" style="display: flex;justify-content: center; width: 100%"></div>
+                                    <span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
 Gage Rowden 2026
 
 This tool simulates the rolling mechanics of the Legends of the 5 Rings role-playing game.
@@ -112,8 +111,7 @@ The tool was written in Python, and the core logic of the roller is implemented 
         keeps += roll_dice(1, 1)
     return keeps</code>
 The function first generates a list of length "roll" of random integers between 1 and 10. The rolls are sorted in descending order, and the first "keep" amount of numbers are chosen. If any "keeps" equal 10, the function is called again with roll=1 and keep=1. This goes on until no more 10's are rolled.
-                                        </span>
-                                    </div>
+                                    </span>
                                 </div>
                             </div>
                         </div>

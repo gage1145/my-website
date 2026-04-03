@@ -17,17 +17,13 @@
             <div id="left-sidebar">
                 <img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
             </div>
-            <div id="center-bar">
-                <div class="window">
-                    <div w3-include-html="templates/title_bar.html"></div>
-                    <div class="window-body">
-                        <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
-                            <h3>Harmonograph</h3>
-                        </div>
-                    </div>
+            <div class="window" id="center-bar">
+=                <div w3-include-html="templates/title_bar.html"></div>
+                <div class="window-body" id="center-bar-body">
+                    <h3>Harmonograph</h3>
                     <menu role="tablist" w3-include-html="templates/navbar.html"></menu>
-                    <div class="window" role="tabpanel">
-                        <div class="window-body">
+                    <div class="window content-window" role="tabpanel">
+                        <div class="window-body" id="content-window-body">
                             <menu role="tablist" id="utilities-navbar" w3-include-html="templates/utilities_navbar.html"></menu>
                             <div class="window" role="tabpanel">
                                 <div class="window-body">

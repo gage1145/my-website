@@ -17,19 +17,19 @@
             </div>
             <div class="window" id="center-bar">
                 <div w3-include-html="templates/title_bar.html"></div>
-                <div>
+                <div class="window-body" id="center-bar-body">
                     <fieldset style="padding:2px; height: fit-content; margin-bottom:10px; background-color: black;">
                         <img style="width:100%;" src="https://blob.gifcities.org/gifcities/KVEYUIQ7OHQMTF6BIFU46SJA3IRAF723.gif" alt="">
                     </fieldset>
                     <menu role="tablist" w3-include-html="templates/navbar.html"></menu>
-                    <div class="window window-body" role="tabpanel">
-                        <div style="display:flex; flex-direction: column; gap: 10px;">
+                    <div class="window content-window" role="tabpanel">
+                        <div class="window-body" id="content-window-body">
                             <fieldset id="homepage-summary">
                                 <h4>Gage Rowden - About Me</h4>
                                 <p> Welcome to my website! I am a researcher and data scientist working in the fields of prion biology, software development, and laboratory automation. With over a decade of experience, I have developed skills around designing analytical pipelines, building reproducible tools, and turning experimental data into publishable results.</p>
                                 <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that's science, software, or products.</p>
-                                <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7" style="font-weight:bold">GANYMEDE</a>. You can find a collection of curated songs and audio projects on the Music page.</p>
-                                <p>This site is a collection of projects, publications, and tools I've developed along the way. Visit the <a href="/utilities.html" style="font-weight: bold">UTILITIES PAGE</a> for a collection of creative coding projects!</p>
+                                <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects on the Music page.</p>
+                                <p>This site is a collection of projects, publications, and tools I've developed along the way. Visit the <a href="/utilities.html">utilities page</a> for a collection of creative coding projects!</p>
                             </fieldset>
                             <img src="https://blob.gifcities.org/gifcities/223H663AJSETBJC5QZ52NQDIJA3KJ4BV.gif" alt="" style="width: 100%">
                             <img src="https://blob.gifcities.org/gifcities/GKZOPH5F4YVROZY6CDUXYGYXDAMNMEQU.gif" alt="">
@@ -86,13 +86,12 @@
                         </div>
                     </div>
                 </div>
-                <img style="width:100%;" src="https://blob.gifcities.org/gifcities/6ERE6KV5FBJQINSZZNTUURANEEU4FTQY.gif" alt="">
             </div>
-            <div id="right-sidebar">
-                <img src="https://blob.gifcities.org/gifcities/6KM4EO3YWEVQBRM2OW57R7NBNFZLLP2G.gif" alt="">
-                <img src="https://blob.gifcities.org/gifcities/HWZNY6XC5L2LIH2VWDV46ACUTS22I4S5.gif" alt="">
-                <img src="https://blob.gifcities.org/gifcities/6QWKARKKLKKGWFEJ5LIEMQMGSLODC5IG.gif" alt="">
-            </div>
+        <div id="right-sidebar">
+            <img src="https://blob.gifcities.org/gifcities/6KM4EO3YWEVQBRM2OW57R7NBNFZLLP2G.gif" alt="">
+            <img src="https://blob.gifcities.org/gifcities/HWZNY6XC5L2LIH2VWDV46ACUTS22I4S5.gif" alt="">
+            <img src="https://blob.gifcities.org/gifcities/6QWKARKKLKKGWFEJ5LIEMQMGSLODC5IG.gif" alt="">
+        </div>
         </div>            
         <div w3-include-html="templates/start_bar.html"></div>
     </div>

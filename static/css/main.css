@@ -10,9 +10,9 @@ body {
     margin: 0px;
     padding: 
         20px 
-        20px 
+        0 
         calc(var(--startbar-height) + var(--startbar-border-width)) 
-        20px;
+        0;
     box-sizing: border-box;
     background-color: #008080;
     color: #000;
@@ -102,7 +102,9 @@ code {
 #mommy-container {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
+    height: calc(100vh - var(--startbar-height) - var(--startbar-border-width) - 20px);
+    overflow-y: hidden;
 }
 
 #body-3-col {
@@ -130,27 +132,6 @@ code {
     }
 }
 
-#center-bar {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 600px;
-}
-
-.window-body {
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    max-height: 70vh;
-
-    ::after {
-        content: "";
-        display: block;
-        height: 10px;
-    }
-}
-
 #right-sidebar {
     display: flex;
     flex-direction: column;
@@ -161,6 +142,39 @@ code {
     img {
         max-width: 150px;
     }
+}
+
+#center-bar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    width: 600px;
+    max-height: 80vh;
+}
+
+#center-bar-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.content-window {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    overflow: hidden;
+}
+
+#content-window-body {
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    height: 100%;
+    overflow-y: scroll;
 }
 
 summary {
@@ -662,18 +676,6 @@ button.start-menu-item:focus {
     box-shadow: inset -1px -1px #fff, inset 1px 1px #848484;
 }
 
-/* Maximized Window State */
-.window-maximized {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 28px;
-    width: 100vw;
-    z-index: 5000;
-    overflow: auto;
-}
-
 /* Mobile Styling */
 @media only screen and (max-width: 600px) {
 
@@ -696,7 +698,7 @@ button.start-menu-item:focus {
     }
 
     #left-sidebar, #right-sidebar {
-        display: none;
+        display: none !important;
     }
 
     #center-bar {

@@ -21,61 +21,60 @@
                 <img src="https://blob.gifcities.org/gifcities/JUXUNLYC3QEIIDCETW5S56RZX54XFVIE.gif" alt="">
                 <img src="https://media.tenor.com/Q5xdMAdZuw4AAAAM/rick-roll.gif" alt="">
             </div>
-            <div id="center-bar">
-                <div class="window">
-                    <div w3-include-html="templates/title_bar.html"></div>
-                    <div class="window-body">
-                        <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
-                            <h3>ASCII Image Converter</h3>
-                        </div>
+            <div class="window" id="center-bar">
+                <div w3-include-html="templates/title_bar.html"></div>
+                <div class="window-body" id="center-bar-body">
+                    <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center; height: 50px;">
+                        <h3>ASCII Image Converter</h3>
                     </div>
-                    <menu role="tablist" w3-include-html="templates/navbar.html"></menu>
-                    <div class="window" role="tabpanel">
-                        <div class="window-body">
-                            <menu role="tablist" id="utilities-navbar" w3-include-html="templates/utilities_navbar.html"></menu>
-                            <div class="window" role="tabpanel">
-                                <div id="image-to-ascii" class="window-body" style="display: grid; gap: 10px;">
-                                    <div style="width: 100%; overflow: hidden; background-color: black;">
-                                        <pre style="background-color: black; color: white" id="ascii-output">No image to show.</pre>
+                </div>
+                <menu role="tablist" w3-include-html="templates/navbar.html"></menu>
+                <div class="window content-window" role="tabpanel">
+                    <div class="window-body" id="content-window-body">
+                        <menu role="tablist" id="utilities-navbar" w3-include-html="templates/utilities_navbar.html"></menu>
+                        <div class="window" role="tabpanel">
+                            <div id="image-to-ascii content-window-body" class="window-body"">
+                                <div style="width: 100%; overflow: hidden; background-color: black;">
+                                    <pre style="background-color: black; color: white" id="ascii-output">No image to show.</pre>
+                                </div>
+                                <fieldset>
+                                    <div style="display: flex; flex-wrap: wrap; align-items: center; gap:10px;">
+                                        <input type="file" id="file-input" accept="image/" style="display: none;">
+                                        <input type="text" id="file-name-display" readonly placeholder="No file selected">
+                                        <button onclick="document.getElementById('file-input').click()">Browse...</button>
                                     </div>
-                                    <fieldset>
-                                        <div style="display: flex; flex-wrap: wrap; align-items: center; gap:10px;">
-                                            <input type="file" id="file-input" accept="image/" style="display: none;">
-                                            <input type="text" id="file-name-display" readonly placeholder="No file selected">
-                                            <button onclick="document.getElementById('file-input').click()">Browse...</button>
+                                    <div>
+                                        <span style="font-size:20px;"><val id="width-value"></val></span>
+                                        <input type="range" id="width" class="slider" min="40" max="200" value="200">
+                                    </div>
+                                    <div>
+                                        <span style="font-size:20px;"><val id="contrast-value"></val></span>
+                                        <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
+                                    </div>
+                                    <div style="display: grid; gap: 10px;" class="field-row">
+                                        <label style="font-size:25px;" for="depth"><val id="depth-value"></val></label>
+                                        <input style="width: 90%" type="range" id="depth" min=1 max=6 value=4 step=1>
+                                        <div style="display:flex; justify-content: left; gap: 20px;">
+                                            <button style="width:fit-content" py-click="run">Convert</button>
+                                            <button style="width:fit-content" onclick="navigator.clipboard.writeText(document.getElementById('ascii-output').textContent)">Copy</button>
                                         </div>
-                                        <div>
-                                            <span style="font-size:20px;"><val id="width-value"></val></span>
-                                            <input type="range" id="width" class="slider" min="40" max="200" value="200">
-                                        </div>
-                                        <div>
-                                            <span style="font-size:20px;"><val id="contrast-value"></val></span>
-                                            <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
-                                        </div>
-                                        <div style="display: grid; gap: 10px;" class="field-row">
-                                            <label style="font-size:25px;" for="depth"><val id="depth-value"></val></label>
-                                            <input style="width: 90%" type="range" id="depth" min=1 max=6 value=4 step=1>
-                                            <div style="display:flex; justify-content: left; gap: 20px;">
-                                                <button style="width:fit-content" py-click="run">Convert</button>
-                                                <button style="width:fit-content" onclick="navigator.clipboard.writeText(document.getElementById('ascii-output').textContent)">Copy</button>
+                                    </div>
+                                    <div style="display: grid; gap: 20px;">
+                                        <span style="font-size: 25px;">Edge Behavior</span>
+                                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap:10px;">
+                                            <div style="display: grid; gap: 20px;" class="field-row">
+                                                <input type="radio" id="edge-none" name="edge-choice" checked>
+                                                <label style="font-size: 25px;" for="edge-none">None</label>
+                                                <input type="radio" id="edge-detect" name="edge-choice">
+                                                <label style="font-size: 25px;" for="edge-detect">Detect</label>
+                                                <input type="radio" id="edge-enhance" name="edge-choice">
+                                                <label style="font-size: 25px;" for="edge-enhance">Enhance</label>
                                             </div>
                                         </div>
-                                        <div style="display: grid; gap: 20px;">
-                                            <span style="font-size: 25px;">Edge Behavior</span>
-                                            <div style="display: grid; grid-template-columns: 2fr 1fr; gap:10px;">
-                                                <div style="display: grid; gap: 20px;" class="field-row">
-                                                    <input type="radio" id="edge-none" name="edge-choice" checked>
-                                                    <label style="font-size: 25px;" for="edge-none">None</label>
-                                                    <input type="radio" id="edge-detect" name="edge-choice">
-                                                    <label style="font-size: 25px;" for="edge-detect">Detect</label>
-                                                    <input type="radio" id="edge-enhance" name="edge-choice">
-                                                    <label style="font-size: 25px;" for="edge-enhance">Enhance</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                    <py-script src="static/python/image_to_ascii.py"></py-script>
-                                    <span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
+                                    </div>
+                                </fieldset>
+                                <py-script src="static/python/image_to_ascii.py"></py-script>
+                                <span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
 This tool is written in Python and uses several methods of image manipulation using the pillow library.
 
 First the image is resized based on the width parameter. A magic number of 2.2 is used to account for the difference in height and width of the monospace font.
@@ -93,8 +92,7 @@ Next contrast is applied.
     def contrast(c):
         return 128 + factor * (c-128)
     return img.point(contrast)</code>
-                                    </span>
-                                </div>
+                                </span>
                             </div>
                         </div>
                     </div>
