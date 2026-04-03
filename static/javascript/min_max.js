@@ -19,35 +19,53 @@ function initTaskbarWindow(title) {
 export function initMinMax() {
     const threeBody = document.getElementById('body-3-col');
     const centerBar = document.getElementById('center-bar');
-    if (!centerBar) return;
+    if (!centerBar || !threeBody) return;
+
+    const defaultDisplay = getComputedStyle(threeBody).display;
+    console.log(`Default display: ${defaultDisplay}`);
+    const defaultStyle = getComputedStyle(threeBody).cssText;
 
     const titleText = document.querySelector('.title-bar-text')?.textContent?.trim() || 'Window';
 
     const minimizeBtn = document.getElementById('minimize-btn');
     const maximizeBtn = document.getElementById('maximize-btn');
     const closeBtn = document.getElementById('close-btn');
+
+    let minimized = defaultDisplay === 'none';
+    let maximized = maximizeBtn?.getAttribute('aria-label') === 'Restore';
+    let restored = !maximized && !minimized;
+
+    const taskbarEntry = initTaskbarWindow(titleText);
+    
     const windowClosed = localStorage.getItem('window-closed');
     if (windowClosed === 'true') {
         threeBody.remove();
+        taskbarEntry.container.remove();
         return;
     }
 
-    const defaultOpacity = getComputedStyle(centerBar).opacity;
-    let minimized = defaultOpacity === '0';
-    let maximized = !minimized;
-
-    const taskbarEntry = initTaskbarWindow(titleText);
-
     function setMinimized(state) {
         minimized = state;
-        console.log(`Setting minimized: ${state}`);
-        centerBar.style.opacity = state ? '0' : defaultOpacity;
+        threeBody.style.display = state ? 'none' : defaultDisplay;
         taskbarEntry.setActive(!state);
     }
 
     function setMaximized(state) {
         maximized = state;
-        centerBar.classList.toggle('window-maximized', state);
+        restored = !state;
+        maximizeBtn?.setAttribute('aria-label', state ? 'Restore' : 'Maximize');
+        if (maximized) {
+            centerBar.style.position = 'fixed';
+            centerBar.style.top = '0';
+            centerBar.style.left = '0';
+            centerBar.style.width = 'calc(100vw - 5px)';
+            centerBar.style.height = 'calc(100vh - 31px)';
+            centerBar.style.maxHeight = '100vh';
+            centerBar.style.display = 'flex';
+            centerBar.style.justifyContent = 'center';
+        } else {
+            centerBar.style = defaultStyle;
+        }
     }
 
     function closeWindow() {
@@ -57,9 +75,7 @@ export function initMinMax() {
     }
 
     closeBtn?.addEventListener('click', closeWindow);
-
     minimizeBtn?.addEventListener('click', () => setMinimized(!minimized));
     maximizeBtn?.addEventListener('click', () => setMaximized(!maximized));
-
     taskbarEntry.onClick(() => setMinimized(!minimized));
 }
