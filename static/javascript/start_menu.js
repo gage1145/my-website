@@ -188,14 +188,9 @@ function initAds() {
     const threeCol = document.getElementById('body-3-col');
     adsIcon.src = 'https://win98icons.alexmeub.com/icons/png/overlay_share-2.png';
 
-    if (adsVisible === null) {
-        leftads.style.display = 'inline-flex';
-        rightads.style.display = 'inline-flex';
-        threeCol.style.gridTemplateColumns = '1fr 4fr 1fr';
-        adsBtn.innerHTML = adsIcon.outerHTML + 'Hide Ads';
-    } else if (adsVisible === 'true') {
-        leftads.style.display = 'inline-flex';
-        rightads.style.display = 'inline-flex';
+    if (adsVisible === null || adsVisible === 'true') {
+        leftads.style.display = 'flex';
+        rightads.style.display = 'flex';
         threeCol.style.gridTemplateColumns = '1fr 4fr 1fr';
         adsBtn.innerHTML = adsIcon.outerHTML + 'Hide Ads';
     } else {
@@ -215,8 +210,8 @@ function toggleAds() {
     const adsIcon = document.createElement('img');
     adsIcon.src = 'https://win98icons.alexmeub.com/icons/png/overlay_share-2.png';
     adsBtn.innerHTML = adsIcon.outerHTML + (hidden ? 'Hide Ads' : 'Show Ads');
-    leftads.style.display = hidden ? 'inline-flex' : 'none';
-    rightads.style.display = hidden ? 'inline-flex' : 'none';
+    leftads.style.display = hidden ? 'flex' : 'none';
+    rightads.style.display = hidden ? 'flex' : 'none';
     threeCol.style.gridTemplateColumns = hidden ? '1fr 4fr 1fr' : '1fr';
     localStorage.setItem('ads-visible', hidden ? 'true' : 'false');
 }
