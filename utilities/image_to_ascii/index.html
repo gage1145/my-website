@@ -34,65 +34,121 @@
                         <menu role="tablist" id="utilities-navbar" w3-include-html="templates/utilities_navbar.html"></menu>
                         <div class="window" role="tabpanel">
                             <div id="image-to-ascii content-window-body" class="window-body"">
-                                <div style="width: 100%; overflow: hidden; background-color: black;">
-                                    <pre style="background-color: black; color: white" id="ascii-output">No image to show.</pre>
-                                </div>
                                 <fieldset>
+                                    <div style="width: 100%; overflow: hidden; background-color: black;">
+                                        <pre style="background-color: black; color: white" id="ascii-output">No image to show.</pre>
+                                    </div>
                                     <div style="display: flex; flex-wrap: wrap; align-items: center; gap:10px;">
                                         <input type="file" id="file-input" accept="image/" style="display: none;">
                                         <input type="text" id="file-name-display" readonly placeholder="No file selected">
                                         <button onclick="document.getElementById('file-input').click()">Browse...</button>
                                     </div>
                                     <div>
-                                        <span style="font-size:20px;"><val id="width-value"></val></span>
+                                        <label style="font-size:20px;"><val id="width-value"></val>Size</label>
                                         <input type="range" id="width" class="slider" min="40" max="200" value="200">
                                     </div>
                                     <div>
-                                        <span style="font-size:20px;"><val id="contrast-value"></val></span>
+                                        <label style="font-size:20px;"><val id="contrast-value"></val>Contrast</label>
                                         <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
                                     </div>
-                                    <div style="display: grid; gap: 10px;" class="field-row">
-                                        <label style="font-size:25px;" for="depth"><val id="depth-value"></val></label>
-                                        <input style="width: 90%" type="range" id="depth" min=1 max=6 value=4 step=1>
-                                        <div style="display:flex; justify-content: left; gap: 20px;">
-                                            <button style="width:fit-content" py-click="run">Convert</button>
-                                            <button style="width:fit-content" onclick="navigator.clipboard.writeText(document.getElementById('ascii-output').textContent)">Copy</button>
+                                    <div>
+                                        <label style="font-size:20px;" for="depth"><val id="depth-value"></val>Depth</label>
+                                        <input type="range" id="depth" min=1 max=6 value=4 step=1>
+                                    </div>
+                                    <div style="display: grid; gap: 20px; margin-bottom: 20px;">
+                                        <span style="font-size: 20px;">Edge Behavior</span>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap:10px; justify-content: space-around;">
+                                            <input type="radio" id="edge-none" name="edge-choice" checked>
+                                            <label style="font-size: 20px;" for="edge-none">None</label>
+                                            <input type="radio" id="edge-detect" name="edge-choice">
+                                            <label style="font-size: 20px;" for="edge-detect">Detect</label>
+                                            <input type="radio" id="edge-enhance" name="edge-choice">
+                                            <label style="font-size: 20px;" for="edge-enhance">Enhance</label>
                                         </div>
                                     </div>
-                                    <div style="display: grid; gap: 20px;">
-                                        <span style="font-size: 25px;">Edge Behavior</span>
-                                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap:10px;">
-                                            <div style="display: grid; gap: 20px;" class="field-row">
-                                                <input type="radio" id="edge-none" name="edge-choice" checked>
-                                                <label style="font-size: 25px;" for="edge-none">None</label>
-                                                <input type="radio" id="edge-detect" name="edge-choice">
-                                                <label style="font-size: 25px;" for="edge-detect">Detect</label>
-                                                <input type="radio" id="edge-enhance" name="edge-choice">
-                                                <label style="font-size: 25px;" for="edge-enhance">Enhance</label>
-                                            </div>
-                                        </div>
+                                    <div style="display:flex; justify-content: center; gap: 20px;">
+                                        <button style="width:fit-content" py-click="run">Convert</button>
+                                        <button style="width:fit-content" onclick="navigator.clipboard.writeText(document.getElementById('ascii-output').textContent)">Copy</button>
                                     </div>
                                 </fieldset>
                                 <py-script src="static/python/image_to_ascii.py"></py-script>
                                 <span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
-This tool is written in Python and uses several methods of image manipulation using the pillow library.
+<p>This tool is written in Python and uses several methods of image manipulation using the <a href="https://pillow.readthedocs.io/en/stable/">pillow</a> library.</p>
 
-First the image is resized based on the width parameter. A magic number of 2.2 is used to account for the difference in height and width of the monospace font.
+<p>First the image is resized based on the width parameter. A magic number of 2.2 is used to account for the difference in height and width of the monospace font.</p>
 
-<code style="width: 100%;">def resize_image(image, new_width):
+<code style="padding: 10px; width: 100%;">def resize_image(image, new_width):
     image = ImageOps.exif_transpose(image)
     width, height = image.size
     ratio = height / (2.2 * width)
     new_height = int(new_width * ratio)
     return image.resize((new_width, new_height))</code>
-Next contrast is applied.
 
-<code style="width: 100%;">def change_contrast(img, level=100):
+<p>Next contrast is applied. This is especially important if no edge detection parameter is selected.</p>
+
+<code style="padding: 10px; width: 100%;">def change_contrast(img, level=100):
     factor = 259*(level+255)/255*(259-level)
     def contrast(c):
         return 128 + factor * (c-128)
     return img.point(contrast)</code>
-                                </span>
+
+<p>Then, color information is removed from the image. We really only need the brightness information for the ASCII representation.</p>
+
+<code style="padding: 10px; width: 100%;">def grayify(image):
+    return image.convert("L")</code>
+
+<p>And the edges are optionally detected and enhanced.</p>
+
+<code style="padding: 10px; width: 100%;">def detect_edges(image, edge_behavior: str):
+    behaviors = {
+        "edge-detect": ImageFilter.FIND_EDGES,
+        "edge-enhance": ImageFilter.EDGE_ENHANCE,
+        "edge-none": None
+    }
+    behavior = behaviors.get(edge_behavior)
+
+    if behavior: return image.filter(behavior)
+    return image</code>
+
+<p>The pixels are then converted to ASCII characters based on their brightness. The character set is determined by the depth parameter. Each set is ordered based on perceived brightness, and the character set is indexed accordingly.</p>
+
+<code style="padding: 10px; overflow-x: scroll; text-wrap: nowrap;">def pixels_to_ascii(image, depth):
+    pixels = image.getdata()
+    ascii_list = [
+        " @",
+        " /9@",
+        " ^/([9$@",
+        " .-^/T(f[j9K$M@",
+        " `.-':^;!/zTJ(if3[5jwk9OK8$0M%@",
+        """ `.-':_^=;>!c*/zsTv)J(Fi{fI31t[ne5Yxja]wqkP9d4pOAKXm8D$Bg0MQ%&@"""
+    ]
+    ASCII_CHARS = ascii_list[depth - 1]
+    characters = "".join(ASCII_CHARS[p // (256 // len(ASCII_CHARS))] for p in pixels)
+    return characters</code>
+
+<p>Finally, the above functions are combined and the lines of text are joined on newlines.</p>
+
+<code style="padding: 10px; width: 100%;">def convert_image_from_bytes(image_bytes, 
+                             depth, 
+                             new_width, 
+                             contrast, 
+                             edge_behavior):
+    
+    image = Image.open(BytesIO(image_bytes))
+    image = resize_image(image, new_width)
+    image = change_contrast(image, contrast)
+    image = grayify(image)
+    image = detect_edges(image, edge_behavior)
+    ascii_data = pixels_to_ascii(image, depth)
+    pixel_count = len(ascii_data)
+    ascii_image = "\n".join(
+        ascii_data[i:i + new_width]
+        for i in range(0, pixel_count, new_width)
+    )
+
+    return ascii_image</code>
+
+<p>The full python script can be found here: <a href="/static/python/image_to_ascii.py" target="_blank">image_to_ascii.py</a></p>
                             </div>
                         </div>
                     </div>
