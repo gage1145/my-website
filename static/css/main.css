@@ -656,6 +656,12 @@ button.start-menu-item:focus {
 }
 
 
+/* Title Bar */
+.title-bar-controls {
+    button {
+        cursor: auto;
+    }
+}
 
 
 /* Taskbar Window Buttons */
@@ -676,6 +682,7 @@ button.start-menu-item:focus {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: auto;
 }
 
 .taskbar-window-btn:not(.active) {
