@@ -1,9 +1,9 @@
 [
     {
-        "title": "This Website",
-        "description": "Visit the repository where this website is hosted.",
-        "link": "https://github.com/gage1145/my-website",
-        "ascii_image":"  _/          _/            _/                  _/    _/               \n _/          _/    _/_/    _/_/_/      _/_/_/      _/_/_/_/    _/_/    \n_/    _/    _/  _/_/_/_/  _/    _/  _/_/      _/    _/      _/_/_/_/   \n _/  _/  _/    _/        _/    _/      _/_/  _/    _/      _/          \n  _/  _/        _/_/_/  _/_/_/    _/_/_/    _/      _/_/    _/_/_/     "
+        "title": "RT-QuIC Kinetic Modeling",
+        "description": "A kinetic modeling tool for RT-QuIC data developed in R. Frames RT-QuIC data around classical enzyme kinetics.",
+        "link": "https://gage1145.github.io/HAL-QuIC/",
+        "ascii_image":"    _/_/_/              _/  _/        _/_/_/  _/      _/    _/_/_/\n   _/    _/  _/  _/_/      _/          _/    _/_/  _/_/  _/       \n  _/_/_/    _/_/      _/  _/          _/    _/  _/  _/    _/_/    \n _/        _/        _/  _/          _/    _/      _/        _/   \n_/        _/        _/  _/_/_/_/  _/_/_/  _/      _/  _/_/_/      \n"
     },
 
     {
@@ -25,6 +25,13 @@
         "description": "A Discord bot that retrieves prion-related articles from NCBI and posts them to a Discord server.",
         "link": "https://github.com/gage1145/prion_bot",
         "ascii_image":"    _/_/_/              _/                      _/_/_/                _/      \n   _/    _/  _/  _/_/        _/_/    _/_/_/    _/    _/    _/_/    _/_/_/_/   \n  _/_/_/    _/_/      _/  _/    _/  _/    _/  _/_/_/    _/    _/    _/        \n _/        _/        _/  _/    _/  _/    _/  _/    _/  _/    _/    _/         \n_/        _/        _/    _/_/    _/    _/  _/_/_/      _/_/        _/_/      \n"
+    },
+    
+    {
+        "title": "This Website",
+        "description": "Visit the repository where this website is hosted.",
+        "link": "https://github.com/gage1145/my-website",
+        "ascii_image":"  _/          _/            _/                  _/    _/               \n _/          _/    _/_/    _/_/_/      _/_/_/      _/_/_/_/    _/_/    \n_/    _/    _/  _/_/_/_/  _/    _/  _/_/      _/    _/      _/_/_/_/   \n _/  _/  _/    _/        _/    _/      _/_/  _/    _/      _/          \n  _/  _/        _/_/_/  _/_/_/    _/_/_/    _/      _/_/    _/_/_/     "
     },
 
     {
