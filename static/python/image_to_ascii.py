@@ -1,7 +1,8 @@
 from PIL import Image, ImageFilter, ImageOps
 from io import BytesIO
-from js import document
+from js import document, window
 from pyscript import when
+from pyscript.ffi import create_proxy
 
 
 
@@ -102,7 +103,11 @@ async def _run_if_file(event=None):
     if document.getElementById("file-input").files.item(0):
         await run()
 
-when("input", "#width")(_run_if_file)
-when("input", "#contrast")(_run_if_file)
-when("change", "#depth")(_run_if_file)
-when("change", "input[name='edge-choice']")(_run_if_file)
+def init(event=None):
+    """Run once each time the Image-to-ASCII window is opened (its DOM must exist first)."""
+    when("input", "#width")(_run_if_file)
+    when("input", "#contrast")(_run_if_file)
+    when("change", "#depth")(_run_if_file)
+    when("change", "input[name='edge-choice']")(_run_if_file)
+
+window.imageToAsciiInit = create_proxy(init)

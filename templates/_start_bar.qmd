@@ -1,3 +1,4 @@
+```{=html}
 <div class="start-bar">
 
 <!-- Start Menu -->
@@ -6,19 +7,19 @@
 <span class="start-menu-sidebar-text">Windows 98</span>
 </div>
 <div class="start-menu-items">
-<a class="start-menu-item" href="/"><img src="https://win98icons.alexmeub.com/icons/png/computer-4.png" alt="">Home</a>
-<a class="start-menu-item" href="/projects/"><img src="https://win98icons.alexmeub.com/icons/png/internet_options-0.png" alt="">Projects</a>
-<a class="start-menu-item" href="/resume/"><img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">Resume</a>
-<a class="start-menu-item" href="/publications/"><img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">Publications</a>
-<a class="start-menu-item" href="/music/"><img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">Music</a>
+<a class="start-menu-item" href="#" data-window="home"><img src="https://win98icons.alexmeub.com/icons/png/computer-4.png" alt="">Home</a>
+<a class="start-menu-item" href="#" data-window="projects"><img src="https://win98icons.alexmeub.com/icons/png/internet_options-0.png" alt="">Projects</a>
+<a class="start-menu-item" href="#" data-window="resume"><img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">Resume</a>
+<a class="start-menu-item" href="#" data-window="publications"><img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">Publications</a>
+<a class="start-menu-item" href="#" data-window="music"><img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">Music</a>
 <div class="start-menu-item has-submenu">
 <img src="https://win98icons.alexmeub.com/icons/png/directory_admin_tools-4.png" alt="">Utilities
 <div class="start-menu-submenu">
-<a class="start-menu-item" href="/utilities/mandelbrot/">Mandelbrot</a>
-<a class="start-menu-item" href="/utilities/harmonograph/">Harmonograph</a>
-<a class="start-menu-item" href="/utilities/image_to_ascii/">Image to ASCII</a>
-<a class="start-menu-item" href="/utilities/bmg_format/">BMG Format</a>
-<a class="start-menu-item" href="/utilities/l5r_dice/">L5R Dice</a>
+<a class="start-menu-item" href="#" data-window="mandelbrot">Mandelbrot</a>
+<a class="start-menu-item" href="#" data-window="harmonograph">Harmonograph</a>
+<a class="start-menu-item" href="#" data-window="image-to-ascii">Image to ASCII</a>
+<a class="start-menu-item" href="#" data-window="bmg-format">BMG Format</a>
+<a class="start-menu-item" href="#" data-window="l5r-dice">L5R Dice</a>
 </div>
 </div>
 <div class="start-menu-item has-submenu">
@@ -26,9 +27,6 @@
 <div class="start-menu-submenu">
 <button class="start-menu-item" id="wallpaper-btn">
 <img src="https://win98icons.alexmeub.com/icons/png/display_properties-0.png" alt="">Change Wallpaper...
-</button>
-<button class="start-menu-item" id="ads-btn">
-<img src="https://win98icons.alexmeub.com/icons/png/overlay_share-2.png" alt="">Advertisements...
 </button>
 </div>
 </div>
@@ -88,21 +86,6 @@
 </div>
 </div>
 
-<!-- Ads Dialog -->
-<div id="ads-overlay" class="ads-overlay">
-<div class="window ads-dialog">
-<div class="title-bar">
-<div class="title-bar-text">Advertisements</div>
-<div class="title-bar-controls">
-<button aria-label="Close" id="ads-close"></button>
-</div>
-</div>
-<div class="window-body ads-body">
-<p>Advertisements</p>
-</div>
-</div>
-</div>
-
 <!-- Safe to Turn Off Screen -->
 <div id="safe-to-off">
 <div>
@@ -129,3 +112,4 @@
 <div id="taskbar-clock" class="taskbar-clock"></div>
 
 </div>
+```

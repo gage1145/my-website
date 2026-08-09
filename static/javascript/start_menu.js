@@ -1,3 +1,5 @@
+import { openWindow } from "./window_manager.js";
+
 const COLORS = [
     { label: 'Teal',   value: '#008080' },
     { label: 'Navy',   value: '#000080' },
@@ -179,43 +181,6 @@ function initScreensaver() {
     resetTimer();
 }
 
-function initAds() {
-    const adsVisible = localStorage.getItem('ads-visible');
-    const adsIcon = document.createElement('img');
-    const adsBtn = document.getElementById('ads-btn');
-    const leftads = document.getElementById('left-sidebar');
-    const rightads = document.getElementById('right-sidebar');
-    const threeCol = document.getElementById('body-3-col');
-    adsIcon.src = 'https://win98icons.alexmeub.com/icons/png/overlay_share-2.png';
-
-    if (adsVisible === null || adsVisible === 'true') {
-        leftads.style.display = 'flex';
-        rightads.style.display = 'flex';
-        threeCol.style.gridTemplateColumns = '1fr 4fr 1fr';
-        adsBtn.innerHTML = adsIcon.outerHTML + 'Hide Ads';
-    } else {
-        leftads.style.display = 'none';
-        rightads.style.display = 'none';
-        threeCol.style.gridTemplateColumns = '1fr';
-        adsBtn.innerHTML = adsIcon.outerHTML + 'Show Ads';
-    }
-}
-
-function toggleAds() {
-    const threeCol = document.getElementById('body-3-col');
-    const leftads = document.getElementById('left-sidebar');
-    const rightads = document.getElementById('right-sidebar');
-    const hidden = leftads.style.display === 'none';
-    const adsBtn = document.getElementById('ads-btn');
-    const adsIcon = document.createElement('img');
-    adsIcon.src = 'https://win98icons.alexmeub.com/icons/png/overlay_share-2.png';
-    adsBtn.innerHTML = adsIcon.outerHTML + (hidden ? 'Hide Ads' : 'Show Ads');
-    leftads.style.display = hidden ? 'flex' : 'none';
-    rightads.style.display = hidden ? 'flex' : 'none';
-    threeCol.style.gridTemplateColumns = hidden ? '1fr 4fr 1fr' : '1fr';
-    localStorage.setItem('ads-visible', hidden ? 'true' : 'false');
-}
-
 export function initStartMenu() {
     const startBtn = document.getElementById('start-button');
     const menu = document.getElementById('start-menu');
@@ -224,14 +189,14 @@ export function initStartMenu() {
     const okBtn = document.getElementById('shutdown-ok');
     const cancelBtn = document.getElementById('shutdown-cancel');
     const closeBtn = document.getElementById('shutdown-close');
-    const menuItems = menu.querySelectorAll('.start-menu-item');
+    const menuItems = menu.querySelectorAll('.start-menu-item[data-window]');
 
-     menuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            localStorage.setItem('window-closed', 'false');
+    menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            openWindow(item.dataset.window);
         });
     });
-
 
     startBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -274,14 +239,7 @@ export function initStartMenu() {
         }
     });
 
-    document.getElementById('ads-btn').addEventListener('click', () => {
-        menu.classList.remove('open');
-        startBtn.classList.remove('active');
-        toggleAds();
-    });
-
     initClock();
     initWallpaper();
     initScreensaver();
-    initAds();
 }

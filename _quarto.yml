@@ -12,11 +12,14 @@ website:
 format:
   html:
     theme: none
-    minimal: true
+    # minimal: true
     css: [static/css/main.css, https://unpkg.com/98.css]
-    include-in-header: 
+    include-in-header:
       - text: |
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js" defer></script>
+          <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
+          <script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script>
           <script type="module" src="main.js" defer></script>
 
 

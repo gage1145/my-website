@@ -1,147 +1,140 @@
-// const saveButton = document.getElementById("save");
+let activeInstance = null;
 
-const f1Slider = document.getElementById("f1-slider");
-const f2Slider = document.getElementById("f2-slider");
-const f3Slider = document.getElementById("f3-slider");
-const f4Slider = document.getElementById("f4-slider");
+export function initHarmonograph(container) {
+    activeInstance?.remove();
 
-const a1Slider = document.getElementById("a1-slider");
-const a2Slider = document.getElementById("a2-slider");
-const a3Slider = document.getElementById("a3-slider");
-const a4Slider = document.getElementById("a4-slider");
+    const sketch = (p) => {
+        const sketchEl = container.querySelector("#sketch");
 
-const p1Slider = document.getElementById("p1-slider");
-const p2Slider = document.getElementById("p2-slider");
-const p3Slider = document.getElementById("p3-slider");
-const p4Slider = document.getElementById("p4-slider");
+        const f1Slider = container.querySelector("#f1-slider");
+        const f2Slider = container.querySelector("#f2-slider");
+        const f3Slider = container.querySelector("#f3-slider");
+        const f4Slider = container.querySelector("#f4-slider");
 
-const d1Slider = document.getElementById("d1-slider");
-const d2Slider = document.getElementById("d2-slider");
-const d3Slider = document.getElementById("d3-slider");
-const d4Slider = document.getElementById("d4-slider");
+        const a1Slider = container.querySelector("#a1-slider");
+        const a2Slider = container.querySelector("#a2-slider");
+        const a3Slider = container.querySelector("#a3-slider");
+        const a4Slider = container.querySelector("#a4-slider");
 
-const weightSlider = document.getElementById("line-weight");
-const glowSlider = document.getElementById("glow");
+        const p1Slider = container.querySelector("#p1-slider");
+        const p2Slider = container.querySelector("#p2-slider");
+        const p3Slider = container.querySelector("#p3-slider");
+        const p4Slider = container.querySelector("#p4-slider");
 
-const saveButton = document.getElementById("save");
+        const d1Slider = container.querySelector("#d1-slider");
+        const d2Slider = container.querySelector("#d2-slider");
+        const d3Slider = container.querySelector("#d3-slider");
+        const d4Slider = container.querySelector("#d4-slider");
 
-var f1;
-var f2;
-var f3;
-var f4;
+        const weightSlider = container.querySelector("#line-weight");
+        const glowSlider = container.querySelector("#glow");
+        const saveButton = container.querySelector("#save");
 
-var a1;
-var a2;
-var a3;
-var a4;
+        let f1, f2, f3, f4;
+        let a1, a2, a3, a4;
+        let p1, p2, p3, p4;
+        let d1, d2, d3, d4;
+        let dt, iterations, weight, glow;
+        let canvas;
 
-var p1;
-var p2;
-var p3;
-var p4;
+        p.setup = () => {
+            f1 = p.pow(10, parseFloat(f1Slider.value));
+            f2 = p.pow(10, parseFloat(f2Slider.value));
+            f3 = p.pow(10, parseFloat(f3Slider.value));
+            f4 = p.pow(10, parseFloat(f4Slider.value));
+            a1 = parseFloat(a1Slider.value);
+            a2 = parseFloat(a2Slider.value);
+            a3 = parseFloat(a3Slider.value);
+            a4 = parseFloat(a4Slider.value);
+            p1 = p.map(parseFloat(p1Slider.value), 0, 1, 0, p.TWO_PI);
+            p2 = p.map(parseFloat(p2Slider.value), 0, 1, 0, p.TWO_PI);
+            p3 = p.map(parseFloat(p3Slider.value), 0, 1, 0, p.TWO_PI);
+            p4 = p.map(parseFloat(p4Slider.value), 0, 1, 0, p.TWO_PI);
+            d1 = parseFloat(d1Slider.value);
+            d2 = parseFloat(d2Slider.value);
+            d3 = parseFloat(d3Slider.value);
+            d4 = parseFloat(d4Slider.value);
+            dt = 0.001;
 
-var d1;
-var d2;
-var d3;
-var d4;
+            iterations = 100000;
+            weight = parseFloat(weightSlider.value);
+            glow = parseFloat(glowSlider.value);
 
-var dt;
-var iterations;
-var weight;
-var glow;
+            const parentWidth = sketchEl.clientWidth;
+            const parentHeight = sketchEl.clientHeight;
+            canvas = p.createCanvas(parentWidth, parentHeight);
+            canvas.parent(sketchEl);
+            p.pixelDensity(1);
+            p.background(0);
+        };
 
+        p.draw = () => {
+            p.translate(p.width / 2, p.height / 2);
+            p.background(0);
+            renderHarmonograph();
+            p.noLoop();
+        };
 
-function setup() {
-    f1 = pow(10, parseFloat(f1Slider.value));
-    f2 = pow(10, parseFloat(f2Slider.value));
-    f3 = pow(10, parseFloat(f3Slider.value));
-    f4 = pow(10, parseFloat(f4Slider.value));
-    a1 = parseFloat(a1Slider.value);
-    a2 = parseFloat(a2Slider.value);
-    a3 = parseFloat(a3Slider.value);
-    a4 = parseFloat(a4Slider.value);
-    p1 = map(parseFloat(p1Slider.value), 0, 1, 0, TWO_PI);
-    p2 = map(parseFloat(p2Slider.value), 0, 1, 0, TWO_PI);
-    p3 = map(parseFloat(p3Slider.value), 0, 1, 0, TWO_PI);
-    p4 = map(parseFloat(p4Slider.value), 0, 1, 0, TWO_PI);
-    d1 = parseFloat(d1Slider.value);
-    d2 = parseFloat(d2Slider.value);
-    d3 = parseFloat(d3Slider.value);
-    d4 = parseFloat(d4Slider.value);
-    dt = 0.001;
-    
-    iterations = 100000;
-    weight = parseFloat(weightSlider.value);
-    glow = parseFloat(glowSlider.value);
+        function renderHarmonograph() {
+            let t = 0;
+            p.noFill();
+            p.stroke(149, 255, 175);
+            p.strokeWeight(weight);
+            p.drawingContext.shadowBlur = glow;
+            p.drawingContext.shadowColor = p.color(149, 255, 175);
+            p.beginShape();
+            for (let i = 0; i < iterations; i++) {
+                const x = a1 * p.sin(t * f1 + p1) * p.exp(-d1 * t) + a2 * p.sin(t * f2 + p2) * p.exp(-d2 * t);
+                const y = a3 * p.sin(t * f3 + p3) * p.exp(-d3 * t) + a4 * p.sin(t * f4 + p4) * p.exp(-d4 * t);
+                p.vertex(x, y);
+                t += dt;
+            }
+            p.endShape();
+        }
 
-    parentElement = document.getElementById("sketch");
-    parentWidth = parentElement.clientWidth;
-    parentHeight = parentElement.clientHeight;
-    canvas = createCanvas(parentWidth, parentHeight);
-    canvas.parent("sketch");
-    pixelDensity(1);
-    background(0);
+        [
+            f1Slider, f2Slider, f3Slider, f4Slider,
+            a1Slider, a2Slider, a3Slider, a4Slider,
+            p1Slider, p2Slider, p3Slider, p4Slider,
+            d1Slider, d2Slider, d3Slider, d4Slider,
+            weightSlider, glowSlider,
+        ].forEach(el => {
+            el.addEventListener("input", () => {
+                f1 = p.pow(10, parseFloat(f1Slider.value));
+                f2 = p.pow(10, parseFloat(f2Slider.value));
+                f3 = p.pow(10, parseFloat(f3Slider.value));
+                f4 = p.pow(10, parseFloat(f4Slider.value));
+                a1 = parseFloat(a1Slider.value);
+                a2 = parseFloat(a2Slider.value);
+                a3 = parseFloat(a3Slider.value);
+                a4 = parseFloat(a4Slider.value);
+                p1 = parseFloat(p1Slider.value);
+                p2 = parseFloat(p2Slider.value);
+                p3 = parseFloat(p3Slider.value);
+                p4 = parseFloat(p4Slider.value);
+                d1 = parseFloat(d1Slider.value);
+                d2 = parseFloat(d2Slider.value);
+                d3 = parseFloat(d3Slider.value);
+                d4 = parseFloat(d4Slider.value);
+                weight = parseFloat(weightSlider.value);
+                glow = parseFloat(glowSlider.value);
+                p.redraw();
+            });
+        });
+
+        p.windowResized = () => {
+            const parentWidth = sketchEl.clientWidth;
+            const parentHeight = sketchEl.clientHeight;
+            p.resizeCanvas(parentWidth, parentHeight);
+        };
+
+        saveButton.addEventListener("click", () => p.save("harmonograph.png"));
+    };
+
+    activeInstance = new p5(sketch);
 }
 
-function draw() {
-    translate(width / 2, height / 2);
-    background(0);
-    renderHarmonograph();
-    noLoop();
+export function destroyHarmonograph() {
+    activeInstance?.remove();
+    activeInstance = null;
 }
-
-function renderHarmonograph () {
-    let t = 0;
-    noFill();
-    stroke(149, 255, 175);
-    strokeWeight(weight);
-    drawingContext.shadowBlur = glow;
-    drawingContext.shadowColor = color(149, 255, 175);
-    beginShape();
-    for (let i = 0; i < iterations; i++) {
-        x = a1 * sin(t * f1 + p1) * exp(-d1 * t) + a2 * sin(t * f2 + p2) * exp(-d2 * t);
-        y = a3 * sin(t * f3 + p3) * exp(-d3 * t) + a4 * sin(t * f4 + p4) * exp(-d4 * t);
-        vertex(x, y);
-        t += dt;
-    }
-    endShape();
-}
-
-[
-    f1Slider, f2Slider, f3Slider, f4Slider,
-    a1Slider, a2Slider, a3Slider, a4Slider,
-    p1Slider, p2Slider, p3Slider, p4Slider,
-    d1Slider, d2Slider, d3Slider, d4Slider,
-    weightSlider, glowSlider,
-].forEach(el => {
-    el.addEventListener("input", () => {
-        f1 = pow(10, parseFloat(f1Slider.value));
-        f2 = pow(10, parseFloat(f2Slider.value));
-        f3 = pow(10, parseFloat(f3Slider.value));
-        f4 = pow(10, parseFloat(f4Slider.value));
-        a1 = parseFloat(a1Slider.value);
-        a2 = parseFloat(a2Slider.value);
-        a3 = parseFloat(a3Slider.value);
-        a4 = parseFloat(a4Slider.value);
-        p1 = parseFloat(p1Slider.value);
-        p2 = parseFloat(p2Slider.value);
-        p3 = parseFloat(p3Slider.value);
-        p4 = parseFloat(p4Slider.value);
-        d1 = parseFloat(d1Slider.value);
-        d2 = parseFloat(d2Slider.value);
-        d3 = parseFloat(d3Slider.value);
-        d4 = parseFloat(d4Slider.value);
-        weight = parseFloat(weightSlider.value);
-        glow = parseFloat(glowSlider.value);
-        redraw();
-    })
-
-})
-
-function windowResized() {
-    parentWidth = parentElement.clientWidth;
-    parentHeight = parentElement.clientHeight;
-  resizeCanvas(parentWidth, parentHeight);
-}
-
-saveButton.addEventListener("click", () => save("harmonograph.png"));

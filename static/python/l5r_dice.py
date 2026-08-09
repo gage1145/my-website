@@ -1,4 +1,4 @@
-from js import document
+from js import document, window
 import asyncio
 import random
 import pandas as pd
@@ -7,25 +7,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
 from pyscript import display, when
+from pyscript.ffi import create_proxy
 
 
-# Global variables
-roll = int(document.getElementById("dice-roll").value)
-keep = int(document.getElementById("dice-keep").value)
-target = int(document.getElementById("target").value)
-
-roll_elem = document.getElementById("first-roll")
-keep_elem = document.getElementById("first-keep")
-bonus_elem = document.getElementById("bonuses")
-total_elem = document.getElementById("total")
-load_elem = document.getElementById("pyscript-loading")
-
-table_elem = document.getElementById("table-container")
-tbl_button_elem = document.getElementById("prob-table-button")
-
-empirical_elem = document.getElementById("empirical")
-calculated_elem = document.getElementById("calculated")
-fig_elem = document.getElementById("fig")
+# Populated by init() once the L5R Dice window is open and its DOM exists.
+roll_elem = keep_elem = bonus_elem = total_elem = load_elem = None
+table_elem = tbl_button_elem = None
 
 df = {}
 
@@ -191,11 +178,6 @@ async def make_table(event=None):
         tbl_button_elem.textContent = "Show Summary Table"
         show_table = True
 
-if True: # Make False for development
-    await simulate_rolls()
-    await run_estimate(roll, keep, target)
-
-
 # Event listeners
 @when("change", "#dice-roll, #dice-keep, #target")
 async def on_input_change(event):
@@ -204,3 +186,25 @@ async def on_input_change(event):
     keep = int(document.getElementById("dice-keep").value)
     target = int(document.getElementById("target").value)
     await run_estimate(roll, keep, target)
+
+async def init(event=None):
+    """Run once each time the L5R Dice window is opened (its DOM must exist first)."""
+    global roll_elem, keep_elem, bonus_elem, total_elem, load_elem
+    global table_elem, tbl_button_elem
+
+    roll_elem = document.getElementById("first-roll")
+    keep_elem = document.getElementById("first-keep")
+    bonus_elem = document.getElementById("bonuses")
+    total_elem = document.getElementById("total")
+    load_elem = document.getElementById("pyscript-loading")
+    table_elem = document.getElementById("table-container")
+    tbl_button_elem = document.getElementById("prob-table-button")
+
+    roll = int(document.getElementById("dice-roll").value)
+    keep = int(document.getElementById("dice-keep").value)
+    target = int(document.getElementById("target").value)
+
+    await simulate_rolls()
+    await run_estimate(roll, keep, target)
+
+window.l5rDiceInit = create_proxy(init)

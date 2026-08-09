@@ -1,3 +1,5 @@
+import { openWindow } from "./window_manager.js";
+
 function clearShortcutHighlights() {
     document.querySelectorAll('.shortcut').forEach(s => {
         s.style.backgroundColor = '';
@@ -6,21 +8,21 @@ function clearShortcutHighlights() {
 }
 
 export function doubleClickToOpen() {
-    const shortcuts = document.querySelectorAll('.shortcut');
-    shortcuts.forEach(shortcut => {
-        shortcut.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
+        const shortcut = e.target.closest('.shortcut');
+        clearShortcutHighlights();
+        if (shortcut) {
             e.preventDefault();
-            e.stopPropagation();
-            clearShortcutHighlights();
             shortcut.style.backgroundColor = 'rgba(0, 0, 255, 0.15)';
             shortcut.style.color = '#fff';
-        });
-        shortcut.addEventListener('dblclick', (e) => {
-            e.preventDefault();
-            localStorage.setItem('window-closed', 'false');
-            window.location.href = shortcut.href;
-        });
+        }
     });
 
-    document.addEventListener('click', clearShortcutHighlights);
+    document.addEventListener('dblclick', (e) => {
+        const shortcut = e.target.closest('.shortcut');
+        if (!shortcut) return;
+        e.preventDefault();
+        const id = shortcut.dataset.window;
+        if (id) openWindow(id);
+    });
 }
