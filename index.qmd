@@ -1,0 +1,139 @@
+``` {=html}
+<style>
+>:not(:has(img)) {
+ max-width: min(720px, 100%);
+}
+</style>
+```
+
+
+{{< include templates/_shortcuts.qmd >}}
+
+::: { #mommy-container }
+
+::: { #body-3-col }
+
+```{=html}
+<div id="left-sidebar">
+<img src="https://blob.gifcities.org/gifcities/BBRQAD3U4LIOPJJEXBFYE425AP5FS7P4.gif" alt="">
+<img src="https://blob.gifcities.org/gifcities/LC62ZOWCYLCV363SK45YEHOJQDYRJCWS.gif" alt="">
+</div>
+```
+
+::: { .window #center-bar }
+
+{{< include templates/_title_bar.qmd >}}
+
+::: { .window-body #center-bar-body }
+
+<div style="display:flex; justify-content: center;"><img id="banner-image" src="https://blob.gifcities.org/gifcities/KVEYUIQ7OHQMTF6BIFU46SJA3IRAF723.gif" alt=""></div>
+
+{{< include templates/_navbar.qmd >}}
+
+::: { .window .content-window role="tabpanel" }
+
+::: { .window-body #content-window-body }
+
+<fieldset id="homepage-summary">
+
+#### Gage Rowden - About Me
+
+Welcome to my website! I am a researcher and data scientist working in the fields of prion biology, software development, and laboratory automation. With over a decade of experience, I have developed skills around designing analytical pipelines, building reproducible tools, and turning experimental data into publishable results.
+
+My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that's science, software, or products.
+
+Fun fact, I make music under the name [Ganymede](https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7). You can find a collection of curated songs and audio projects on the Music page.
+
+This site is a collection of projects, publications, and tools I've developed along the way. Visit the [utilities page](/utilities.html) for a collection of creative coding projects!
+
+</fieldset>
+
+<img src="https://blob.gifcities.org/gifcities/223H663AJSETBJC5QZ52NQDIJA3KJ4BV.gif" alt="" style="width: 100%">
+<img src="https://blob.gifcities.org/gifcities/GKZOPH5F4YVROZY6CDUXYGYXDAMNMEQU.gif" alt="" style="width: 100%">
+
+::: {style="display: flex; align-content: flex-start; gap: 10px; flex-wrap: wrap;"}
+
+:::
+
+::: { #homepage-contact-gifs }
+
+<fieldset>
+
+::: {style="display:flex; align-items: center; justify-content: space-around;"}
+<img style="height:40px" src="https://blob.gifcities.org/gifcities/BNH4IRJPANPWLN7H6RZK2PXUBV2UDAAN.gif" alt="">
+
+#### Contact me
+
+<img style="height:40px" src="https://blob.gifcities.org/gifcities/Z4FJ7RWZONS27TQPOS52VNYEKIROM7YS.gif" alt="">
+
+:::
+
+<ul class="tree-view" id="contact">
+
+<details open>
+<summary style="font-size: 1rem;">Contact Information</summary>
+- [+1-806-577-8008](callto: +1-806-577-8008)
+- [rowde002@umn.edu](mailto: rowde002@umn.edu)
+- [gager@priogen.bio](mailto: gager@priogen.bio)
+- [ganymede.artist@gmail.com](mailto: ganymede.artist@gmail.com)
+- [gage.rowden1145@gmail.com](mailto: gage.rowden1145@gmail.com)
+</details>
+
+<details open>
+<summary style="font-size: 1rem;">Links</summary>
+- [Github](https://github.com/gage1145){#contact-item}
+- [LinkedIn](https://www.linkedin.com/in/gagerowden){#contact-item}
+- [ORCID](https://orcid.org/0000-0002-7517-0480){#contact-item}
+- [Facebook](https://www.facebook.com/gage1145){#contact-item}
+- [Spotify](https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7){#contact-item}
+- [Youtube - Ganymede](https://www.youtube.com/channel/UCF0pawTW2NZotzNuxwNBzXw){#contact-item}
+</details>
+
+</ul>
+
+</fieldset>
+
+<fieldset style="align-self: start; align-items: start; display:flex; gap:10px;flex-wrap:wrap;">
+<img style="width: 120px; height: 28px;" src="https://blob.gifcities.org/gifcities/JD2HGMGXUFLZMAJFXJAOSHXSKMDBK7LM.gif" alt="">
+<img style="width: 128px; height: 28px;" src="https://blob.gifcities.org/gifcities/2I5Y3C5U7I3MXZ2647ZZ6FQCHPLNHP73.gif" alt="">
+<img style="width: 110px;" src="https://blob.gifcities.org/gifcities/VOGJQH2Q6XP63W663MYYCBKAPFNB4NGX.gif" alt="">
+<img style="width: 130px;" src="https://blob.gifcities.org/gifcities/4NRPIK3DTFJGSYRVQZX4DFLQNMS5XBGT.gif" alt="">
+<img src="https://blob.gifcities.org/gifcities/FX7TXPVN6IUUNZGIXYJH2HSPZ3PPIJFO.gif" alt="">
+<img src="https://blob.gifcities.org/gifcities/2KO4FQDU5SNZ3R3WXX4FHT3PZNQ6MBYD.gif" alt="">
+<img src="https://blob.gifcities.org/gifcities/3WYZCN3DMHPZIOJCGOH7RZDCML2NGQVX.gif" alt="">
+<img style="width: 118px;" src="https://blob.gifcities.org/gifcities/DLIUWYA3AP2YWGLOR3CFB4EVC56QU3FT.gif" alt="">
+<img style="width: 122px;" src="https://blob.gifcities.org/gifcities/23QWLBGLACRBAXRWFC4XDXD4UDGBY7E7.gif" alt="">
+
+</fieldset>
+
+:::
+
+:::
+
+:::
+
+<fieldset>
+<img style="width:100%;" src="https://blob.gifcities.org/gifcities/QI6SU2XKXKJQZ723QM3ISXBWMKOOM273.gif" alt="">
+</fieldset>
+
+:::
+
+:::
+
+```{=html}
+<div id="right-sidebar">
+<img src="https://blob.gifcities.org/gifcities/6KM4EO3YWEVQBRM2OW57R7NBNFZLLP2G.gif" alt="">
+<img src="https://blob.gifcities.org/gifcities/HWZNY6XC5L2LIH2VWDV46ACUTS22I4S5.gif" alt="">
+<img src="https://blob.gifcities.org/gifcities/6QWKARKKLKKGWFEJ5LIEMQMGSLODC5IG.gif" alt="">
+</div>
+```
+
+:::
+
+:::
+
+:::
+
+:::
+
+{{< include templates/_start_bar.qmd >}}

@@ -1,0 +1,67 @@
+{{< include templates/_shortcuts.qmd >}}
+
+::: { #mommy-container }
+
+::: { #body-3-col }
+
+```{=html}
+<div id="left-sidebar">
+    <img src="https://blob.gifcities.org/gifcities/XL2ZYRP2QJLSKWI5ZVDSRSJQLNETCNLP.gif" alt="">
+    <img src="https://blob.gifcities.org/gifcities/CWURFFRC3ZTWYBE56OPKYK6BSDY4ISRK.gif" alt="">
+</div>
+```
+
+::: { .window #center-bar }
+
+{{< include templates/_title_bar.qmd >}}
+
+::: { .window-body #center-bar-body }
+
+<!-- Banner Image -->
+<div style="display:flex; justify-content: center;"><img id="banner-image" src="https://blob.gifcities.org/gifcities/KVEYUIQ7OHQMTF6BIFU46SJA3IRAF723.gif" alt=""></div>
+
+{{< include templates/_navbar.qmd >}}
+
+::: { .window .content-window role="tabpanel" }
+
+::: { .window-body #content-window-body }
+
+### RT-QuIC Kinetic Modeling
+[A kinetic modeling tool for RT-QuIC data developed in R. Frames RT-QuIC data around classical enzyme kinetics.](https://modeling.gagerowden.com)
+
+### quicR
+[An R package for RT-QuIC analysis.](https://github.com/gage1145/quicR)
+
+### PriLIMS
+[A laboratory information management system developed for Priogen Corp. Utilizes a Django framework and is hosted on AWS.](https://priogen.xyz)
+
+<!-- ### PrionBot
+A Discord bot that retrieves prion-related articles from NCBI and posts them to a Discord server. -->
+
+### Cookbook
+[My family's multigenerational recipes.](https://cookbook.gagerowden.com)
+
+### This Website
+(Visit the repository where this website is hosted.)[https://github.com/gage1145/my-website]
+
+
+
+:::
+
+:::
+
+:::
+
+:::
+
+```{=html}
+<div id="right-sidebar">
+<!-- Add images here -->
+</div>
+```
+
+:::
+
+:::
+
+{{< include templates/_start_bar.qmd >}}

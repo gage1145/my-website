@@ -61,7 +61,11 @@ button {
 }
 
 h1, h2, h3, h4 {
-    margin: 10px 0px;
+    margin: 10px 0px 5px 0px;
+}
+
+p {
+    margin: 5px;
 }
 
 code {

@@ -1,0 +1,22 @@
+project:
+  type: website
+  resources:
+    - static/javascript/
+    - static/json/
+    - static/python/
+
+website:
+  favicon: static/images/favicon.ico
+  title: "Gage Rowden"
+
+format:
+  html:
+    theme: none
+    minimal: true
+    css: [static/css/main.css, https://unpkg.com/98.css]
+    include-in-header: 
+      - text: |
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <script type="module" src="main.js" defer></script>
+
+
