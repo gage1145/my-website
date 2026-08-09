@@ -21,29 +21,40 @@ export async function loadProjects() {
 }
 
 function createProjectElement(project) {
-    const wrapper = document.createElement("div");
-    wrapper.id = "project-output";
+    const details = document.createElement("details");
+    // wrapper.id = "project-output";
 
-    const textContainer = document.createElement("div");
-    textContainer.id = "project-text-container";
+    const summary = document.createElement("summary");
+    summary.innerHTML = project.title;
+    // textContainer.id = "project-text-container";
 
+    const linkList = document.createElement("li");
     const link = document.createElement("a");
     link.href = project.link;
     link.style = "display: inline-block; width: fit-content;";
+    linkList.appendChild(link);
 
-    const title = document.createElement("h3");
-    title.textContent = project.title;
-
-    link.appendChild(title);
-
-    const description = document.createElement("p");
+    const description = document.createElement("li");
     description.textContent = project.description;
-    description.style = "margin-top: 0;"
 
-    textContainer.appendChild(link);
-    textContainer.appendChild(description);
+    const subList = document.createElement("ul");
+    subList.appendChild(description);
+    subList.appendChild(linkList);
 
-    wrapper.appendChild(textContainer);
+    details.appendChild(summary);
+    details.appendChild(subList);
 
-    return wrapper;
+    // const title = document.createElement("span");
+    // title.textContent = project.title;
+
+    // const description = document.createElement("span");
+    // description.textContent = project.description;
+    // description.style = "margin-top: 0;"
+
+    // textContainer.appendChild(link);
+    // textContainer.appendChild(description);
+
+    // wrapper.appendChild(textContainer);
+
+    return details;
 }

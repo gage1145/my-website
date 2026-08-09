@@ -38,7 +38,7 @@
 </template>
 
 <template id="tpl-projects">
-<div id="projects"></div>
+<ul class="tree-view" id="projects"></ul>
 </template>
 
 <template id="tpl-resume">

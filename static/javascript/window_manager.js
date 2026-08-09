@@ -33,14 +33,15 @@ function focusWindow(state) {
     state.el.style.zIndex = String(zCounter);
     activeId = state.id;
     openWindows.forEach(s => {
-        s.taskbarBtn.classList.toggle('active', s.id === state.id && !s.minimized);
+        console.log(s.id === state.id, !s.minimized);
+        s.taskbarBtn.classList.toggle('active', !(s.id === state.id && !s.minimized));
     });
 }
 
 function minimizeWindow(state) {
     state.minimized = true;
     state.el.style.display = 'none';
-    state.taskbarBtn.classList.remove('active');
+    state.taskbarBtn.classList.toggle('active', true);
 }
 
 function restoreWindow(state) {
