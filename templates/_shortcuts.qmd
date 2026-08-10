@@ -1,10 +1,32 @@
 ```{=html}
 <div id="shortcuts">
-<a class="shortcut" href="#" data-window="home"><img src="https://win98icons.alexmeub.com/icons/png/computer-4.png" alt="">Home</a>
-<a class="shortcut" href="#" data-window="projects"><img src="https://win98icons.alexmeub.com/icons/png/internet_options-0.png" alt="">Projects</a>
-<a class="shortcut" href="#" data-window="resume"><img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">Resume</a>
-<a class="shortcut" href="#" data-window="publications"><img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">Publications</a>
-<a class="shortcut" href="#" data-window="music"><img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">Music</a>
-<a class="shortcut" href="#" data-window="utilities"><img src="https://win98icons.alexmeub.com/icons/png/directory_admin_tools-4.png" alt="">Utilities</a>
+    <div class="shortcut" data-window="home">
+        <img src="https://win98icons.alexmeub.com/icons/png/computer-4.png" alt="">
+        <span>About Me</span>
+    </div>
+    <div class="shortcut" data-window="projects">
+        <img src="https://win98icons.alexmeub.com/icons/png/internet_options-0.png" alt="">
+        <span>Projects</span>
+    </div>
+    <div class="shortcut" data-window="resume">
+        <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">
+        <span>Resume</span>
+    </div>
+    <div class="shortcut" data-window="publications">
+        <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">
+        <span>Publications</span>
+    </div>
+    <div class="shortcut" data-window="music">
+        <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">
+        <span>Music</span>
+    </div>
+    <div class="shortcut" data-window="utilities">
+        <img src="https://win98icons.alexmeub.com/icons/png/directory_admin_tools-4.png" alt="">
+        <span>Utilities</span>
+    </div>
+    <div class="shortcut" data-window="">
+        <img src="https://win98icons.alexmeub.com/icons/png/directory_explorer-0.png" alt="">
+        <span>File Explorer</span>
+    </div>
 </div>
 ```
