@@ -24,7 +24,7 @@
         <img src="https://win98icons.alexmeub.com/icons/png/directory_admin_tools-4.png" alt="">
         <span>Utilities</span>
     </div>
-    <div class="shortcut" data-window="">
+    <div class="shortcut" data-window="explorer">
         <img src="https://win98icons.alexmeub.com/icons/png/directory_explorer-0.png" alt="">
         <span>File Explorer</span>
     </div>

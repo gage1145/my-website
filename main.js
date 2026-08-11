@@ -8,6 +8,7 @@ import { initImageToAscii } from "./static/javascript/image_to_ascii.js";
 import { initMandelbrot, destroyMandelbrot } from "./static/javascript/mandelbrot.js";
 import { initHarmonograph, destroyHarmonograph } from "./static/javascript/harmonograph.js";
 import { initStartMenu } from "./static/javascript/start_menu.js";
+import { initFileExplorer } from "./static/javascript/file_explorer.js";
 import { registerWindow } from "./static/javascript/window_manager.js";
 import { doubleClickToOpen } from "./static/javascript/double_click.js";
 
@@ -135,6 +136,14 @@ document.addEventListener("DOMContentLoaded", () => {
         width: '560px',
         height: '640px',
         onOpen: () => callWhenReady('l5rDiceInit'),
+    });
+
+    registerWindow('explorer', {
+        title: 'File Explorer',
+        templateId: 'explorer',
+        width: '640px',
+        height: '480px',
+        onOpen: (bodyEl) => initFileExplorer(bodyEl),
     });
 
     initStartMenu();
