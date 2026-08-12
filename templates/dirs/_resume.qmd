@@ -1,0 +1,70 @@
+<template id="tpl-resume">
+
+::: { #resume #content-pane }
+## Gage Rowden
+
+::: { style="display: flex; justify-content: space-around;"}
+
+[![](https://win98icons.alexmeub.com/icons/png/modem-4.png)](callto: +1-806-577-8008)
+
+[![](https://win98icons.alexmeub.com/icons/png/outlook_express-4.png)](emailto: gage.rowden1145@gmail.com)
+
+[![](https://cdn-icons-png.flaticon.com/256/25/25231.png){width=48}](https://github.com/gage1145)
+
+[![](https://www.svgrepo.com/show/342095/orcid.svg){width=48}](https://orcid.org/0000-0002-7517-0480)
+
+[![](https://www.iconpacks.net/icons/1/free-linkedin-icon-112-thumb.png){width=48}](https://www.linkedin.com/in/gagerowden)
+
+:::
+
+### Summary
+Applied Data Scientist specializing in high-throughput biological data and production analytics systems with extensive experience designing end-to-end data workflows, developing custom R packages, and building cloud-backed applications. Skilled in Python, SQL, AWS, and statistical modeling, with a strong foundation in experimental design and high-throughput data. Proven track record of optimizing data analysis pipelines, improving lab efficiency, and delivering actionable insights to drive research and operational success.
+
+### Skills
+
+::: { #skills }
+
+- Python
+- Pandas & NumPy
+- scikit-learn
+- R Tidyverse
+- SQL
+- ETL pipelines
+- Time-series analysis
+- Statistical analysis
+- Experimental design
+- Data visualization
+- AWS
+- Django & REST API
+- Docker
+- Git & GitHub
+- GitHub Actions (CI/CD)
+
+:::
+
+### Experience
+#### Lead Data Scientist -- Priogen Corp.
+**Jan 2024 -- present**
+
+- Architected and deployed end-to-end data analysis pipelines to process high-throughput diagnostic datasets (up to 100 samples/week, ~240k rows of time-series data/project), reducing analysis time from ~4 hours to seconds.
+- Led full-stack development of a Python-based LIMS (PriLIMS) using Django, automating client data intake, tracking, and reporting, eliminating 10 hours/week of manual administrative work.
+- Implemented cloud-based infrastructure on AWS to support scalable SQL storage and analysis, improving system reliability and enabling secure multi-user access.
+- Introduced Git-based version control and CI workflows across projects, improving collaboration efficiency and significantly reducing deployment errors.
+
+#### Researcher IV -- University of Minnesota
+**Aug 2019 -- present**
+
+- Developed a custom R package and automation scripts to standardize RT-QuIC data analysis, reducing hours of analysis time to seconds and increasing reproducibility across collaborating labs.
+- Streamlined data processing and reporting workflows using R and Python tools, reducing turnaround time for experimental results by 99%.
+- Built and evaluated statistical models to classify diagnostic outcomes, improving disease detection confidence.
+- Standardized cross-lab analytics and built reusable analytical frameworks adopted by multiple institutions.
+- Led laboratory establishment, expansion, and workflow redesign, increasing research capacity.
+
+### Education
+M.S. in Biotechnology -- Texas Tech University **2018**
+
+B.S. in Biology -- Texas Tech University **2016**
+
+:::
+
+</template>
