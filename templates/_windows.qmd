@@ -2,16 +2,19 @@
 <template id="tpl-home">
 <fieldset id="homepage-summary">
     <h4>Gage Rowden - About Me</h4>
-    <p>Welcome to my website! I am a researcher and data scientist working in the fields of prion biology, software development, and laboratory automation. With over a decade of experience, I have developed skills around designing analytical pipelines, building reproducible tools, and turning experimental data into publishable results.</p>
-    <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that's science, software, or products.</p>
-    <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects in the Music window.</p>
-    <p>This site is a collection of projects, publications, and tools I've developed along the way. Double-click the Utilities icon on the desktop for a collection of creative coding projects!</p>
+    <pre>
+        <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that's science, software, or products.</p>
+        <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that's science, software, or products.</p>
+        <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects in the Music window.</p>
+        <p>This site is a collection of projects, publications, and tools I've developed along the way. Double-click the Utilities icon on the desktop for a collection of creative coding projects!</p>
+    </pre>
 </fieldset>
 <fieldset id="homepage-contact-gifs">
-    <div style="display:flex; align-items: center; justify-content: center;">
-        <h4>Contact me</h4>
-    </div>
+    <!-- <div style="display:flex; align-items: center; justify-content: center;"> -->
+    
+    <!-- </div> -->
     <ul class="tree-view" id="contact">
+        <h4>Contact me</h4>
         <details open>
             <summary style="font-size: 1rem;">Contact Information</summary>
             <ul>
@@ -97,6 +100,7 @@
 </div>
 </template>
 
+<<<<<<< HEAD
 <template id="tpl-utilities">
 <div class="folder-grid">
     <a class="shortcut" id="window-shortcut" href="#" data-window="mandelbrot"><img src="https://win98icons.alexmeub.com/icons/png/paint_file-4.png" alt="">Mandelbrot</a>
@@ -105,6 +109,39 @@
     <a class="shortcut" id="window-shortcut" href="#" data-window="bmg-format"><img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">BMG Format</a>
     <a class="shortcut" id="window-shortcut" href="#" data-window="l5r-dice"><img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">L5R Dice</a>
 </div>
+=======
+<template id="tpl-utilities" class="window">
+    <fieldset class="toolbar">
+        <a class="toolbar-link" href="#">File</a>
+        <a class="toolbar-link" href="#">Edit</a>
+        <a class="toolbar-link" href="#">View</a>
+        <a class="toolbar-link" href="#">Help</a>
+    </fieldset>
+    <ul class="tree-view file-explorer" style="height: 100%;">
+        <!-- <div class="folder-grid"> -->
+            <li class="shortcut explorer-shortcut" data-window="mandelbrot" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/paint_file-4.png" alt="">
+                <span>Mandelbrot</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="harmonograph" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/display_properties-4.png" alt="">
+                <span>Harmonograph</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="image-to-ascii" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">
+                <span>Image to ASCII</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="bmg-format" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">
+                <span>BMG Format</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="l5r-dice" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/joystick-4.png" alt="">
+                <span>L5R Dice</span>
+            </li>
+        <!-- </div> -->
+    </ul>
+>>>>>>> a43795665c506feb26155b96683c3b1e8ce43e82
 </template>
 
 <template id="tpl-mandelbrot">

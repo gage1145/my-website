@@ -144,12 +144,20 @@ function buildWindow(id, config) {
         </div>
     `;
 
+    const statusBar = document.createElement('div');
+    statusBar.className = 'status-bar';
+    statusBar.innerHTML = `
+        <p class="status-bar-field">Free Space: 459MB</p>
+        <p class="status-bar-field"><img src="https://win98icons.alexmeub.com/icons/png/msagent-1.png" alt=""> My Computer</p>
+    `;
+
     const body = document.createElement('div');
     body.className = 'window-body window-content';
     body.appendChild(template.content.cloneNode(true));
 
     el.appendChild(titleBar);
     el.appendChild(body);
+    el.appendChild(statusBar);
     windowsLayer().appendChild(el);
 
     const taskbarBtn = document.createElement('button');
