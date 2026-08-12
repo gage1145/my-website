@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -32,8 +32,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-html-5276476b5bdb9cfe1f92c505466e0bf3.min.css" rel="stylesheet" append-hash="true" data-mode="light">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js" defer=""></script>
 <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
@@ -87,343 +87,426 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <template id="tpl-image-to-ascii">
 <fieldset>
-<div style="width: 100%; overflow: hidden; background-color: black;">
-<pre><code>    &lt;pre style="background-color: black; color: white" id="ascii-output"&gt;No image to show.&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div style="display: flex; flex-wrap: wrap; align-items: center; gap:10px;"&gt;
-    &lt;input type="file" id="file-input" accept="image/" style="display: none;"&gt;
-    &lt;input type="text" id="file-name-display" readonly placeholder="No file selected"&gt;
-    &lt;button onclick="document.getElementById('file-input').click()"&gt;Browse...&lt;/button&gt;
-&lt;/div&gt;
-&lt;div&gt;
-    &lt;label style="font-size:20px;"&gt;&lt;val id="width-value"&gt;&lt;/val&gt;Size&lt;/label&gt;
-    &lt;input type="range" id="width" class="slider" min="40" max="200" value="200"&gt;
-&lt;/div&gt;
-&lt;div&gt;
-    &lt;label style="font-size:20px;"&gt;&lt;val id="contrast-value"&gt;&lt;/val&gt;Contrast&lt;/label&gt;
-    &lt;input type="range" id="contrast" class="slider" min="0" max="200" value="100"&gt;
-&lt;/div&gt;
-&lt;div&gt;
-    &lt;label style="font-size:20px;" for="depth"&gt;&lt;val id="depth-value"&gt;&lt;/val&gt;Depth&lt;/label&gt;
-    &lt;input type="range" id="depth" min=1 max=6 value=4 step=1&gt;
-&lt;/div&gt;
-&lt;div style="display: grid; gap: 20px; margin-bottom: 20px;"&gt;
-    &lt;span style="font-size: 20px;"&gt;Edge Behavior&lt;/span&gt;
-    &lt;div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap:10px; justify-content: space-around;"&gt;
-        &lt;input type="radio" id="edge-none" name="edge-choice" checked&gt;
-        &lt;label style="font-size: 20px;" for="edge-none"&gt;None&lt;/label&gt;
-        &lt;input type="radio" id="edge-detect" name="edge-choice"&gt;
-        &lt;label style="font-size: 20px;" for="edge-detect"&gt;Detect&lt;/label&gt;
-        &lt;input type="radio" id="edge-enhance" name="edge-choice"&gt;
-        &lt;label style="font-size: 20px;" for="edge-enhance"&gt;Enhance&lt;/label&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;div style="display:flex; justify-content: center; gap: 20px;"&gt;
-    &lt;button style="width:fit-content" py-click="run"&gt;Convert&lt;/button&gt;
-    &lt;button style="width:fit-content" onclick="navigator.clipboard.writeText(document.getElementById('ascii-output').textContent)"&gt;Copy&lt;/button&gt;
-&lt;/div&gt;</code></pre>
-</div></fieldset>
-<span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
-<p>
-This tool is written in Python and uses several methods of image manipulation using the <a href="https://pillow.readthedocs.io/en/stable/">pillow</a> library.
-</p>
-<p>
-First the image is resized based on the width parameter. A magic number of 2.2 is used to account for the difference in height and width of the monospace font.
-</p>
-<p><code style="padding: 10px; width: 100%;">def resize_image(image, new_width): image = ImageOps.exif_transpose(image) width, height = image.size ratio = height / (2.2 * width) new_height = int(new_width * ratio) return image.resize((new_width, new_height))</code></p>
-<p>
-Next contrast is applied. This is especially important if no edge detection parameter is selected.
-</p>
-<p><code style="padding: 10px; width: 100%;">def change_contrast(img, level=100): factor = 259<em>(level+255)/255</em>(259-level) def contrast(c): return 128 + factor * (c-128) return img.point(contrast)</code></p>
-<p>
-Then, color information is removed from the image. We really only need the brightness information for the ASCII representation.
-</p>
-<p><code style="padding: 10px; width: 100%;">def grayify(image): return image.convert(“L”)</code></p>
-<p>
-And the edges are optionally detected and enhanced.
-</p>
-<p><code style="padding: 10px; width: 100%;">def detect_edges(image, edge_behavior: str): behaviors = { “edge-detect”: ImageFilter.FIND_EDGES, “edge-enhance”: ImageFilter.EDGE_ENHANCE, “edge-none”: None } behavior = behaviors.get(edge_behavior)</code></p><code style="padding: 10px; width: 100%;">
-<pre><code>if behavior: return image.filter(behavior)
-return image&lt;/code&gt;</code></pre>
-<p>
-The pixels are then converted to ASCII characters based on their brightness. The character set is determined by the depth parameter. Each set is ordered based on perceived brightness, and the character set is indexed accordingly.
-</p>
-<p><code style="padding: 10px; overflow-x: scroll; text-wrap: nowrap;">def pixels_to_ascii(image, depth): pixels = image.getdata() ascii_list = [ list(” @“), list(” /9@“), list(” ^/([9<span class="math inline">$@"),
-        list(" .-^/T(f[j9K$</span>M@“), list(” <code>.-':^;!/zTJ(if3[5jwk9OK8$0M%@"),         list("""</code>.-’:_^=;&gt;!c*/zsTv)J(Fi{fI31t[ne5Yxja]wqkP9d4pOAKXm8D$Bg0MQ%&amp;@“““) ] ASCII_CHARS = ascii_list[depth - 1] characters = ““.join(ASCII_CHARS[p // (256 // len(ASCII_CHARS))] for p in pixels) return characters</code></p>
-<p>
-Finally, the above functions are combined and the lines of text are joined on newlines.
-</p>
-<p><code style="padding: 10px; width: 100%;">def convert_image_from_bytes(image_bytes, depth, new_width, contrast, edge_behavior):</code></p><code style="padding: 10px; width: 100%;">
-<pre><code>image = Image.open(BytesIO(image_bytes))
-image = resize_image(image, new_width)
-image = change_contrast(image, contrast)
-image = grayify(image)
-image = detect_edges(image, edge_behavior)
-ascii_data = pixels_to_ascii(image, depth)
-pixel_count = len(ascii_data)
-ascii_image = "\n".join(
-    ascii_data[i:i + new_width]
-    for i in range(0, pixel_count, new_width)
-)
-
-return ascii_image&lt;/code&gt;</code></pre>
-<p>
-The full python script can be found here: <a href="/static/python/image_to_ascii.py" target="_blank">image_to_ascii.py</a>
-</p>
-<p> </p></code></code></span></template><p></p>
-<template id="tpl-bmg-format">
-<p style="text-align: left; margin: 0 0 10px 0;">
-Welcome to the BMG CSV Formatter. This tool is used for converting a CSV file into a TXT file format that can be imported into a BMG FluoStar OMEGA plate reader control program. CSV files should be formatted like a 96-well plate. The first column should have the letters A-H, and the top row should have the numbers 1-12. Be sure to input a value for each well you are using even if there are duplicate entries.
-</p>
-<div style="display: grid; gap: 10px;">
-<pre><code>&lt;div class="field-row" style="display: flex; flex-wrap: wrap; justify-content: space-around;"&gt;
-    &lt;div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;"&gt;
-        &lt;input type="file" id="file-input" accept=".csv" style="display: none;"&gt;
-        &lt;input type="text" id="file-name-display" readonly placeholder="No file selected" style="width:fit-content"&gt;
-        &lt;button onclick="document.getElementById('file-input').click()"&gt;Browse...&lt;/button&gt;
-        &lt;button py-click="run_bmg"&gt;Format&lt;/button&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;pre id="bmg-preview" style="max-height: 400px; overflow: scroll;"&gt;&lt;/pre&gt;
-&lt;button id="download-btn" disabled&gt;Download TXT File&lt;/button&gt;</code></pre>
-</div>
-<p></p></template><p></p>
-<template id="tpl-explorer">
-<fieldset class="toolbar">
-<a class="toolbar-link" href="#">File</a> <a class="toolbar-link" href="#">Edit</a> <a class="toolbar-link" href="#">View</a> <a class="toolbar-link" href="#">Help</a>
+    <div style="width: 100%; overflow: hidden; background-color: black;">
+        <pre style="background-color: black; color: white" id="ascii-output">No image to show.</pre>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap:10px;">
+        <input type="file" id="file-input" accept="image/" style="display: none;">
+        <input type="text" id="file-name-display" readonly="" placeholder="No file selected">
+        <button onclick="document.getElementById('file-input').click()">Browse...</button>
+    </div>
+    <div>
+        <label style="font-size:20px;"><val id="width-value"></val>Size</label>
+        <input type="range" id="width" class="slider" min="40" max="200" value="200">
+    </div>
+    <div>
+        <label style="font-size:20px;"><val id="contrast-value"></val>Contrast</label>
+        <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
+    </div>
+    <div>
+        <label style="font-size:20px;" for="depth"><val id="depth-value"></val>Depth</label>
+        <input type="range" id="depth" min="1" max="6" value="4" step="1">
+    </div>
+    <div style="display: grid; gap: 20px; margin-bottom: 20px;">
+        <span style="font-size: 20px;">Edge Behavior</span>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap:10px; justify-content: space-around;">
+            <input type="radio" id="edge-none" name="edge-choice" checked="">
+            <label style="font-size: 20px;" for="edge-none">None</label>
+            <input type="radio" id="edge-detect" name="edge-choice">
+            <label style="font-size: 20px;" for="edge-detect">Detect</label>
+            <input type="radio" id="edge-enhance" name="edge-choice">
+            <label style="font-size: 20px;" for="edge-enhance">Enhance</label>
+        </div>
+    </div>
+    <div style="display:flex; justify-content: center; gap: 20px;">
+        <button style="width:fit-content" py-click="run">Convert</button>
+        <button style="width:fit-content" onclick="navigator.clipboard.writeText(document.getElementById('ascii-output').textContent)">Copy</button>
+    </div>
 </fieldset>
-<div class="explorer-panes">
-<pre><code>&lt;div class="explorer-tree-pane"&gt;
-  &lt;ul class="tree-view" style="height: 100%; overflow-y: auto;"&gt;
-    &lt;li&gt;
-      &lt;details open&gt;
-        &lt;summary data-folder=""&gt;&lt;img src="https://win98icons.alexmeub.com/icons/png/computer_2_cool-1.png" alt=""&gt; C:/&lt;/summary&gt;
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;summary data-folder="home" data-window="home"&gt;About Me&lt;/summary&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;details&gt;
-              &lt;summary data-folder="projects" data-window="projects"&gt;Projects&lt;/summary&gt;
-              &lt;ul id="explorer-projects-tree"&gt;&lt;/ul&gt;
-            &lt;/details&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;details&gt;
-              &lt;summary data-folder="publications" data-window="publications"&gt;Publications&lt;/summary&gt;
-              &lt;ul id="explorer-publications-tree"&gt;&lt;/ul&gt;
-            &lt;/details&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;details&gt;
-              &lt;summary data-folder="music" data-window="music"&gt;Music&lt;/summary&gt;
-            &lt;/details&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;details&gt;
-              &lt;summary data-folder="utilities" data-window="utilities"&gt;Utilities&lt;/summary&gt;
-              &lt;ul&gt;
-                &lt;li data-window="mandelbrot"&gt;Mandelbrot&lt;/li&gt;
-                &lt;li data-window="harmonograph"&gt;Harmonograph&lt;/li&gt;
-                &lt;li data-window="image-to-ascii"&gt;Image to ASCII&lt;/li&gt;
-                &lt;li data-window="bmg-format"&gt;BMG Format&lt;/li&gt;
-                &lt;li data-window="l5r-dice"&gt;L5R Dice&lt;/li&gt;
-              &lt;/ul&gt;
-            &lt;/details&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;details&gt;
-              &lt;summary data-folder="resume" data-window="resume"&gt;Resume&lt;/summary&gt;
-            &lt;/details&gt;
-          &lt;/li&gt;    
-        &lt;/ul&gt;        
-      &lt;/details&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="explorer-content-pane"&gt;
-  &lt;ul class="file-explorer" id="explorer-content"&gt;&lt;/ul&gt;
-&lt;/div&gt;</code></pre>
-</div>
-<p></p></template><p></p>
-<template id="tpl-harmonograph">
-<div id="sketch">
+<span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
+<p>This tool is written in Python and uses several methods of image manipulation using the <a href="https://pillow.readthedocs.io/en/stable/">pillow</a> library.</p>
 
+<p>First the image is resized based on the width parameter. A magic number of 2.2 is used to account for the difference in height and width of the monospace font.</p>
+
+<code style="padding: 10px; width: 100%;">def resize_image(image, new_width):
+    image = ImageOps.exif_transpose(image)
+    width, height = image.size
+    ratio = height / (2.2 * width)
+    new_height = int(new_width * ratio)
+    return image.resize((new_width, new_height))</code>
+
+<p>Next contrast is applied. This is especially important if no edge detection parameter is selected.</p>
+
+<code style="padding: 10px; width: 100%;">def change_contrast(img, level=100):
+    factor = 259*(level+255)/255*(259-level)
+    def contrast(c):
+        return 128 + factor * (c-128)
+    return img.point(contrast)</code>
+
+<p>Then, color information is removed from the image. We really only need the brightness information for the ASCII representation.</p>
+
+<code style="padding: 10px; width: 100%;">def grayify(image):
+    return image.convert("L")</code>
+
+<p>And the edges are optionally detected and enhanced.</p>
+
+<code style="padding: 10px; width: 100%;">def detect_edges(image, edge_behavior: str):
+    behaviors = {
+        "edge-detect": ImageFilter.FIND_EDGES,
+        "edge-enhance": ImageFilter.EDGE_ENHANCE,
+        "edge-none": None
+    }
+    behavior = behaviors.get(edge_behavior)
+
+    if behavior: return image.filter(behavior)
+    return image</code>
+
+<p>The pixels are then converted to ASCII characters based on their brightness. The character set is determined by the depth parameter. Each set is ordered based on perceived brightness, and the character set is indexed accordingly.</p>
+
+<code style="padding: 10px; overflow-x: scroll; text-wrap: nowrap;">def pixels_to_ascii(image, depth):
+    pixels = image.getdata()
+    ascii_list = [
+        list(" @"),
+        list(" /9@"),
+        list(" ^/([9$@"),
+        list(" .-^/T(f[j9K$M@"),
+        list(" `.-':^;!/zTJ(if3[5jwk9OK8$0M%@"),
+        list(""" `.-':_^=;&gt;!c*/zsTv)J(Fi{fI31t[ne5Yxja]wqkP9d4pOAKXm8D$Bg0MQ%&amp;@""")
+    ]
+    ASCII_CHARS = ascii_list[depth - 1]
+    characters = "".join(ASCII_CHARS[p // (256 // len(ASCII_CHARS))] for p in pixels)
+    return characters</code>
+
+<p>Finally, the above functions are combined and the lines of text are joined on newlines.</p>
+
+<code style="padding: 10px; width: 100%;">def convert_image_from_bytes(image_bytes,
+                             depth,
+                             new_width,
+                             contrast,
+                             edge_behavior):
+
+    image = Image.open(BytesIO(image_bytes))
+    image = resize_image(image, new_width)
+    image = change_contrast(image, contrast)
+    image = grayify(image)
+    image = detect_edges(image, edge_behavior)
+    ascii_data = pixels_to_ascii(image, depth)
+    pixel_count = len(ascii_data)
+    ascii_image = "\n".join(
+        ascii_data[i:i + new_width]
+        for i in range(0, pixel_count, new_width)
+    )
+
+    return ascii_image</code>
+
+<p>The full python script can be found here: <a href="/static/python/image_to_ascii.py" target="_blank">image_to_ascii.py</a></p>
+</span>
+</template>
+<template id="tpl-bmg-format">
+<p style="text-align: left; margin: 0 0 10px 0;">Welcome to the BMG CSV Formatter. This tool is used for converting a CSV file into a TXT file format that can be imported into a BMG FluoStar OMEGA plate reader control program. CSV files should be formatted like a 96-well plate. The first column should have the letters A-H, and the top row should have the numbers 1-12. Be sure to input a value for each well you are using even if there are duplicate entries.</p>
+<div style="display: grid; gap: 10px;">
+    <div class="field-row" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+            <input type="file" id="file-input" accept=".csv" style="display: none;">
+            <input type="text" id="file-name-display" readonly="" placeholder="No file selected" style="width:fit-content">
+            <button onclick="document.getElementById('file-input').click()">Browse...</button>
+            <button py-click="run_bmg">Format</button>
+        </div>
+    </div>
+    <pre id="bmg-preview" style="max-height: 400px; overflow: scroll;"></pre>
+    <button id="download-btn" disabled="">Download TXT File</button>
 </div>
+</template>
+<template id="tpl-explorer">
+  <fieldset class="toolbar">
+    <a class="toolbar-link" href="#">File</a>
+    <a class="toolbar-link" href="#">Edit</a>
+    <a class="toolbar-link" href="#">View</a>
+    <a class="toolbar-link" href="#">Help</a>
+  </fieldset>
+  <div class="explorer-panes">
+    <div class="explorer-tree-pane">
+      <ul class="tree-view" id="explorer-tree" style="height: 100%; overflow-y: auto;"></ul>
+    </div>
+    <div class="explorer-content-pane">
+      <ul class="file-explorer" id="explorer-content"></ul>
+    </div>
+  </div>
+</template>
+<template id="tpl-harmonograph">
+<div id="sketch"></div>
 <div id="harmonograph-parameters">
-<pre><code>&lt;div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px;"&gt;
-    &lt;div&gt;
-        &lt;h4 style="margin-bottom: 0;"&gt;Frequency&lt;/h4&gt;
-        &lt;input type="range" name="f1" id="f1-slider" class="slider" min=0 max=3 step=0.0001 value=1&gt;
-        &lt;input type="range" name="f2" id="f2-slider" class="slider" min=0 max=3 step=0.0001 value=0.3&gt;
-        &lt;input type="range" name="f3" id="f3-slider" class="slider" min=0 max=3 step=0.0001 value=0.5&gt;
-        &lt;input type="range" name="f4" id="f4-slider" class="slider" min=0 max=3 step=0.0001 value=0.25&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-        &lt;h4 style="margin-bottom: 0;"&gt;Amplitude&lt;/h4&gt;
-        &lt;input type="range" name="a1" id="a1-slider" class="slider" min=0 max=500 step=0.0001 value=50&gt;
-        &lt;input type="range" name="a2" id="a2-slider" class="slider" min=0.5 max=500 step=0.0001 value=35&gt;
-        &lt;input type="range" name="a3" id="a3-slider" class="slider" min=0.5 max=500 step=0.0001 value=429&gt;
-        &lt;input type="range" name="a4" id="a4-slider" class="slider" min=0.5 max=500 step=0.0001 value=100&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-        &lt;h4 style="margin-bottom: 0;"&gt;Phase&lt;/h4&gt;
-        &lt;input type="range" name="p1" id="p1-slider" class="slider" min=0 max=1 step=0.0001 value=0.5&gt;
-        &lt;input type="range" name="p2" id="p2-slider" class="slider" min=0 max=1 step=0.0001 value=1&gt;
-        &lt;input type="range" name="p3" id="p3-slider" class="slider" min=0 max=1 step=0.0001 value=0.69&gt;
-        &lt;input type="range" name="p4" id="p4-slider" class="slider" min=0 max=1 step=0.0001 value=0.2&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-        &lt;h4 style="margin-bottom: 0;"&gt;Damping&lt;/h4&gt;
-        &lt;input type="range" name="d1" id="d1-slider" class="slider" min=0 max=1 step=0.0001 value=0.001&gt;
-        &lt;input type="range" name="d2" id="d2-slider" class="slider" min=0 max=1 step=0.0001 value=0.01&gt;
-        &lt;input type="range" name="d3" id="d3-slider" class="slider" min=0 max=1 step=0.0001 value=0.2&gt;
-        &lt;input type="range" name="d4" id="d4-slider" class="slider" min=0 max=1 step=0.0001 value=0.3&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-        &lt;h4 style="margin-bottom:0"&gt;Weight&lt;/h4&gt;
-        &lt;input type="range" id="line-weight" class="slider" min=0 max=4 step=0.001 value="1.2"&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-        &lt;h4 style="margin-bottom:0"&gt;Glow&lt;/h4&gt;
-        &lt;input type="range" id="glow" class="slider" min=0 max=20 step=0.001 value="10"&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px;">
+        <div>
+            <h4 style="margin-bottom: 0;">Frequency</h4>
+            <input type="range" name="f1" id="f1-slider" class="slider" min="0" max="3" step="0.0001" value="1">
+            <input type="range" name="f2" id="f2-slider" class="slider" min="0" max="3" step="0.0001" value="0.3">
+            <input type="range" name="f3" id="f3-slider" class="slider" min="0" max="3" step="0.0001" value="0.5">
+            <input type="range" name="f4" id="f4-slider" class="slider" min="0" max="3" step="0.0001" value="0.25">
+        </div>
+        <div>
+            <h4 style="margin-bottom: 0;">Amplitude</h4>
+            <input type="range" name="a1" id="a1-slider" class="slider" min="0" max="500" step="0.0001" value="50">
+            <input type="range" name="a2" id="a2-slider" class="slider" min="0.5" max="500" step="0.0001" value="35">
+            <input type="range" name="a3" id="a3-slider" class="slider" min="0.5" max="500" step="0.0001" value="429">
+            <input type="range" name="a4" id="a4-slider" class="slider" min="0.5" max="500" step="0.0001" value="100">
+        </div>
+        <div>
+            <h4 style="margin-bottom: 0;">Phase</h4>
+            <input type="range" name="p1" id="p1-slider" class="slider" min="0" max="1" step="0.0001" value="0.5">
+            <input type="range" name="p2" id="p2-slider" class="slider" min="0" max="1" step="0.0001" value="1">
+            <input type="range" name="p3" id="p3-slider" class="slider" min="0" max="1" step="0.0001" value="0.69">
+            <input type="range" name="p4" id="p4-slider" class="slider" min="0" max="1" step="0.0001" value="0.2">
+        </div>
+        <div>
+            <h4 style="margin-bottom: 0;">Damping</h4>
+            <input type="range" name="d1" id="d1-slider" class="slider" min="0" max="1" step="0.0001" value="0.001">
+            <input type="range" name="d2" id="d2-slider" class="slider" min="0" max="1" step="0.0001" value="0.01">
+            <input type="range" name="d3" id="d3-slider" class="slider" min="0" max="1" step="0.0001" value="0.2">
+            <input type="range" name="d4" id="d4-slider" class="slider" min="0" max="1" step="0.0001" value="0.3">
+        </div>
+        <div>
+            <h4 style="margin-bottom:0">Weight</h4>
+            <input type="range" id="line-weight" class="slider" min="0" max="4" step="0.001" value="1.2">
+        </div>
+        <div>
+            <h4 style="margin-bottom:0">Glow</h4>
+            <input type="range" id="glow" class="slider" min="0" max="20" step="0.001" value="10">
+        </div>
+    </div>
 </div>
-<button id="save" style="margin-top:10px;">
-Save Image
-</button>
-<p></p></template><p></p>
+<button id="save" style="margin-top:10px;">Save Image</button>
+</template>
 <template id="tpl-l5r-dice">
 <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
-<pre><code>&lt;span id="pyscript-loading" style="font-size: 20px; color: darkred"&gt;Loading...&lt;/span&gt;
-&lt;div style="display:flex; gap: 30px; justify-content: space-around; text-align: center;"&gt;
-    &lt;span id="empirical" style="font-size: 20px; font-weight: bold;"&gt;&lt;/span&gt;
-    &lt;span id="calculated" style="font-size: 20px; font-weight: bold;"&gt;&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class="status-field-border" id="fig" style="font-size: 20px; color: darkred; overflow: scroll;"&gt;Generating figure...&lt;/div&gt;
-&lt;div style="display:grid; gap: 30px; grid-template-columns: 1fr 1fr; text-align: left;"&gt;
-    &lt;span style="font-size: 30px;" id="first-roll"&gt;&lt;/span&gt;
-    &lt;span style="font-size: 30px;" id="first-keep"&gt;&lt;/span&gt;
-    &lt;span style="font-size: 30px;" id="bonuses"&gt;&lt;/span&gt;
-    &lt;span style="font-size: 30px;" id="total" style="color: red"&gt;&lt;/span&gt;
-&lt;/div&gt;
-&lt;div style="display: flex; flex-direction: column; gap: 20px;"&gt;
-    &lt;div id="roll-container" style="display:grid; grid-template-columns: 1fr 1fr 1fr;"&gt;
-        &lt;div style="display:flex; flex-direction: column; align-items: center;"&gt;
-            &lt;label style="font-size: 20px;" for="dice-roll"&gt;Roll&lt;/label&gt;
-            &lt;select name="dice-roll" id="dice-roll" style="font-size:20px"&gt;
-                &lt;option value=1&gt;Roll 1&lt;/option&gt;
-                &lt;option value=2&gt;Roll 2&lt;/option&gt;
-                &lt;option value=3&gt;Roll 3&lt;/option&gt;
-                &lt;option value=4&gt;Roll 4&lt;/option&gt;
-                &lt;option value=5&gt;Roll 5&lt;/option&gt;
-                &lt;option value=6&gt;Roll 6&lt;/option&gt;
-                &lt;option value=7 selected&gt;Roll 7&lt;/option&gt;
-                &lt;option value=8&gt;Roll 8&lt;/option&gt;
-                &lt;option value=9&gt;Roll 9&lt;/option&gt;
-                &lt;option value=10&gt;Roll 10&lt;/option&gt;
-            &lt;/select&gt;
-        &lt;/div&gt;
-        &lt;div style="display:flex; flex-direction: column; align-items: center;"&gt;
-            &lt;label style="font-size: 20px;" for="dice-keep"&gt;Keep&lt;/label&gt;
-            &lt;select name="dice-keep" id="dice-keep" style="font-size:20px;"&gt;
-                &lt;option value=1&gt;Keep 1&lt;/option&gt;
-                &lt;option value=2&gt;Keep 2&lt;/option&gt;
-                &lt;option value=3&gt;Keep 3&lt;/option&gt;
-                &lt;option value=4&gt;Keep 4&lt;/option&gt;
-                &lt;option value=5 selected&gt;Keep 5&lt;/option&gt;
-                &lt;option value=6&gt;Keep 6&lt;/option&gt;
-                &lt;option value=7&gt;Keep 7&lt;/option&gt;
-                &lt;option value=8&gt;Keep 8&lt;/option&gt;
-                &lt;option value=9&gt;Keep 9&lt;/option&gt;
-                &lt;option value=10&gt;Keep 10&lt;/option&gt;
-            &lt;/select&gt;
-        &lt;/div&gt;
-        &lt;div style="display:flex; flex-direction: column; align-items: center;"&gt;
-            &lt;label style="font-size: 20px;" for="target"&gt;Target&lt;/label&gt;
-            &lt;input type="number" id="target" value=40 style="font-size: 20px; width: 100px;"&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div style="position: relative; display: flex; justify-content: center; width: 100%"&gt;
-        &lt;div style="display: flex; gap: 50px; justify-content: left;"&gt;
-            &lt;button py-click="roller"&gt;Roll!&lt;/button&gt;
-            &lt;button py-click="make_table" id="prob-table-button"&gt;Show Summary Table&lt;/button&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div id="table-container" class="sunken-panel" style="display: flex;justify-content: center; width: 100%"&gt;&lt;/div&gt;
-    &lt;span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;"&gt;</code></pre>
-<p>Gage Rowden 2026</p>
-<p>This tool simulates the rolling mechanics of the Legends of the 5 Rings role-playing game.</p>
-<p>The user chooses a number of ten-sided dice to roll and a number less than or equal to that number of dice to keep. The tool calculates the probability of achieving a target number of successes, and visualizes the results.</p>
-<p>Upon opening, the tool simulates 10,000 rolls for each possible roll/keep combination. The probability is shown as both a proportion of successes to losses (empirical) and as the area of the estimated density curve (calculated).</p>
-The tool was written in Python, and the core logic of the roller is implemented in the following “roll_dice()” function, which uses a recursive approach to determine the final roll. <code style="width: 100%;">def roll_dice(roll, keep): assert roll &gt;= keep, “roll must be ≥ keep.” rolls = [randint(1,10) for _ in range(roll)] keeps = sorted(rolls)[::-1][:keep] for i in keeps: if i != 10: break keeps += roll_dice(1, 1) return keeps</code> The function first generates a list of length “roll” of random integers between 1 and 10. The rolls are sorted in descending order, and the first “keep” amount of numbers are chosen. If any “keeps” equal 10, the function is called again with roll=1 and keep=1. This goes on until no more 10’s are rolled. 
-</div>
+    <span id="pyscript-loading" style="font-size: 20px; color: darkred">Loading...</span>
+    <div style="display:flex; gap: 30px; justify-content: space-around; text-align: center;">
+        <span id="empirical" style="font-size: 20px; font-weight: bold;"></span>
+        <span id="calculated" style="font-size: 20px; font-weight: bold;"></span>
+    </div>
+    <div class="status-field-border" id="fig" style="font-size: 20px; color: darkred; overflow: scroll;">Generating figure...</div>
+    <div style="display:grid; gap: 30px; grid-template-columns: 1fr 1fr; text-align: left;">
+        <span style="font-size: 30px;" id="first-roll"></span>
+        <span style="font-size: 30px;" id="first-keep"></span>
+        <span style="font-size: 30px;" id="bonuses"></span>
+        <span style="font-size: 30px;" id="total"></span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div id="roll-container" style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
+            <div style="display:flex; flex-direction: column; align-items: center;">
+                <label style="font-size: 20px;" for="dice-roll">Roll</label>
+                <select name="dice-roll" id="dice-roll" style="font-size:20px">
+                    <option value="1">Roll 1</option>
+                    <option value="2">Roll 2</option>
+                    <option value="3">Roll 3</option>
+                    <option value="4">Roll 4</option>
+                    <option value="5">Roll 5</option>
+                    <option value="6">Roll 6</option>
+                    <option value="7" selected="">Roll 7</option>
+                    <option value="8">Roll 8</option>
+                    <option value="9">Roll 9</option>
+                    <option value="10">Roll 10</option>
+                </select>
+            </div>
+            <div style="display:flex; flex-direction: column; align-items: center;">
+                <label style="font-size: 20px;" for="dice-keep">Keep</label>
+                <select name="dice-keep" id="dice-keep" style="font-size:20px;">
+                    <option value="1">Keep 1</option>
+                    <option value="2">Keep 2</option>
+                    <option value="3">Keep 3</option>
+                    <option value="4">Keep 4</option>
+                    <option value="5" selected="">Keep 5</option>
+                    <option value="6">Keep 6</option>
+                    <option value="7">Keep 7</option>
+                    <option value="8">Keep 8</option>
+                    <option value="9">Keep 9</option>
+                    <option value="10">Keep 10</option>
+                </select>
+            </div>
+            <div style="display:flex; flex-direction: column; align-items: center;">
+                <label style="font-size: 20px;" for="target">Target</label>
+                <input type="number" id="target" value="40" style="font-size: 20px; width: 100px;">
+            </div>
+        </div>
+        <div style="position: relative; display: flex; justify-content: center; width: 100%">
+            <div style="display: flex; gap: 50px; justify-content: left;">
+                <button py-click="roller">Roll!</button>
+                <button py-click="make_table" id="prob-table-button">Show Summary Table</button>
+            </div>
+        </div>
+        <div id="table-container" class="sunken-panel" style="display: flex;justify-content: center; width: 100%"></div>
+        <span style="display: flex; flex-wrap: wrap; font-size: 1.2rem;text-align: left; white-space: pre-wrap;">
+Gage Rowden 2026
 
-<p></p></template><p></p>
+This tool simulates the rolling mechanics of the Legends of the 5 Rings role-playing game.
+
+The user chooses a number of ten-sided dice to roll and a number less than or equal to that number of dice to keep. The tool calculates the probability of achieving a target number of successes, and visualizes the results.
+
+Upon opening, the tool simulates 10,000 rolls for each possible roll/keep combination. The probability is shown as both a proportion of successes to losses (empirical) and as the area of the estimated density curve (calculated).
+
+The tool was written in Python, and the core logic of the roller is implemented in the following "roll_dice()" function, which uses a recursive approach to determine the final roll.
+                                            <code style="width: 100%;">def roll_dice(roll, keep):
+    assert roll &gt;= keep, "roll must be ≥ keep."
+    rolls = [randint(1,10) for _ in range(roll)]
+    keeps = sorted(rolls)[::-1][:keep]
+    for i in keeps:
+        if i != 10: break
+        keeps += roll_dice(1, 1)
+    return keeps</code>
+The function first generates a list of length "roll" of random integers between 1 and 10. The rolls are sorted in descending order, and the first "keep" amount of numbers are chosen. If any "keeps" equal 10, the function is called again with roll=1 and keep=1. This goes on until no more 10's are rolled.
+        </span>
+    </div>
+</div>
+</template>
 <template id="tpl-mandelbrot">
-<div id="sketch">
+<div id="sketch"></div>
+<div style="display: grid; gap: 20px;">
+    <fieldset style="display: flex; align-items: center; gap: 20px;">
+        <div id="mandelbrot-param">
+            <label style="font-size: 20px;" for="iterations">Max Iter</label>
+            <select name="iterations" id="iterations">
+                <option value="10">10</option>
+                <option value="50">50</option>
+                <option value="100" selected="">100</option>
+                <option value="250">250</option>
+                <option value="500">500</option>
+                <option value="750">750</option>
+                <option value="1000">1,000</option>
+                <option value="2500">2,500</option>
+                <option value="5000">5,000</option>
+                <option value="7500">7,500</option>
+                <option value="10000">10,000</option>
+            </select>
+        </div>
+        <div id="mandelbrot-param">
+            <label for="color-mode">Color Mode</label>
+            <select name="color-mode" id="color-mode">
+                <option value="HSL">HSL</option>
+                <option value="RGB">RGB</option>
+            </select>
+        </div>
+        <button id="save">Save Image</button>
+    </fieldset>
+    <fieldset style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div>
+            <div id="mandelbrot-param">
+                <label for="zoom">Zoom</label>
+                <input type="range" name="zoom" id="zoom" class="slider" min="0.5" max="1000" step="0.0001" value="0.5">
+            </div>
+            <div id="mandelbrot-param">
+                <label for="palette-cycles">Color Cycles</label>
+                <input type="range" name="palette-cycles" id="palette-cycles" class="slider" min="1" max="100" step="1" value="6">
+            </div>
+            <div id="mandelbrot-param">
+                <label for="color-scale">Color Scale</label>
+                <input type="range" name="color-scale" id="color-scale" class="slider" min="0" max="1" step="0.001" value="0.1">
+            </div>
+        </div>
+        <div>
+            <div id="mandelbrot-param">
+                <label for="color1" id="color1-label"></label>
+                <input type="range" name="color1" id="color1" class="slider" min="0" max="100" step="0.1" value="80">
+            </div>
+            <div id="mandelbrot-param">
+                <label for="color2" id="color2-label"></label>
+                <input type="range" name="color2" id="color2" class="slider" min="0" max="100" step="0.1" value="20">
+            </div>
+            <div id="mandelbrot-param">
+                <label for="color3" id="color3-label"></label>
+                <input type="range" name="color3" id="color3" class="slider" min="0" max="100" step="0.1" value="100">
+            </div>
+        </div>
+    </fieldset>
+</div>
+</template>
+<template id="tpl-music">
+<div id="music-player">
+    <menu role="tablist" class="multirows">
+        <li role="tab" aria-selected="false"><a href="music/melt.mp3">melt</a></li>
+        <li role="tab" aria-selected="false"><a href="music/10_Speeds_master.mp3">10 Speeds</a></li>
+        <li role="tab" aria-selected="false"><a href="music/Acceptance.mp3">Acceptance</a></li>
+        <li role="tab" aria-selected="false"><a href="music/channel_2_master.mp3">channel_2</a></li>
+    </menu>
+    <menu role="tablist" class="multirows">
+        <li role="tab" aria-selected="false"><a href="music/collatz1.wav">collatz</a></li>
+        <li role="tab" aria-selected="false"><a href="music/Exponential Decay_master.mp3">Exponential Decay</a></li>
+        <li role="tab" aria-selected="false"><a href="music/GANYMEDE.wav">GANYMEDE</a></li>
+    </menu>
+    <menu role="tablist" class="multirows">
+        <li role="tab" aria-selected="false"><a href="music/Generation Loss_master.mp3">Generation Loss</a></li>
+        <li role="tab" aria-selected="false"><a href="music/hilbert1.wav">hilbert</a></li>
+        <li role="tab" aria-selected="false"><a href="music/Infinite Freeway_master.mp3">Infinite Freeway</a></li>
+        <li role="tab" aria-selected="false"><a href="music/newick.mp3">newick</a></li>
+    </menu>
+    <menu role="tablist" class="multirows">
+        <li role="tab" aria-selected="false"><a href="music/Niche_master.mp3">Niche</a></li>
+        <li role="tab" aria-selected="false"><a href="music/Niche_master_80bpm.mp3">Niche - 80bpm</a></li>
+        <li role="tab" aria-selected="false"><a href="music/Obliterated into a Million Billion Tiny Little Pieces_master.mp3">Obliterated</a></li>
+        <li role="tab" aria-selected="false"><a href="music/oscilloscope.mp3">Demo</a></li>
+        <li role="tab" aria-selected="false"><a href="music/perlin1.wav">perlin</a></li>
+    </menu>
+    <menu role="tablist" class="multirows">
+        <li role="tab" aria-selected="false"><a href="music/Recess is Over_master.mp3">Recess is Over</a></li>
+        <li role="tab" aria-selected="false"><a href="music/The Age of Computers.mp3">The Age of Computers</a></li>
+    </menu>
+    <div class="window" role="tabpanel">
+        <div class="window-body" id="visualizer">
+            <button style="justify-content: center;" id="toggle-scope">Mode</button>
+            <canvas id="oscilloscope"></canvas>
+            <fieldset>
+                <ul id="visual-toggles">
+                    <li><span>Stretch: <val id="stretch-value" class="toggle-value"></val></span><input type="range" id="stretch-slider" class="slider" min="1" max="50" step="0.01" value="2"></li>
+                    <li><span>Persistence: <val id="persistence-value" class="toggle-value"></val></span><input type="range" id="persistence-slider" class="slider" min="0" max="1" step="0.001" value="0.4"></li>
+                    <li><span>Draw Distance: <val id="distance-value" class="toggle-value"></val></span><input type="range" id="distance-slider" class="slider" min="0" max="0.1" step="0.001" value="0.09"></li>
+                    <li><span>Scale: <val id="scale-value" class="toggle-value"></val></span><input type="range" id="scale-slider" class="slider" min="0" max="0.6" step="0.01" value="0.55"></li>
+                    <li><span>Glow: <val id="glow-value" class="toggle-value"></val></span><input type="range" id="glow-slider" class="slider" min="0" max="10" step="0.01" value="6"></li>
+                </ul>
+            </fieldset>
+        </div>
+    </div>
+</div>
+</template>
+<template id="tpl-projects">
+<ul class="tree-view" id="projects">
+</ul>
+<p></p></template><p></p>
+<template id="tpl-publications">
+<div id="publications">
 
 </div>
-<div style="display: grid; gap: 20px;">
-<pre><code>&lt;fieldset style="display: flex; align-items: center; gap: 20px;"&gt;
-    &lt;div id="mandelbrot-param"&gt;
-        &lt;label style="font-size: 20px;" for="iterations"&gt;Max Iter&lt;/label&gt;
-        &lt;select name="iterations" id="iterations"&gt;
-            &lt;option value="10"&gt;10&lt;/option&gt;
-            &lt;option value="50"&gt;50&lt;/option&gt;
-            &lt;option value="100" selected&gt;100&lt;/option&gt;
-            &lt;option value="250"&gt;250&lt;/option&gt;
-            &lt;option value="500"&gt;500&lt;/option&gt;
-            &lt;option value="750"&gt;750&lt;/option&gt;
-            &lt;option value="1000"&gt;1,000&lt;/option&gt;
-            &lt;option value="2500"&gt;2,500&lt;/option&gt;
-            &lt;option value="5000"&gt;5,000&lt;/option&gt;
-            &lt;option value="7500"&gt;7,500&lt;/option&gt;
-            &lt;option value="10000"&gt;10,000&lt;/option&gt;
-        &lt;/select&gt;
-    &lt;/div&gt;
-    &lt;div id="mandelbrot-param"&gt;
-        &lt;label for="color-mode"&gt;Color Mode&lt;/label&gt;
-        &lt;select name="color-mode" id="color-mode"&gt;
-            &lt;option value="HSL"&gt;HSL&lt;/option&gt;
-            &lt;option value="RGB"&gt;RGB&lt;/option&gt;
-        &lt;/select&gt;
-    &lt;/div&gt;
-    &lt;button id="save"&gt;Save Image&lt;/button&gt;
-&lt;/fieldset&gt;
-&lt;fieldset style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;"&gt;
-    &lt;div&gt;
-        &lt;div id="mandelbrot-param"&gt;
-            &lt;label for="zoom"&gt;Zoom&lt;/label&gt;
-            &lt;input type="range" name="zoom" id="zoom" class="slider" min=0.5 max=1000 step=0.0001 value=0.5&gt;
-        &lt;/div&gt;
-        &lt;div id="mandelbrot-param"&gt;
-            &lt;label for="palette-cycles"&gt;Color Cycles&lt;/label&gt;
-            &lt;input type="range" name="palette-cycles" id="palette-cycles" class="slider" min=1 max=100 step=1 value=6&gt;
-        &lt;/div&gt;
-        &lt;div id="mandelbrot-param"&gt;
-            &lt;label for="color-scale"&gt;Color Scale&lt;/label&gt;
-            &lt;input type="range" name="color-scale" id="color-scale" class="slider" min=0 max=1 step=0.001 value=0.1&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-        &lt;div id="mandelbrot-param"&gt;
-            &lt;label for="color1" id="color1-label"&gt;&lt;/label&gt;
-            &lt;input type="range" name="color1" id="color1" class="slider" min=0 max=100 step=0.1 value=80&gt;
-        &lt;/div&gt;
-        &lt;div id="mandelbrot-param"&gt;
-            &lt;label for="color2" id="color2-label"&gt;&lt;/label&gt;
-            &lt;input type="range" name="color2" id="color2" class="slider" min=0 max=100 step=0.1 value=20&gt;
-        &lt;/div&gt;
-        &lt;div id="mandelbrot-param"&gt;
-            &lt;label for="color3" id="color3-label"&gt;&lt;/label&gt;
-            &lt;input type="range" name="color3" id="color3" class="slider" min=0 max=100 step=0.1 value=100&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/fieldset&gt;</code></pre>
-</div>
 <p></p></template><p></p>
+<template id="tpl-utilities" class="window">
+    <fieldset class="toolbar">
+        <a class="toolbar-link" href="#">File</a>
+        <a class="toolbar-link" href="#">Edit</a>
+        <a class="toolbar-link" href="#">View</a>
+        <a class="toolbar-link" href="#">Help</a>
+    </fieldset>
+    <ul class="tree-view file-explorer" style="height: 100%;">
+        <!-- <div class="folder-grid"> -->
+            <li class="shortcut explorer-shortcut" data-window="mandelbrot" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/paint_file-4.png" alt="">
+                <span>Mandelbrot</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="harmonograph" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/display_properties-4.png" alt="">
+                <span>Harmonograph</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="image-to-ascii" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">
+                <span>Image to ASCII</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="bmg-format" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">
+                <span>BMG Format</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="l5r-dice" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/joystick-4.png" alt="">
+                <span>L5R Dice</span>
+            </li>
+        <!-- </div> -->
+    </ul>
+</template>
 <template id="tpl-home">
 <fieldset id="homepage-summary">
 <pre>        <h4>Gage Rowden, M.S.</h4>
@@ -489,62 +572,6 @@ Links
 </ul>
 </fieldset>
 <p></p></template><p></p>
-<template id="tpl-music">
-<div id="music-player">
-<pre><code>&lt;menu role="tablist" class="multirows"&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/melt.mp3"&gt;melt&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/10_Speeds_master.mp3"&gt;10 Speeds&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/Acceptance.mp3"&gt;Acceptance&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/channel_2_master.mp3"&gt;channel_2&lt;/a&gt;&lt;/li&gt;
-&lt;/menu&gt;
-&lt;menu role="tablist" class="multirows"&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/collatz1.wav"&gt;collatz&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/Exponential Decay_master.mp3"&gt;Exponential Decay&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/GANYMEDE.wav"&gt;GANYMEDE&lt;/a&gt;&lt;/li&gt;
-&lt;/menu&gt;
-&lt;menu role="tablist" class="multirows"&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/Generation Loss_master.mp3"&gt;Generation Loss&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/hilbert1.wav"&gt;hilbert&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/Infinite Freeway_master.mp3"&gt;Infinite Freeway&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/newick.mp3"&gt;newick&lt;/a&gt;&lt;/li&gt;
-&lt;/menu&gt;
-&lt;menu role="tablist" class="multirows"&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/Niche_master.mp3"&gt;Niche&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/Niche_master_80bpm.mp3"&gt;Niche - 80bpm&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/Obliterated into a Million Billion Tiny Little Pieces_master.mp3"&gt;Obliterated&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/oscilloscope.mp3"&gt;Demo&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/perlin1.wav"&gt;perlin&lt;/a&gt;&lt;/li&gt;
-&lt;/menu&gt;
-&lt;menu role="tablist" class="multirows"&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/Recess is Over_master.mp3"&gt;Recess is Over&lt;/a&gt;&lt;/li&gt;
-    &lt;li role="tab" aria-selected="false"&gt;&lt;a href="music/The Age of Computers.mp3"&gt;The Age of Computers&lt;/a&gt;&lt;/li&gt;
-&lt;/menu&gt;
-&lt;div class="window" role="tabpanel"&gt;
-    &lt;div class="window-body" id="visualizer"&gt;
-        &lt;button style="justify-content: center;" id="toggle-scope"&gt;Mode&lt;/button&gt;
-        &lt;canvas id="oscilloscope"&gt;&lt;/canvas&gt;
-        &lt;fieldset&gt;
-            &lt;ul id="visual-toggles"&gt;
-                &lt;li&gt;&lt;span&gt;Stretch: &lt;val id="stretch-value" class="toggle-value"&gt;&lt;/val&gt;&lt;/span&gt;&lt;input type="range" id="stretch-slider" class="slider" min="1" max="50" step="0.01" value="2"&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;span&gt;Persistence: &lt;val id="persistence-value" class="toggle-value"&gt;&lt;/val&gt;&lt;/span&gt;&lt;input type="range" id="persistence-slider" class="slider" min="0" max="1" step="0.001" value="0.4"&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;span&gt;Draw Distance: &lt;val id="distance-value" class="toggle-value"&gt;&lt;/val&gt;&lt;/span&gt;&lt;input type="range" id="distance-slider" class="slider" min="0" max="0.1" step="0.001" value="0.09"&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;span&gt;Scale: &lt;val id="scale-value" class="toggle-value"&gt;&lt;/val&gt;&lt;/span&gt;&lt;input type="range" id="scale-slider" class="slider" min="0" max="0.6" step="0.01" value="0.55"&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;span&gt;Glow: &lt;val id="glow-value" class="toggle-value"&gt;&lt;/val&gt;&lt;/span&gt;&lt;input type="range" id="glow-slider" class="slider" min="0" max="10" step="0.01" value="6"&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/fieldset&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-</div>
-<p></p></template><p></p>
-<template id="tpl-projects">
-<ul class="tree-view" id="projects">
-</ul>
-<p></p></template><p></p>
-<template id="tpl-publications">
-<div id="publications">
-
-</div>
-<p></p></template><p></p>
 <p><template id="tpl-resume">
 <div id="content-pane">
 <h2 id="gage-rowden">Gage Rowden</h2>
@@ -600,35 +627,6 @@ Links
 <p>B.S. in Biology – Texas Tech University <strong>2016</strong></p>
 </div>
 <p></p></template></p>
-<template id="tpl-utilities" class="window">
-<fieldset class="toolbar">
-<a class="toolbar-link" href="#">File</a> <a class="toolbar-link" href="#">Edit</a> <a class="toolbar-link" href="#">View</a> <a class="toolbar-link" href="#">Help</a>
-</fieldset>
-<ul class="tree-view file-explorer" style="height: 100%;">
-<!-- <div class="folder-grid"> -->
-<pre><code>&lt;li class="shortcut explorer-shortcut" data-window="mandelbrot" style="color: #000;"&gt;
-            &lt;img src="https://win98icons.alexmeub.com/icons/png/paint_file-4.png" alt=""&gt;
-            &lt;span&gt;Mandelbrot&lt;/span&gt;
-        &lt;/li&gt;
-        &lt;li class="shortcut explorer-shortcut" data-window="harmonograph" style="color: #000;"&gt;
-            &lt;img src="https://win98icons.alexmeub.com/icons/png/display_properties-4.png" alt=""&gt;
-            &lt;span&gt;Harmonograph&lt;/span&gt;
-        &lt;/li&gt;
-        &lt;li class="shortcut explorer-shortcut" data-window="image-to-ascii" style="color: #000;"&gt;
-            &lt;img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt=""&gt;
-            &lt;span&gt;Image to ASCII&lt;/span&gt;
-        &lt;/li&gt;
-        &lt;li class="shortcut explorer-shortcut" data-window="bmg-format" style="color: #000;"&gt;
-            &lt;img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt=""&gt;
-            &lt;span&gt;BMG Format&lt;/span&gt;
-        &lt;/li&gt;
-        &lt;li class="shortcut explorer-shortcut" data-window="l5r-dice" style="color: #000;"&gt;
-            &lt;img src="https://win98icons.alexmeub.com/icons/png/joystick-4.png" alt=""&gt;
-            &lt;span&gt;L5R Dice&lt;/span&gt;
-        &lt;/li&gt;
-    &lt;!-- &lt;/div&gt; --&gt;
-&lt;/ul&gt;</code></pre>
-<p></p></ul></template><p></p>
 <div id="windows">
 
 </div>
@@ -833,6 +831,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -943,6 +943,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

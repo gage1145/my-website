@@ -124,9 +124,11 @@ function buildWindow(id, config) {
     el.className = 'window desktop-window';
     el.id = `win-${id}`;
 
-    const left = 60 + (cascadeCount % 10) * 28;
-    const top = 48 + (cascadeCount % 10) * 28;
-    cascadeCount += 1;
+    // const left = 60 + (cascadeCount % 10) * 28;
+    // const top = 48 + (cascadeCount % 10) * 28;
+    // cascadeCount += 1;
+    const left = 60;
+    const top = 48;
 
     el.style.left = `${left}px`;
     el.style.top = `${top}px`;
