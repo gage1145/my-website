@@ -1,3 +1,4 @@
+```{=html}
 <template id="tpl-l5r-dice">
 <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
     <span id="pyscript-loading" style="font-size: 20px; color: darkred">Loading...</span>
@@ -79,3 +80,4 @@ The function first generates a list of length "roll" of random integers between 
     </div>
 </div>
 </template>
+```

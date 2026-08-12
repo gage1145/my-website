@@ -1,3 +1,4 @@
+```{=html}
 <template id="tpl-utilities" class="window">
     <fieldset class="toolbar">
         <a class="toolbar-link" href="#">File</a>
@@ -30,3 +31,4 @@
         <!-- </div> -->
     </ul>
 </template>
+```

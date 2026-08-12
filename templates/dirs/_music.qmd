@@ -1,3 +1,4 @@
+```{=html}
 <template id="tpl-music">
 <div id="music-player">
     <menu role="tablist" class="multirows">
@@ -45,3 +46,4 @@
     </div>
 </div>
 </template>
+```

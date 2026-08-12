@@ -1,3 +1,4 @@
+```{=html}
 <template id="tpl-mandelbrot">
 <div id="sketch"></div>
 <div style="display: grid; gap: 20px;">
@@ -59,3 +60,4 @@
     </fieldset>
 </div>
 </template>
+```

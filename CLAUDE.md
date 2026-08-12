@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal portfolio website for Gage Rowden (gagerowden.com), hosted on GitHub Pages. Retro Windows 95/98 aesthetic using the [98.css](https://unpkg.com/98.css) framework.
 
-**No build system.** Pure static HTML/CSS/vanilla JavaScript — files are deployed as-is.
+Uses Quarto to build the website..
 
 ## Architecture
 

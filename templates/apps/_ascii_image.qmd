@@ -1,3 +1,4 @@
+```{=html}
 <template id="tpl-image-to-ascii">
 <fieldset>
     <div style="width: 100%; overflow: hidden; background-color: black;">
@@ -115,3 +116,4 @@
 <p>The full python script can be found here: <a href="/static/python/image_to_ascii.py" target="_blank">image_to_ascii.py</a></p>
 </span>
 </template>
+```
