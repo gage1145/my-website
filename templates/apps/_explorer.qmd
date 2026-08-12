@@ -1,0 +1,61 @@
+<template id="tpl-explorer">
+  <fieldset class="toolbar">
+    <a class="toolbar-link" href="#">File</a>
+    <a class="toolbar-link" href="#">Edit</a>
+    <a class="toolbar-link" href="#">View</a>
+    <a class="toolbar-link" href="#">Help</a>
+  </fieldset>
+  <div class="explorer-panes">
+    <div class="explorer-tree-pane">
+      <ul class="tree-view" style="height: 100%; overflow-y: auto;">
+        <li>
+          <details open>
+            <summary data-folder=""><img src="https://win98icons.alexmeub.com/icons/png/computer_2_cool-1.png" alt=""> C:/</summary>
+            <ul>
+              <li>
+                <summary data-folder="home" data-window="home">About Me</summary>
+              </li>
+              <li>
+                <details>
+                  <summary data-folder="projects" data-window="projects">Projects</summary>
+                  <ul id="explorer-projects-tree"></ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary data-folder="publications" data-window="publications">Publications</summary>
+                  <ul id="explorer-publications-tree"></ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary data-folder="music" data-window="music">Music</summary>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary data-folder="utilities" data-window="utilities">Utilities</summary>
+                  <ul>
+                    <li data-window="mandelbrot">Mandelbrot</li>
+                    <li data-window="harmonograph">Harmonograph</li>
+                    <li data-window="image-to-ascii">Image to ASCII</li>
+                    <li data-window="bmg-format">BMG Format</li>
+                    <li data-window="l5r-dice">L5R Dice</li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary data-folder="resume" data-window="resume">Resume</summary>
+                </details>
+              </li>    
+            </ul>        
+          </details>
+        </li>
+      </ul>
+    </div>
+    <div class="explorer-content-pane">
+      <ul class="file-explorer" id="explorer-content"></ul>
+    </div>
+  </div>
+</template>

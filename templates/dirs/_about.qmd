@@ -1,0 +1,38 @@
+<template id="tpl-home">
+<fieldset id="homepage-summary">
+    <pre>
+        <h4>Gage Rowden, M.S.</h4>
+        <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that's science, software, or products.</p>
+        <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects in the Music window.</p>
+        <p>This site is a collection of projects, publications, and tools I've developed along the way. Double-click the Utilities icon on the desktop for a collection of creative coding projects!</p>
+    </pre>
+    <h4>Contact me</h4>
+    <ul class="tree-view">
+        <li>
+            <details open>
+                <summary>Contact Information</summary>
+                <ul>
+                    <li id="contact-item"><a href="callto: +1-806-577-8008">+1-806-577-8008</a></li>
+                    <li id="contact-item"><a href="mailto: rowde002@umn.edu">rowde002@umn.edu</a></li>
+                    <li id="contact-item"><a href="mailto: gager@priogen.bio">gager@priogen.bio</a></li>
+                    <li id="contact-item"><a href="mailto: ganymede.artist@gmail.com">ganymede.artist@gmail.com</a></li>
+                    <li id="contact-item"><a href="mailto: gage.rowden1145@gmail.com">gage.rowden1145@gmail.com</a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details open>
+                <summary>Links</summary>
+                <ul>
+                    <li id="contact-item"><a href="https://github.com/gage1145">Github</a></li>
+                    <li id="contact-item"><a href="https://www.linkedin.com/in/gagerowden">LinkedIn</a></li>
+                    <li id="contact-item"><a href="https://orcid.org/0000-0002-7517-0480">ORCID</a></li>
+                    <li id="contact-item"><a href="https://www.facebook.com/gage1145">Facebook</a></li>
+                    <li id="contact-item"><a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Spotify - Ganymede</a></li>
+                    <li id="contact-item"><a href="https://www.youtube.com/channel/UCF0pawTW2NZotzNuxwNBzXw">YouTube - Ganymede</a></li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</fieldset>
+</template>

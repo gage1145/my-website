@@ -1,0 +1,32 @@
+<template id="tpl-utilities" class="window">
+    <fieldset class="toolbar">
+        <a class="toolbar-link" href="#">File</a>
+        <a class="toolbar-link" href="#">Edit</a>
+        <a class="toolbar-link" href="#">View</a>
+        <a class="toolbar-link" href="#">Help</a>
+    </fieldset>
+    <ul class="tree-view file-explorer" style="height: 100%;">
+        <!-- <div class="folder-grid"> -->
+            <li class="shortcut explorer-shortcut" data-window="mandelbrot" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/paint_file-4.png" alt="">
+                <span>Mandelbrot</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="harmonograph" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/display_properties-4.png" alt="">
+                <span>Harmonograph</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="image-to-ascii" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">
+                <span>Image to ASCII</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="bmg-format" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">
+                <span>BMG Format</span>
+            </li>
+            <li class="shortcut explorer-shortcut" data-window="l5r-dice" style="color: #000;">
+                <img src="https://win98icons.alexmeub.com/icons/png/joystick-4.png" alt="">
+                <span>L5R Dice</span>
+            </li>
+        <!-- </div> -->
+    </ul>
+</template>
