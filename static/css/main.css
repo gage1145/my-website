@@ -18,6 +18,7 @@ body {
     background-color: #008080;
     color: #000;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 [role=tab] {
@@ -61,6 +62,10 @@ button {
     align-items: center;
 }
 
+details {
+    margin-bottom: 0px;
+}
+
 h1, h2, h3, h4 {
     margin: 10px 0px 5px 0px;
 }
@@ -88,11 +93,15 @@ img {
     padding: 0;
 }
 
+summary {
+    cursor: default;
+}
+
 #shortcuts {
     position: fixed;
     top: 16px;
     left: 16px;
-    max-height: 100%;
+    max-height: calc(100vh - (var(--startbar-height) + 1px));
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -216,11 +225,6 @@ img {
 
 .explorer-shortcut {
     color: #000;
-}
-
-summary {
-    font-size: 14px;
-    font-weight: bold;
 }
 
 #contact-item {
@@ -527,44 +531,14 @@ button.start-menu-item:focus {
     height: 100%;
 }
 
-/* Homepage */
-
-#homepage-contact-gifs {
-    display: flex;
-}
-
-#contact {
-    position: relative;
-    width: 100%;
-}
-
-/* Projects */
-
-/* #project-text-container {
-    p {
-        font-size: 20px;
-    }
-} */
 
 /* Pubs */
-
-#resume-contact {
-    display: flex;
-
-    justify-content: space-evenly;
-}
-
 #publications {
     display: grid;
     gap: 10px;
 }
 
 /* Resume */
-
-#resume-contact {
-    flex-wrap: wrap;
-}
-
 #experience-list {
     display: grid;
     margin-top: 5px;
@@ -573,9 +547,11 @@ button.start-menu-item:focus {
 }
 
 #skills {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    list-style: none
+    ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        list-style: none
+    }
 }
 
 /* Utils */
@@ -612,7 +588,6 @@ button.start-menu-item:focus {
 #ascii-output {
     font-family: "Courier New", Courier, monospace;
     width: 100%;
-    /* max-height: 90vw; */
     overflow: scroll;
 }
 
@@ -685,6 +660,8 @@ button.start-menu-item:focus {
 
 /* File Explorer */
 
+
+
 .explorer-panes {
     display: flex;
     flex: 1;
@@ -695,9 +672,9 @@ button.start-menu-item:focus {
 .explorer-tree-pane {
     width: 180px;
     min-width: 120px;
-    max-height: 100%;
+    height: 100%;
     flex-shrink: 0;
-    overflow-y: auto;
+    overflow-y: hidden;
     border-right: 4px solid var(--silver);
     /* padding: 4px; */
 }
@@ -710,9 +687,10 @@ button.start-menu-item:focus {
     box-shadow: inset -1px -1px #fff,inset 1px 1px grey,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;
 }
 
-.explorer-tree-pane summary.selected {
-    background: #000080;
-    color: #fff;
+#content-pane {
+    padding: 8px;
+    background: #fff;
+    box-shadow: inset -1px -1px #fff,inset 1px 1px grey,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;
 }
 
 /* Mobile Styling */
