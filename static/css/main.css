@@ -95,6 +95,10 @@ code {
     white-space: nowrap;
 }
 
+#window-shortcut {
+    color: #000 !important;
+}
+
 .title-bar-text {
     font-size: 12px;
 }
@@ -135,6 +139,7 @@ code {
     align-content: flex-start;
     gap: 15px;
     padding: 10px;
+    text-overflow: ellipsis;
 }
 
 summary {

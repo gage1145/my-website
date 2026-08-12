@@ -99,11 +99,11 @@
 
 <template id="tpl-utilities">
 <div class="folder-grid">
-    <a class="shortcut" href="#" data-window="mandelbrot"><img src="https://win98icons.alexmeub.com/icons/png/paint_file-4.png" alt="">Mandelbrot</a>
-    <a class="shortcut" href="#" data-window="harmonograph"><img src="https://win98icons.alexmeub.com/icons/png/display_properties-0.png" alt="">Harmonograph</a>
-    <a class="shortcut" href="#" data-window="image-to-ascii"><img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">Image to ASCII</a>
-    <a class="shortcut" href="#" data-window="bmg-format"><img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">BMG Format</a>
-    <a class="shortcut" href="#" data-window="l5r-dice"><img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">L5R Dice</a>
+    <a class="shortcut" id="window-shortcut" href="#" data-window="mandelbrot"><img src="https://win98icons.alexmeub.com/icons/png/paint_file-4.png" alt="">Mandelbrot</a>
+    <a class="shortcut" id="window-shortcut" href="#" data-window="harmonograph"><img src="https://win98icons.alexmeub.com/icons/png/display_properties-4.png" alt="">Harmonograph</a>
+    <a class="shortcut" id="window-shortcut" href="#" data-window="image-to-ascii"><img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">Image to ASCII</a>
+    <a class="shortcut" id="window-shortcut" href="#" data-window="bmg-format"><img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">BMG Format</a>
+    <a class="shortcut" id="window-shortcut" href="#" data-window="l5r-dice"><img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">L5R Dice</a>
 </div>
 </template>
 
