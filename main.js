@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
         templateId: 'resume',
         width: '560px',
         height: '600px',
-        onOpen: () => loadResume(),
     });
 
     registerWindow('publications', {
@@ -145,5 +144,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initStartMenu();
     doubleClickToOpen();
-    openWindow("home");
+
+    // Open the welcome window on first page load.
+    if (!localStorage.getItem('welcome-seen')) {
+        localStorage.setItem('welcome-seen', true);
+        openWindow('home');
+    }
 });
