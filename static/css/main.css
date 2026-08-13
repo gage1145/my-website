@@ -1,5 +1,6 @@
 * {
     font-size: 14px;
+    font-family: "Pixelated MS Sans Serif", Arial;
     --startbar-height: 28px;
     --startbar-border-width: 2px;
     --statusbar-height: 16px;
@@ -19,6 +20,10 @@ body {
     color: #000;
     overflow-x: hidden;
     overflow-y: hidden;
+
+    > p {
+        margin: 0;
+    }
 }
 
 [role=tab] {
@@ -206,21 +211,6 @@ summary {
     gap: 10px;
     overflow-y: auto;
 }
-
-/* .folder-grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap: 15px;
-    padding: 10px;
-    color:#000;
-    max-height: 100%;;
-    overflow: scroll;
-    a {
-        color: inherit;
-        text-overflow: clip;
-    }
-} */
 
 .file-explorer {
     display: flex !important;
@@ -707,7 +697,7 @@ button.start-menu-item:focus {
 @media only screen and (max-width: 600px) {
 
     * {
-        font-size: 16px;
+        font-size: 1.1rem;
     }
 
     .desktop-window {
@@ -717,6 +707,15 @@ button.start-menu-item:focus {
         margin: 0;
         width: 100vw !important;
         height: calc(100vh - var(--startbar-height) - var(--startbar-border-width)) !important;
+    }
+
+    .title-bar {
+        padding-right: 20px !important;
+        button {
+            min-height: 1.2rem !important;
+            min-width: calc(1.2rem * 1.143) !important;
+            background-size: 0.9rem !important;
+        }
     }
 
     #homepage-contact-gifs {
