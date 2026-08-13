@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
         <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">
         <span>Publications</span>
     </div>
-    <div class="shortcut" data-window="music">
+    <div class="shortcut" data-window="music-player">
         <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">
         <span>Music</span>
     </div>
@@ -425,53 +425,55 @@ The function first generates a list of length "roll" of random integers between 
     </fieldset>
 </div>
 </template>
-<template id="tpl-music">
+<template id="tpl-music-player">
 <div id="music-player">
-    <menu role="tablist" class="multirows">
-        <li role="tab" aria-selected="false"><a href="music/melt.mp3">melt</a></li>
-        <li role="tab" aria-selected="false"><a href="music/10_Speeds_master.mp3">10 Speeds</a></li>
-        <li role="tab" aria-selected="false"><a href="music/Acceptance.mp3">Acceptance</a></li>
-        <li role="tab" aria-selected="false"><a href="music/channel_2_master.mp3">channel_2</a></li>
-    </menu>
-    <menu role="tablist" class="multirows">
-        <li role="tab" aria-selected="false"><a href="music/collatz1.wav">collatz</a></li>
-        <li role="tab" aria-selected="false"><a href="music/Exponential Decay_master.mp3">Exponential Decay</a></li>
-        <li role="tab" aria-selected="false"><a href="music/GANYMEDE.wav">GANYMEDE</a></li>
-    </menu>
-    <menu role="tablist" class="multirows">
-        <li role="tab" aria-selected="false"><a href="music/Generation Loss_master.mp3">Generation Loss</a></li>
-        <li role="tab" aria-selected="false"><a href="music/hilbert1.wav">hilbert</a></li>
-        <li role="tab" aria-selected="false"><a href="music/Infinite Freeway_master.mp3">Infinite Freeway</a></li>
-        <li role="tab" aria-selected="false"><a href="music/newick.mp3">newick</a></li>
-    </menu>
-    <menu role="tablist" class="multirows">
-        <li role="tab" aria-selected="false"><a href="music/Niche_master.mp3">Niche</a></li>
-        <li role="tab" aria-selected="false"><a href="music/Niche_master_80bpm.mp3">Niche - 80bpm</a></li>
-        <li role="tab" aria-selected="false"><a href="music/Obliterated into a Million Billion Tiny Little Pieces_master.mp3">Obliterated</a></li>
-        <li role="tab" aria-selected="false"><a href="music/oscilloscope.mp3">Demo</a></li>
-        <li role="tab" aria-selected="false"><a href="music/perlin1.wav">perlin</a></li>
-    </menu>
-    <menu role="tablist" class="multirows">
-        <li role="tab" aria-selected="false"><a href="music/Recess is Over_master.mp3">Recess is Over</a></li>
-        <li role="tab" aria-selected="false"><a href="music/The Age of Computers.mp3">The Age of Computers</a></li>
-    </menu>
-    <div class="window" role="tabpanel">
-        <div class="window-body" id="visualizer">
-            <button style="justify-content: center;" id="toggle-scope">Mode</button>
-            <canvas id="oscilloscope"></canvas>
-            <fieldset>
-                <ul id="visual-toggles">
-                    <li><span>Stretch: <val id="stretch-value" class="toggle-value"></val></span><input type="range" id="stretch-slider" class="slider" min="1" max="50" step="0.01" value="2"></li>
-                    <li><span>Persistence: <val id="persistence-value" class="toggle-value"></val></span><input type="range" id="persistence-slider" class="slider" min="0" max="1" step="0.001" value="0.4"></li>
-                    <li><span>Draw Distance: <val id="distance-value" class="toggle-value"></val></span><input type="range" id="distance-slider" class="slider" min="0" max="0.1" step="0.001" value="0.09"></li>
-                    <li><span>Scale: <val id="scale-value" class="toggle-value"></val></span><input type="range" id="scale-slider" class="slider" min="0" max="0.6" step="0.01" value="0.55"></li>
-                    <li><span>Glow: <val id="glow-value" class="toggle-value"></val></span><input type="range" id="glow-slider" class="slider" min="0" max="10" step="0.01" value="6"></li>
-                </ul>
-            </fieldset>
-        </div>
-    </div>
+  <ul class="tree-view">
+    <details open="">
+    <summary>Music</summary>
+    <ul>
+      <li><a id="song" href="static/music/melt.mp3">melt.wav</a></li>
+      <li><a id="song" href="static/music/10_Speeds_master.mp3">10_speeds.wav</a></li>
+      <li><a href="static/music/melt.mp3">melt.wav</a></li>
+      <li><a href="static/music/10_Speeds_master.mp3">10 Speeds.wav</a></li>
+      <li><a href="static/music/Acceptance.mp3">Acceptance.wav</a></li>
+      <li><a href="static/music/channel_2_master.mp3">channel_2.wav</a></li>
+      <li><a href="static/music/collatz1.wav">collatz.wav</a></li>
+      <li><a href="static/music/Exponential Decay_master.mp3">Exponential Decay.wav</a></li>
+      <li><a href="static/music/GANYMEDE.wav">GANYMEDE.wav</a></li>
+      <li><a href="static/music/Generation Loss_master.mp3">Generation Loss.wav</a></li>
+      <li><a href="static/music/hilbert1.wav">hilbert.wav</a></li>
+      <li><a href="static/music/Infinite Freeway_master.mp3">Infinite Freeway.wav</a></li>
+      <li><a href="static/music/newick.mp3">newick.wav</a></li>
+      <li><a href="static/music/Niche_master.mp3">Niche.wav</a></li>
+      <li><a href="static/music/Niche_master_80bpm.mp3">Niche - 80bpm.wav</a></li>
+      <li><a href="static/music/Obliterated into a Million Billion Tiny Little Pieces_master.mp3">Obliterated.wav</a></li>
+      <li><a href="static/music/oscilloscope.mp3">Demo.wav</a></li>
+      <li><a href="static/music/perlin1.wav">perlin.wav</a></li>
+      <li><a href="static/music/Recess is Over_master.mp3">Recess is Over.wav</a></li>
+      <li><a href="static/music/The Age of Computers.mp3">The Age of Computers.wav</a></li>
+    </ul>
+  </details></ul>
+  <fieldset>
+      <div class="window-body" id="visualizer">
+          <button style="justify-content: center;" id="toggle-scope">Mode</button>
+          <canvas id="oscilloscope"></canvas>
+          <fieldset>
+              <ul id="visual-toggles">
+                  <li><span>Stretch: <val id="stretch-value" class="toggle-value"></val></span><input type="range" id="stretch-slider" class="slider" min="1" max="50" step="0.01" value="2"></li>
+                  <li><span>Persistence: <val id="persistence-value" class="toggle-value"></val></span><input type="range" id="persistence-slider" class="slider" min="0" max="1" step="0.001" value="0.4"></li>
+                  <li><span>Draw Distance: <val id="distance-value" class="toggle-value"></val></span><input type="range" id="distance-slider" class="slider" min="0" max="0.1" step="0.001" value="0.09"></li>
+                  <li><span>Scale: <val id="scale-value" class="toggle-value"></val></span><input type="range" id="scale-slider" class="slider" min="0" max="0.6" step="0.01" value="0.55"></li>
+                  <li><span>Glow: <val id="glow-value" class="toggle-value"></val></span><input type="range" id="glow-slider" class="slider" min="0" max="10" step="0.01" value="6"></li>
+              </ul>
+          </fieldset>
+      </div>
+  </fieldset>
 </div>
 </template>
+<template id="tpl-music">
+<ul class="tree-view" id="music">
+</ul>
+<p></p></template><p></p>
 <template id="tpl-projects">
 <ul class="tree-view" id="projects">
 </ul>

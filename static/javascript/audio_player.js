@@ -9,10 +9,10 @@ export default class AudioPlayer {
     }
 
     attachListeners() {
-        this.container.querySelectorAll('li[role="tab"] a').forEach(link => {
+        this.container.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const tab = link.closest('li');
+                const tab = link.closest('a');
 
                 if (this.currentTab === tab && !this.audioElem.paused) {
                     this.audioElem.pause();

@@ -1,4 +1,3 @@
-import { give_head } from "./static/javascript/give_head.js";
 import { initOscilloscope } from "./static/javascript/oscilloscope.js";
 import AudioPlayer from "./static/javascript/audio_player.js";
 import { initImageToAscii } from "./static/javascript/image_to_ascii.js";
@@ -68,8 +67,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     registerWindow('music', {
         title: 'Music',
-        templateId: 'music',
-        width: '480px',
+        templateId: 'explorer',
+        width: '640px',
+        height: '420px',
+        onOpen: (bodyEl) => initFileExplorer(bodyEl, 'music'),
+    })
+
+    registerWindow('music-player', {
+        title: 'Music Player',
+        templateId: 'music-player',
+        width: '700px',
         height: '560px',
         onOpen: () => {
             new AudioPlayer('#music-player');
