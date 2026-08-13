@@ -3,21 +3,21 @@ import { openWindow } from './window_manager.js';
 const ICON_BASE = 'https://win98icons.alexmeub.com/icons/png/';
 
 const TREE = [
-    { id: 'home',         title: 'About Me',      icon: 'computer-1.png',                      largeIcon: 'computer-4.png',                      type: 'file' },
-    { id: 'projects',     title: 'Projects',      icon: 'internet_options-2.png',              largeIcon: 'internet_options-0.png',              type: 'dir',  dynamicChildren: 'projects' },
+    { id: 'home',         title: 'Welcome',       icon: 'help_book_computer-1.png',            largeIcon: 'help_book_computer-4.png',            type: 'file' },
+    { id: 'projects',     title: 'Projects',      icon: 'directory_control_panel_cool-1.png',  largeIcon: 'directory_control_panel_cool-0.png',  type: 'dir',  dynamicChildren: 'projects' },
     { id: 'publications', title: 'Publications',  icon: 'directory_open_file_mydocs_2k-1.png', largeIcon: 'directory_open_file_mydocs_2k-4.png', type: 'dir',  dynamicChildren: 'publications' },
     { id: 'music',        title: 'Music',         icon: 'cd_audio_cd_a-1.png',                 largeIcon: 'cd_audio_cd_a-4.png',                 type: 'dir' },
+    { id: 'resume',       title: 'Resume',        icon: 'notepad_file-1.png',                  largeIcon: 'notepad_file-2.png',                  type: 'file' },
     {
         id: 'utilities', title: 'Utilities', icon: 'directory_admin_tools-1.png', largeIcon: 'directory_admin_tools-4.png', type: 'dir',
         children: [
-            { id: 'mandelbrot',     title: 'Mandelbrot',     icon: 'paint_file-4.png',                    type: 'app' },
-            { id: 'harmonograph',   title: 'Harmonograph',   icon: 'display_properties-4.png',            type: 'app' },
-            { id: 'image-to-ascii', title: 'Image to ASCII', icon: 'notepad_file-2.png',                  type: 'app' },
-            { id: 'bmg-format',     title: 'BMG Format',     icon: 'directory_open_file_mydocs_2k-2.png', type: 'app' },
-            { id: 'l5r-dice',       title: 'L5R Dice',       icon: 'joystick-4.png',                      type: 'app' },
+            { id: 'mandelbrot',     title: 'Mandelbrot',    icon: 'paint_file-1.png',                    largeIcon: 'paint_file-4.png',                    type: 'app' },
+            { id: 'harmonograph',   title: 'Harmonograph',  icon: 'display_properties-1.png',            largeIcon: 'display_properties-4.png',            type: 'app' },
+            { id: 'image-to-ascii', title: 'Image to ASCII',icon: 'notepad_file-1.png',                  largeIcon: 'notepad_file-2.png',                  type: 'app' },
+            { id: 'bmg-format',     title: 'BMG Format',    icon: 'directory_open_file_mydocs_2k-1.png', largeIcon: 'directory_open_file_mydocs_2k-2.png', type: 'app' },
+            { id: 'l5r-dice',       title: 'L5R Dice',      icon: 'joystick-1.png',                      largeIcon: 'joystick-4.png',                      type: 'app' },
         ],
     },
-    { id: 'resume',       title: 'Resume',        icon: 'notepad_file-1.png',        largeIcon: 'notepad_file-2.png',                  type: 'file' },
 ];
 
 function findNode(id, nodes = TREE) {
@@ -49,7 +49,7 @@ function makeTreeItem(node, data) {
             (data[node.dynamicChildren] || []).forEach(item => {
                 const childLi = document.createElement('li');
                 childLi.dataset.window = node.id;
-                childLi.textContent = item.title || item.Title;
+                childLi.textContent = item.FileName || item.title || item.Title;
                 ul.appendChild(childLi);
             });
         }
@@ -98,8 +98,8 @@ function showContent(bodyEl, nodeId, data) {
         } else if (node.dynamicChildren) {
             items = (data[node.dynamicChildren] || []).map(item => ({
                 id: node.id,
-                title: item.title || item.Title,
-                icon: 'notepad_file-4.png',
+                title: item.FileName || item.title || item.Title,
+                largeIcon: 'document-0.png',
                 type: 'file',
             }));
         } else {
@@ -116,7 +116,27 @@ function showContent(bodyEl, nodeId, data) {
     });
 }
 
-export async function initFileExplorer(bodyEl) {
+function selectNode(treeEl, bodyEl, nodeId, data, forceOpen = false) {
+    showContent(bodyEl, nodeId, data);
+
+    treeEl.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+    const target = treeEl.querySelector(`[data-folder="${nodeId}"]`);
+    if (!target) return;
+    target.classList.add('selected');
+
+    let details = target.closest('details')?.parentElement?.closest('details');
+    while (details) {
+        details.open = true;
+        details = details.parentElement?.closest('details');
+    }
+
+    if (forceOpen) {
+        const ownDetails = target.closest('details');
+        if (ownDetails) ownDetails.open = true;
+    }
+}
+
+export async function initFileExplorer(bodyEl, initialNodeId = '') {
     const [projects, publications] = await Promise.all([
         fetch('static/json/projects.json').then(r => r.json()),
         fetch('static/json/publications.json').then(r => r.json()),
@@ -125,14 +145,12 @@ export async function initFileExplorer(bodyEl) {
 
     const treeEl = bodyEl.querySelector('#explorer-tree');
     buildTree(treeEl, data);
-    showContent(bodyEl, '', data);
+    selectNode(treeEl, bodyEl, initialNodeId, data, true);
 
     treeEl.addEventListener('click', e => {
         const target = e.target.closest('[data-folder]');
         if (!target) return;
-        showContent(bodyEl, target.dataset.folder, data);
-        treeEl.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
-        target.classList.add('selected');
+        selectNode(treeEl, bodyEl, target.dataset.folder, data);
     });
 
     bodyEl.addEventListener('dblclick', e => {

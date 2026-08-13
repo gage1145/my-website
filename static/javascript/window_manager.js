@@ -32,7 +32,6 @@ function focusWindow(state) {
     state.el.style.zIndex = String(zCounter);
     activeId = state.id;
     openWindows.forEach(s => {
-        console.log(s.id === state.id, !s.minimized);
         s.taskbarBtn.classList.toggle('active', !(s.id === state.id && !s.minimized));
     });
 }
@@ -133,8 +132,14 @@ function buildWindow(id, config) {
 
     const titleBar = document.createElement('div');
     titleBar.className = 'title-bar';
+    let title;
+    if (config.templateId === 'explorer') {
+        title = "File Explorer";
+    } else {
+        title = config.title;
+    }
     titleBar.innerHTML = `
-        <div class="title-bar-text">${config.title}</div>
+        <div class="title-bar-text">${title}</div>
         <div class="title-bar-controls">
             <button aria-label="Minimize"></button>
             <button aria-label="Maximize"></button>

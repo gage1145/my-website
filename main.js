@@ -1,9 +1,6 @@
 import { give_head } from "./static/javascript/give_head.js";
 import { initOscilloscope } from "./static/javascript/oscilloscope.js";
 import AudioPlayer from "./static/javascript/audio_player.js";
-import { loadProjects } from "./static/javascript/projects.js";
-import { loadResume } from "./static/javascript/resume.js";
-import { loadPublications } from "./static/javascript/publications.js";
 import { initImageToAscii } from "./static/javascript/image_to_ascii.js";
 import { initMandelbrot, destroyMandelbrot } from "./static/javascript/mandelbrot.js";
 import { initHarmonograph, destroyHarmonograph } from "./static/javascript/harmonograph.js";
@@ -11,6 +8,7 @@ import { initStartMenu } from "./static/javascript/start_menu.js";
 import { initFileExplorer } from "./static/javascript/file_explorer.js";
 import { registerWindow } from "./static/javascript/window_manager.js";
 import { doubleClickToOpen } from "./static/javascript/double_click.js";
+import { openWindow } from "./static/javascript/window_manager.js";
 
 function wireFileInputDisplay(container) {
     const fileInput = container.querySelector('#file-input');
@@ -38,10 +36,8 @@ function callWhenReady(fnName, tries = 100, intervalMs = 200) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    give_head();
-
     registerWindow('home', {
-        title: 'About Me',
+        title: 'Welcome',
         templateId: 'home',
         width: '480px',
         height: '520px',
@@ -49,10 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     registerWindow('projects', {
         title: 'Projects',
-        templateId: 'projects',
-        width: '480px',
+        templateId: 'explorer',
+        width: '640px',
         height: '420px',
-        onOpen: () => loadProjects(),
+        onOpen: (bodyEl) => initFileExplorer(bodyEl, 'projects'),
     });
 
     registerWindow('resume', {
@@ -60,15 +56,14 @@ document.addEventListener("DOMContentLoaded", () => {
         templateId: 'resume',
         width: '560px',
         height: '600px',
-        onOpen: () => loadResume(),
     });
 
     registerWindow('publications', {
         title: 'Publications',
-        templateId: 'publications',
-        width: '520px',
-        height: '480px',
-        onOpen: () => loadPublications(),
+        templateId: 'explorer',
+        width: '640px',
+        height: '420px',
+        onOpen: (bodyEl) => initFileExplorer(bodyEl, 'publications'),
     });
 
     registerWindow('music', {
@@ -87,9 +82,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     registerWindow('utilities', {
         title: 'Utilities',
-        templateId: 'utilities',
-        width: '360px',
-        height: '220px',
+        templateId: 'explorer',
+        width: '640px',
+        height: '420px',
+        onOpen: (bodyEl) => initFileExplorer(bodyEl, 'utilities'),
     });
 
     registerWindow('mandelbrot', {
@@ -142,10 +138,16 @@ document.addEventListener("DOMContentLoaded", () => {
         title: 'File Explorer',
         templateId: 'explorer',
         width: '640px',
-        height: '480px',
+        height: '420px',
         onOpen: (bodyEl) => initFileExplorer(bodyEl),
     });
 
     initStartMenu();
     doubleClickToOpen();
+
+    // Open the welcome window on first page load.
+    if (!localStorage.getItem('welcome-seen')) {
+        localStorage.setItem('welcome-seen', true);
+        openWindow('home');
+    }
 });
