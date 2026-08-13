@@ -1,3 +1,4 @@
+```{=html}
 <template id="tpl-home">
 <fieldset id="homepage-summary">
     <h4>Gage Rowden</h4>
@@ -37,3 +38,4 @@
     </ul>
 </fieldset>
 </template>
+```
