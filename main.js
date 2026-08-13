@@ -36,8 +36,6 @@ function callWhenReady(fnName, tries = 100, intervalMs = 200) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    give_head();
-
     registerWindow('home', {
         title: 'Welcome',
         templateId: 'home',
