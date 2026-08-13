@@ -3,3 +3,4 @@
 /.claude/
 **/*.quarto_ipynb
 /_site/
+CLAUDE.md
