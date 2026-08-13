@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
-from pyscript import display, when
+from pyscript import display
 from pyscript.ffi import create_proxy
 
 
@@ -111,7 +111,7 @@ async def make_graph(roll, keep, target, event=None):
     global df
     data = df.loc[(df.r.astype(int) == roll) & (df.k.astype(int) == keep), "value"]
     fig, ax = plt.subplots(figsize=(5, 2))
-    plt.rcParams['font.family'] = 'MS Sans Serif'
+    # plt.rcParams['font.family'] = 'MS Sans Serif'
     plt.tick_params(colors='#95ffaf')
     plt.tight_layout()
     ax.hist(data, bins=50, density=True, color='#95ffaf', histtype='step')
@@ -179,8 +179,7 @@ async def make_table(event=None):
         show_table = True
 
 # Event listeners
-@when("change", "#dice-roll, #dice-keep, #target")
-async def on_input_change(event):
+async def on_input_change(event=None):
     global df
     roll = int(document.getElementById("dice-roll").value)
     keep = int(document.getElementById("dice-keep").value)
@@ -200,9 +199,18 @@ async def init(event=None):
     table_elem = document.getElementById("table-container")
     tbl_button_elem = document.getElementById("prob-table-button")
 
-    roll = int(document.getElementById("dice-roll").value)
-    keep = int(document.getElementById("dice-keep").value)
-    target = int(document.getElementById("target").value)
+    roll_input = document.getElementById("dice-roll")
+    keep_input = document.getElementById("dice-keep")
+    target_input = document.getElementById("target")
+
+    on_change_proxy = create_proxy(on_input_change)
+    roll_input.addEventListener("change", on_change_proxy)
+    keep_input.addEventListener("change", on_change_proxy)
+    target_input.addEventListener("change", on_change_proxy)
+
+    roll = int(roll_input.value)
+    keep = int(keep_input.value)
+    target = int(target_input.value)
 
     await simulate_rolls()
     await run_estimate(roll, keep, target)

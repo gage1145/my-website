@@ -26,9 +26,9 @@ function createResume(data) {
     const wrapper = document.createElement("fieldset");
     wrapper.className = "resume-container";
 
-    wrapper.appendChild(createContact(data.contact));
-    wrapper.appendChild(createSummary(data.summary));
-    wrapper.appendChild(createSkills(data.skills));
+    // wrapper.appendChild(createContact(data.contact));
+    // wrapper.appendChild(createSummary(data.summary));
+    // wrapper.appendChild(createSkills(data.skills));
     wrapper.appendChild(createExperience(data.experience));
     wrapper.appendChild(createEducation(data.education));
 

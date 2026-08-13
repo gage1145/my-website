@@ -2,7 +2,6 @@ const registry = new Map();
 const openWindows = new Map();
 
 let zCounter = 100;
-let cascadeCount = 0;
 let activeId = null;
 
 function windowsLayer() {
@@ -124,9 +123,6 @@ function buildWindow(id, config) {
     el.className = 'window desktop-window';
     el.id = `win-${id}`;
 
-    // const left = 60 + (cascadeCount % 10) * 28;
-    // const top = 48 + (cascadeCount % 10) * 28;
-    // cascadeCount += 1;
     const left = 60;
     const top = 48;
 
