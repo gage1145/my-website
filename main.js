@@ -1,9 +1,6 @@
 import { give_head } from "./static/javascript/give_head.js";
 import { initOscilloscope } from "./static/javascript/oscilloscope.js";
 import AudioPlayer from "./static/javascript/audio_player.js";
-// import { loadProjects } from "./static/javascript/projects.js";
-import { loadResume } from "./static/javascript/resume.js";
-// import { loadPublications } from "./static/javascript/publications.js";
 import { initImageToAscii } from "./static/javascript/image_to_ascii.js";
 import { initMandelbrot, destroyMandelbrot } from "./static/javascript/mandelbrot.js";
 import { initHarmonograph, destroyHarmonograph } from "./static/javascript/harmonograph.js";
