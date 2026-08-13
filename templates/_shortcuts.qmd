@@ -16,7 +16,7 @@
         <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">
         <span>Publications</span>
     </div>
-    <div class="shortcut" data-window="music">
+    <div class="shortcut" data-window="music-player">
         <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">
         <span>Music</span>
     </div>

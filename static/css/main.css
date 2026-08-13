@@ -592,8 +592,14 @@ button.start-menu-item:focus {
 
 /* Music Page */
 
+#music-player {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
 #oscilloscope {
     width: 100%;
+    max-width: 750px;
     aspect-ratio: 1;
     max-height: 90vh;
     background: black;
@@ -694,7 +700,7 @@ button.start-menu-item:focus {
 }
 
 /* Mobile Styling */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
 
     * {
         font-size: 1.1rem;
@@ -720,9 +726,5 @@ button.start-menu-item:focus {
 
     #homepage-contact-gifs {
         flex-direction: column;
-    }
-
-    #music-player * {
-        font-size: 1rem;
     }
 }

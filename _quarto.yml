@@ -4,6 +4,7 @@ project:
     - static/javascript/
     - static/json/
     - static/python/
+    - static/music/
 
 website:
   favicon: static/images/favicon.ico
