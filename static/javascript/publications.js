@@ -40,6 +40,9 @@ function createPublication(pub) {
     const authors = document.createElement("div");
     authors.textContent = pub.Authors?.trim() ?? "";
 
+    const firstAuthor = pub.Authors.trim().match(/^[a-zA-Z]+/);
+    const fileName = firstAuthor ? firstAuthor[0] : "";
+
     const journal = document.createElement("div");
     journal.textContent = formatJournal(pub);
 
