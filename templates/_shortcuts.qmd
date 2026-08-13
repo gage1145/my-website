@@ -1,11 +1,11 @@
 ```{=html}
 <div id="shortcuts">
     <div class="shortcut" data-window="home">
-        <img src="https://win98icons.alexmeub.com/icons/png/computer-4.png" alt="">
+        <img src="https://win98icons.alexmeub.com/icons/png/help_book_computer-4.png" alt="">
         <span>Welcome</span>
     </div>
     <div class="shortcut" data-window="projects">
-        <img src="https://win98icons.alexmeub.com/icons/png/internet_options-0.png" alt="">
+        <img src="https://win98icons.alexmeub.com/icons/png/directory_control_panel_cool-0.png" alt="">
         <span>Projects</span>
     </div>
     <div class="shortcut" data-window="resume">
