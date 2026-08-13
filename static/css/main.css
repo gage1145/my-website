@@ -67,7 +67,7 @@ details {
 }
 
 h1, h2, h3, h4 {
-    margin: 10px 0px 5px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
 p {
@@ -80,6 +80,7 @@ pre {
     text-wrap: wrap;
     color: #000;
     overflow: hidden;
+    white-space: unset;
 }
 
 code {
@@ -91,6 +92,10 @@ code {
 img {
     margin: 0;
     padding: 0;
+}
+
+li {
+    cursor: default;
 }
 
 summary {
@@ -669,11 +674,12 @@ button.start-menu-item:focus {
 }
 
 .explorer-tree-pane {
-    width: 180px;
+    width: 200px;
     min-width: 120px;
     height: 100%;
     flex-shrink: 0;
     overflow-y: hidden;
+    overflow-x: hidden;
     border-right: 4px solid var(--silver);
     /* padding: 4px; */
 }

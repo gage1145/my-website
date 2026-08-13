@@ -1,7 +1,8 @@
 <template id="tpl-home">
 <fieldset id="homepage-summary">
+    <h4>Gage Rowden</h4>
     <pre>
-        <h4>Gage Rowden, M.S.</h4>
+        <h4>Welcome to my personal website!</h4>
         <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that's science, software, or products.</p>
         <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects in the Music window.</p>
         <p>This site is a collection of projects, publications, and tools I've developed along the way. Double-click the Utilities icon on the desktop for a collection of creative coding projects!</p>

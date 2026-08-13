@@ -2,7 +2,7 @@
 <div id="shortcuts">
     <div class="shortcut" data-window="home">
         <img src="https://win98icons.alexmeub.com/icons/png/computer-4.png" alt="">
-        <span>About Me</span>
+        <span>Welcome</span>
     </div>
     <div class="shortcut" data-window="projects">
         <img src="https://win98icons.alexmeub.com/icons/png/internet_options-0.png" alt="">

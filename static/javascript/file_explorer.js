@@ -10,11 +10,11 @@ const TREE = [
     {
         id: 'utilities', title: 'Utilities', icon: 'directory_admin_tools-1.png', largeIcon: 'directory_admin_tools-4.png', type: 'dir',
         children: [
-            { id: 'mandelbrot',     title: 'Mandelbrot',     icon: 'paint_file-4.png',                    type: 'app' },
-            { id: 'harmonograph',   title: 'Harmonograph',   icon: 'display_properties-4.png',            type: 'app' },
-            { id: 'image-to-ascii', title: 'Image to ASCII', icon: 'notepad_file-2.png',                  type: 'app' },
-            { id: 'bmg-format',     title: 'BMG Format',     icon: 'directory_open_file_mydocs_2k-2.png', type: 'app' },
-            { id: 'l5r-dice',       title: 'L5R Dice',       icon: 'joystick-4.png',                      type: 'app' },
+            { id: 'mandelbrot',     title: 'Mandelbrot',    icon: 'paint_file-1.png',                    largeIcon: 'paint_file-4.png',                    type: 'app' },
+            { id: 'harmonograph',   title: 'Harmonograph',  icon: 'display_properties-1.png',            largeIcon: 'display_properties-4.png',            type: 'app' },
+            { id: 'image-to-ascii', title: 'Image to ASCII',icon: 'notepad_file-1.png',                  largeIcon: 'notepad_file-2.png',                  type: 'app' },
+            { id: 'bmg-format',     title: 'BMG Format',    icon: 'directory_open_file_mydocs_2k-1.png', largeIcon: 'directory_open_file_mydocs_2k-2.png', type: 'app' },
+            { id: 'l5r-dice',       title: 'L5R Dice',      icon: 'joystick-1.png',                      largeIcon: 'joystick-4.png',                      type: 'app' },
         ],
     },
     { id: 'resume',       title: 'Resume',        icon: 'notepad_file-1.png',        largeIcon: 'notepad_file-2.png',                  type: 'file' },
@@ -116,7 +116,27 @@ function showContent(bodyEl, nodeId, data) {
     });
 }
 
-export async function initFileExplorer(bodyEl) {
+function selectNode(treeEl, bodyEl, nodeId, data, forceOpen = false) {
+    showContent(bodyEl, nodeId, data);
+
+    treeEl.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+    const target = treeEl.querySelector(`[data-folder="${nodeId}"]`);
+    if (!target) return;
+    target.classList.add('selected');
+
+    let details = target.closest('details')?.parentElement?.closest('details');
+    while (details) {
+        details.open = true;
+        details = details.parentElement?.closest('details');
+    }
+
+    if (forceOpen) {
+        const ownDetails = target.closest('details');
+        if (ownDetails) ownDetails.open = true;
+    }
+}
+
+export async function initFileExplorer(bodyEl, initialNodeId = '') {
     const [projects, publications] = await Promise.all([
         fetch('static/json/projects.json').then(r => r.json()),
         fetch('static/json/publications.json').then(r => r.json()),
@@ -125,14 +145,12 @@ export async function initFileExplorer(bodyEl) {
 
     const treeEl = bodyEl.querySelector('#explorer-tree');
     buildTree(treeEl, data);
-    showContent(bodyEl, '', data);
+    selectNode(treeEl, bodyEl, initialNodeId, data, true);
 
     treeEl.addEventListener('click', e => {
         const target = e.target.closest('[data-folder]');
         if (!target) return;
-        showContent(bodyEl, target.dataset.folder, data);
-        treeEl.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
-        target.classList.add('selected');
+        selectNode(treeEl, bodyEl, target.dataset.folder, data);
     });
 
     bodyEl.addEventListener('dblclick', e => {
