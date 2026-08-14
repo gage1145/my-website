@@ -1,37 +1,37 @@
 [
     {
-        "title": "RT-QuIC Kinetic Modeling",
-        "description": "A kinetic modeling tool for RT-QuIC data developed in R. Frames RT-QuIC data around classical enzyme kinetics.",
-        "link": "https://modeling.gagerowden.com"
+        "Title": "RT-QuIC Kinetic Modeling",
+        "Description": "A kinetic modeling tool for RT-QuIC data developed in R. Frames RT-QuIC data around classical enzyme kinetics.",
+        "Link": "https://modeling.gagerowden.com"
     },
 
     {
-        "title": "quicR",
-        "description": "An R package for RT-QuIC analysis.",
-        "link": "https://github.com/gage1145/quicR"
+        "Title": "quicR",
+        "Description": "An R package for RT-QuIC analysis.",
+        "Link": "https://github.com/gage1145/quicR"
     },
 
     {
-        "title": "PriLIMS",
-        "description": "A laboratory information management system developed for Priogen Corp. Utilizes a Django framework and is hosted on AWS.",
-        "link": "https://priogen.xyz/"
+        "Title": "PriLIMS",
+        "Description": "A laboratory information management system developed for Priogen Corp. Utilizes a Django framework and is hosted on AWS.",
+        "Link": "https://priogen.xyz/"
     },
 
     {
-        "title": "PrionBot",
-        "description": "A Discord bot that retrieves prion-related articles from NCBI and posts them to a Discord server.",
-        "link": "https://github.com/gage1145/prion_bot"
+        "Title": "PrionBot",
+        "Description": "A Discord bot that retrieves prion-related articles from NCBI and posts them to a Discord server.",
+        "Link": "https://github.com/gage1145/prion_bot"
     },
     
     {
-        "title": "This Website",
-        "description": "Visit the repository where this website is hosted.",
-        "link": "https://github.com/gage1145/my-website"
+        "Title": "This Website",
+        "Description": "Visit the repository where this website is hosted.",
+        "Link": "https://github.com/gage1145/my-website"
     },
 
     {
-        "title": "Cookbook",
-        "description": "My family's multigenerational recipes.",
-        "link": "https://cookbook.gagerowden.com"
+        "Title": "Cookbook",
+        "Description": "My family's multigenerational recipes.",
+        "Link": "https://cookbook.gagerowden.com"
     }
 ]

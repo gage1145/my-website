@@ -99,6 +99,7 @@ function showContent(bodyEl, nodeId, data) {
             items = (data[node.dynamicChildren] || []).map(item => ({
                 id: node.id,
                 title: item.FileName || item.title || item.Title,
+                link: item.Link || item.link || '',
                 largeIcon: 'document-0.png',
                 type: 'file',
             }));
@@ -111,7 +112,7 @@ function showContent(bodyEl, nodeId, data) {
         const li = document.createElement('li');
         li.className = 'shortcut explorer-shortcut';
         li.dataset.window = item.id;
-        li.innerHTML = `<img src="${ICON_BASE}${item.largeIcon}" alt=""><span>${item.title}</span>`;
+        li.innerHTML = `<a style="text-decoration: none; color: black; text-wrap: inherit; cursor: default;" href="${item.link}"><img src="${ICON_BASE}${item.largeIcon}" alt="">${item.title}</a>`;
         contentPane.appendChild(li);
     });
 }
