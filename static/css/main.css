@@ -222,10 +222,6 @@ summary {
     flex-wrap: wrap;
 }
 
-.explorer-shortcut {
-    color: #000;
-}
-
 #contact-item {
     display: flex;
     align-items: center;
@@ -703,7 +699,7 @@ button.start-menu-item:focus {
 @media only screen and (max-width: 768px) {
 
     * {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .desktop-window {

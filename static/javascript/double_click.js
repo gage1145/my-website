@@ -18,6 +18,7 @@ export function doubleClickToOpen() {
             shortcut.style.backgroundColor = 'rgba(0, 0, 255, 0.23)';
             shortcut.style.textOverflow = 'ellipsis';
             shortcut.style.overflow = 'visible';
+            shortcut.style.textWrap = 'wrap';
         }
     });
 
