@@ -4,3 +4,4 @@
 **/*.quarto_ipynb
 /_site/
 CLAUDE.md
+/static/json/music.json

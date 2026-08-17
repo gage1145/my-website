@@ -7,7 +7,7 @@ const TREE = [
     { id: 'resume',       title: 'Resume',        icon: 'notepad_file-1.png',                  largeIcon: 'notepad_file-2.png',                  type: 'file' },
     { id: 'projects',     title: 'Projects',      icon: 'directory_control_panel_cool-1.png',  largeIcon: 'directory_control_panel_cool-0.png',  type: 'dir',  dynamicChildren: 'projects' },
     { id: 'publications', title: 'Publications',  icon: 'directory_open_file_mydocs_2k-1.png', largeIcon: 'directory_open_file_mydocs_2k-4.png', type: 'dir',  dynamicChildren: 'publications' },
-    { id: 'music',        title: 'Music',         icon: 'cd_audio_cd_a-1.png',                 largeIcon: 'cd_audio_cd_a-4.png',                 type: 'dir' },
+    { id: 'music',        title: 'Music',         icon: 'cd_audio_cd_a-1.png',                 largeIcon: 'cd_audio_cd_a-4.png',                 type: 'dir',  dynamicChildren: 'music' },
     {
         id: 'utilities', title: 'Utilities', icon: 'directory_admin_tools-1.png', largeIcon: 'directory_admin_tools-4.png', type: 'dir',
         children: [
@@ -48,7 +48,7 @@ function makeTreeItem(node, data) {
         } else {
             (data[node.dynamicChildren] || []).forEach(item => {
                 const childLi = document.createElement('li');
-                childLi.dataset.window = node.id;
+                childLi.dataset.window = item.window || node.id;
                 childLi.textContent = item.FileName || item.title || item.Title;
                 ul.appendChild(childLi);
             });
@@ -97,10 +97,10 @@ function showContent(bodyEl, nodeId, data) {
             items = node.children;
         } else if (node.dynamicChildren) {
             items = (data[node.dynamicChildren] || []).map(item => ({
-                id: node.id,
+                id: item.window || node.id,
                 title: item.FileName || item.title || item.Title,
                 link: item.Link || item.link || '',
-                largeIcon: 'document-0.png',
+                largeIcon: item.largeIcon || 'document-0.png',
                 type: 'file',
             }));
         } else {
@@ -138,11 +138,12 @@ function selectNode(treeEl, bodyEl, nodeId, data, forceOpen = false) {
 }
 
 export async function initFileExplorer(bodyEl, initialNodeId = '') {
-    const [projects, publications] = await Promise.all([
+    const [projects, publications, music] = await Promise.all([
         fetch('static/json/projects.json').then(r => r.json()),
         fetch('static/json/publications.json').then(r => r.json()),
+        fetch('static/json/music.json').then(r => r.json()),
     ]);
-    const data = { projects, publications };
+    const data = { projects, publications, music };
 
     const treeEl = bodyEl.querySelector('#explorer-tree');
     buildTree(treeEl, data);
