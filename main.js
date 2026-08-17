@@ -78,7 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
         templateId: 'music-player',
         width: '700px',
         height: '560px',
-        onOpen: () => {
+        onOpen: async (bodyEl) => {
+            const tracks = await fetch('static/json/music.json').then(r => r.json());
+            const ul = bodyEl.querySelector('.tree-view details ul');
+            ul.innerHTML = tracks.map(t => `<li><a href="${t.src}">${t.title}</a></li>`).join('\n            ');
             new AudioPlayer('#music-player');
             initOscilloscope();
         },

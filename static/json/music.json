@@ -1,0 +1,110 @@
+[
+  {
+    "title": "10 Speeds",
+    "src": "static/music/10_Speeds_master.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "Acceptance",
+    "src": "static/music/Acceptance.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "Exponential Decay",
+    "src": "static/music/Exponential Decay_master.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "GANYMEDE",
+    "src": "static/music/GANYMEDE.wav",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "Generation Loss",
+    "src": "static/music/Generation Loss_master.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "Infinite Freeway",
+    "src": "static/music/Infinite Freeway_master.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "Niche",
+    "src": "static/music/Niche_master.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "Niche 80bpm",
+    "src": "static/music/Niche_master_80bpm.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "Obliterated into a Million Billion Tiny Little Pieces",
+    "src": "static/music/Obliterated into a Million Billion Tiny Little Pieces_master.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "Recess is Over",
+    "src": "static/music/Recess is Over_master.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "The Age of Computers",
+    "src": "static/music/The Age of Computers.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "channel 2",
+    "src": "static/music/channel_2_master.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "collatz1",
+    "src": "static/music/collatz1.wav",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "hilbert1",
+    "src": "static/music/hilbert1.wav",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "melt",
+    "src": "static/music/melt.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "newick",
+    "src": "static/music/newick.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "oscilloscope",
+    "src": "static/music/oscilloscope.mp3",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  },
+  {
+    "title": "perlin1",
+    "src": "static/music/perlin1.wav",
+    "window": "music-player",
+    "largeIcon": "cd_audio_cd_a-4.png"
+  }
+]
