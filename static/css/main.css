@@ -150,6 +150,36 @@ summary {
     }
 }
 
+.explorer-shortcut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-family: inherit;
+    text-decoration: none;
+    color: #fff;
+    cursor: default;
+    padding: 5px;
+    width: 60px;
+
+    /* Assign these here so the span inherits dynamically */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: wrap;
+    text-align: center;
+    
+    
+    span {
+        display: block;
+        width: 100%;
+        text-wrap: inherit;
+        overflow: inherit;
+        text-overflow: inherit;
+        white-space: inherit;
+        font-size: 0.9rem;
+    }
+}
+
 .title-bar-text {
     font-size: 12px;
 }
