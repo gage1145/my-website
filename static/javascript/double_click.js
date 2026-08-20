@@ -25,7 +25,7 @@ export function doubleClickToOpen() {
     document.addEventListener('dblclick', (e) => {
         const shortcut = e.target.closest('.shortcut');
         if (!shortcut) return;
-        e.preventDefault();
+        // e.preventDefault();
         const id = shortcut.dataset.window;
         if (id) openWindow(id);
     });
