@@ -110,7 +110,10 @@ function showContent(bodyEl, nodeId, data) {
 
     items.forEach(item => {
         const li = document.createElement('li');
-        li.className = 'explorer-shortcut';
+        li.classList.add('explorer-shortcut');
+        if (item.type === 'app') {
+            li.classList.add('shortcut');
+        }
         li.dataset.window = item.id;
         li.innerHTML = `<a style="text-decoration: none; color: black; text-wrap: inherit; cursor: default;" href="${item.link}"><img src="${ICON_BASE}${item.largeIcon}" alt="">${item.title}</a>`;
         contentPane.appendChild(li);
