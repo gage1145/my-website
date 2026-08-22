@@ -1,115 +1,121 @@
 ```{=html}
 <div class="start-bar">
 
-<!-- Start Menu -->
-<div id="start-menu" class="start-menu">
-<div class="start-menu-sidebar">
-<span class="start-menu-sidebar-text">Windows 98</span>
-</div>
-<div class="start-menu-items">
-<a class="start-menu-item" href="#" data-window="home"><img src="https://win98icons.alexmeub.com/icons/png/computer-4.png" alt="">Home</a>
-<a class="start-menu-item" href="#" data-window="projects"><img src="https://win98icons.alexmeub.com/icons/png/internet_options-0.png" alt="">Projects</a>
-<a class="start-menu-item" href="#" data-window="resume"><img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">Resume</a>
-<a class="start-menu-item" href="#" data-window="publications"><img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">Publications</a>
-<a class="start-menu-item" href="#" data-window="music"><img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">Music</a>
-<div class="start-menu-item has-submenu">
-<img src="https://win98icons.alexmeub.com/icons/png/directory_admin_tools-4.png" alt="">Utilities
-<div class="start-menu-submenu">
-<a class="start-menu-item" href="#" data-window="mandelbrot">Mandelbrot</a>
-<a class="start-menu-item" href="#" data-window="harmonograph">Harmonograph</a>
-<a class="start-menu-item" href="#" data-window="image-to-ascii">Image to ASCII</a>
-<a class="start-menu-item" href="#" data-window="bmg-format">BMG Format</a>
-<a class="start-menu-item" href="#" data-window="l5r-dice">L5R Dice</a>
-</div>
-</div>
-<div class="start-menu-item has-submenu">
-<img src="https://win98icons.alexmeub.com/icons/png/paint_file-4.png" alt="">Settings
-<div class="start-menu-submenu">
-<button class="start-menu-item" id="wallpaper-btn">
-<img src="https://win98icons.alexmeub.com/icons/png/display_properties-0.png" alt="">Change Wallpaper...
-</button>
-</div>
-</div>
-<hr class="start-menu-separator">
-<button class="start-menu-item" id="shutdown-btn">
-<img src="https://win98icons.alexmeub.com/icons/png/standby_monitor_moon-4.png" alt="">Shut Down...
-</button>
-</div>
-</div>
+  <!-- Start Menu -->
+  <div id="start-menu" class="start-menu">
+    <div class="start-menu-sidebar">
+      <span class="start-menu-sidebar-text">Windows 98</span>
+    </div>
+    <div class="start-menu-items">
+      <a class="start-menu-item" href="#" data-window="home"><img src="https://win98icons.alexmeub.com/icons/png/computer-4.png" alt="">Home</a>
+      <a class="start-menu-item" href="#" data-window="projects"><img src="https://win98icons.alexmeub.com/icons/png/internet_options-0.png" alt="">Projects</a>
+      <a class="start-menu-item" href="#" data-window="resume"><img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">Resume</a>
+      <a class="start-menu-item" href="#" data-window="publications"><img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">Publications</a>
+      <a class="start-menu-item" href="#" data-window="music"><img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="">Music</a>
+      <div class="start-menu-item has-submenu">
+        <img src="https://win98icons.alexmeub.com/icons/png/directory_admin_tools-4.png" alt="">Utilities
+        <div class="start-menu-submenu">
+          <a class="start-menu-item" href="#" data-window="mandelbrot">Mandelbrot</a>
+          <a class="start-menu-item" href="#" data-window="harmonograph">Harmonograph</a>
+          <a class="start-menu-item" href="#" data-window="image-to-ascii">Image to ASCII</a>
+          <a class="start-menu-item" href="#" data-window="bmg-format">BMG Format</a>
+          <a class="start-menu-item" href="#" data-window="l5r-dice">L5R Dice</a>
+        </div>
+      </div>
+      <div class="start-menu-item has-submenu">
+        <img src="https://win98icons.alexmeub.com/icons/png/paint_file-4.png" alt="">Settings
+        <div class="start-menu-submenu">
+          <button class="start-menu-item" id="wallpaper-btn">
+            <img src="https://win98icons.alexmeub.com/icons/png/display_properties-0.png" alt="">Change Wallpaper...
+          </button>
+        </div>
+      </div>
+      <hr class="start-menu-separator">
+      <button class="start-menu-item" id="shutdown-btn">
+        <img src="https://win98icons.alexmeub.com/icons/png/standby_monitor_moon-4.png" alt="">Shut Down...
+      </button>
+    </div>
+  </div>
 
-<!-- Shutdown Dialog -->
-<div id="shutdown-overlay" class="shutdown-overlay">
-<div class="window shutdown-dialog">
-<div class="title-bar">
-<div class="title-bar-text">Shut Down Windows</div>
-<div class="title-bar-controls">
-<button aria-label="Close" id="shutdown-close"></button>
-</div>
-</div>
-<div class="window-body shutdown-body">
-<p>What do you want the computer to do?</p>
-<div class="field-row">
-<input type="radio" id="sd-shutdown" name="sd-choice" value="shutdown" checked>
-<label for="sd-shutdown">Shut down</label>
-</div>
-<div class="field-row">
-<input type="radio" id="sd-restart" name="sd-choice" value="restart">
-<label for="sd-restart">Restart the computer</label>
-</div>
-<div class="shutdown-buttons">
-<button id="shutdown-ok">OK</button>
-<button id="shutdown-cancel">Cancel</button>
-</div>
-</div>
-</div>
-</div>
+  <!-- Shutdown Dialog -->
+  <div id="shutdown-overlay" class="shutdown-overlay">
+    <div class="window shutdown-dialog">
+      <div class="title-bar">
+        <div class="title-bar-text">Shut Down Windows</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" id="shutdown-close"></button>
+        </div>
+      </div>
+      <div class="window-body shutdown-body">
+        <p>What do you want the computer to do?</p>
+        <div class="field-row">
+          <input type="radio" id="sd-shutdown" name="sd-choice" value="shutdown" checked>
+          <label for="sd-shutdown">Shut down</label>
+        </div>
+        <div class="field-row">
+          <input type="radio" id="sd-restart" name="sd-choice" value="restart">
+          <label for="sd-restart">Restart the computer</label>
+        </div>
+        <div class="shutdown-buttons">
+          <button id="shutdown-ok">OK</button>
+          <button id="shutdown-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- Wallpaper Dialog -->
-<div id="wallpaper-overlay" class="wallpaper-overlay">
-<div class="window wallpaper-dialog">
-<div class="title-bar">
-<div class="title-bar-text">Display Properties</div>
-<div class="title-bar-controls">
-<button aria-label="Close" id="wallpaper-close"></button>
-</div>
-</div>
-<div class="window-body wallpaper-body">
-<p><strong>Color:</strong></p>
-<div id="color-swatches" class="swatch-grid"></div>
-<p><strong>Pattern:</strong></p>
-<div id="pattern-swatches" class="swatch-grid"></div>
-<div class="shutdown-buttons">
-<button id="wallpaper-ok">OK</button>
-<button id="wallpaper-cancel">Cancel</button>
-</div>
-</div>
-</div>
-</div>
+  <!-- Wallpaper Dialog -->
+  <div id="wallpaper-overlay" class="wallpaper-overlay">
+    <div class="window wallpaper-dialog">
+      <div class="title-bar">
+        <div class="title-bar-text">Display Properties</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" id="wallpaper-close"></button>
+        </div>
+      </div>
+      <div class="window-body wallpaper-body">
+        <p><strong>Color:</strong></p>
+        <div id="color-swatches" class="swatch-grid"></div>
+        <p><strong>Pattern:</strong></p>
+        <div id="pattern-swatches" class="swatch-grid"></div>
+        <div class="shutdown-buttons">
+          <button id="wallpaper-ok">OK</button>
+          <button id="wallpaper-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- Safe to Turn Off Screen -->
-<div id="safe-to-off">
-<div>
-<p>It is now safe to turn off<br>your computer.</p>
-<p style="font-size:11px">(Click anywhere to continue)</p>
-</div>
-</div>
+  <!-- Safe to Turn Off Screen -->
+  <div id="safe-to-off">
+    <div>
+      <p>It is now safe to turn off<br>your computer.</p>
+      <p style="font-size:11px">(Click anywhere to continue)</p>
+    </div>
+  </div>
 
-<!-- Screensaver -->
-<div id="screensaver" class="screensaver">
-<canvas id="screensaver-canvas"></canvas>
-</div>
+  <!-- Screensaver -->
+  <div id="screensaver" class="screensaver">
+    <canvas id="screensaver-canvas"></canvas>
+  </div>
 
-<!-- Start Button -->
-<button class="start-button" id="start-button">
-<img style="height:90%" src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="">
-<strong>Start</strong>
-</button>
+  <!-- Start Button -->
+  <button class="start-button" id="start-button">
+    <img style="height:90%" src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="">
+    <strong>Start</strong>
+  </button>
 
-<!-- Taskbar Window Buttons -->
-<div id="taskbar-windows"></div>
-
-<!-- Taskbar Clock -->
-<div id="taskbar-clock" class="taskbar-clock"></div>
-
+  <!-- Taskbar Window Buttons -->
+  <div id="taskbar-windows"></div>
+  
+  <!-- Taskbar Clock -->
+  <div class="taskbar-clock" style="display: flex; gap:7px; width:fit-content">
+    <a href="callto:+1-806-577-8008"><img style="max-width:18px" src="https://win98icons.alexmeub.com/icons/png/modem-4.png" alt=""></a>
+    <a href="emailto:gage.rowden1145@gmail.com"><img style="max-width:18px" src="https://win98icons.alexmeub.com/icons/png/outlook_express-4.png" alt=""></a>
+    <a href="https://www.linkedin.com/in/gagerowden"><img style="max-width:18px;filter: invert(21%) sepia(100%) saturate(7414%) hue-rotate(243deg) brightness(75%) contrast(100%);" src="https://www.iconpacks.net/icons/1/free-linkedin-icon-112-thumb.png" alt=""></a>
+    <a href="https://github.com/gage1145"><img style="max-width:18px; filter: invert(21%) sepia(100%) saturate(7414%) hue-rotate(243deg) brightness(75%) contrast(100%);" src="https://cdn-icons-png.flaticon.com/256/25/25231.png" alt=""></a>
+    <a href="https://orcid.org/0000-0002-7517-0480"><img style="max-width:18px; filter: invert(21%) sepia(100%) saturate(7414%) hue-rotate(243deg) brightness(75%) contrast(100%);" src="https://www.svgrepo.com/show/342095/orcid.svg" alt=""></a>
+  </div>
+  <div id="taskbar-clock" class="taskbar-clock"></div>
 </div>
 ```
