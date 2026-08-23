@@ -5,6 +5,7 @@ const ICON_BASE = 'https://win98icons.alexmeub.com/icons/png/';
 const TREE = [
     { id: 'home',         title: 'Welcome',       icon: 'help_book_computer-1.png',            largeIcon: 'help_book_computer-4.png',            type: 'file' },
     { id: 'resume',       title: 'Resume',        icon: 'notepad_file-1.png',                  largeIcon: 'notepad_file-2.png',                  type: 'file' },
+    { id: 'useful-links', title: 'Useful Links',  icon: 'notepad_file-1.png',                  largeIcon: 'notepad_file-2.png',                  type: 'file' },
     { id: 'projects',     title: 'Projects',      icon: 'directory_control_panel_cool-1.png',  largeIcon: 'directory_control_panel_cool-0.png',  type: 'dir',  dynamicChildren: 'projects' },
     { id: 'publications', title: 'Publications',  icon: 'directory_open_file_mydocs_2k-1.png', largeIcon: 'directory_open_file_mydocs_2k-4.png', type: 'dir',  dynamicChildren: 'publications' },
     { id: 'music',        title: 'Music',         icon: 'cd_audio_cd_a-1.png',                 largeIcon: 'cd_audio_cd_a-4.png',                 type: 'dir',  dynamicChildren: 'music' },

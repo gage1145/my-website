@@ -72,7 +72,11 @@ ul.task-list li input[type="checkbox"] {
     </div>
     <div class="shortcut" data-window="resume">
         <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">
-        <span>Resume</span>
+        <span>Resume.md</span>
+    </div>
+    <div class="shortcut" data-window="useful-links">
+        <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">
+        <span>Useful Links.md</span>
     </div>
     <div class="shortcut" data-window="publications">
         <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">
@@ -492,42 +496,42 @@ The function first generates a list of length "roll" of random integers between 
     </ul>
 </template>
 <template id="tpl-home">
-<fieldset id="homepage-summary">
-    <h4>Gage Rowden</h4>
-    <pre>        <h4>Welcome to my personal website!</h4>
-        <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that's science, software, or products.</p>
-        <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects in the Music window.</p>
-        <p>This site is a collection of projects, publications, and tools I've developed along the way. Double-click the Utilities icon on the desktop for a collection of creative coding projects!</p>
-    </pre>
-    <h4>Contact me</h4>
-    <ul class="tree-view">
-        <li>
-            <details open="">
-                <summary>Contact Information</summary>
-                <ul>
-                    <li id="contact-item"><a href="callto: +1-806-577-8008">+1-806-577-8008</a></li>
-                    <li id="contact-item"><a href="mailto: rowde002@umn.edu">rowde002@umn.edu</a></li>
-                    <li id="contact-item"><a href="mailto: gager@priogen.bio">gager@priogen.bio</a></li>
-                    <li id="contact-item"><a href="mailto: ganymede.artist@gmail.com">ganymede.artist@gmail.com</a></li>
-                    <li id="contact-item"><a href="mailto: gage.rowden1145@gmail.com">gage.rowden1145@gmail.com</a></li>
-                </ul>
-            </details>
-        </li>
-        <li>
-            <details open="">
-                <summary>Links</summary>
-                <ul>
-                    <li id="contact-item"><a href="https://github.com/gage1145">Github</a></li>
-                    <li id="contact-item"><a href="https://www.linkedin.com/in/gagerowden">LinkedIn</a></li>
-                    <li id="contact-item"><a href="https://orcid.org/0000-0002-7517-0480">ORCID</a></li>
-                    <li id="contact-item"><a href="https://www.facebook.com/gage1145">Facebook</a></li>
-                    <li id="contact-item"><a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Spotify - Ganymede</a></li>
-                    <li id="contact-item"><a href="https://www.youtube.com/channel/UCF0pawTW2NZotzNuxwNBzXw">YouTube - Ganymede</a></li>
-                </ul>
-            </details>
-        </li>
-    </ul>
-</fieldset>
+    <fieldset id="homepage-summary">
+        <h4>Gage Rowden</h4>
+        <pre>            <h4>Welcome to my personal website!</h4>
+            <p>My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that's science, software, or products.</p>
+            <p>Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects in the Music window.</p>
+            <p>This site is a collection of projects, publications, and tools I've developed along the way. Double-click the Utilities icon on the desktop for a collection of creative coding projects!</p>
+        </pre>
+        <h4>Contact me</h4>
+        <ul class="tree-view">
+            <li>
+                <details open="">
+                    <summary>Contact Information</summary>
+                    <ul>
+                        <li id="contact-item"><a href="callto: +1-806-577-8008">+1-806-577-8008</a></li>
+                        <li id="contact-item"><a href="mailto: rowde002@umn.edu">rowde002@umn.edu</a></li>
+                        <li id="contact-item"><a href="mailto: gager@priogen.bio">gager@priogen.bio</a></li>
+                        <li id="contact-item"><a href="mailto: ganymede.artist@gmail.com">ganymede.artist@gmail.com</a></li>
+                        <li id="contact-item"><a href="mailto: gage.rowden1145@gmail.com">gage.rowden1145@gmail.com</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li>
+                <details open="">
+                    <summary>Links</summary>
+                    <ul>
+                        <li id="contact-item"><a href="https://github.com/gage1145">Github</a></li>
+                        <li id="contact-item"><a href="https://www.linkedin.com/in/gagerowden">LinkedIn</a></li>
+                        <li id="contact-item"><a href="https://orcid.org/0000-0002-7517-0480">ORCID</a></li>
+                        <li id="contact-item"><a href="https://www.facebook.com/gage1145">Facebook</a></li>
+                        <li id="contact-item"><a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Spotify - Ganymede</a></li>
+                        <li id="contact-item"><a href="https://www.youtube.com/channel/UCF0pawTW2NZotzNuxwNBzXw">YouTube - Ganymede</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </fieldset>
 </template>
 <p><template id="tpl-resume">
 <div id="content-pane">
@@ -582,6 +586,49 @@ The function first generates a list of length "roll" of random integers between 
 <h3 id="education">Education</h3>
 <p>M.S. in Biotechnology – Texas Tech University <strong>2018</strong></p>
 <p>B.S. in Biology – Texas Tech University <strong>2016</strong></p>
+</div>
+<p></p></template></p>
+<p><template id="tpl-useful-links">
+<div id="content-pane" style="height:fit-content;">
+<h2 id="useful-links">Useful Links</h2>
+<p>This is a list of links I’ve found useful or interesting enough to warrant saving here. I never remember to use bookmarks in my browser, so this is the next best thing.</p>
+<hr>
+<h2 id="data-science">Data Science</h2>
+<h3 id="r">R</h3>
+<ul>
+<li><a href="https://bookdown.org/content/b298e479-b1ab-49fa-b83d-a57c2b034d49/">The R Graph Gallery</a></li>
+</ul>
+<h4 id="cheat-sheets">Cheat Sheets</h4>
+<ul>
+<li><p><a href="https://rstudio.github.io/cheatsheets/data-transformation.pdf">dplyr</a></p></li>
+<li><p><a href="https://rstudio.github.io/cheatsheets/data-visualization.pdf">ggplot2</a></p></li>
+<li><p><a href="https://opensource.posit.co/resources/cheatsheets/purrr/">purrr</a></p></li>
+<li><p><a href="https://rstudio.github.io/cheatsheets/regex.pdf">R Regex</a></p></li>
+<li><p><a href="https://opensource.posit.co/resources/cheatsheets/shiny/">Shiny</a></p></li>
+<li><p><a href="https://opensource.posit.co/resources/cheatsheets/sparklyr/">sparklyr</a></p></li>
+<li><p><a href="https://opensource.posit.co/resources/cheatsheets/ml-tidymodels/">tidymodels</a></p></li>
+<li><p><a href="https://opensource.posit.co/resources/cheatsheets/tidyr/">tidyr</a></p></li>
+</ul>
+<hr>
+<h3 id="python">Python</h3>
+<h4 id="cheat-sheets-1">Cheat Sheets</h4>
+<ul>
+<li><p><a href="https://github.com/pandas-dev/pandas/blob/main/doc/cheatsheet/Pandas_Cheat_Sheet.pdf">Pandas</a></p></li>
+<li><p><a href="https://media.datacamp.com/legacy/image/upload/v1676302459/Marketing/Blog/Numpy_Cheat_Sheet.pdf">NumPy</a></p></li>
+<li><p><a href="https://media.datacamp.com/legacy/image/upload/v1676302389/Marketing/Blog/Scikit-Learn_Cheat_Sheet.pdf">Scikit-Learn</a></p></li>
+<li><p><a href="https://media.datacamp.com/legacy/image/upload/v1676303474/Marketing/Blog/SciPy_Cheat_Sheet.pdf">SciPy</a></p></li>
+</ul>
+<hr>
+<h3 id="statistics">Statistics</h3>
+<ul>
+<li><a href="https://web.mit.edu/~csvoss/Public/usabo/stats_handout.pdf">Stats Cheat Sheet</a></li>
+</ul>
+<hr>
+<h2 id="web-development">Web Development</h2>
+<ul>
+<li><p><a href="https://jdan.github.io/98.css/">98.css</a></p></li>
+<li><p><a href="https://docs.djangoproject.com/en/5.2/">Django</a></p></li>
+</ul>
 </div>
 <p></p></template></p>
 <div id="windows">

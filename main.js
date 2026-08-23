@@ -57,6 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
         height: '600px',
     });
 
+    registerWindow('useful-links', {
+        title: 'Useful Links',
+        templateId: 'useful-links',
+        width: '560px',
+        height: '600px',
+    });
+
     registerWindow('publications', {
         title: 'Publications',
         templateId: 'explorer',
