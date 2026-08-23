@@ -1,0 +1,64 @@
+<template id="tpl-useful-links">
+
+::: { #useful-links #content-pane style="height:fit-content;" }
+
+## Useful Links
+This is a list of links I've found useful or interesting enough to warrant saving here. I never remember to use bookmarks in my browser, so this is the next best thing.
+
+---
+
+## Data Science
+
+### R
+
+- [The R Graph Gallery](https://bookdown.org/content/b298e479-b1ab-49fa-b83d-a57c2b034d49/)
+
+#### Cheat Sheets
+
+- [dplyr](https://rstudio.github.io/cheatsheets/data-transformation.pdf)
+
+- [ggplot2](https://rstudio.github.io/cheatsheets/data-visualization.pdf)
+
+- [purrr](https://opensource.posit.co/resources/cheatsheets/purrr/)
+
+- [R Regex](https://rstudio.github.io/cheatsheets/regex.pdf)
+
+- [Shiny](https://opensource.posit.co/resources/cheatsheets/shiny/)
+
+- [sparklyr](https://opensource.posit.co/resources/cheatsheets/sparklyr/)
+
+- [tidymodels](https://opensource.posit.co/resources/cheatsheets/ml-tidymodels/)
+
+- [tidyr](https://opensource.posit.co/resources/cheatsheets/tidyr/)
+
+---
+
+### Python
+
+#### Cheat Sheets
+
+- [Pandas](https://github.com/pandas-dev/pandas/blob/main/doc/cheatsheet/Pandas_Cheat_Sheet.pdf)
+
+- [NumPy](https://media.datacamp.com/legacy/image/upload/v1676302459/Marketing/Blog/Numpy_Cheat_Sheet.pdf)
+
+- [Scikit-Learn](https://media.datacamp.com/legacy/image/upload/v1676302389/Marketing/Blog/Scikit-Learn_Cheat_Sheet.pdf)
+
+- [SciPy](https://media.datacamp.com/legacy/image/upload/v1676303474/Marketing/Blog/SciPy_Cheat_Sheet.pdf)
+
+---
+
+### Statistics
+
+- [Stats Cheat Sheet](https://web.mit.edu/~csvoss/Public/usabo/stats_handout.pdf)
+
+---
+
+## Web Development
+
+- [98.css](https://jdan.github.io/98.css/)
+
+- [Django](https://docs.djangoproject.com/en/5.2/)
+
+:::
+
+</template>

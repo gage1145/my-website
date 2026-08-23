@@ -10,7 +10,11 @@
     </div>
     <div class="shortcut" data-window="resume">
         <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">
-        <span>Resume</span>
+        <span>Resume.md</span>
+    </div>
+    <div class="shortcut" data-window="useful-links">
+        <img src="https://win98icons.alexmeub.com/icons/png/notepad_file-2.png" alt="">
+        <span>Useful Links.md</span>
     </div>
     <div class="shortcut" data-window="publications">
         <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-2.png" alt="">

@@ -1,8 +1,8 @@
 ```{r, echo=FALSE, results='asis'}
 files <- list.dirs("templates")[-1] |>
-    lapply(list.files, full.names=TRUE) |>
-    unlist()
+  lapply(list.files, full.names = TRUE) |>
+  unlist()
 sprintf("{{< include %s >}}\n", files) |>
-    cat()
+  cat()
 cat('<div id="windows"></div>')
 ```
