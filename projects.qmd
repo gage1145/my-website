@@ -1,0 +1,14 @@
+## [RT-QuIC Kinetic Modeling](https://modeling.gagerowden.com)
+A kinetic modeling tool for RT-QuIC data developed in R. Frames RT-QuIC data around classical enzyme kinetics.
+
+## [quicR](https://github.com/gage1145/quicR)
+An R package for RT-QuIC analysis.
+
+## [PriLIMS](https://priogen.xyz/)
+A laboratory information management system developed for [Priogen Corp](https://www.priogen.bio/). Utilizes a Django framework and is hosted on AWS.
+
+## [Cookbook](https://cookbook.gagerowden.com)
+My family's multigenerational recipes.
+
+## [This Website](https://github.com/gage1145/my-website)
+The source code for this website, built with Quarto and hosted on GitHub Pages.

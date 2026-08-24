@@ -1,3 +1,0 @@
-<template id="tpl-publications">
-<div id="publications"></div>
-</template>

@@ -1,0 +1,22 @@
+```{r, echo=FALSE}
+library(jsonlite)
+library(purrr)
+
+pubs <- fromJSON("static/json/publications.json")
+
+make_pub <- function(pub) {
+    print(pub)
+    title <- pub$title
+    authors <- pub$authors
+    year <- pub$year
+    journal <- pub$journal
+    doi <- pub$doi
+
+    paste0(
+        "<li><a href=\"", pub$url, "\">", title, "</a>",
+        " (", authors, ", ", year, "). ", journal, ". ", doi, "</li>"
+    )
+}
+
+pubs <- map(pubs, make_pub)
+```

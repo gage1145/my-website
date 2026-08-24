@@ -1,5 +1,3 @@
-<template id="tpl-resume">
-
 ::: { #resume #content-pane }
 ## Gage Rowden
 
@@ -66,5 +64,3 @@ M.S. in Biotechnology -- Texas Tech University **2018**
 B.S. in Biology -- Texas Tech University **2016**
 
 :::
-
-</template>

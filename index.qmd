@@ -1,10 +1,38 @@
-```{=html}
-<py-config>packages = ['pillow', 'pandas', 'numpy', 'scipy', 'seaborn', 'matplotlib']</py-config>
-<py-script src="static/python/image_to_ascii.py"></py-script>
-<py-script src="static/python/bmg_format.py"></py-script>
-<py-script src="static/python/l5r_dice.py"></py-script>
-```
+## Gage Rowden, M.S.
+### Welcome to my personal website!
 
-{{< include templates/_shortcuts.qmd >}}
-{{< include templates/_windows.qmd >}}
-{{< include templates/_start_bar.qmd >}}
+My work spans protein engineering, laboratory automation, R package development, statistical modeling, and full-stack development of laboratory information management systems (LIMS). I care deeply about scientific clarity, reproducibility, and building things that get used; whether that's science, software, or products.
+
+Fun fact, I make music under the name <a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Ganymede</a>. You can find a collection of curated songs and audio projects in the Music window.
+
+This site is a collection of projects, publications, and tools I've developed along the way. Double-click the Utilities icon on the desktop for a collection of creative coding projects!
+
+::: { style="display: flex; justify-content: space-between; align-items: top;" }
+
+::: { #contacts }
+
+### Contact Me
+- [+1-806-577-8008](callto: +1-806-577-8008)
+- [rowde002@umn.edu](mailto: rowde002@umn.edu)
+- [gager@priogen.bio](mailto: gager@priogen.bio)
+- [ganymede.artist@gmail.com](mailto: ganymede.artist@gmail.com)
+- [gage.rowden1145@gmail.com](mailto: gage.rowden1145@gmail.com)
+
+
+:::
+
+::: { #links }
+
+### Links
+<ul>
+<li id="contact-item"><a href="https://github.com/gage1145">Github</a></li>
+<li id="contact-item"><a href="https://www.linkedin.com/in/gagerowden">LinkedIn</a></li>
+<li id="contact-item"><a href="https://orcid.org/0000-0002-7517-0480">ORCID</a></li>
+<li id="contact-item"><a href="https://www.facebook.com/gage1145">Facebook</a></li>
+<li id="contact-item"><a href="https://open.spotify.com/artist/23DyBlyjDtXfYo333RBWj7">Spotify - Ganymede</a></li>
+<li id="contact-item"><a href="https://www.youtube.com/channel/UCF0pawTW2NZotzNuxwNBzXw">YouTube - Ganymede</a></li>
+</ul>
+
+:::
+
+:::
