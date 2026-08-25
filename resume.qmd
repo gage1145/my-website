@@ -1,47 +1,119 @@
-::: { #resume #content-pane }
-## Gage Rowden
+---
+format:
+  html: default
+  pdf:
+    documentclass: article
+    geometry: margin=1in
+    colorlinks: true
+    pdf-engine: xelatex
+    mainfont: Calibri
+    include-in-header:
+      text: |
+        \usepackage{multicol}
 
-::: { style="display: flex; justify-content: space-around;"}
+toc: false
+---
 
-[![](https://win98icons.alexmeub.com/icons/png/modem-4.png)](callto: +1-806-577-8008)
+# Gage Rowden, M.S.
 
-[![](https://win98icons.alexmeub.com/icons/png/outlook_express-4.png)](emailto: gage.rowden1145@gmail.com)
+::: { .content-visible when-format="html" }
 
-[![](https://cdn-icons-png.flaticon.com/256/25/25231.png){width=48}](https://github.com/gage1145)
+::: { style="display: flex; justify-content: space-around;" }
 
-[![](https://www.svgrepo.com/show/342095/orcid.svg){width=48}](https://orcid.org/0000-0002-7517-0480)
+[![](https://win98icons.alexmeub.com/icons/png/modem-4.png)](callto:+1-806-577-8008)
 
-[![](https://www.iconpacks.net/icons/1/free-linkedin-icon-112-thumb.png){width=48}](https://www.linkedin.com/in/gagerowden)
+[![](https://win98icons.alexmeub.com/icons/png/outlook_express-4.png)](emailto:gage.rowden1145@gmail.com)
+
+[![](https://icones.pro/wp-content/uploads/2021/06/icone-github-grise.png){width=48}](https://github.com/gage1145)
+
+[![](https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original){width=48}](https://orcid.org/0000-0002-7517-0480)
+
+[![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/3840px-LinkedIn_icon.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail){width=48}](https://www.linkedin.com/in/gagerowden)
 
 :::
 
-### Summary
+:::
+
+::: {.content-visible when-format="pdf"}
+
++1-806-577-8008 | gage.rowden1145@gmail.com | [github.com/gage1145](https://github.com/gage1145) | [orcid.org/0000-0002-7517-0480](https://orcid.org/0000-0002-7517-0480) | [linkedin.com/in/gagerowden](https://www.linkedin.com/in/gagerowden)
+
+:::
+
+## Summary
 Applied Data Scientist specializing in high-throughput biological data and production analytics systems with extensive experience designing end-to-end data workflows, developing custom R packages, and building cloud-backed applications. Skilled in Python, SQL, AWS, and statistical modeling, with a strong foundation in experimental design and high-throughput data. Proven track record of optimizing data analysis pipelines, improving lab efficiency, and delivering actionable insights to drive research and operational success.
 
-### Skills
+## Skills
 
-::: { #skills }
+::: {.content-visible when-format="html"}
+::: { style="display: grid; grid-template-columns: 1fr 1fr 1fr;" }
+
+:::: { #skill-list }
 
 - Python
 - Pandas & NumPy
 - scikit-learn
 - R Tidyverse
 - SQL
+
+::::
+
+:::: { #skill-list }
+
 - ETL pipelines
 - Time-series analysis
 - Statistical analysis
 - Experimental design
 - Data visualization
+
+::::
+
+:::: { #skill-list }
+
 - AWS
 - Django & REST API
 - Docker
 - Git & GitHub
 - GitHub Actions (CI/CD)
 
+::::
+
+:::
 :::
 
-### Experience
-#### Lead Data Scientist -- Priogen Corp.
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{multicols}{3}
+\noindent
+Python \\
+Pandas \& NumPy \\
+scikit-learn \\
+R Tidyverse \\
+SQL
+
+\columnbreak
+
+\noindent
+ETL pipelines \\
+Time-series analysis \\
+Statistical analysis \\
+Experimental design \\
+Data visualization
+
+\columnbreak
+
+\noindent
+AWS \\
+Django \& REST API \\
+Docker \\
+Git \& GitHub \\
+GitHub Actions (CI/CD)
+\end{multicols}
+```
+:::
+
+## Experience
+### Lead Data Scientist -- Priogen Corp.
 **Jan 2024 -- present**
 
 - Architected and deployed end-to-end data analysis pipelines to process high-throughput diagnostic datasets (up to 100 samples/week, ~240k rows of time-series data/project), reducing analysis time from ~4 hours to seconds.
@@ -49,7 +121,7 @@ Applied Data Scientist specializing in high-throughput biological data and produ
 - Implemented cloud-based infrastructure on AWS to support scalable SQL storage and analysis, improving system reliability and enabling secure multi-user access.
 - Introduced Git-based version control and CI workflows across projects, improving collaboration efficiency and significantly reducing deployment errors.
 
-#### Researcher IV -- University of Minnesota
+### Researcher IV -- University of Minnesota
 **Aug 2019 -- present**
 
 - Developed a custom R package and automation scripts to standardize RT-QuIC data analysis, reducing hours of analysis time to seconds and increasing reproducibility across collaborating labs.
@@ -58,9 +130,7 @@ Applied Data Scientist specializing in high-throughput biological data and produ
 - Standardized cross-lab analytics and built reusable analytical frameworks adopted by multiple institutions.
 - Led laboratory establishment, expansion, and workflow redesign, increasing research capacity.
 
-### Education
+## Education
 M.S. in Biotechnology -- Texas Tech University **2018**
 
 B.S. in Biology -- Texas Tech University **2016**
-
-:::
