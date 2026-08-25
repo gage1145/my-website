@@ -1,7 +1,8 @@
 [
  {
-   "Authors": "Rowden, Gage R; Larsen, Peter A; ",
+   "Authors": "Rowden, Gage R; Larsen, Peter A",
    "Title": "quicR: An R Library for Streamlined Data Handling of Real-Time Quaking Induced Conversion Assays",
+   "Abstract": "Real-time quaking induced conversion (RT-QuIC) has become a valuable diagnostic tool for protein misfolding disorders such as Creutzfeldt–Jakob disease and Parkinson’s disease. Given that the technology is relatively new, academic and industry standards for quality filtering data and high throughput analysis of results have yet to be fully established. The open source R library, quicR, was developed to provide a standardized approach to RT-QuIC data analysis. quicR provides functions, which can be easily integrated into existing R workflows, for data curation, analysis, and visualization.",
    "Publication": "Available at SSRN 5188757",
    "Volume": null,
    "Number": null,
@@ -12,8 +13,9 @@
    "FileName": "Rowden_2025.pdf"
  },
  {
-   "Authors": "Rowden, Gage R; Picasso-Risso, Catalina; Li, Manci; Schwabenlander, Marc D; Wolf, Tiffany M; Larsen, Peter A; ",
+   "Authors": "Rowden, Gage R; Picasso-Risso, Catalina; Li, Manci; Schwabenlander, Marc D; Wolf, Tiffany M; Larsen, Peter A",
    "Title": "Standardization of data analysis for RT-QuIC-based detection of chronic wasting disease",
+   "Abstract": "Chronic wasting disease (CWD) is a disease affecting cervids and is caused by prions accumulating as pathogenic fibrils in lymphoid tissue and the central nervous system. Approaches for detecting CWD prions historically relied on antibody-based assays. However, recent advancements in protein amplification technology provided the foundation for a new class of CWD diagnostic tools. In particular, real-time quaking-induced conversion (RT-QuIC) has rapidly become a feasible option for CWD diagnosis. Despite its increased usage for CWD-focused research, there lacks a consensus regarding the interpretation of RT-QuIC data for diagnostic purposes. It is imperative then to identify a standardized and replicable method for determining CWD status from RT-QuIC data. Here, we assessed variables that could impact RT-QuIC results and explored the use of maxpoint ratios (maximumRFU/backgroundRFU) to improve the consistency of RT-QuIC analysis. We examined a variety of statistical analyses to retrospectively analyze CWD status based on RT-QuIC and ELISA results from 668 white-tailed deer lymph nodes. Our results revealed an MPR threshold of 2.0 for determining the rate of amyloid formation, and MPR analysis showed excellent agreement with independent ELISA results. These findings suggest that the use of MPR is a statistically viable option for normalizing between RT-QuIC experiments and defining CWD status. ",
    "Publication": "Pathogens",
    "Volume": 12,
    "Number": 2,
@@ -24,8 +26,9 @@
    "FileName": "Rowden_2023.pdf"
  },
  {
-   "Authors": "Christenson, Peter R; Li, Manci; Rowden, Gage; Schwabenlander, Marc D; Wolf, Tiffany M; Oh, Sang-Hyun; Larsen, Peter A; ",
+   "Authors": "Christenson, Peter R; Li, Manci; Rowden, Gage; Schwabenlander, Marc D; Wolf, Tiffany M; Oh, Sang-Hyun; Larsen, Peter A",
    "Title": "A field-deployable diagnostic assay for the visual detection of misfolded prions",
+   "Abstract": "Diagnostic tools for the detection of protein-misfolding diseases (i.e., proteopathies) are limited. Gold nanoparticles (AuNPs) facilitate sensitive diagnostic techniques via visual color change for the identification of a variety of targets. In parallel, recently developed quaking-induced conversion (QuIC) assays leverage protein-amplification and fluorescent signaling for the accurate detection of misfolded proteins. Here, we combine AuNP and QuIC technologies for the visual detection of amplified misfolded prion proteins from tissues of wild white-tailed deer infected with chronic wasting disease (CWD), a prion disease of cervids. Our newly developed assay, MN-QuIC, enables both naked-eye and light-absorbance measurements for detection of misfolded prions. MN-QuIC leverages basic laboratory equipment that is cost-effective and portable, thus facilitating real-time prion diagnostics across a variety of settings. In addition to laboratory-based tests, we deployed to a rural field-station in southeastern Minnesota and tested for CWD on site. We successfully demonstrated that MN-QuIC is functional in a non-traditional laboratory setting by performing a blinded analysis in the field and correctly identifying all CWD positive and CWD not-detected deer at the field site in 24 h, thus documenting the portability of the assay. White-tailed deer tissues used to validate MN-QuIC included medial retropharyngeal lymph nodes, parotid lymph nodes, and palatine tonsils. Importantly, all of the white-tailed deer (n = 63) were independently tested using ELISA, IHC, and/or RT-QuIC technologies and results secured with MN-QuIC were 95.7% and 100% consistent with these tests for positive and non-detected animals, respectively. We hypothesize that electrostatic forces help govern the AuNP/prion interactions and conclude that MN-QuIC has great potential for sensitive, field-deployable diagnostics for CWD, with future potential diagnostic applications for a variety of proteopathies.",
    "Publication": "Scientific reports",
    "Volume": 12,
    "Number": 1,
@@ -36,8 +39,9 @@
    "FileName": "Christenson_2022.pdf"
  },
  {
-   "Authors": "Legesse, Yoseph W; Dunn, Christopher D; Mauldin, Matthew R; Ordonez-Garza, Nicte; Rowden, Gage R; Gebre, Yoseph Mekasha; Kurtu, Mohammed Y; Mohammed Ali, Seid; Whibesilassie, Wondmagegne D; Ballou, Michael; ",
+   "Authors": "Legesse, Yoseph W; Dunn, Christopher D; Mauldin, Matthew R; Ordonez-Garza, Nicte; Rowden, Gage R; Gebre, Yoseph Mekasha; Kurtu, Mohammed Y; Mohammed Ali, Seid; Whibesilassie, Wondmagegne D; Ballou, Michael",
    "Title": "Morphometric and genetic variation in 8 breeds of Ethiopian camels (Camelus dromedarius)",
+   "Abstract": "Dromedary camels (Camelus dromedarius) are a domesticated and closely guarded economic staple of indigenous people located throughout Ethiopian territorial states. Seventeen morphometric variables were examined to determine intraspecific variation among 8 pastoralist-designated breeds of camels. Additionally, DNA sequences from mitochondrial cytochrome-b gene and genotyping of 6 nuclear microsatellite loci were examined to assess genetic diversity and phylogenetic relationship of Ethiopian camels. Examination of 525 individuals revealed significant morphometric differentiation in Afar as compared with the remaining 7 breeds. Analysis of cytochrome-b sequences failed to recover monophyletic groups associated with pastoralist-recognized breeds. Analysis of 6 microsatellite loci from 104 individuals depicted no resolution of distinct genetic lineages in accordance to geographical or designated breeds. Overall, separation of 2 ecotypes based on the morphometric data was supported; however, genetic analysis of cytochrome-b and microsatellite data failed to support any unique genetic lineage or statistically significant population structure.",
    "Publication": "Journal of animal science",
    "Volume": 96,
    "Number": 12,
@@ -48,8 +52,9 @@
    "FileName": "Legesse_2018.pdf"
  },
  {
-   "Authors": "Schwabenlander, Marc D; Rowden, Gage R; Li, Manci; LaSharr, Kelsie; Hildebrand, Erik C; Stone, Suzanne; Seelig, Davis M; Jennelle, Chris S; Cornicelli, Louis; Wolf, Tiffany M; ",
+   "Authors": "Schwabenlander, Marc D; Rowden, Gage R; Li, Manci; LaSharr, Kelsie; Hildebrand, Erik C; Stone, Suzanne; Seelig, Davis M; Jennelle, Chris S; Cornicelli, Louis; Wolf, Tiffany M",
    "Title": "Comparison of chronic wasting disease detection methods and procedures: implications for free-ranging white-tailed deer (Odocoileus virginianus) surveillance and management",
+   "Abstract": "Throughout North America, chronic wasting disease (CWD) has emerged as perhaps the greatest threat to wild cervid populations, including white-tailed deer (WTD; Odocoileus virginianus). White-tailed deer are the most sought-after big game species across North America with populations of various subspecies in nearly all Canadian provinces, the contiguous US, and Mexico. Documented CWD cases have dramatically increased across the WTD range since the mid-1990s, including in Minnesota, US. CWD surveillance in free-ranging WTD and other cervid populations mainly depends upon immunodetection methods such as immunohistochemistry and enzyme-linked immunosorbent assay (ELISA) on medial retropharyngeal lymph nodes and obex. More recent technologies centered on prion protein amplification methods of detection have shown promise as more sensitive and rapid CWD diagnostic tools. Here, we used blinded samples to test the efficacy of real-time quaking-induced conversion (RT-QuIC) in comparison to ELISA for screening tissues collected in 2019 from WTD in southeastern Minnesota, where CWD has been routinely detected since 2016. Our results support previous findings that RT-QuIC is a more sensitive tool for CWD detection than current antibody-based methods. Additionally, a CWD testing protocol that includes multiple lymphoid tissues (e.g., medial retropharyngeal lymph node, parotid lymph node, and palatine tonsil) per animal can effectively identify a greater number of CWD detections in a WTD population than a single sample type (e.g., medial retropharyngeal lymph nodes). These results show that the variability of CWD pathogenesis, sampling protocol, and testing platform must be considered for the effective detection and management of CWD throughout North America. ",
    "Publication": "The Journal of Wildlife Diseases",
    "Volume": 58,
    "Number": 1,
@@ -60,8 +65,9 @@
    "FileName": "Schwabenlander_2022.pdf"
  },
  {
-   "Authors": "Christenson, Peter R; Li, Manci; Rowden, Gage; Larsen, Peter A; Oh, Sang-Hyun; ",
+   "Authors": "Christenson, Peter R; Li, Manci; Rowden, Gage; Larsen, Peter A; Oh, Sang-Hyun",
    "Title": "Nanoparticle-enhanced RT-QuIC (Nano-QuIC) diagnostic assay for misfolded proteins",
+   "Abstract": "Misfolded proteins associated with various neurodegenerative diseases often accumulate in tissues or circulate in biological fluids years before the clinical onset, thus representing ideal diagnostic targets. Real-time quaking-induced conversion (RT-QuIC), a protein-based seeded-amplification assay, holds great potential for early disease detection, yet challenges remain for routine diagnostic application. Chronic Wasting Disease (CWD), associated with misfolded prion proteins of cervids, serves as an ideal model for evaluating new RT-QuIC methodologies. In this study, we investigate the previously untested hypothesis that incorporating nanoparticles into RT-QuIC assays can enhance their speed and sensitivity when applied to biological samples. We show that adding 50 nm silica nanoparticles to RT-QuIC experiments (termed Nano-QuIC) for CWD diagnostics greatly improves the performance by reducing detection times 2.5-fold and increasing sensitivity 10-fold by overcoming the effect of inhibitors in complex tissue samples. Crucially, no false positives were observed with these 50 nm silica nanoparticles, demonstrating the enhanced reliability and potential for diagnostic application of Nano-QuIC in detecting misfolded proteins.",
    "Publication": "Nano letters",
    "Volume": 23,
    "Number": 9,
@@ -72,8 +78,9 @@
    "FileName": "Christenson_2023.pdf"
  },
  {
-   "Authors": "Chavez, Benjamin G; Srinivasan, Prashanth; Glockzin, Kayla; Kim, Neill; Montero Estrada, Olga; Jirschitzka, Jan; Rowden, Gage; Shao, Jonathan; Meinhardt, Lyndel; Smolke, Christina D; ",
+   "Authors": "Chavez, Benjamin G; Srinivasan, Prashanth; Glockzin, Kayla; Kim, Neill; Montero Estrada, Olga; Jirschitzka, Jan; Rowden, Gage; Shao, Jonathan; Meinhardt, Lyndel; Smolke, Christina D",
    "Title": "Elucidation of tropane alkaloid biosynthesis in Erythroxylum coca using a microbial pathway discovery platform",
+   "Abstract": "Tropane alkaloids (TAs) are heterocyclic nitrogenous metabolites found across seven orders of angiosperms, including Malpighiales (Erythroxylaceae) and Solanales (Solanaceae). Despite the well-established euphorigenic properties of Erythroxylaceae TAs like cocaine, their biosynthetic pathway remains incomplete. Using yeast as a screening platform, we identified and characterized the missing steps of TA biosynthesis in Erythroxylum coca. We first characterize putative E. coca polyamine synthase- and amine oxidase-like enzymes in vitro, in yeast, and in planta to show that the first tropane ring closure in Erythroxylaceae occurs via bifunctional spermidine synthase/N-methyltransferases and both flavin- and copper-dependent amine oxidases. We next identify a SABATH family methyltransferase responsible for the 2-carbomethoxy moiety characteristic of Erythroxylaceae TAs and demonstrate that its coexpression with methylecgonone reductase in yeast engineered to express the Solanaceae TA pathway enables the production of a hybrid TA with structural features of both lineages. Finally, we use clustering analysis of Erythroxylum transcriptome datasets to discover a cytochrome P450 of the CYP81A family responsible for the second tropane ring closure in Erythroxylaceae, and demonstrate the function of the core coca TA pathway in vivo via reconstruction and de novo biosynthesis of methylecgonine in yeast. Collectively, our results provide strong evidence that TA biosynthesis in Erythroxylaceae and Solanaceae is polyphyletic and that independent recruitment of unique biosynthetic mechanisms and enzyme classes occurred at nearly every step in the evolution of this pathway.",
    "Publication": "Proceedings of the National Academy of Sciences",
    "Volume": 119,
    "Number": 49,
@@ -84,8 +91,9 @@
    "FileName": "Chavez_2022.pdf"
  },
  {
-   "Authors": "Li, Manci; Schwabenlander, Marc D; Rowden, Gage R; Schefers, Jeremy M; Jennelle, Christopher S; Carstensen, Michelle; Seelig, Davis; Larsen, Peter A; ",
+   "Authors": "Li, Manci; Schwabenlander, Marc D; Rowden, Gage R; Schefers, Jeremy M; Jennelle, Christopher S; Carstensen, Michelle; Seelig, Davis; Larsen, Peter A",
    "Title": "RT-QuIC detection of CWD prion seeding activity in white-tailed deer muscle tissues",
+   "Abstract": "Chronic wasting disease (CWD) is a prion disease circulating in wild and farmed cervid populations throughout North America (United States and Canada), Europe (Finland, Norway, Sweden), and South Korea. CWD is a long-term threat to all cervid populations and to cervid hunting heritage, with the potential to cause substantial economic losses across multiple sectors. In North America, hunting and farming industries focused on the processing and consumption of white-tailed deer (WTD) venison are particularly vulnerable to CWD prion contamination, as millions of WTD are consumed annually. Real-time quaking-induced conversion (RT-QuIC) is a highly sensitive assay amplifying misfolded CWD prions in vitro and has facilitated CWD prion detection in a variety of tissues and excreta. To date, no study has comprehensively examined CWD prion content across bulk skeletal muscle tissues harvested from individual CWD infected WTD. Here, we use RT-QuIC to characterize prion-seeding activity in a variety of skeletal muscles from both wild and farmed CWD-positive WTD. We successfully detected CWD prions in muscles commonly used for consumption (e.g., backstrap, tenderloin, etc.) as well as within tongue and neck samples of WTD. Our results suggest that CWD prions are distributed across the skeletal muscles of infected WTD. We posit that RT-QuIC will be a useful tool for monitoring CWD prions in venison and that the method (with additional protocol optimization and high-throughput functionality) could be used to reduce and/or prevent CWD prions from entering animal and human food chains. ",
    "Publication": "Scientific reports",
    "Volume": 11,
    "Number": 1,
@@ -96,8 +104,9 @@
    "FileName": "Li_2021.pdf"
  },
  {
-   "Authors": "Yuan, Qi; Rowden, Gage; Wolf, Tiffany M; Schwabenlander, Marc D; Larsen, Peter A; Bartelt-Hunt, Shannon L; Bartz, Jason C; ",
+   "Authors": "Yuan, Qi; Rowden, Gage; Wolf, Tiffany M; Schwabenlander, Marc D; Larsen, Peter A; Bartelt-Hunt, Shannon L; Bartz, Jason C",
    "Title": "Sensitive detection of chronic wasting disease prions recovered from environmentally relevant surfaces",
+   "Abstract": "Chronic wasting disease (CWD) has been identified in 30 states in the United States, four provinces in Canada, and recently emerged in Scandinavia. The association of CWD prions with environmental materials such as soil, plants, and surfaces may enhance the persistence of CWD prion infectivity in the environment exacerbating disease transmission. Identifying and quantifying CWD prions in the environment is significant for prion monitoring and disease transmission control. A systematic method for CWD prion quantification from associated environmental materials, however, does not exist. In this study, we developed an innovative method for extracting prions from swabs and recovering CWD prions swabbed from different types of surfaces including glass, stainless steel, and wood. We found that samples dried on swabs were unfavorable for prion extraction, with the greatest prion recovery from wet swabs. Using this swabbing technique, the recovery of CWD prions dried to glass or stainless steel was approximately 30% in most cases, whereas that from wood was undetectable by conventional prion immunodetection techniques. Real-time quake-induced conversion (RT-QuIC) analysis of these same samples resulted in an increase of the detection limit of CWD prions from stainless steel by 4 orders of magnitude. More importantly, the RT-QuIC detection of CWD prions recovered from stainless steel surfaces using this method was similar to the original CWD prion load applied to the surface. This combined surface swabbing and RT-QuIC detection method provides an ultrasensitive means for prion detection across many settings and applications. ",
    "Publication": "Environment international",
    "Volume": 166,
    "Number": null,
@@ -108,8 +117,9 @@
    "FileName": "Yuan_2022.pdf"
  },
  {
-   "Authors": "Picasso-Risso, Catalina; Schwabenlander, Marc D; Rowden, Gage; Carstensen, Michelle; Bartz, Jason C; Larsen, Peter A; Wolf, Tiffany M; ",
+   "Authors": "Picasso-Risso, Catalina; Schwabenlander, Marc D; Rowden, Gage; Carstensen, Michelle; Bartz, Jason C; Larsen, Peter A; Wolf, Tiffany M",
    "Title": "Assessment of real-time quaking-induced conversion (RT-QuIC) assay, immunohistochemistry and ELISA for detection of chronic wasting disease under field conditions in white-tailed deer: A Bayesian approach",
+   "Abstract": "Chronic wasting disease (CWD) is a transmissible prion disease of the cervidae family. ELISA and IHC tests performed postmortem on the medial retropharyngeal lymph nodes (RPLN) or obex are considered diagnostic gold standards for prion detection. However, differences in CWD transmission, stage of infection, pathogenesis, and strain can limit performance. To overcome these uncertainties, we used Bayesian statistics to assess the accuracy of RT-QuIC, an increasingly used prion amplification assay, to diagnose CWD on tonsil (TLN), parotid (PLN) and submandibular lymph nodes (SMLN), and ELISA/IHC on RPLN of white-tailed deer (WTD) sampled from Minnesota. Dichotomous RT-QuIC and ELISA/IHC results from wild (n = 61) and captive (n = 46) WTD were analyzed with two-dependent-test, one-population models. RT-QuIC performed on TLN and SMLN of the wild WTD population had similar sensitivity (median range (MR): 92.2-95.1) to ELISA/IHC on RPLN (MR: 91.1-92.3). Slightly lower (4-7%) sensitivity estimates were obtained from farmed animal and PLN models. RT-QuIC specificity estimates were high (MR: 94.5-98.5%) and similar to ELISA/IHC estimates (MR: 95.7-97.6%) in all models. This study offers new insights on RT-QuIC and ELISA/IHC performance at the population level and under field conditions, an important step in CWD diagnosis and management. ",
    "Publication": "Pathogens",
    "Volume": 11,
    "Number": 5,
@@ -120,8 +130,9 @@
    "FileName": "Picasso-Risso_2022.pdf"
  },
  {
-   "Authors": "Lee, Dong Jun; Christenson, Peter R; Rowden, Gage; Lindquist, Nathan C; Larsen, Peter A; Oh, Sang-Hyun; ",
+   "Authors": "Lee, Dong Jun; Christenson, Peter R; Rowden, Gage; Lindquist, Nathan C; Larsen, Peter A; Oh, Sang-Hyun",
    "Title": "Microfluidic Quaking-Induced Conversion (Micro-QuIC) for Rapid On-Site Amplification and Detection of Misfolded Proteins",
+   "Abstract": "Protein misfolding diseases, such as prion diseases, Alzheimer’s, and Parkinson’s, share a common molecular mechanism involving the misfolding and aggregation of specific proteins. There is an urgent need for point-of-care (POC) diagnostic technologies that can accurately detect these misfolded proteins, facilitating early diagnosis and intervention. Here, we introduce the Microfluidic Quaking Induced Conversion (Micro-QuIC), a novel acoustofluidic platform for the rapid and sensitive detection of protein misfolding diseases. We demonstrate the utility of our technology using chronic wasting disease (CWD) as a model system, as samples from wild white-tailed deer are readily accessible, and CWD shares similarities with human protein misfolding diseases. Acoustofluidic mixing enables homogeneous mixing of reagents in a high-Reynolds-number regime, significantly accelerating the turnaround time for CWD diagnosis. Our Micro-QuIC assay amplifies prions by an order of magnitude faster than the current gold standard, real-time quaking-induced conversion (RT-QuIC). Furthermore, we integrated Micro-QuIC with a gold nanoparticle-based, naked-eye detection method, which enables visual discrimination between CWD positive and negative samples without the need for a bulky fluorescence detection module. This integration creates a rapid, POC testing platform capable of detecting misfolded proteins associated with a variety of protein misfolding diseases.",
    "Publication": "BioRxiv",
    "Volume": null,
    "Number": null,
@@ -132,19 +143,9 @@
    "FileName": "Lee_2023.pdf"
  },
  {
-   "Authors": "Picasso-Risso, C; Schwabenlander, MD; Rowden, G; Carstensen, M; Bartz, JC; Larsen, PA; Wolf, TM; ",
-   "Title": "Assessment of Real-Time Quaking-Induced Conversion (RT-QuIC) Assay, Immunohistochemistry and ELISA for Detection of Chronic Wasting Disease under Field Conditions in White-Tailed Deer: A Bayesian Approach. Pathogens 2022, 11, 489",
-   "Publication": "",
-   "Volume": null,
-   "Number": null,
-   "Pages": "",
-   "Year": 2022,
-   "Publisher": "s Note: MDPI stays neutral with regard to jurisdictional claims in published …",
-   "FileName": "Picasso-Risso_2022.pdf"
- },
- {
-   "Authors": "Schwabenlander, Marc D; Bartz, Jason C; Carstensen, Michelle; Fameli, Alberto; Glaser, Linda; Larsen, Roxanne J; Li, Manci; Shoemaker, Rachel L; Rowden, Gage; Stone, Suzanne; ",
+   "Authors": "Schwabenlander, Marc D; Bartz, Jason C; Carstensen, Michelle; Fameli, Alberto; Glaser, Linda; Larsen, Roxanne J; Li, Manci; Shoemaker, Rachel L; Rowden, Gage; Stone, Suzanne",
    "Title": "Prion forensics: a multidisciplinary approach to investigate CWD at an illegal deer carcass disposal site",
+   "Abstract": "Infectious prions are resistant to degradation and remain infectious in the environment for several years. Chronic wasting disease (CWD) has been detected in cervids inhabiting North America, the Nordic countries, and South Korea. CWD-prion spread is partially attributed to carcass transport and disposal. We employed a forensic approach to investigate an illegal carcass dump site connected with a CWD-positive herd. We integrated anatomic, genetic, and prion amplification methods to discover CWD-positive remains from six white-tailed deer (Odocoileus virginianus) and, using microsatellite markers, confirmed a portion originated from the CWD-infected herd. This approach provides a foundation for future studies of carcass prion transmission risk. ",
    "Publication": "Prion",
    "Volume": 18,
    "Number": 1,
@@ -155,8 +156,9 @@
    "FileName": "Schwabenlander_2024.pdf"
  },
  {
-   "Authors": "Christenson, Peter C; Rowden, Gage; Oh, Sang-Hyun; Larsen, Peter A; Li, Manci; ",
+   "Authors": "Christenson, Peter C; Rowden, Gage; Oh, Sang-Hyun; Larsen, Peter A; Li, Manci",
    "Title": "Methods and materials for detecting misfolded polypeptides",
+   "Abstract": "This document relates to methods and materials for detecting the presence or absence of misfolded polypeptides in a sample. For example, methods and materials for amplifying a sample (e.g., a biological sample or an environmental sample) such that misfolded polypeptides present in the sample can aggregate to form fibrils and/or globular polypeptide aggregates and contacting the amplified sample with a solution containing metal nanoparticles (e.g., gold nanoparticles) or one or more organic dyes (e.g., Congo Red) to detect the presence or absence of fibrils and/or globular polypeptide aggregates are provided. In some cases, methods and materials for determining if a mammal (e.g., a human) has a proteinopathy based, at least in part, in the presence or absence of misfolded polypeptides in a sample obtained from the mammal are provided.",
    "Publication": "",
    "Volume": null,
    "Number": null,
@@ -167,8 +169,9 @@
    "FileName": "Christenson_2024.pdf"
  },
  {
-   "Authors": "Christenson, Peter R; Jeong, Hyeonjeong; Ahn, Hyerim; Li, Manci; Rowden, Gage; Shoemaker, Rachel L; Larsen, Peter A; Park, Hye Yoon; Oh, Sang-Hyun; ",
+   "Authors": "Christenson, Peter R; Jeong, Hyeonjeong; Ahn, Hyerim; Li, Manci; Rowden, Gage; Shoemaker, Rachel L; Larsen, Peter A; Park, Hye Yoon; Oh, Sang-Hyun",
    "Title": "Visual detection of misfolded alpha-synuclein and prions via capillary-based quaking-induced conversion assay (Cap-QuIC)",
+   "Abstract": "Neurodegenerative protein misfolding diseases impact tens of millions of people worldwide, contributing to millions of deaths and economic hardships across multiple scales. The prevalence of neurodegenerative disease is predicted to greatly increase over the coming decades, yet effective diagnostics for such diseases are limited. Most diagnoses come from the observation of external symptoms in clinical settings, which typically manifest during relatively advanced stages of disease, thus limiting potential therapeutic applications. While progress is being made on biomarker testing, the underlying methods largely rely on fragile and expensive equipment that limits their point-of-care potential, especially in developing countries. Here we present Capillary-based Quaking Induced Conversion (Cap-QuIC) as a visual diagnostic assay based on simple capillary action for the detection of neurodegenerative disease without necessitating expensive and complex capital equipment. We demonstrate that Cap-QuIC has the potential to be a detection tool for a broad range of misfolded proteins by successfully distinguishing misfolded versus healthy proteins associated with Parkinson’s disease (α-synuclein) and Chronic Wasting Disease (prions). Additionally, we show that Cap-QuIC can accurately classify biological tissue samples from wild white-tailed deer infected with Chronic Wasting Disease. Our findings elucidate the underlying mechanism that enables the Cap-QuIC assay to distinguish misfolded protein, highlighting its potential as a diagnostic technology for neurodegenerative diseases.",
    "Publication": "npj Biosensing",
    "Volume": 1,
    "Number": 1,
@@ -179,8 +182,9 @@
    "FileName": "Christenson_2024.pdf"
  },
  {
-   "Authors": "Lee, Dong Jun; Christenson, Peter R; Rowden, Gage; Lindquist, Nathan C; Larsen, Peter A; Oh, Sang-Hyun; ",
+   "Authors": "Lee, Dong Jun; Christenson, Peter R; Rowden, Gage; Lindquist, Nathan C; Larsen, Peter A; Oh, Sang-Hyun",
    "Title": "Rapid on-site amplification and visual detection of misfolded proteins via microfluidic quaking-induced conversion (Micro-QuIC)",
+   "Abstract": "Protein misfolding diseases, such as prion diseases, Alzheimer’s, and Parkinson’s, share a common molecular mechanism involving the misfolding and aggregation of specific proteins. There is an urgent need for point-of-care (POC) diagnostic technologies that can accurately detect these misfolded proteins, facilitating early diagnosis and intervention. Here, we introduce the microfluidic quaking-induced conversion (Micro-QuIC), a novel acoustofluidic platform for the rapid and sensitive detection of protein misfolding diseases. We demonstrate the utility of our technology using chronic wasting disease (CWD) as a model system, since samples from wild white-tailed deer are readily accessible, and CWD shares similarities with human protein misfolding diseases. Acoustofluidic mixing enables homogeneous mixing of reagents in a high-Reynolds-number regime, significantly accelerating the turnaround time for CWD diagnosis. Our Micro-QuIC assay amplifies prions significantly faster than the current gold standard, real-time quaking-induced conversion (RT-QuIC). Furthermore, we integrated Micro-QuIC with a gold nanoparticle-based, naked-eye detection method, which enables visual discrimination between CWD-positive and CWD-negative samples without the need for a bulky fluorescence detection module. This integration creates a rapid, POC testing platform capable of detecting misfolded proteins associated with a variety of protein misfolding diseases.",
    "Publication": "npj Biosensing",
    "Volume": 1,
    "Number": 1,
@@ -191,8 +195,9 @@
    "FileName": "Lee_2024.pdf"
  },
  {
-   "Authors": "Milstein, Marissa; Gresch, Sarah C; Schwabenlander, Marc D; Li, Manci; Bartz, Jason C; Bryant, Damani N; Christenson, Peter R; Lindsey, Laramie L; Lurndahl, Nicole; Oh, Sang-Hyun; ",
+   "Authors": "Milstein, Marissa; Gresch, Sarah C; Schwabenlander, Marc D; Li, Manci; Bartz, Jason C; Bryant, Damani N; Christenson, Peter R; Lindsey, Laramie L; Lurndahl, Nicole; Oh, Sang-Hyun",
    "Title": "Detection and decontamination of chronic wasting disease prions during venison processing",
+   "Abstract": "Prion diseases, including chronic wasting disease (CWD), are caused by prions, which are misfolded aggregates of normal cellular prion protein. Prions possess many characteristics that distinguish them from conventional pathogens, in particular, an extraordinary recalcitrance to inactivation and a propensity to avidly bind to surfaces. In middle to late stages of CWD, prions begin accumulating in cervid muscle tissues. Those features collectively create scenarios in which occupational hazards arise for workers processing venison and pose risks to consumers through direct prion exposure through ingestion and cross-contamination of food products. In this study, we demonstrate that steel and plastic surfaces used in venison processing can be directly contaminated with CWD prions and that cross-contamination of CWD-negative venison can occur from equipment that had previously been used with CWD-positive venison. We also show that several decontaminant solutions (commercial bleach and potassium peroxymonosulfate) are efficacious for prion inactivation on those same surfaces.",
    "Publication": "Emerging infectious diseases",
    "Volume": 31,
    "Number": 4,
@@ -203,8 +208,9 @@
    "FileName": "Milstein_2025.pdf"
  },
  {
-   "Authors": "Darish, Joseph R; Kaganer, Alyssa W; Hanley, Brenda J; Schuler, Krysten L; Schwabenlander, Marc D; Wolf, Tiffany M; Ahmed, Md Sohel; Rowden, Gage R; Larsen, Peter A; Kobashigawa, Estela; ",
+   "Authors": "Darish, Joseph R; Kaganer, Alyssa W; Hanley, Brenda J; Schuler, Krysten L; Schwabenlander, Marc D; Wolf, Tiffany M; Ahmed, Md Sohel; Rowden, Gage R; Larsen, Peter A; Kobashigawa, Estela",
    "Title": "Inter-laboratory comparison of real-time quaking-induced conversion (RT-QuIC) for the detection of chronic wasting disease prions in white-tailed deer retropharyngeal lymph nodes",
+   "Abstract": "The rapid geographic spread of chronic wasting disease (CWD) in white-tailed deer (WTD; Odocoileus virginianus) increases the need for the development and validation of new detection tests. Real-time quaking-induced conversion (RT-QuIC) has emerged as a sensitive tool for CWD prion detection, but federal approval in the United States has been challenged by practical constraints on validation and uncertainty surrounding RT-QuIC robustness between laboratories. To evaluate the effect of inter-laboratory variation on CWD prion detection using RT-QuIC, we conducted a multi-institution comparison on a shared anonymized sample set. We hypothesized that RT-QuIC can accurately and reliably detect the prions that cause CWD in postmortem samples from medial retropharyngeal lymph node (RPLN) tissue despite variation in laboratory protocols. Laboratories from 6 U.S. states (Michigan, Minnesota, Missouri, New York, Pennsylvania, Wisconsin) were enlisted to compare the use of RT-QuIC in determining CWD prion status (positive or negative) among 50 anonymized RPLNs of known prion status. Our sample set included animals of 3 codon 96 WTD genotypes known to affect CWD progression and detection (G96G, G96S, S96S). All 6 laboratories successfully identified the true disease status consistently for all 3 tested codon 96 genotypes. Our results indicate that RT-QuIC is a suitable test for the detection of CWD prions in RPLN tissues in several genotypes of WTD.",
    "Publication": "Journal of Veterinary Diagnostic Investigation",
    "Volume": 37,
    "Number": 1,
@@ -215,8 +221,9 @@
    "FileName": "Darish_2025.pdf"
  },
  {
-   "Authors": "Huang, Miranda HJ; Demarais, Steve; Schwabenlander, Marc D; Strickland, Bronson K; VerCauteren, Kurt C; McKinley, William T; Rowden, Gage; Valencia Tibbitts, Corina C; Gresch, Sarah C; Lichtenberg, Stuart S; ",
+   "Authors": "Huang, Miranda HJ; Demarais, Steve; Schwabenlander, Marc D; Strickland, Bronson K; VerCauteren, Kurt C; McKinley, William T; Rowden, Gage; Valencia Tibbitts, Corina C; Gresch, Sarah C; Lichtenberg, Stuart S",
    "Title": "Chronic wasting disease prions on deer feeders and wildlife visitation to deer feeding areas",
+   "Abstract": "Eliminating supplemental feeding is a common regulatory action within chronic wasting disease (CWD) management zones. These regulations target the potential for increased animal-animal contact and environmental contamination with CWD prions. Prions, the causative agent of CWD, have been detected on feeder surfaces in CWD-positive, captive deer facilities but not among free-ranging populations, and information on the relative risk of transmission at anthropogenic and natural food sources is limited. In this study, we established and maintained 13 gravity feeders from September 2022 to March 2023 in a CWD zone in northern Mississippi, USA (apparent prevalence ~30%). We set up feeders up in 3 ways: no exclusion (deer feeders, n = 7), exclusion of deer using fencing with holes cut at the ground-level to permit smaller wildlife to enter (raccoon feeders, n = 3), and environmental control feeders, which were fully fenced and not filled with feed (control feeders, n = 3). We swabbed feeder spouts at setup and at 4 intervals approximately 6 weeks apart to test for prion contamination via real-time quaking-induced conversion (RT-QuIC). We detected prions 12 weeks after setup on all deer and raccoon feeders. We compared relative transmission risk using camera traps at these feeders, 6 agronomic plantings for wildlife forage (i.e., food plots), and 7 oak mast trees. Weekly visitation rate by white-tailed deer (Odocoileus virginianus; hereafter: deer) differed (P = 0.02) among deer feeders (median = 24.5 deer/week, range = 15.6–65.7), food plots (median = 12.7, range = 3.8–24.7), and mast trees (median = 2.0, range = 0.4–5.1). Contact rates between individual deer also differed between site types (P < 0.01): deer feeders (median = 2.1 deer-to-deer contacts/week, range = 0–10.1), food plots (median = 0.1, range = 0–4.0), and mast trees (median = 0, range = 0–0.3). Raccoons also visited feeders at greater rates than food plots and mast trees (P < 0.04). Finally, we swabbed 19 feeders in 2 areas where CWD was newly detected, finding prion contamination on swabs from 4 feeders. We show that deer feeders in free-ranging populations with high CWD prevalence become contaminated with CWD prions quickly, becoming a potential site of exposure of deer to CWD prions. Our results also demonstrate the ability to find evidence of prion contamination on deer feeders, even in areas where CWD is newly detected.",
    "Publication": "The Journal of Wildlife Management",
    "Volume": 89,
    "Number": 4,
@@ -227,8 +234,9 @@
    "FileName": "Huang_2025.pdf"
  },
  {
-   "Authors": "Grunklee, Madeline K; Bartz, Jason C; Karwan, Diana L; Lichtenberg, Stuart S; Lurndahl, Nicole A; Larsen, Peter A; Schwabenlander, Marc D; Rowden, Gage R; Li, E Anu; Yuan, Qi; ",
-   "Title": "Supporting Dataset for\" RT-QuIC Optimization for Prion Detection in Two Minnesota Soil Types\" and\" Detection of Chronic Wasting Disease Prions in Soil at an Illegal White-tailed Deer Carcass Disposal Site\"",
+   "Authors": "Grunklee, Madeline K; Bartz, Jason C; Karwan, Diana L; Lichtenberg, Stuart S; Lurndahl, Nicole A; Larsen, Peter A; Schwabenlander, Marc D; Rowden, Gage R; Li, E Anu; Yuan, Qi",
+   "Title": "Supporting Dataset for RT-QuIC Optimization for Prion Detection in Two Minnesota Soil Types and Detection of Chronic Wasting Disease Prions in Soil at an Illegal White-tailed Deer Carcass Disposal Site",
+   "Abstract": "These data describe prion detections in soil using real-time quaking-induced conversion (RT-QuIC) assay with various metric calculations common to RT-QuIC. The Soil_Cntrl_Expmts_Data.xlsx file contains data from a series of control experiments aimed at optimizing and applying RT-QuIC for the detection of chronic wasting disease prions in environmental soil samples. We focused negative control experiments on refining RT-QuIC and sample processing to use on Minnesota native soils, which included limiting background noise from the samples. Starting on 2023-05-08, we used spiked soil control experiments to distinguish true prion signal from background noise and validate detection reliability. Following soil control experiments, the Soil_Test_Samples_Data.xlsx file describes our sample testing in RT-QuIC collected from our study site, an illegal white-tailed deer (Odocoileus virginianus, WTD) carcass disposal site and a nearby captive WTD farm in Beltrami County, Minnesota. We analyzed study site soil samples for prion presence to assess potential environmental contamination associated with improper carcass disposal practices.",
    "Publication": "",
    "Volume": null,
    "Number": null,
@@ -239,8 +247,9 @@
    "FileName": "Grunklee_2025.pdf"
  },
  {
-   "Authors": "Li, E Anu; Karwan, Diana L; Lichtenberg, Stuart Siegfried; Rowden, Gage R; Schwabenlander, Marc D; Larsen, Peter A; Wolf, Tiffany M; ",
+   "Authors": "Li, E Anu; Karwan, Diana L; Lichtenberg, Stuart Siegfried; Rowden, Gage R; Schwabenlander, Marc D; Larsen, Peter A; Wolf, Tiffany M",
    "Title": "Prion partitioning and persistence in environmental waters",
+   "Abstract": "Chronic wasting disease (CWD) is a fatal neurodegenerative disease affecting cervids. CWD is caused by infectious prions, which can enter the environment through bodily fluids or the carcasses of infected animals. Prions can be stored, remain infectious in both soil and water for many years, and transported hydrologically, possibly expanding the geographic range of CWD transmission. In order to better predict hydrological prion transport, we investigated how CWD prion protein (PrPCWD) partitions and persists in environmental waters. We performed PrPCWD spike experiments with water samples containing fine sediments from two locations within a CWD-contaminated site, at which contamination sources were removed one year prior. Samples were filtered after spiking, and filtrates and sediments were tested separately for PrPCWD using real-time quaking-induced conversion (RT-QuIC). Unspiked filtrates tested negative for PrPCWD, while unspiked sediments were positive, indicating PrPCWD persistence in environmental sediments for at least one year. Spiked sediments were positive immediately after spiking and throughout 28 days of incubation. Spiked filtrates were largely negative immediately after spiking and remained negative for 28 days, with some inconsistent positives from one sampling location. Our results indicate that PrPCWD readily partitions to the sediment fraction of environmental waters, suggesting that hydrological prion transport is sediment-facilitated.",
    "Publication": "Environmental Science & Technology",
    "Volume": 59,
    "Number": 11,
@@ -251,8 +260,9 @@
    "FileName": "Li_2025.pdf"
  },
  {
-   "Authors": "Grunklee, Madeline K; Lichtenberg, Stuart S; Rowden, Gage; Karwan, Diana L; Li, E Anu; Schwabenlander, Marc D; Wolf, Tiffany M; ",
+   "Authors": "Grunklee, Madeline K; Lichtenberg, Stuart S; Rowden, Gage; Karwan, Diana L; Li, E Anu; Schwabenlander, Marc D; Wolf, Tiffany M",
    "Title": "RT-QuIC optimization for prion detection in soils",
+   "Abstract": "Chronic wasting disease (CWD) is a transmissible neurodegenerative prion disorder affecting cervid species, such as deer, characterized by neurological decline and death. CWD prions (PrPSc) are shed into the environment through excreta, secreta, and carcass decomposition, where they persist for at least 16 years. Detecting prions in environmental matrices, like soil, is challenging as multifaceted interactions between prions and soil components can complicate laboratory assay interpretation. To address these challenges, we conducted a series of experiments on Minnesota native soils to optimize the real-time quaking-induced conversion (RT-QuIC) in vitro prion amplification assay for detection:\n\n- We performed negative control experiments to optimize a soil extraction protocol to discern true prion seeding activity from false seeding triggered by native soil characteristics.\n- We conducted soil spiking experiments to validate RT-QuIC for reliable prion detection.\n- We performed multiple statistical evaluations and assessments of these control experiments to enhance assay specificity and sensitivity.\n\nFrom these experiments, we identified maxpoint ratio (MPR) as the most effective metric to evaluate true PrPSc detections from background noise in Minnesota native soils. The steps taken to optimize RT-QuIC for Minnesota soils have application for the validation of RT-QuIC for prion detection in other soil types.",
    "Publication": "MethodsX",
    "Volume": null,
    "Number": null,
@@ -263,8 +273,9 @@
    "FileName": "Grunklee_2025.pdf"
  },
  {
-   "Authors": "Wille, Anu; Karwan, Diana L; Lichtenberg, Stuart Siegfried; Grunklee, Madeline; Rowden, Gage; Ferguson-Kramer, Victoria; Schwabenlander, Marc D; Wolf, Tiffany M; Larsen, Peter A; ",
+   "Authors": "Wille, Anu; Karwan, Diana L; Lichtenberg, Stuart Siegfried; Grunklee, Madeline; Rowden, Gage; Ferguson-Kramer, Victoria; Schwabenlander, Marc D; Wolf, Tiffany M; Larsen, Peter A",
    "Title": "Characterizing Hydrological Transport Pathways of Chronic Wasting Disease in the Environment",
+   "Abstract": "Chronic wasting disease (CWD) is a fatal neurodegenerative prion disease found in deer, moose, and elk. Cases of CWD in Minnesota have risen considerably over the last few years, raising wildlife, environmental, and public health concerns. Infectious prions, such as those causing CWD, enter the environment through bodily fluids or decomposing carcasses of infected individuals and can persist for at least fifteen years in soil and water. Previous studies have shown strong prion sorption to various mineral particles in soils. Through field observation and laboratory experimentation, we observed that prions readily partition to the particulate fraction of environmental waters, suggesting that hydrological transport of prions is likely sediment-facilitated. To effectively contain the spread of CWD through the environment, it is imperative to predict prion transport times and pathways in the context of specific landscape and watershed conditions. Our purpose is to characterize the hydrological transport of prions through watersheds at multiple scales. Through spatial analysis, we mapped surface flow pathways from CWD hotspots in Minnesota to identify how they overlap with major rivers and regions of high soil erosion. Based on in-stream measurements and sediment characterization, we used empirical equations to predict sediment mobilization conditions and transport rates in CWD-contaminated regions with diverse flow regimes. In order to model subsurface prion transport, we began conducting flow-through column experiments testing various flow rates and soil matrices. ",
    "Publication": "Water Science Conference (WaterSciCon24",
    "Volume": null,
    "Number": null,

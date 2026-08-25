@@ -1,22 +1,25 @@
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(jsonlite)
+library(dplyr)
 library(purrr)
 
-pubs <- fromJSON("static/json/publications.json")
-
-make_pub <- function(pub) {
-    print(pub)
-    title <- pub$title
-    authors <- pub$authors
-    year <- pub$year
-    journal <- pub$journal
-    doi <- pub$doi
-
-    paste0(
-        "<li><a href=\"", pub$url, "\">", title, "</a>",
-        " (", authors, ", ", year, "). ", journal, ". ", doi, "</li>"
-    )
+format_year <- function(year, df) {
+  cat("## ", year, "\n\n")
+  df %>% 
+    filter(Year == year) %>% 
+    pull(string) %>% 
+    cat(sep = "\n")
 }
 
-pubs <- map(pubs, make_pub)
+df <- fromJSON("static/json/publications.json") %>%
+  mutate(string = paste0(
+    "### [", Title, "](", Link, ")\n",
+    Authors, "\n\n",
+    "::: { .callout-tip title='Abstract' collapse=true }\n\n", 
+    Abstract, "\n\n:::\n\n",
+    recycle0 = ""
+  )) %>%
+  arrange(desc(Year), Title)
+
+map(unique(df$Year), format_year, df = df)
 ```
