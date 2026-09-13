@@ -1,3 +1,162 @@
 ---
 title: Harmonograph
+format:
+  dashboard:
+    orientation: columns
 ---
+
+
+```{ojs}
+//| include: FALSE
+
+function initSlider(label, min, max, step, value) {
+  return Inputs.range([min, max], {
+    label: label,
+    value: value ?? Math.random() * (max - min) + min,
+    step: step
+  });
+}
+```
+
+## Plot { width=70% }
+
+<div id="harmonograph-container" style="width: 100%; height: 100%; background-color: black;">
+<canvas id="harmonograph-canvas" style="display: block; width: 100%; height: 100%;"></canvas>
+</div>
+
+```{ojs}
+//| include: FALSE
+//
+// Port of static/javascript/harmonograph.js (p5.js) to plain canvas + OJS.
+//
+
+DT = 0.001
+ITERATIONS = 10000
+TWO_PI = 2 * Math.PI
+
+// Equivalent of setup()/the slider "input" listener/renderHarmonograph().
+function drawHarmonograph() {
+  const container = document.getElementById("harmonograph-container");
+  const canvas = document.getElementById("harmonograph-canvas");
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+  canvas.width = width;
+  canvas.height = height;
+
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, width, height);
+  ctx.translate(width / 2, height / 2);
+
+  const freq1 = Math.pow(10, f1);
+  const freq2 = Math.pow(10, f2);
+  const freq3 = Math.pow(10, f3);
+  const freq4 = Math.pow(10, f4);
+  const phase1 = p1 * TWO_PI;
+  const phase2 = p2 * TWO_PI;
+  const phase3 = p3 * TWO_PI;
+  const phase4 = p4 * TWO_PI;
+
+  ctx.strokeStyle = "rgb(149, 255, 175)";
+  ctx.lineWidth = weight;
+  ctx.shadowBlur = glow;
+  ctx.shadowColor = "rgb(149, 255, 175)";
+  ctx.lineJoin = "round";
+
+  ctx.beginPath();
+  let t = 0;
+  for (let i = 0; i < ITERATIONS; i++) {
+    const x = a1 * Math.sin(t * freq1 + phase1) * Math.exp(-d1 * t)
+            + a2 * Math.sin(t * freq2 + phase2) * Math.exp(-d2 * t);
+    const y = a3 * Math.sin(t * freq3 + phase3) * Math.exp(-d3 * t)
+            + a4 * Math.sin(t * freq4 + phase4) * Math.exp(-d4 * t);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+    t += DT;
+  }
+  ctx.stroke();
+}
+```
+
+```{ojs}
+//| include: FALSE
+// Equivalent of p.windowResized(): redraw whenever the card is resized.
+{
+  const container = document.getElementById("harmonograph-container");
+  const ro = new ResizeObserver(() => drawHarmonograph());
+  ro.observe(container);
+}
+```
+
+```{ojs}
+//| include: FALSE
+// Equivalent of the slider "input" listener: redraw whenever a control changes.
+{
+  f1; f2; f3; f4;
+  a1; a2; a3; a4;
+  d1; d2; d3; d4;
+  p1; p2; p3; p4;
+  weight; glow;
+  drawHarmonograph();
+}
+```
+
+
+## Params {width=30% }
+
+### Frequency
+
+```{ojs}
+viewof f1 = initSlider("Frequency 1", 0, 3, 0.001);
+viewof f2 = initSlider("Frequency 2", 0, 3, 0.001);
+viewof f3 = initSlider("Frequency 3", 0, 3, 0.001);
+viewof f4 = initSlider("Frequency 4", 0, 3, 0.001);
+```
+
+### Amplitude
+```{ojs}
+viewof a1 = initSlider("Amplitude 1", 0, 500, 0.1);
+viewof a2 = initSlider("Amplitude 2", 0, 500, 0.1);
+viewof a3 = initSlider("Amplitude 3", 0, 500, 0.1);
+viewof a4 = initSlider("Amplitude 4", 0, 500, 0.1);
+```
+
+### Damping
+```{ojs}
+viewof d1 = initSlider("Damping 1", 0, 1, 0.001);
+viewof d2 = initSlider("Damping 2", 0, 1, 0.001);
+viewof d3 = initSlider("Damping 3", 0, 1, 0.001);
+viewof d4 = initSlider("Damping 4", 0, 1, 0.001);
+```
+
+### Phase
+```{ojs}
+viewof p1 = initSlider("Phase 1", 0, 1, 0.001);
+viewof p2 = initSlider("Phase 2", 0, 1, 0.001);
+viewof p3 = initSlider("Phase 3", 0, 1, 0.001);
+viewof p4 = initSlider("Phase 4", 0, 1, 0.001);
+```
+
+### Style
+```{ojs}
+viewof weight = initSlider("Line Weight", 0.5, 5, 0.1, 1.5);
+viewof glow = initSlider("Glow", 0, 50, 1, 8);
+```
+
+
+```{ojs}
+viewof saveButton = Inputs.button("Save PNG", {
+  value: null,
+  reduce: () => {
+    document.getElementById("harmonograph-canvas").toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "harmonograph.png";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+});
+```
