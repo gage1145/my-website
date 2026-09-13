@@ -47,7 +47,7 @@ format:
       light: sandstone
       dark: 
         - cyborg
-        - dark-theme.scss
+        - static/css/dark-theme.scss
     css: static/css/main.css
 
 # execute:
