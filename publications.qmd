@@ -7,7 +7,7 @@ format_year <- function(year, df) {
   cat("## ", year, "\n\n")
   df %>% 
     filter(Year == year) %>% 
-    pull(string) %>% 
+    pull(string) %>%
     cat(sep = "\n")
 }
 
@@ -17,9 +17,9 @@ df <- fromJSON("static/json/publications.json") %>%
     Authors, "\n\n",
     "::: { .callout-tip title='Abstract' collapse=true }\n\n", 
     Abstract, "\n\n:::\n\n",
-    recycle0 = ""
+    recycle0 = FALSE
   )) %>%
   arrange(desc(Year), Title)
 
-map(unique(df$Year), format_year, df = df)
+walk(unique(df$Year), format_year, df = df)
 ```
