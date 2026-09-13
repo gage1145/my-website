@@ -1,3 +1,7 @@
+---
+title: Projects
+---
+
 ## [RT-QuIC Kinetic Modeling](https://modeling.gagerowden.com)
 A kinetic modeling tool for RT-QuIC data developed in R. Frames RT-QuIC data around classical enzyme kinetics.
 

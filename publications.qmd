@@ -1,3 +1,7 @@
+---
+title: Publications
+---
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(jsonlite)
 library(dplyr)

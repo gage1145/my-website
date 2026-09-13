@@ -1,17 +1,18 @@
 ---
+pagetitle: Resume
 format:
-  html: default
+  html: 
+    toc: true
   pdf:
     documentclass: article
     geometry: margin=1in
     colorlinks: true
     pdf-engine: xelatex
-    mainfont: Calibri
     include-in-header:
       text: |
         \usepackage{multicol}
-
-toc: false
+        \renewcommand{\familydefault}{\sfdefault}
+    toc: false
 ---
 
 # Gage Rowden, M.S.
