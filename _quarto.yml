@@ -8,6 +8,7 @@ project:
   #   - static/music/
 
 toc: true
+sidebar: true
 toc-depth: 2
 
 website:
@@ -17,17 +18,12 @@ website:
     logo: static/images/favicon.ico
     background: primary
     search: true
-    left:
-      - href: index.qmd
-        text: Home
+    left: 
       - href: resume.qmd
-        text: Resume
       - href: useful_links.qmd
-        text: Useful Links
       - href: projects.qmd
-        text: Projects
       - href: publications.qmd
-        text: Publications
+      - href: utilities.qmd
     tools:
       - icon: github
         href: https://github.com/gage1145
