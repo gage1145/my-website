@@ -1,3 +1,207 @@
 ---
 title: ASCII Image Converter
+format: 
+  dashboard:
+    orientation: rows
 ---
+
+## {.sidebar}
+
+```{ojs}
+viewof img = Inputs.file({
+  label: "Upload an image file.",
+  accept: [".jpg", ".jpeg", ".png"],
+  required: true
+})
+```
+
+```{ojs}
+viewof width = Inputs.range([40, 200], {
+  label: "Width",
+  value: 200,
+  step: 1
+})
+```
+
+```{ojs}
+viewof contrast = Inputs.range([0, 200], {
+  label: "Contrast",
+  value: 100,
+  step: 1
+})
+```
+
+```{ojs}
+viewof depth = Inputs.range([1, 7], {
+  label: "Depth",
+  value: 4,
+  step: 1
+})
+```
+
+```{ojs}
+viewof fontScalar = Inputs.range([0, 1], {
+  label: "Font Size",
+  value: 1,
+  step: 0.01
+})
+```
+
+```{ojs}
+viewof edgeBehavior = Inputs.radio(
+  new Map([["None", "none"], ["Detect", "detect"], ["Enhance", "enhance"]]),
+  { label: "Edge Behavior", value: "none" }
+)
+```
+
+```{ojs}
+viewof copyButton = Inputs.button(
+  "Copy", {value: null, reduce: () => navigator.clipboard.writeText(asciiResult)}
+)
+```
+
+
+```{ojs}
+//| include: FALSE
+//
+// Port of static/python/image_to_ascii.py (Pillow) to plain browser JS.
+//
+
+// Character ramps ordered from least to most "ink", one per depth level.
+ASCII_SETS = ([
+  " @",
+  " [@",
+  " /[p@",
+  " ^/F[]p$@",
+  " -^</vFI[Y]PpX$M@",
+  " `-:^;<c/svJF{I1[eYj]qPdpAX8$gM%@",
+  " `.-':_^=;><!c*/zsTv)J(Fi{fI31t[ne5Yxja]wqkP9d4pOAKXm8D$Bg0MQ%&@"
+])
+
+// PIL ImageFilter.FIND_EDGES / EDGE_ENHANCE 3x3 kernels: (kernel, scale, offset).
+// Kept as a Map (not an object literal) because Quarto's dashboard auto-sizing
+// pass regenerates OJS source from its AST and drops the parens that would
+// otherwise disambiguate a `name = ({...})` object cell from a block cell,
+// which corrupts the whole surrounding code chunk on reparse.
+EDGE_KERNELS = new Map([
+  ["detect",  { k: [-1, -1, -1, -1, 8, -1, -1, -1, -1], scale: 1, offset: 0 }],
+  ["enhance", { k: [-1, -1, -1, -1, 10, -1, -1, -1, -1], scale: 2, offset: 0 }]
+])
+
+function contrastFactor(level) {
+  return (259 * (level + 255)) / (255 * (259 - level));
+}
+
+// Equivalent of change_contrast(): applied to the RGB channels before graying.
+function applyContrast(data, level) {
+  const factor = contrastFactor(level);
+  const out = new Uint8ClampedArray(data.length);
+  for (let i = 0; i < data.length; i += 4) {
+    out[i]     = factor * (data[i]     - 128) + 128;
+    out[i + 1] = factor * (data[i + 1] - 128) + 128;
+    out[i + 2] = factor * (data[i + 2] - 128) + 128;
+    out[i + 3] = data[i + 3];
+  }
+  return out;
+}
+
+// Equivalent of grayify(): ITU-R 601-2 luma transform used by PIL's convert("L").
+function toGrayscale(data) {
+  const n = data.length / 4;
+  const gray = new Float64Array(n);
+  for (let i = 0; i < n; i++) {
+    const r = data[i * 4], g = data[i * 4 + 1], b = data[i * 4 + 2];
+    gray[i] = r * 0.299 + g * 0.587 + b * 0.114;
+  }
+  return gray;
+}
+
+// Equivalent of detect_edges(): 3x3 convolution, edges clamped to the border pixel.
+function detectEdges(gray, w, h, behavior) {
+  const kernel = EDGE_KERNELS.get(behavior);
+  if (!kernel) return gray;
+
+  const { k, scale, offset } = kernel;
+  const clamp = (v, max) => Math.min(Math.max(v, 0), max - 1);
+  const out = new Float64Array(gray.length);
+
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      let sum = 0, i = 0;
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          const xx = clamp(x + dx, w);
+          const yy = clamp(y + dy, h);
+          sum += gray[yy * w + xx] * k[i++];
+        }
+      }
+      out[y * w + x] = Math.min(255, Math.max(0, sum / scale + offset));
+    }
+  }
+  return out;
+}
+
+// Equivalent of pixels_to_ascii(): map each brightness value to a ramp character.
+function pixelsToAscii(gray, depthLevel) {
+  const chars = ASCII_SETS[depthLevel - 1];
+  const n = chars.length;
+  let out = "";
+  for (let i = 0; i < gray.length; i++) {
+    const idx = Math.min(n - 1, Math.floor(gray[i] / (256 / n)));
+    out += chars[idx];
+  }
+  return out;
+}
+
+// Equivalent of convert_image_from_bytes(): resize, contrast, gray, edges, ascii-ify.
+asciiResult = {
+  if (!img) return "No image to show.";
+
+  const buffer = await img.arrayBuffer();
+  const blob = new Blob([buffer], { type: img.type });
+  const image = await createImageBitmap(blob, { imageOrientation: "from-image" });
+  const ratio = image.height / (2.2 * image.width);
+  const newWidth = width;
+  const newHeight = Math.max(1, Math.trunc(newWidth * ratio));
+
+  const canvas = document.createElement("canvas");
+  canvas.width = newWidth;
+  canvas.height = newHeight;
+  const ctx = canvas.getContext("2d");
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(image, 0, 0, newWidth, newHeight);
+
+  const { data } = ctx.getImageData(0, 0, newWidth, newHeight);
+  const contrasted = applyContrast(data, contrast);
+  const gray = toGrayscale(contrasted);
+  const edged = detectEdges(gray, newWidth, newHeight, edgeBehavior);
+  const ascii = pixelsToAscii(edged, depth);
+
+  const rows = [];
+  for (let i = 0; i < ascii.length; i += newWidth) {
+    rows.push(ascii.slice(i, i + newWidth));
+  }
+  return rows.join("\n");
+}
+```
+
+```{ojs}
+//| include: FALSE
+//| 
+// Equivalent of run()'s DOM update + auto font-sizing at the end of the script.
+{
+  const container = document.getElementById("ascii-container");
+  const pre = document.getElementById("ascii-output");
+  pre.textContent = asciiResult;
+  const fontSize = container.clientWidth / (0.62 * width) * fontScalar;
+  pre.style.fontSize = `${fontSize}px`;
+  return container;
+}
+```
+
+## Plot
+
+<div id="ascii-container" style="background-color: black; overflow:scroll;">
+<pre id="ascii-output" style="background-color: black; color: white; margin: 0; text-align: center">No image to show.</pre>
+</div>
