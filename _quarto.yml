@@ -1,3 +1,4 @@
+# author: Gage Rowden
 project:
   type: website
   # pre-render: static/python/generate_music_list.py
@@ -23,7 +24,13 @@ website:
       - href: useful_links.qmd
       - href: projects.qmd
       - href: publications.qmd
-      - href: utilities.qmd
+      - text: Utilities
+        menu:
+          - utilities/ascii_art.qmd
+          - utilities/l5r.qmd
+          - utilities/mandelbrot.qmd
+          - utilities/harmonograph.qmd
+          - utilities/bmg_format.qmd
     tools:
       - icon: github
         href: https://github.com/gage1145
@@ -45,6 +52,15 @@ format:
         - cyborg
         - static/css/dark-theme.scss
     css: static/css/main.css
+  dashboard:
+    respect-user-color-scheme: true
+    theme: 
+      light: sandstone
+      dark: 
+        - cyborg
+        - static/css/dark-theme.scss
+    css: static/css/main.css
+
 
 # execute:
 #   cache: true
