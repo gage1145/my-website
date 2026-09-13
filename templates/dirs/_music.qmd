@@ -1,3 +1,0 @@
-<template id="tpl-music">
-<ul class="tree-view" id="music"></ul>
-</template>

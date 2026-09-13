@@ -1,3 +1,0 @@
-<template id="tpl-projects">
-<ul class="tree-view" id="projects"></ul>
-</template>
