@@ -18,92 +18,7 @@ function initSlider(label, min, max, step, value) {
 }
 ```
 
-## Plot { width=70% }
-
-<div id="harmonograph-container" style="width: 100%; height: 100%; background-color: black;">
-<canvas id="harmonograph-canvas" style="display: block; width: 100%; height: 100%;"></canvas>
-</div>
-
-```{ojs}
-//| include: FALSE
-//
-// Port of static/javascript/harmonograph.js (p5.js) to plain canvas + OJS.
-//
-
-DT = 0.001
-ITERATIONS = 10000
-TWO_PI = 2 * Math.PI
-
-// Equivalent of setup()/the slider "input" listener/renderHarmonograph().
-function drawHarmonograph() {
-  const container = document.getElementById("harmonograph-container");
-  const canvas = document.getElementById("harmonograph-canvas");
-  const width = container.clientWidth;
-  const height = container.clientHeight;
-  canvas.width = width;
-  canvas.height = height;
-
-  const ctx = canvas.getContext("2d");
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.fillStyle = "black";
-  ctx.fillRect(0, 0, width, height);
-  ctx.translate(width / 2, height / 2);
-
-  const freq1 = Math.pow(10, f1);
-  const freq2 = Math.pow(10, f2);
-  const freq3 = Math.pow(10, f3);
-  const freq4 = Math.pow(10, f4);
-  const phase1 = p1 * TWO_PI;
-  const phase2 = p2 * TWO_PI;
-  const phase3 = p3 * TWO_PI;
-  const phase4 = p4 * TWO_PI;
-
-  ctx.strokeStyle = "rgb(149, 255, 175)";
-  ctx.lineWidth = weight;
-  ctx.shadowBlur = glow;
-  ctx.shadowColor = "rgb(149, 255, 175)";
-  ctx.lineJoin = "round";
-
-  ctx.beginPath();
-  let t = 0;
-  for (let i = 0; i < ITERATIONS; i++) {
-    const x = a1 * Math.sin(t * freq1 + phase1) * Math.exp(-d1 * t)
-            + a2 * Math.sin(t * freq2 + phase2) * Math.exp(-d2 * t);
-    const y = a3 * Math.sin(t * freq3 + phase3) * Math.exp(-d3 * t)
-            + a4 * Math.sin(t * freq4 + phase4) * Math.exp(-d4 * t);
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-    t += DT;
-  }
-  ctx.stroke();
-}
-```
-
-```{ojs}
-//| include: FALSE
-// Equivalent of p.windowResized(): redraw whenever the card is resized.
-{
-  const container = document.getElementById("harmonograph-container");
-  const ro = new ResizeObserver(() => drawHarmonograph());
-  ro.observe(container);
-}
-```
-
-```{ojs}
-//| include: FALSE
-// Equivalent of the slider "input" listener: redraw whenever a control changes.
-{
-  f1; f2; f3; f4;
-  a1; a2; a3; a4;
-  d1; d2; d3; d4;
-  p1; p2; p3; p4;
-  weight; glow;
-  drawHarmonograph();
-}
-```
-
-
-## Params {width=30% }
+## Params {.sidebar}
 
 ### Frequency
 
@@ -116,10 +31,10 @@ viewof f4 = initSlider("Frequency 4", 0, 3, 0.001);
 
 ### Amplitude
 ```{ojs}
-viewof a1 = initSlider("Amplitude 1", 0, 500, 0.1);
-viewof a2 = initSlider("Amplitude 2", 0, 500, 0.1);
-viewof a3 = initSlider("Amplitude 3", 0, 500, 0.1);
-viewof a4 = initSlider("Amplitude 4", 0, 500, 0.1);
+viewof a1 = initSlider("Amplitude 1", 0, 100, 0.1);
+viewof a2 = initSlider("Amplitude 2", 0, 100, 0.1);
+viewof a3 = initSlider("Amplitude 3", 0, 100, 0.1);
+viewof a4 = initSlider("Amplitude 4", 0, 100, 0.1);
 ```
 
 ### Damping
@@ -160,3 +75,161 @@ viewof saveButton = Inputs.button("Save PNG", {
   }
 });
 ```
+
+## Column {width=80%}
+
+### Harm {height=80%}
+<div id="harmonograph-container" style="background-color: black;">
+<canvas id="harmonograph-canvas"></canvas>
+</div>
+
+### x {height=20%}
+#### x1 {width=50%}
+<div id="x1-container" style="background-color: black;">
+<canvas id="x1-canvas"></canvas>
+</div>
+
+#### x2 {width=50%}
+<div id="x2-container" style="background-color: black;">
+<canvas id="x2-canvas"></canvas>
+</div>
+
+## Column {width=20%}
+
+### y {height=100%}
+#### y1 {height=50%}
+<div id="y1-container" style="background-color: black;">
+<canvas id="y1-canvas"></canvas>
+</div>
+
+#### y2 {height=50%}
+<div id="y2-container" style="background-color: black;">
+<canvas id="y2-canvas"></canvas>
+</div>
+
+
+
+```{ojs}
+//| include: FALSE
+//
+// Port of static/javascript/harmonograph.js (p5.js) to plain canvas + OJS.
+//
+
+DT = 0.001
+ITERATIONS = 10000
+TWO_PI = 2 * Math.PI
+
+// Equivalent of setup()/the slider "input" listener/renderHarmonograph().
+function drawHarmonograph() {
+
+  function initContext(cntnr, cnvs, ctxt, ytrans, xtrans) {
+    const width = cntnr.clientWidth;
+    const height = cntnr.clientHeight;
+    cnvs.width = width;
+    cnvs.height = height;
+    ctxt.setTransform(1, 0, 0, 1, 0, 0);
+    ctxt.fillStyle = "black";
+    ctxt.fillRect(0, 0, width, height);
+    ctxt.translate(width / xtrans, height / ytrans);
+    ctxt.strokeStyle = "rgb(149, 255, 175)";
+    ctxt.lineWidth = weight;
+    ctxt.shadowBlur = glow;
+    ctxt.shadowColor = "rgb(149, 255, 175)";
+    ctxt.lineJoin = "round";
+  }
+
+  const container = document.getElementById("harmonograph-container");
+  const canvas = document.getElementById("harmonograph-canvas");
+  const ctx = canvas.getContext("2d");
+  initContext(container, canvas, ctx, 2, 2);
+
+  const x1Container = document.getElementById("x1-container");
+  const x1Canvas = document.getElementById("x1-canvas");
+  const x1ctx = x1Canvas.getContext("2d");
+  initContext(x1Container, x1Canvas, x1ctx, 2, -1);
+
+  const x2Container = document.getElementById("x2-container");
+  const x2Canvas = document.getElementById("x2-canvas");
+  const x2ctx = x2Canvas.getContext("2d");
+  initContext(x2Container, x2Canvas, x2ctx, 2, -1);
+
+  const y1Container = document.getElementById("y1-container");
+  const y1Canvas = document.getElementById("y1-canvas");
+  const y1ctx = y1Canvas.getContext("2d");
+  initContext(y1Container, y1Canvas, y1ctx, -1, 2);
+
+  const y2Container = document.getElementById("y2-container");
+  const y2Canvas = document.getElementById("y2-canvas");
+  const y2ctx = y2Canvas.getContext("2d");
+  initContext(y2Container, y2Canvas, y2ctx, -1, 2);
+  
+  const freq1 = Math.pow(10, f1);
+  const freq2 = Math.pow(10, f2);
+  const freq3 = Math.pow(10, f3);
+  const freq4 = Math.pow(10, f4);
+  const phase1 = p1 * TWO_PI;
+  const phase2 = p2 * TWO_PI;
+  const phase3 = p3 * TWO_PI;
+  const phase4 = p4 * TWO_PI;
+
+
+  ctx.beginPath();
+  x1ctx.beginPath();
+  x2ctx.beginPath();
+  y1ctx.beginPath();
+  y2ctx.beginPath();
+  let t = 0;
+  for (let i = 0; i < ITERATIONS; i++) {
+    const x1 = a1 * Math.sin(t * freq1 + phase1) * Math.exp(-d1 * t);
+    const x2 = a2 * Math.sin(t * freq2 + phase2) * Math.exp(-d2 * t);
+    const y1 = a3 * Math.sin(t * freq3 + phase3) * Math.exp(-d3 * t);
+    const y2 = a4 * Math.sin(t * freq4 + phase4) * Math.exp(-d4 * t);
+    const x = x1 + x2;
+    const y = y1 + y2;
+    if (i === 0) {
+      ctx.moveTo(x, y);
+      x1ctx.moveTo(Math.exp(t), x1);
+      x2ctx.moveTo(Math.exp(t), x2);
+      y1ctx.moveTo(y1, Math.exp(t));
+      y2ctx.moveTo(y2, Math.exp(t));
+    } else {
+      ctx.lineTo(x, y);
+      x1ctx.lineTo(Math.exp(t), x1);
+      x2ctx.lineTo(Math.exp(t), x2);
+      y1ctx.lineTo(y1, Math.exp(t));
+      y2ctx.lineTo(y2, Math.exp(t));
+    }
+    t += DT;
+  }
+  ctx.stroke();
+  x1ctx.stroke();
+  x2ctx.stroke();
+  y1ctx.stroke();
+  y2ctx.stroke();
+
+}
+```
+
+```{ojs}
+//| include: FALSE
+// Equivalent of p.windowResized(): redraw whenever the card is resized.
+{
+  const container = document.getElementById("harmonograph-container");
+  const ro = new ResizeObserver(() => drawHarmonograph());
+  ro.observe(container);
+}
+```
+
+```{ojs}
+//| include: FALSE
+// Equivalent of the slider "input" listener: redraw whenever a control changes.
+{
+  f1; f2; f3; f4;
+  a1; a2; a3; a4;
+  d1; d2; d3; d4;
+  p1; p2; p3; p4;
+  weight; glow;
+  drawHarmonograph();
+}
+```
+
