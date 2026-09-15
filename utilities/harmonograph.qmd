@@ -32,10 +32,10 @@ viewof f4 = initSlider("", 0, 3, 0.001);
 
 ### Amplitude
 ```{ojs}
-viewof a1 = initSlider("", 0, 100, 0.1);
-viewof a2 = initSlider("", 0, 100, 0.1);
-viewof a3 = initSlider("", 0, 100, 0.1);
-viewof a4 = initSlider("", 0, 100, 0.1);
+viewof a1 = initSlider("", 0, 200, 0.1);
+viewof a2 = initSlider("", 0, 200, 0.1);
+viewof a3 = initSlider("", 0, 200, 0.1);
+viewof a4 = initSlider("", 0, 200, 0.1);
 ```
 
 ### Damping
@@ -202,10 +202,10 @@ function drawHarmonograph() {
       y2ctx.moveTo(y2, timeY);
     } else {
       ctx.lineTo(x, y);
-      x1ctx.lineTo(timeX, x1);
-      x2ctx.lineTo(timeX, x2);
-      y1ctx.lineTo(y1, timeY);
-      y2ctx.lineTo(y2, timeY);
+      x1ctx.lineTo(timeX, x1 / 2);
+      x2ctx.lineTo(timeX, x2 / 2);
+      y1ctx.lineTo(y1 / 2, timeY);
+      y2ctx.lineTo(y2 / 2, timeY);
     }
     t += DT;
   }
