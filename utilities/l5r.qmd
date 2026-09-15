@@ -1,3 +1,102 @@
 ---
 title: L5R Dice Roller
 ---
+
+```{r}
+library(tidyverse)
+
+get_rolls <- function(roll) {
+  sample(1:10, roll, replace = TRUE)
+}
+
+get_keeps <- function(rolls, keep) {
+  sort(rolls, decreasing = TRUE)[1:keep]
+}
+
+get_bonuses <- function(keeps) {
+  n_keeps <- sum(keeps == 10)
+  bonuses <- c()
+  if (n_keeps == 0) return()
+  for (i in 1:n_keeps) {
+    bonuses <- c(bonuses, roll_dice(1, 1))
+  }
+  return(bonuses)
+}
+
+roll_dice <- function(roll, keep) {
+  rolls <- get_rolls(roll)
+  keeps <- get_keeps(rolls, keep)
+  bonuses <- get_bonuses(keeps)
+  return(c(keeps, bonuses))
+}
+
+simulate_rolls <- function(iterations) {
+  df <- tibble(.rows = iterations)
+  for (r in 1:10) {
+    for (k in 1:r) {
+      col_name <- paste0("r", r, "k", k)
+      print(sprintf("Simulating %s", col_name))
+      rolls <- map_int(1:iterations, ~ sum(roll_dice(r, k)))
+      df[col_name] <- rolls
+    }
+  }
+  df <- df %>%
+    pivot_longer(everything()) %>%
+    mutate(name = str_remove_all(name, "r")) %>%
+    separate(name, into = c("roll", "keep"), sep = "k") %>%
+    mutate(across(c(roll, keep), as.integer))
+}
+
+df_ <- simulate_rolls(10000) 
+df_sum <- df_ %>%
+  summarise(across(value, mean), .by = c(roll, keep))
+
+df_sum %>%
+  mutate(text_color = ifelse(value > 50, "black", "white")) %>%
+  ggplot(aes(x = roll, y = keep, fill = value)) +
+  geom_tile() +
+  geom_text(aes(label = signif(value, 3), color = text_color)) +
+  coord_equal() +
+  scale_x_continuous(breaks = 1:10) +
+  scale_y_continuous(breaks = 1:10) +
+  scale_fill_viridis_c(option = "F") +
+  scale_color_identity() +
+  labs(
+    x = "Roll",
+    y = "Keep",
+    fill = "Average Value",
+    title = "Average L5R Dice Rolls"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    plot.title = element_text(size = 16, hjust = 0.5),
+    legend.position = "none",
+    panel.grid.major = element_blank(),
+  )
+ggsave("l5r_averages.png", width = 8, height = 8)
+
+df_ %>%
+  pivot_longer(c(roll, keep), values_to = "axis") %>%
+  # summarise(across(value, mean), .by = c(axis, name)) %>%
+  arrange(axis) %>%
+  ggplot(aes(axis, value, color = name)) +
+  # geom_line() +
+  geom_smooth(se = T) +
+  geom_point(position = position_jitterdodge(dodge.width = 0.5, jitter.width = 0.1)) +
+  scale_x_continuous(breaks = 1:10) +
+  labs(
+    x = "Roll/Keep",
+    y = "Average Value",
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14),
+    plot.title = element_text(size = 16, hjust = 0.5),
+    legend.title = element_blank(),
+    panel.grid.minor.x = element_blank(),
+  )
+  ggsave("l5r_RvK.png", width = 12, height = 8)
+```
