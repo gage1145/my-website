@@ -12,56 +12,57 @@ format:
 ```{ojs}
 //| include: FALSE
 
-function initSlider(label, min, max, step) {
+function initSlider(label, min, max, step, value) {
   return Inputs.range([min, max], {
     label: label,
-    value: Math.random() * (max - min) + min,
+    value: value ?? Math.random() * (max - min) + min,
     step: step
   });
 }
 ```
 
-## Params {.sidebar}
-
+## {.sidebar}
 ### Frequency
-
 ```{ojs}
-viewof f1 = initSlider("Frequency 1", 0, 3, 0.001);
-viewof f2 = initSlider("Frequency 2", 0, 3, 0.001);
-viewof f3 = initSlider("Frequency 3", 0, 3, 0.001);
-viewof f4 = initSlider("Frequency 4", 0, 3, 0.001);
+viewof f1 = initSlider("", 0, 3, 0.001);
+viewof f2 = initSlider("", 0, 3, 0.001);
+viewof f3 = initSlider("", 0, 3, 0.001);
+viewof f4 = initSlider("", 0, 3, 0.001);
 ```
 
 ### Amplitude
 ```{ojs}
-viewof a1 = initSlider("Amplitude 1", 0, 100, 0.1);
-viewof a2 = initSlider("Amplitude 2", 0, 100, 0.1);
-viewof a3 = initSlider("Amplitude 3", 0, 100, 0.1);
-viewof a4 = initSlider("Amplitude 4", 0, 100, 0.1);
+viewof a1 = initSlider("", 0, 100, 0.1);
+viewof a2 = initSlider("", 0, 100, 0.1);
+viewof a3 = initSlider("", 0, 100, 0.1);
+viewof a4 = initSlider("", 0, 100, 0.1);
 ```
 
 ### Damping
 ```{ojs}
-viewof d1 = initSlider("Damping 1", 0, 1, 0.001);
-viewof d2 = initSlider("Damping 2", 0, 1, 0.001);
-viewof d3 = initSlider("Damping 3", 0, 1, 0.001);
-viewof d4 = initSlider("Damping 4", 0, 1, 0.001);
+viewof d1 = initSlider("", 0, 1, 0.001);
+viewof d2 = initSlider("", 0, 1, 0.001);
+viewof d3 = initSlider("", 0, 1, 0.001);
+viewof d4 = initSlider("", 0, 1, 0.001);
 ```
 
 ### Phase
 ```{ojs}
-viewof p1 = initSlider("Phase 1", 0, 1, 0.001);
-viewof p2 = initSlider("Phase 2", 0, 1, 0.001);
-viewof p3 = initSlider("Phase 3", 0, 1, 0.001);
-viewof p4 = initSlider("Phase 4", 0, 1, 0.001);
+viewof p1 = initSlider("", 0, 1, 0.001);
+viewof p2 = initSlider("", 0, 1, 0.001);
+viewof p3 = initSlider("", 0, 1, 0.001);
+viewof p4 = initSlider("", 0, 1, 0.001);
 ```
 
 ### Style
 ```{ojs}
 viewof weight = initSlider("Line Weight", 0.5, 5, 0.1, 1.5);
 viewof glow = initSlider("Glow", 0, 50, 1, 8);
-// viewof ITERATIONS = initSlider("Iterations", 100, 10_000, 10, 10_000);
-// viewof DT = initSlider("Δt", 0.001, 0.1, 0.001, 0.001);
+viewof hue = initSlider("Hue", 0, 255, 1, 135);
+viewof sat = initSlider("Saturation", 0, 100, 1, 100);
+viewof lit = initSlider("Lightness", 0, 100, 1, 79);
+viewof ITERATIONS = initSlider("Iterations", 100, 10_000, 10, 10_000);
+viewof DT = initSlider("Δt", 0.001, 0.1, 0.001, 0.001);
 ```
 
 
@@ -113,15 +114,11 @@ viewof saveButton = Inputs.button("Save PNG", {
 </div>
 
 
-
 ```{ojs}
 //| include: FALSE
 //
 // Port of static/javascript/harmonograph.js (p5.js) to plain canvas + OJS.
 //
-
-DT = 0.001
-ITERATIONS = 10000
 TWO_PI = 2 * Math.PI
 
 // Equivalent of setup()/the slider "input" listener/renderHarmonograph().
@@ -136,10 +133,10 @@ function drawHarmonograph() {
     ctxt.fillStyle = "black";
     ctxt.fillRect(0, 0, width, height);
     ctxt.translate(width * txFrac, height * tyFrac);
-    ctxt.strokeStyle = "hsl(135, 100%, 79%)";
+    ctxt.strokeStyle = `hsl(${hue}, ${sat}%, ${lit}%)`;
     ctxt.lineWidth = weight;
     ctxt.shadowBlur = glow;
-    ctxt.shadowColor = "hsl(135, 100%, 79%)";
+    ctxt.shadowColor = `hsl(${hue}, ${sat}%, ${lit}%)`;
     ctxt.lineJoin = "round";
   }
 
