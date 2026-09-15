@@ -1,5 +1,8 @@
 ---
 title: Harmonograph
+dashboard:
+  sidebar:
+    style: "docked"
 format:
   dashboard:
     orientation: columns
@@ -9,10 +12,10 @@ format:
 ```{ojs}
 //| include: FALSE
 
-function initSlider(label, min, max, step, value) {
+function initSlider(label, min, max, step) {
   return Inputs.range([min, max], {
     label: label,
-    value: value ?? Math.random() * (max - min) + min,
+    value: Math.random() * (max - min) + min,
     step: step
   });
 }
@@ -57,6 +60,8 @@ viewof p4 = initSlider("Phase 4", 0, 1, 0.001);
 ```{ojs}
 viewof weight = initSlider("Line Weight", 0.5, 5, 0.1, 1.5);
 viewof glow = initSlider("Glow", 0, 50, 1, 8);
+// viewof ITERATIONS = initSlider("Iterations", 100, 10_000, 10, 10_000);
+// viewof DT = initSlider("Δt", 0.001, 0.1, 0.001, 0.001);
 ```
 
 
@@ -122,7 +127,7 @@ TWO_PI = 2 * Math.PI
 // Equivalent of setup()/the slider "input" listener/renderHarmonograph().
 function drawHarmonograph() {
 
-  function initContext(cntnr, cnvs, ctxt, ytrans, xtrans) {
+  function initContext(cntnr, cnvs, ctxt, txFrac, tyFrac) {
     const width = cntnr.clientWidth;
     const height = cntnr.clientHeight;
     cnvs.width = width;
@@ -130,39 +135,42 @@ function drawHarmonograph() {
     ctxt.setTransform(1, 0, 0, 1, 0, 0);
     ctxt.fillStyle = "black";
     ctxt.fillRect(0, 0, width, height);
-    ctxt.translate(width / xtrans, height / ytrans);
-    ctxt.strokeStyle = "rgb(149, 255, 175)";
+    ctxt.translate(width * txFrac, height * tyFrac);
+    ctxt.strokeStyle = "hsl(135, 100%, 79%)";
     ctxt.lineWidth = weight;
     ctxt.shadowBlur = glow;
-    ctxt.shadowColor = "rgb(149, 255, 175)";
+    ctxt.shadowColor = "hsl(135, 100%, 79%)";
     ctxt.lineJoin = "round";
   }
 
   const container = document.getElementById("harmonograph-container");
   const canvas = document.getElementById("harmonograph-canvas");
   const ctx = canvas.getContext("2d");
-  initContext(container, canvas, ctx, 2, 2);
+  initContext(container, canvas, ctx, 0.5, 0.5);
 
+  // Component-wave canvases plot amplitude against time, so time is
+  // mapped linearly across the canvas rather than centered like the
+  // amplitude axis.
   const x1Container = document.getElementById("x1-container");
   const x1Canvas = document.getElementById("x1-canvas");
   const x1ctx = x1Canvas.getContext("2d");
-  initContext(x1Container, x1Canvas, x1ctx, 2, -1);
+  initContext(x1Container, x1Canvas, x1ctx, 0, 0.5);
 
   const x2Container = document.getElementById("x2-container");
   const x2Canvas = document.getElementById("x2-canvas");
   const x2ctx = x2Canvas.getContext("2d");
-  initContext(x2Container, x2Canvas, x2ctx, 2, -1);
+  initContext(x2Container, x2Canvas, x2ctx, 0, 0.5);
 
   const y1Container = document.getElementById("y1-container");
   const y1Canvas = document.getElementById("y1-canvas");
   const y1ctx = y1Canvas.getContext("2d");
-  initContext(y1Container, y1Canvas, y1ctx, -1, 2);
+  initContext(y1Container, y1Canvas, y1ctx, 0.5, 0);
 
   const y2Container = document.getElementById("y2-container");
   const y2Canvas = document.getElementById("y2-canvas");
   const y2ctx = y2Canvas.getContext("2d");
-  initContext(y2Container, y2Canvas, y2ctx, -1, 2);
-  
+  initContext(y2Container, y2Canvas, y2ctx, 0.5, 0);
+
   const freq1 = Math.pow(10, f1);
   const freq2 = Math.pow(10, f2);
   const freq3 = Math.pow(10, f3);
@@ -178,6 +186,7 @@ function drawHarmonograph() {
   x2ctx.beginPath();
   y1ctx.beginPath();
   y2ctx.beginPath();
+  const maxT = ITERATIONS * DT;
   let t = 0;
   for (let i = 0; i < ITERATIONS; i++) {
     const x1 = a1 * Math.sin(t * freq1 + phase1) * Math.exp(-d1 * t);
@@ -186,18 +195,20 @@ function drawHarmonograph() {
     const y2 = a4 * Math.sin(t * freq4 + phase4) * Math.exp(-d4 * t);
     const x = x1 + x2;
     const y = y1 + y2;
+    const timeX = (t / maxT) * x1Canvas.width;
+    const timeY = (t / maxT) * y1Canvas.height;
     if (i === 0) {
       ctx.moveTo(x, y);
-      x1ctx.moveTo(Math.exp(t), x1);
-      x2ctx.moveTo(Math.exp(t), x2);
-      y1ctx.moveTo(y1, Math.exp(t));
-      y2ctx.moveTo(y2, Math.exp(t));
+      x1ctx.moveTo(timeX, x1);
+      x2ctx.moveTo(timeX, x2);
+      y1ctx.moveTo(y1, timeY);
+      y2ctx.moveTo(y2, timeY);
     } else {
       ctx.lineTo(x, y);
-      x1ctx.lineTo(Math.exp(t), x1);
-      x2ctx.lineTo(Math.exp(t), x2);
-      y1ctx.lineTo(y1, Math.exp(t));
-      y2ctx.lineTo(y2, Math.exp(t));
+      x1ctx.lineTo(timeX, x1);
+      x2ctx.lineTo(timeX, x2);
+      y1ctx.lineTo(y1, timeY);
+      y2ctx.lineTo(y2, timeY);
     }
     t += DT;
   }
