@@ -3,9 +3,7 @@ title: L5R Dice Roller
 format: dashboard
 ---
 
-
-
-```{r Functions, include=FALSE}
+```{r Functions}
 library(tidyverse)
 N_ROLLS <- 10000
 
@@ -51,18 +49,17 @@ simulate_rolls <- function(iterations) {
 }
 ```
 
-```{r R Data, include=FALSE}
+```{r R Data}
 df_ <- simulate_rolls(N_ROLLS)
 df_sum <- df_ %>%
-  summarise(across(value, mean), .by = c(roll, keep))
-df_dice <- map_int(1:N_ROLLS, ~ sum(roll_dice(1, 1)))
-mean_dice <- mean(df_dice)
-sd_dice <- sd(df_dice)
-se_dice <- sd_dice / sqrt(N_ROLLS)
-var_dice <- sd_dice^2
+  summarise(
+    sd = sd(value),
+    value = mean(value),
+    .by = c(roll, keep)
+  )
 ```
 
-```{r, include=FALSE}
+```{r}
 # The histogram only needs how often each total came up, so hand OJS the tallies
 # instead of every simulated roll. This keeps the JSON embedded in the page small
 # no matter how high N_ROLLS goes.
@@ -70,9 +67,6 @@ df_counts <- df_ %>%
   count(roll, keep, value, name = "n")
 
 ojs_define(counts = df_counts)
-ojs_define(data_sum = df_sum)
-ojs_define(mean_dice = mean_dice)
-ojs_define(sd_dice = sd_dice)
 ```
 
 
@@ -109,25 +103,22 @@ viewof target = Inputs.number([0, 200], {
 ```{ojs}
 //| output: false
 heroValue = d3.format(".1%")(stats.p)
-heroLabel = `% of ${roll}k${keep} rolls reaching ${target}`
-mean = d3.format(".1f")(stats.mean)
+heroLabel = `${roll}k${keep} target: ${target}`
+mean = `${d3.format(".1f")(stats.mean)} ± ${d3.format(".1f")(stats.sd)}`
 median = stats.median
 min = stats.min
 max = stats.max
 n = d3.format(",")(stats.n)
-md = d3.format(".2f")(mean_dice)
-sd = d3.format(".2f")(sd_dice)
-expected = `${keep * md + (roll - keep) * md} ± ${sd}`
 ```
 
-::: {.valuebox}
+::: {.valuebox color="primary"}
 `{ojs} heroLabel`
 
 `{ojs} heroValue`
 :::
 
 ::: {.valuebox}
-Mean
+Mean ± SD
 
 `{ojs} mean`
 :::
@@ -170,7 +161,7 @@ Simulated rolls
 //| title: Distribution of totals
 Plot.plot({
   style: {
-    backgroundColor: "#5a5b5a",
+    backgroundColor: "transparent",
     color: "#fff",
     fontSize: "13px"
   },
@@ -196,12 +187,21 @@ Plot.plot({
       x: "value",
       y: (d) => d.n / stats.n,
       thresholds: bins.thresholds,
+      fill: "transparent",
+      color: "#888"
+    })),
+    Plot.areaY(subset, Plot.binX({y: "sum"}, {
+      x: "value",
+      y: (d) => d.n / stats.n,
+      thresholds: bins.thresholds,
       fill: (d) => d.value >= target ? "Meets target" : "Below target",
-      color: (d) => d.value >= target ? "Meets target" : "Below target"
-      // 2px of surface between neighbouring bins does the separating.
-      // insetLeft: 1,
-      // insetRight: 1,
-      // tip: true
+      fillOpacity: 0.75
+    })),
+    Plot.lineY(subset, Plot.binX({y: "sum"}, {
+      x: "value",
+      y: (d) => d.n / stats.n,
+      thresholds: bins.thresholds,
+      color: "#000"
     })),
     Plot.ruleX([target], {stroke: "currentColor", strokeOpacity: 0.55}),
     Plot.text([`Target ${target}`], {
@@ -242,11 +242,19 @@ stats = {
     }
   }
 
+  // Each row is a tally, so mean and SD must be weighted by n. d3.deviation
+  // would treat every distinct total as a single roll and overweight the tails.
+  const mean = n ? d3.sum(rows, (d) => d.value * d.n) / n : NaN;
+  const sd = n > 1
+    ? Math.sqrt(d3.sum(rows, (d) => d.n * (d.value - mean) ** 2) / (n - 1))
+    : NaN;
+
   return {
     n: n,
     hits: hits,
     p: n ? hits / n : 0,
-    mean: n ? d3.sum(rows, (d) => d.value * d.n) / n : NaN,
+    mean: mean,
+    sd: sd,
     median: median,
     min: rows.length ? rows[0].value : NaN,
     max: rows.length ? rows[rows.length - 1].value : NaN

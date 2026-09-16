@@ -1,12 +1,6 @@
 # author: Gage Rowden
 project:
   type: website
-  # pre-render: static/python/generate_music_list.py
-  # resources:
-  #   - static/javascript/
-  #   - static/json/
-  #   - static/python/
-  #   - static/music/
 
 toc: true
 sidebar: true
@@ -53,12 +47,10 @@ format:
         - static/css/dark-theme.scss
     css: static/css/main.css
   dashboard:
-    respect-user-color-scheme: true
+    respect-user-color-scheme: false
     theme: 
-      light: sandstone
-      dark: 
-        - cyborg
-        - static/css/dark-theme.scss
+      - cyborg
+      - static/css/dark-theme.scss
     css: static/css/main.css
 
 
