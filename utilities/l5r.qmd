@@ -72,7 +72,7 @@ df_counts <- df_ %>%
 ojs_define(counts = df_counts)
 ojs_define(data_sum = df_sum)
 ojs_define(mean_dice = mean_dice)
-ojs_define(se_dice = se_dice)
+ojs_define(sd_dice = sd_dice)
 ```
 
 
@@ -116,7 +116,8 @@ min = stats.min
 max = stats.max
 n = d3.format(",")(stats.n)
 md = d3.format(".2f")(mean_dice)
-sed = d3.format(".2f")(se_dice)
+sd = d3.format(".2f")(sd_dice)
+expected = `${keep * md + (roll - keep) * md} ± ${sd}`
 ```
 
 ::: {.valuebox}
@@ -131,11 +132,11 @@ Mean
 `{ojs} mean`
 :::
 
-::: {.valuebox}
+<!-- ::: {.valuebox}
 Expected
 
-`{ojs} (keep * md) + ((roll - keep) * md)` ± `{ojs} sed`
-:::
+`{ojs} expected`
+::: -->
 
 ::: {.valuebox}
 Median
