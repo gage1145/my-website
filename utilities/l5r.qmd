@@ -1,9 +1,13 @@
 ---
 title: L5R Dice Roller
+format: dashboard
 ---
 
-```{r}
+
+
+```{r Functions, include=FALSE}
 library(tidyverse)
+N_ROLLS <- 10000
 
 get_rolls <- function(roll) {
   sample(1:10, roll, replace = TRUE)
@@ -35,7 +39,6 @@ simulate_rolls <- function(iterations) {
   for (r in 1:10) {
     for (k in 1:r) {
       col_name <- paste0("r", r, "k", k)
-      print(sprintf("Simulating %s", col_name))
       rolls <- map_int(1:iterations, ~ sum(roll_dice(r, k)))
       df[col_name] <- rolls
     }
@@ -46,57 +49,300 @@ simulate_rolls <- function(iterations) {
     separate(name, into = c("roll", "keep"), sep = "k") %>%
     mutate(across(c(roll, keep), as.integer))
 }
+```
 
-df_ <- simulate_rolls(10000) 
+```{r R Data, include=FALSE}
+df_ <- simulate_rolls(N_ROLLS)
 df_sum <- df_ %>%
   summarise(across(value, mean), .by = c(roll, keep))
+df_dice <- map_int(1:N_ROLLS, ~ sum(roll_dice(1, 1)))
+mean_dice <- mean(df_dice)
+sd_dice <- sd(df_dice)
+se_dice <- sd_dice / sqrt(N_ROLLS)
+var_dice <- sd_dice^2
+```
 
+```{r, include=FALSE}
+# The histogram only needs how often each total came up, so hand OJS the tallies
+# instead of every simulated roll. This keeps the JSON embedded in the page small
+# no matter how high N_ROLLS goes.
+df_counts <- df_ %>%
+  count(roll, keep, value, name = "n")
+
+ojs_define(counts = df_counts)
+ojs_define(data_sum = df_sum)
+ojs_define(mean_dice = mean_dice)
+ojs_define(se_dice = se_dice)
+```
+
+
+## {.sidebar}
+
+```{ojs}
+viewof roll = Inputs.select(d3.range(1, 11), {
+  label: "Roll",
+  value: 7
+})
+```
+
+```{ojs}
+// Keep can never exceed roll, so the options follow the roll selection.
+viewof keep = Inputs.select(d3.range(1, roll + 1), {
+  label: "Keep",
+  value: Math.min(7, roll)
+})
+```
+
+```{ojs}
+// The range has to be positional - Inputs.number ignores min/max passed as options.
+viewof target = Inputs.number([0, 200], {
+  label: "Target",
+  value: 40,
+  step: 1
+})
+```
+
+## Column
+
+### Row
+
+```{ojs}
+//| output: false
+heroValue = d3.format(".1%")(stats.p)
+heroLabel = `% of ${roll}k${keep} rolls reaching ${target}`
+mean = d3.format(".1f")(stats.mean)
+median = stats.median
+min = stats.min
+max = stats.max
+n = d3.format(",")(stats.n)
+md = d3.format(".2f")(mean_dice)
+sed = d3.format(".2f")(se_dice)
+```
+
+::: {.valuebox}
+`{ojs} heroLabel`
+
+`{ojs} heroValue`
+:::
+
+::: {.valuebox}
+Mean
+
+`{ojs} mean`
+:::
+
+::: {.valuebox}
+Expected
+
+`{ojs} (keep * md) + ((roll - keep) * md)` ± `{ojs} sed`
+:::
+
+::: {.valuebox}
+Median
+
+`{ojs} median`
+:::
+
+::: {.valuebox}
+Minimum
+
+`{ojs} min`
+:::
+
+::: {.valuebox}
+Maximum
+
+`{ojs} max`
+:::
+
+::: {.valuebox}
+Simulated rolls
+
+`{ojs} n`
+:::
+
+### Row
+
+#### Column {width=60%}
+
+```{ojs}
+//| title: Distribution of totals
+Plot.plot({
+  style: {
+    backgroundColor: "#5a5b5a",
+    color: "#fff",
+    fontSize: "13px"
+  },
+  x: {
+    label: "Total rolled",
+    labelAnchor: "center",
+    tickFormat: "d",
+    domain: [0, 150]
+  },
+  y: {
+    label: "Share of rolls",
+    tickFormat: ".0%",
+    grid: true,
+    ticks: 5
+  },
+  color: {
+    domain: ["Below target", "Meets target"],
+    range: ["#898781", "#3987e5"],
+    legend: true
+  },
+  marks: [
+    Plot.rectY(subset, Plot.binX({y: "sum"}, {
+      x: "value",
+      y: (d) => d.n / stats.n,
+      thresholds: bins.thresholds,
+      fill: (d) => d.value >= target ? "Meets target" : "Below target",
+      color: (d) => d.value >= target ? "Meets target" : "Below target"
+      // 2px of surface between neighbouring bins does the separating.
+      // insetLeft: 1,
+      // insetRight: 1,
+      // tip: true
+    })),
+    Plot.ruleX([target], {stroke: "currentColor", strokeOpacity: 0.55}),
+    Plot.text([`Target ${target}`], {
+      x: target,
+      frameAnchor: "top",
+      textAnchor: "start",
+      dx: 5,
+      dy: 4,
+      fill: "currentColor",
+      fillOpacity: 0.72
+    }),
+    Plot.ruleY([0], {stroke: "currentColor", strokeOpacity: 0.3})
+  ]
+})
+```
+
+```{ojs}
+//| output: false
+// Only the selected roll/keep pair is plotted.
+subset = transpose(counts).filter((d) => +d.roll === roll && +d.keep === keep)
+```
+
+```{ojs}
+//| output: false
+stats = {
+  const rows = subset.slice().sort((a, b) => a.value - b.value);
+  const n = d3.sum(rows, (d) => d.n);
+  const hits = d3.sum(rows.filter((d) => d.value >= target), (d) => d.n);
+
+  // Weighted median: walk the tallies until half the rolls are behind us.
+  let seen = 0;
+  let median = NaN;
+  for (const row of rows) {
+    seen += row.n;
+    if (seen >= n / 2) {
+      median = row.value;
+      break;
+    }
+  }
+
+  return {
+    n: n,
+    hits: hits,
+    p: n ? hits / n : 0,
+    mean: n ? d3.sum(rows, (d) => d.value * d.n) / n : NaN,
+    median: median,
+    min: rows.length ? rows[0].value : NaN,
+    max: rows.length ? rows[rows.length - 1].value : NaN
+  };
+}
+```
+
+```{ojs}
+//| output: false
+// Bin edges are anchored on the target so no bar straddles it: every bar is
+// wholly below the target or wholly at/above it, which is what the fill colour
+// claims.
+bins = {
+  const width = Math.max(1, Math.ceil((stats.max - stats.min + 1) / 36));
+  const start = target - Math.ceil((target - stats.min) / width) * width;
+  return {
+    width: width,
+    thresholds: d3.range(start, stats.max + width + 1, width)
+  };
+}
+```
+
+```{ojs}
+//| output: false
+// Follows Quarto's light/dark toggle so the hover tip matches the card.
+darkMode = Generators.observe((notify) => {
+  const read = () => notify(document.body.classList.contains("quarto-dark"));
+  const observer = new MutationObserver(read);
+  read();
+  observer.observe(document.body, {attributes: true, attributeFilter: ["class"]});
+  return () => observer.disconnect();
+})
+```
+
+#### Column {width=40%}
+```{r}
+#| title: Average Dice Rolls
+#| dev: "png"
+#| dev.args: !expr list(bg = "transparent")
+#| message: false
 df_sum %>%
   mutate(text_color = ifelse(value > 50, "black", "white")) %>%
   ggplot(aes(x = roll, y = keep, fill = value)) +
   geom_tile() +
   geom_text(aes(label = signif(value, 3), color = text_color)) +
-  coord_equal() +
-  scale_x_continuous(breaks = 1:10) +
-  scale_y_continuous(breaks = 1:10) +
+  scale_x_continuous(breaks = 1:10, expand = c(0, 0)) +
+  scale_y_continuous(breaks = 1:10, expand = c(0, 0), position = "right") +
+  # coord_equal() +
   scale_fill_viridis_c(option = "F") +
   scale_color_identity() +
   labs(
     x = "Roll",
     y = "Keep",
-    fill = "Average Value",
-    title = "Average L5R Dice Rolls"
+    fill = "Average Value"
   ) +
   theme_minimal() +
   theme(
-    axis.text = element_text(size = 12),
+    text = element_text(color = "white"),
+    axis.text = element_text(size = 12, color = "white"),
     axis.title = element_text(size = 14),
-    plot.title = element_text(size = 16, hjust = 0.5),
     legend.position = "none",
     panel.grid.major = element_blank(),
+    panel.background = element_blank(),
+    plot.background = element_blank()
   )
-ggsave("l5r_averages.png", width = 8, height = 8)
+```
 
-df_ %>%
+```{r}
+#| title: Improving Rolls vs. Keeps
+#| dev: "png"
+#| dev.args: !expr list(bg = "transparent")
+#| message: false
+df_sum %>%
   pivot_longer(c(roll, keep), values_to = "axis") %>%
-  # summarise(across(value, mean), .by = c(axis, name)) %>%
   arrange(axis) %>%
-  ggplot(aes(axis, value, color = name)) +
-  # geom_line() +
-  geom_smooth(se = T) +
+  ggplot(aes(axis, value, color = name, fill=name)) +
+  geom_smooth(se = F) +
   geom_point(position = position_jitterdodge(dodge.width = 0.5, jitter.width = 0.1)) +
   scale_x_continuous(breaks = 1:10) +
   labs(
-    x = "Roll/Keep",
+    x = "Value",
     y = "Average Value",
   ) +
   theme_minimal() +
   theme(
-    axis.text = element_text(size = 12),
+    text = element_text(color = "white"),
+    axis.text = element_text(size = 12, color="white"),
     axis.title = element_text(size = 14),
     plot.title = element_text(size = 16, hjust = 0.5),
     legend.title = element_blank(),
+    legend.position = "inside",
+    legend.position.inside = c(0.1, 0.9),
+    legend.text = element_text(size = 12, color = "black"),
+    legend.key.size = unit(0.5, "cm"),
+    legend.background = element_rect(fill = "white", color = "transparent"),
     panel.grid.minor.x = element_blank(),
+    panel.background = element_blank(),
+    plot.background = element_blank()
   )
-  ggsave("l5r_RvK.png", width = 12, height = 8)
 ```
