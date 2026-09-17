@@ -1,6 +1,7 @@
 ---
 title: Useful Links
 callout-icon: false
+format: html
 ---
 
 # Useful Links

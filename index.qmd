@@ -1,3 +1,7 @@
+---
+format: html
+---
+
 ## Gage Rowden, M.S.
 ### Welcome to my personal website!
 

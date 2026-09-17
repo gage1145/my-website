@@ -1,5 +1,6 @@
 ---
 title: Projects
+format: html
 ---
 
 ## [RT-QuIC Kinetic Modeling](https://modeling.gagerowden.com)

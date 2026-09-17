@@ -1,3 +1,4 @@
 ---
 title: BMG Formatter
+format: html
 ---
