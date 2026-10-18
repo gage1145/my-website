@@ -1,0 +1,206 @@
+---
+Title: Voting
+format: html
+---
+
+```{r Pull data from voteview.com, echo=FALSE}
+library(tidyverse)
+library(ggrepel)
+library(scales)
+library(magrittr)
+library(httr2)
+library(quarto)
+library(arrow)
+library(zoo)
+
+root <- find_project_root()
+temp_path <- paste(root, "tempfiles/", sep = "/")
+root_url <- "https://voteview.com/static/data/out/"
+min_congress <- 96
+
+df_path <- tibble(
+  local_names <- c("votes", "members", "rollcalls", "parties"),
+  remote_names <- paste("HSall", local_names, sep="_"),
+  url = paste0(root_url, paste0(local_names, "/", remote_names, ".csv")),
+  path = paste0(temp_path, paste0(local_names, ".parquet"))
+)
+
+write_file <- function(url, path, overwrite = FALSE, ...) {
+  if (file.exists(path) & !overwrite) return(print(paste(path, "already exists, and overwrite set to FALSE. ")))
+  request(url) |> 
+    req_perform() |> 
+    resp_body_string() |>
+    I() |>
+    read_csv() |>
+    write_parquet(path)
+}
+
+pwalk(df_path, write_file, overwrite = FALSE)
+```
+
+```{r}
+df_votes <- read_parquet(paste0(temp_path, "votes.parquet")) %>%
+  filter(congress >= min_congress) %>%
+  mutate(
+    across(c(icpsr, congress), as.factor),
+    cast_code = factor(
+      as.integer(cast_code), 
+      levels = 0:9, 
+      labels = c(
+        "Not a member of the chamber when this vote was taken", 
+        "Yea", "Paired Yea", "Announced Yea", "Announced Nay", 
+        "Paired Nay", "Nay", "Present (some Congresses)", 
+        "Present (some Congresses)", "Abstained"
+      )
+    )
+  )
+
+df_members <- read_parquet(paste0(temp_path, "members.parquet")) %>%
+  filter(congress >= min_congress) %>%
+  mutate(across(c(icpsr, state_icpsr, district_code, state_abbrev, congress, chamber, party_code), as.factor))
+
+df_rollcalls <- read_parquet(paste0(temp_path, "rollcalls.parquet")) %>%
+  filter(congress >= min_congress) %>%
+  mutate(
+    across(c(congress, chamber), as.factor),
+    year = year(date),
+    month = month(date)
+  )
+
+df_parties <- read_parquet(paste0(temp_path, "parties.parquet")) %>%
+  filter(congress >= min_congress) %>%
+  mutate(across(c(congress, chamber, party_code), as.factor))
+```
+
+```{r}
+df_ <- df_rollcalls %>%
+  select(congress, chamber, date, session, rollnumber, year, month) %>%
+  left_join(df_votes) %>%
+  left_join(select(df_members, congress, chamber, icpsr, bioname, party_code, born)) %>%
+  left_join(select(df_parties, congress, chamber, party_code, party_name, n_members)) %>%
+  filter(party_name %in% c("Democrat", "Republican"))
+
+df_sum <- df_ %>%
+  summarize(
+    n = n(),
+    .by = c(congress, date, year, month, rollnumber, session, party_code, party_name, n_members)
+  )
+
+options(roll_width=30, fill=NA, na.pad=TRUE, align="center")
+
+df_sum %>%
+  # filter(year >= 2000) %>%
+  mutate(date = floor_date(date, unit="month")) %>%
+  summarize(
+    n = sum(n),
+    n_members = sum(n_members),
+    .by = c(date, party_code, party_name)
+  ) %>%
+  arrange(date) %>% 
+  mutate(
+    perc = n / n_members,
+    perc_missing = (1 - perc) * 100,
+    ma = rollmean(perc_missing, getOption("roll_width"), getOption("fill"), getOption("na.pad"), getOption("align")),
+    ma_sd = rollapply(perc_missing, getOption("roll_width"), sd, fill=getOption("fill"), na.pad=getOption("na.pad"), align=getOption("align"))
+  ) %>% 
+  mutate(party_ma = rollmean(perc_missing, 30, fill=NA, na.pad=TRUE, align="center"), .by=party_name) %>% 
+  ggplot(aes(date, perc_missing)) +
+  # geom_point(aes(color = party_name), size=0.5, alpha=0.5) +
+  geom_line(aes(y=party_ma, color = party_name, fill = party_name), linewidth=0.5) +
+  geom_line(aes(y=ma), linewdith=1, linetype="dashed") +
+  # geom_ribbon(aes(y=ma, ymin=ma-ma_sd, ymax=ma+ma_sd), alpha=0.2) +
+  stat_smooth(aes(y=perc_missing), method="loess") +
+  scale_color_manual(values=c("Democrat" = "blue", "Republican"="red")) +
+  scale_y_continuous(limits=c(0, NA), breaks=seq(0, 10), expand=expansion()) +
+  scale_x_date(expand=expansion()) +
+  labs(
+    x = "Year",
+    y = "Percent of members missing",
+    color = ""
+  ) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0, 0.9),
+    legend.justification = 0,
+    legend.background = element_blank()
+  )
+```
+
+### Average age of members
+```{r}
+df_age <- df_ %>%
+  mutate(
+    age = year - born
+  ) %>%
+  summarize(
+    across(age, mean),
+    .by = c(year, icpsr, bioname, chamber)
+  ) %>%
+  summarize(
+    n_over_75 = sum(age >= 75),
+    max_age = max(age),
+    member = bioname[which.max(age)],
+    .by = c(year, chamber)
+  )
+
+df_age_total <- df_age %>%
+  summarize(
+    n_over_75 = sum(n_over_75),
+    max_age = max(max_age),
+    chamber = "Total",
+    .by = year
+  ) %>%
+    na.omit()
+
+df_age %<>%
+  bind_rows(df_age_total)
+
+df_age_total %<>%
+  mutate(max_age = rescale(max_age, c(0, 70)))
+
+df_max_members <- df_age %>%
+  filter(chamber != "Total") %>%
+  summarize(
+    x = mean(year, na.rm = T),
+    xmin = min(year, na.rm=T),
+    xmax = max(year, na.rm=T),
+    age = max(max_age, na.rm=T),
+    .by = c(member, chamber)
+  ) %>%
+  mutate(member = str_remove(member, ",")) %>%
+  separate(member, c("last", "first", "middle")) %>%
+  mutate(
+    last = str_to_title(last),
+    first = str_sub(first, 1, 1),
+    member = paste(first, last, age),
+    y = ifelse(chamber == "House", 70, 80)
+  ) %>%
+  filter(!is.infinite(age))
+
+df_age %>%
+  filter(chamber=="Total") %>%
+  ggplot(aes(year, color=chamber, fill=chamber)) +
+  geom_point(aes(y=n_over_75), position = position_jitter(width=0.5, height=0, seed=741)) +
+  geom_line(aes(y=max_age), data=df_age_total, linetype="dashed", color="darkcyan", show.legend=FALSE) +
+  # geom_segment(aes(y=y, x=xmin-0.8, xend=xmax-0.2), data=df_max_members) +
+  # geom_segment(aes(y=y-2, yend=y+2, x=xmin-0.8), data=df_max_members) +
+  # geom_segment(aes(y=y-2, yend=y+2, x=xmax-0.2), data=df_max_members) +
+  stat_smooth(aes(y=n_over_75), linewidth=0.5, alpha=0.25, show.legend=FALSE) +
+  # geom_label_repel(aes(x, y, label=member, color=chamber), data=df_max_members, inherit.aes=F, force=10, show.legend = FALSE, ylim=c(70, NA)) +
+  scale_fill_manual(values=c("Total" = "black", "House" = "blue", "Senate"="red")) +
+  scale_color_manual(values=c("Total" = "black", "House" = "blue", "Senate"="red")) +
+  scale_y_continuous(limits=c(0, NA), breaks = seq(0, 100, 10), sec.axis=sec_axis(~., name="Max Age of Members", breaks = seq(80, 100, 5))) +
+  scale_x_continuous(expand=expansion()) +
+  labs(
+    x = "Year",
+    y = "Number of Members over 75",
+  ) +
+  theme(
+    axis.text.y.right = element_text(color="darkcyan"),
+    legend.title=element_blank(),
+    legend.position="top"
+  )
+```
+
+## Citation
+Lewis, Jeffrey B., Keith Poole, Howard Rosenthal, Adam Boche, Aaron Rudkin, and Luke Sonnet (2026). Voteview: Congressional Roll-Call Votes Database. [](https://voteview.com/)
