@@ -1,9 +1,13 @@
 ---
 Title: Voting
 format: html
+execute: 
+  echo: false
+  warning: false
+  error: false
 ---
 
-```{r Pull data from voteview.com, echo=FALSE}
+```{r Pull data from voteview.com}
 library(tidyverse)
 library(ggrepel)
 library(scales)
